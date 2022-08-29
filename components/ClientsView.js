@@ -2,7 +2,7 @@ import Profile from "../images/profile-white.png"
 
 export default function ClientsView(){
     return(
-        <div className="bg-[#FFB636] p-32 2xl:p-10">
+        <div className="bg-[#FFB636] p-32 4xl:px-20 3xl:px-14 2xl:px-10">
             <div className="bg-gradient-to-r from-black via-stone-700 to-black pt-10 shadow-lg shadow-gray-800">
                 <div className="block">
                     <div className="flex justify-center m-auto ml-[750px] border-t-8 w-[170px] border-[#FFB636]"></div>
