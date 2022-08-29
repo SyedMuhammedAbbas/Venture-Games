@@ -11,15 +11,21 @@ import TopGames from "../components/TopGames";
 export default function Home() {
   return (
     <>
-      <Header/>
-      <ProfileBar/>
-      <TopGames/>
-      <Banner/>
-      <Sale/>
-      <PlatformsElement/>
-      <Featured/>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+      />
+
+      <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+      <Header />
+      <ProfileBar />
+      <TopGames />
+      <Banner />
+      <Sale />
+      <PlatformsElement />
+      <Featured />
       <ClientsView />
-      <Footer/>
+      <Footer />
     </>
   )
 }

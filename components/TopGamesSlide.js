@@ -3,8 +3,8 @@ import Spiderman from '../images/image 4.png'
 export default function TopGamesSlide() {
     return (
         <>
-            <div className="flex m-auto snap-center pt-[7rem]  pb-[auto] gap-10 tablet2:gap-5 w-[1000px] tablet2:w-[500px] mobile:w-[500px] h-auto xl:w-[900px] lg:w-[800px] tablet1:w-[750px] tablet2:grid mobile1:w-[370px] mobile1:ml-[-20px] tablet2:justify-center mobilesm:w-[270px]">
-                <img className="w-[500px] h-[500px] rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet1:w-[350px] tablet1:h-[350px] tablet2:w-[450px] tablet2:h-[450px] tablet2:justify-center mobile:w-[80vw] mobile:h-[80vw] mobile:ml-auto mobile2:ml-[4%] mobile1:w-[350px] mobile1:h-[350px] mobilesm:w-[250px] mobilesm:h-[250px] mobile1:ml-auto" src={Spiderman.src}></img>
+            <div className="flex m-auto snap-center pt-[7rem]  pb-[auto] gap-10  tablet2:gap-5 w-[1000px] tablet2:w-[500px] mobile:w-[500px] h-auto xl:w-[900px] lg:w-[800px] tablet1:w-[750px] tablet2:grid mobile1:w-[390px] tablet2:justify-center mobilesm:w-[270px]">
+                <img className="w-[500px] h-[500px] rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet1:w-[330px] tablet1:h-[330px]  tablet2:w-[450px] tablet2:h-[450px] tablet2:justify-center mobile:w-[80vw] mobile:h-[80vw] mobile:ml-auto mobile2:mr-[35px] mobile1:w-[330px] mobile1:h-[330px] mobilesm:w-[250px] mobilesm:h-[250px] mobile1:ml-auto" src={Spiderman.src}></img>
                 <div className="block mt-16 tablet1:mt-10 tablet2:mt-1 tablet2:w-[400px] mobile:w-auto mobile1:w-auto tablet2:ml-[30px]">
                     <div className="text-[50px] font-bold leading-[55px] pb-4 xl:text-[45px] xl:leading-[50px] tablet1:text-[35px] tablet1:leading-[40px]">Get your hands on FIFA 23 limited edition <br/>Right now !!!</div>
                     <div className="text-[25px] xl:text-[20px] font-[600] pb-4">A marketplace that has popular artists from all around the world</div>

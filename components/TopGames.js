@@ -15,10 +15,12 @@ export default function TopGames() {
                         onRequestChange={setActiveSlideIndex}
                         itemsToShow={1}
                         itemsToScroll={1}
-                        // infinite={{show:true,}}
-                        // autoplay={{
-                        //     show:true,
-                        // }}
+                        infinite={{show:true,}}
+                        centerMode={true}
+                        
+                        autoplay={{
+                            show:true,
+                        }}
                         dotsNav={{
                             show: true,
                             itemBtnProps: {
@@ -51,14 +53,14 @@ export default function TopGames() {
                             
 
                         speed={700}
-                        // delay={800}
+                        delay={700}
                         easing= 'linear'
                     >
-                        <div><TopGamesSlide /></div>
-                        <div><TopGamesSlide /></div>
-                        <div><TopGamesSlide /></div>
-                        <div><TopGamesSlide /></div>
-                        <div><TopGamesSlide /></div>
+                        <div className=''><TopGamesSlide /></div>
+                        <div className=''><TopGamesSlide /></div>
+                        <div className=''><TopGamesSlide /></div>
+                        <div className=''><TopGamesSlide /></div>
+                        <div className=''><TopGamesSlide /></div>
                     </ReactSimplyCarousel>
                 </>
             </div>

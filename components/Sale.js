@@ -9,7 +9,7 @@ export default function Sale() {
 
     return (
 
-        <div className='grid bg-[#FFB636] p-[5vw] pt-[80px] mobile:px-0'>
+        <div className='grid bg-[#FFB636] p-[5vw] 3xl:px-[3vw] 2xl:px-[2vw] pt-[80px] mobile:px-0'>
             <div className="border-[5px] border-black rounded-[35px] pb-3 w-auto">
                 <div className='flex'>
                     <div className='font-hemi text-black text-[80px] xl:text-[7vw] bg-[#FFB636] mt-[-60px] lg:mt-[-50px] mobile:mt-[-30px] mobile1:mt-[-20px] mobilesm:mt-[10px] ml-[7vw] px-[30px] '>Flash Sale</div>
@@ -126,7 +126,7 @@ export default function Sale() {
 
                 </div>
 
-                <div className="hidden tablet2:mt-10 tablet1:mt-20 tablet1:flex">
+                <div className="hidden tablet2:mt-10 tablet1:mt-20 tablet1:flex ">
                     <ReactSimplyCarousel
                         activeSlideIndex={activeSlideIndex}
                         onRequestChange={setActiveSlideIndex}

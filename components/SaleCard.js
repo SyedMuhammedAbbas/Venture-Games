@@ -3,7 +3,7 @@ import Spiderman from '../images/image 4.png';
 export default function SaleCard() {
     return (
         <div className='w-[370px] mobile1:w-auto'>
-            <div className="h-[620px] p-2 rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile1:w-auto">
+            <div className="h-[620px] p-2 rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile1:w-auto tablet1:mx-1">
 
                 <img className='rounded-3xl h-[400px] object-cover w-[350px] mobile1:w-auto' src={Spiderman.src} />
                 <div className='flex mt-[-30px] ml-[10px]'>
