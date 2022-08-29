@@ -18,10 +18,10 @@ export default function Header() {
                         consoles
                     </li>
 
-                    <div class="tablet:space-y-2 hidden tablet:grid tablet:absolute tablet:left-10 tablet:mt-[-15px]">
-                        <div class="w-8 h-0.5 bg-white"></div>
-                        <div class="w-8 h-0.5 bg-white"></div>
-                        <div class="w-8 h-0.5 bg-white"></div>
+                    <div className="tablet:space-y-2 hidden tablet:grid tablet:absolute tablet:left-10 tablet:mt-[-15px]">
+                        <div className="w-8 h-0.5 bg-white"></div>
+                        <div className="w-8 h-0.5 bg-white"></div>
+                        <div className="w-8 h-0.5 bg-white"></div>
                     </div>
 
                     <img className="w-28 mt-[-25px] 2xl:w-24 lg:w-[70px] lg:h-14 tablet:w-[55px] tablet:h-[50px] tablet:mt-[-28px] " src={logo.src} />
