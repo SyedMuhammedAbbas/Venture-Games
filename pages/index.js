@@ -11,15 +11,15 @@ import TopGames from "../components/TopGames";
 export default function Home() {
   return (
     <>
-      {/* <Header/> */}
-      {/* <ProfileBar/> */}
-      {/* <TopGames/> */}
-      {/* <Banner/> */}
-      {/* <Sale/> */}
-      {/* <PlatformsElement/> */}
-      {/* <Featured/> */}
+      <Header/>
+      <ProfileBar/>
+      <TopGames/>
+      <Banner/>
+      <Sale/>
+      <PlatformsElement/>
+      <Featured/>
       <ClientsView />
-      {/* <Footer/> */}
+      <Footer/>
     </>
   )
 }

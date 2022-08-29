@@ -8,7 +8,7 @@ export default function Banner() {
                 <img className="w-[500px] 3xl:w-[35vw] lg:w-[40vw] mobile:w-[400px] mobilesm:w-auto rounded-full absolute mobile:relative right-10 mobile:pl-[30px] lg:right-[0px] pr-28" src={Controller.src} />
             </div>
 
-            <div className="text-white text-[40px] 3xl:text-[2.5vw] mobile:text-[30px] mobile:text-center">
+            <div className="text-white text-[40px] 3xl:text-[2.5vw] mobile:text-[25px] mobile:m-3 mobile:text-center">
                 We At Venture Games bahkdba hahda dhagjdhadhh dadhmahj dahdka bhda dgaj 
                 ajdha fhaku We At Venture Games bahkdba hahda dhagjdhadhh bhda dgaj 
                 dada dahb gosj We At Venture Games bahkdba hahda dhagjdhadhh bhda dgaj

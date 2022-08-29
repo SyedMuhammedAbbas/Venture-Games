@@ -28,6 +28,7 @@ module.exports = {
       'tablet2.1': { 'max': '760px' },
       'mobile': { 'max': '650px' },
       'mobile2': { 'max': '600px' },
+      'mobile2.1': { 'max': '560px' },
       'mobile1': { 'max': '500px' },
       'mobile1.1': { 'max': '400px' },
       'mobilesm': { 'max': '350px' }
