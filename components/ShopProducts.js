@@ -15,7 +15,7 @@ export default function ShopProducts({handle}) {
             <div className="bg-[url('../images/background.png')] bg-[length:1700px_1800px] bg-no-repeat bg-[left_15vw_top_5rem]">
                 <div className='flex pt-[10%]'>
                     {handle == true &&
-                        <div className='bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] w-[500px] mt-[10%] h-[1300px] rounded-tr-[60px] rounded-br-[60px] transition ease-in-out delay-75'>
+                        <div className='bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] w-[500px] mt-[10%] h-[1300px] rounded-tr-[60px] rounded-br-[60px]'>
                             <div className='flex gap-4 justify-center my-7'>
                                 <div className={icons}><BsSliders /></div>
                                 <div className='text-[35px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]'>Filter</div>

@@ -1,4 +1,5 @@
 import Spiderman from '../images/image 4.png';
+import Link from "next/link"
 
 export default function FeaturedCard() {
     return (
@@ -19,8 +20,8 @@ export default function FeaturedCard() {
                     <div className="text-white text-[25px]">11,999 PKR</div>
                 </div>
                 <div className="flex justify-center gap-2 mt-[-7px]">
-                    <button className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-8 py-1 hover:bg-white hover:text-black hover:border-black">View</button>
-                    <button className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-4 py-1 hover:bg-white hover:text-black hover:border-black">Add to cart</button>
+                    <button className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-8 py-1 hover:bg-white hover:text-black hover:border-black"><Link href='/product'><a>View</a></Link></button>
+                    <button className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-4 py-1 hover:bg-white hover:text-black hover:border-black"><Link href='/product'><a>Add to cart</a></Link></button>
                 </div>
             </div>
         </div>

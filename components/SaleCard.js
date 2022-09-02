@@ -1,4 +1,5 @@
 import Spiderman from '../images/image 4.png';
+import Link from "next/link"
 
 export default function SaleCard() {
     return (
@@ -23,8 +24,8 @@ export default function SaleCard() {
                     <div className="text-white text-[23px] mt-5">Spiderman - Miles Morales</div>
                     <div className='text-white text-[14px]'>Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man.</div>
                     <div className="flex  gap-2 mt-[7px]">
-                        <button className="text-white border-[1px] font-semibold border-white rounded-lg text-[14px] px-8 py-1 hover:bg-white hover:text-black hover:border-black">Buy Now</button>
-                        <button className="text-white border-[1px] font-semibold border-white rounded-lg text-[14px] px-4 py-1 hover:bg-white hover:text-black hover:border-black">Learn More</button>
+                        <button className="text-white border-[1px] font-semibold border-white rounded-lg text-[14px] px-8 py-1 hover:bg-white hover:text-black hover:border-black"><Link href='/product'><a>Buy Now</a></Link></button>
+                        <button className="text-white border-[1px] font-semibold border-white rounded-lg text-[14px] px-4 py-1 hover:bg-white hover:text-black hover:border-black"><Link href='/product'><a>Learn More</a></Link></button>
                     </div>
                 </div>
             </div>

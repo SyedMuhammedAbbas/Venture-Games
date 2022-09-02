@@ -10,11 +10,11 @@ export default function Shop() {
 
     return (
         <>
-            <Header />
+            <Header/>
             <ProfileBar filter='true' sethandle={sethandle} handle={handle} />
-            <ShopCover />
+            <ShopCover/>
             <ShopProducts handle={handle} />
-            <Footer />
+            <Footer/>
         </>
     )
 }
