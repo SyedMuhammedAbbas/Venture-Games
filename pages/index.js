@@ -25,11 +25,11 @@ export default function Home() {
       <ClientsView />
       <a
         href="https://wa.me/2348100000000"
-        class="whatsapp_float"
+        className="whatsapp_float"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <i class="fa fa-whatsapp whatsapp-icon"></i>
+        <i className="fa fa-whatsapp whatsapp-icon"></i>
       </a>
       <Footer />
       
