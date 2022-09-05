@@ -15,7 +15,7 @@ export default function ContactUs() {
                     <div className="flex gap-24 xl:grid xl:grid-cols-2 mobile:grid-cols-1">
                         <div className="grid gap-5">
                             <div className="mt-[40px]">
-                                <iframe className="w-[550px] h-[400px] rounded-[40px]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.445961056183!2d67.06400031538256!3d24.882765484043478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f89456e683f%3A0xfd726b4100cc89b5!2sVenture%20Games!5e0!3m2!1sen!2s!4v1662366835600!5m2!1sen!2s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <iframe className="w-[550px] h-[400px] rounded-[40px]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.445961056183!2d67.06400031538256!3d24.882765484043478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f89456e683f%3A0xfd726b4100cc89b5!2sVenture%20Games!5e0!3m2!1sen!2s!4v1662366835600!5m2!1sen!2s" allowFullScreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                             <div className="grid gap-3">
                                 <div className="text-white text-center text-[20px]">
