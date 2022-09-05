@@ -7,6 +7,7 @@ import PlatformsElement from "../components/PlatformsElement";
 import ProfileBar from "../components/ProfileBar";
 import Sale from "../components/Sale";
 import TopGames from "../components/TopGames";
+import LearnMore from "./learnmore";
 
 export default function Home() {
   return (
@@ -31,6 +32,7 @@ export default function Home() {
         <i class="fa fa-whatsapp whatsapp-icon"></i>
       </a>
       <Footer />
+      
     </>
   )
 }

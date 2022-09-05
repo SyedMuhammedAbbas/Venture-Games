@@ -13,7 +13,7 @@ export default function Header() {
                         <Link href='/shop'><a>shop</a></Link>
                     </li>
                     <li className={list}>
-                        gift cards
+                        <Link href='/learnmore'><a>gift cards</a></Link>
                     </li>
                     <li className={list}>
                         consoles

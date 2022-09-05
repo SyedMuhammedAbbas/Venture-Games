@@ -1,16 +1,36 @@
 import Spiderman from '../images/image 4.png'
 import Teen from '../images/teenesbr.png'
+import { useState } from 'react';
 
 export default function ProductCard() {
+    const [NewShow, setNewShow] = useState(true);
+    const [UsedShow, setUsedShow] = useState(false);
+
+    function New() {
+        setNewShow(true);
+        setUsedShow(false);
+
+    }
+
+    function Used() {
+        setNewShow(false);
+        setUsedShow(true);
+        
+    }
+
+    const setFocus = e => {
+        e.target && e.target.focus();
+    };
+
     return (
         <div className='bg-[#FFB636] pt-[15%] pb-[5%] mx-auto lg:pt-[80px] tablet:pt-[50px]'>
             <div className='flex justify-center'>
                 <img className='w-[550px] h-[550px] z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet1:w-[330px] tablet1:h-[330px]  tablet2:w-[450px] tablet2:h-[450px] tablet2:justify-center mobile:w-[80vw] mobile:h-[80vw] mobile:ml-auto mobile2:mr-[35px] mobile1:w-[330px] mobile1:h-[330px] mobilesm:w-[250px] mobilesm:h-[250px] mobile1:ml-auto' src={Spiderman.src}></img>
-                <div className='grid gap-4 h-[500px] ml-[-20px] mt-[1.5%] bg-gradient-to-b from-[#000000] via-[#2d2d2d] to-[#000000] pl-[40px] w-[800px] rounded-tr-[45px] rounded-br-[45px]'>
-                    <div className='pl-[80%] mt-[20px] mb-[-25px]'>
-                        <div className='flex gap-1 p-0 w-[130px] rounded-xl h-[30px] bg-[#FFB636]'>
-                            <button className='text-black bg-transparent text-[20px] m-0 mt-[0px] focus:font-semibold transition-all focus:text-[#FFB636] focus:bg-black w-[70px] px-2 rounded-xl border-[1px] border-[#FFB636]'>New</button>
-                            <button className='text-black bg-transparent text-[20px] m-0 mt-[0px] focus:font-semibold transition-all focus:text-[#FFB636] focus:bg-black w-[70px] px-2 rounded-xl border-[1px] border-[#FFB636]'>Used</button>
+                <div className='grid gap-4 h-[500px] ml-[-20px] mt-[1.5%] bg-gradient-to-b from-[#000000] via-[#494949] to-[#000000] pl-[40px] w-[800px] rounded-tr-[45px] rounded-br-[45px]'>
+                    <div className='pl-[75%] mt-[20px] mb-[-25px]'>
+                        <div className='flex gap-1 p-0 w-[150px] rounded-2xl h-[30px] bg-[#FFB636]'>
+                            <button onClick={() => New()}  className='text-black bg-transparent text-[20px] m-0 mt-[0px]  focus:font-semibold focus:text-[#FFB636] focus:bg-gradient-to-r from-[#000000] via-[#2d2d2d] to-[#000000]  transition-all  w-[75px] px-2 rounded-2xl border-[1px] border-[#FFB636]'>New</button>
+                            <button onClick={() => Used()}  className='text-black bg-transparent text-[20px] m-0 mt-[0px] focus:font-semibold transition-all focus:text-[#FFB636] focus:bg-gradient-to-r from-[#000000] via-[#2d2d2d] to-[#000000] w-[75px] px-2 rounded-2xl border-[1px] border-[#FFB636]'>Used</button>
                         </div>
                     </div>
                     <div className='text-white text-[35px] font-semibold'>Spiderman - Miles Morales</div>
