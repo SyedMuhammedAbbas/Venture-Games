@@ -12,9 +12,20 @@ import LearnMore from "./learnmore";
 export default function Home() {
   return (
     <>
-      <header>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
-      </header>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700"
+        />
+        <link
+          rel="stylesheet"
+          href="https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css"
+        />
+      </head>
       <Header />
       <ProfileBar />
       <TopGames />
@@ -32,7 +43,6 @@ export default function Home() {
         <i className="fa fa-whatsapp whatsapp-icon"></i>
       </a>
       <Footer />
-      
     </>
-  )
+  );
 }

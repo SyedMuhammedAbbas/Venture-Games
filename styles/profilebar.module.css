@@ -1,0 +1,39 @@
+.profileBar{
+    background: hsla(0, 0%, 100%, .3) !important;
+
+}
+
+.profileBar::before {
+    content: '' !important;
+
+    filter: blur(20px) !important;
+    z-index: -1 !important;
+
+  }
+
+
+
+
+  /*  Swipper Css*/
+.SwipperDots{
+    height: 12;
+    width: 12;
+    border-radius: "50%";
+    border: 0;
+    margin-left: "10px";
+    margin-right: "10px";
+    margin-top: "50px";
+    margin-bottom: "40px";
+    background: "black";
+    transition: "all 0.3s";
+  }
+  .SwipperActiveDots{
+    height: 12px;
+    width: 35;
+    border-radius: "20px";
+    border: 0;
+    margin-top: "50px";
+    margin-bottom: "40px";
+    background: "black";
+    transition: "all 0.3s";
+  }
