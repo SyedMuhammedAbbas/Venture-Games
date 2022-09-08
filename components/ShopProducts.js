@@ -42,8 +42,8 @@ export default function ShopProducts({ handle }) {
 
               <div className="border-y-[3px] border-blackOpac">
                 <div className="grid items-start gap-4 mr-[120px] py-10">
-                  {genre.map((genre, index) => (
-                    <button key={index} className={buttons}>
+                  {genre.map((genre, i) => (
+                    <button key={i} className={buttons}>
                       {genre}
                     </button>
                   ))}
@@ -52,8 +52,8 @@ export default function ShopProducts({ handle }) {
 
               <div className="border-b-[3px] border-blackOpac">
                 <div className="grid items-start gap-4 mr-[120px] py-10">
-                  {category.map((category, index) => (
-                    <button key={index} className={buttons}>
+                  {category.map((category, ind) => (
+                    <button key={ind} className={buttons}>
                       {category}
                     </button>
                   ))}

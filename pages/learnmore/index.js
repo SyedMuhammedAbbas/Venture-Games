@@ -7,17 +7,17 @@ import LearnMoreClientsSay from "../../components/LearnMoreClientsSay";
 import LearnMoreHeading from "../../components/LearnMoreHeading";
 import ProfileBar from "../../components/ProfileBar";
 
-export default function LearnMore(){
-    return(
-        <>
-            <Header/>
-            <ProfileBar/>
-            <LearnMoreHeading/>
-            <LearnMoreClientsSay/>
-            <LearnMoreCeo/>
-            <ClientsView/>
-            <ContactUs/>
-            <Footer/>
-        </>
-    )
+export default function LearnMore() {
+  return (
+    <>
+      <Header />
+      <ProfileBar />
+      <LearnMoreHeading />
+      <LearnMoreClientsSay />
+      <LearnMoreCeo />
+      <ClientsView />
+      <ContactUs />
+      <Footer />
+    </>
+  );
 }

@@ -8,11 +8,12 @@ import ProfileBar from "../components/ProfileBar";
 import Sale from "../components/Sale";
 import TopGames from "../components/TopGames";
 import LearnMore from "./learnmore";
+import Head from "next/head";
 
 export default function Home() {
   return (
     <>
-      <head>
+      <Head>
         <link
           rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
@@ -25,7 +26,7 @@ export default function Home() {
           rel="stylesheet"
           href="https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css"
         />
-      </head>
+      </Head>
       <Header />
       <ProfileBar />
       <TopGames />
