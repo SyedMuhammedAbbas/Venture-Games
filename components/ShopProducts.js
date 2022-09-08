@@ -14,7 +14,7 @@ export default function ShopProducts({ handle }) {
   const category = ["Online", "Offline"];
 
   return (
-    <div className="bg-[#FFB636] pt-[10%]">
+    <div className="bg-[#FFB636] ">
       <div className="bg-[url('../images/background.png')] bg-[length:1700px_1800px] bg-no-repeat bg-[left_15vw_top_5rem]">
         <div className="flex pt-[10%]">
           {handle && (
@@ -61,10 +61,10 @@ export default function ShopProducts({ handle }) {
               </div>
             </div>
           )}
-          <div className="flex flex-wrap justify-start gap-5 text-center mx-[4vw] mt-[5%] mb-[5%]">
+          <div className="flex flex-wrap justify-start gap-5 text-center mx-[4vw] mt-[0%] mb-[5%]">
             {[...Array(n)].map((user) => (
               <div key={user} className="">
-                <FeaturedCard Key={user} />
+                <FeaturedCard />
               </div>
             ))}
           </div>
