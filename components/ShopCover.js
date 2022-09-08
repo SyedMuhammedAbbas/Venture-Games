@@ -1,9 +1,9 @@
 import ShopBack from "../images/shop-background.png";
 
-export default function ShopCover({ key }) {
+export default function ShopCover({ Key1 }) {
   return (
     <div
-      key={user}
+      Key={Key1}
       className="grid bg-black h-[100vh] 5.1xl:pt-[7%] xl1:pt-[15%] tablet3:pt-[25%] mobile:pt-[35%] mobile2.1:pt-[45%] mobile1:pt-[65%] xl1:gap-[10%] tablet3:gap-[20%] mobile:gap-[50%]"
     >
       <img className="justify-center object-contain" src={ShopBack.src}></img>

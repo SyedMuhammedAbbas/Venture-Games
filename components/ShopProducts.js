@@ -64,7 +64,7 @@ export default function ShopProducts({ handle }) {
           <div className="flex flex-wrap justify-start gap-5 text-center mx-[4vw] mt-[5%] mb-[5%]">
             {[...Array(n)].map((user) => (
               <div key={user} className="">
-                <FeaturedCard key={user} />
+                <FeaturedCard Key={user} />
               </div>
             ))}
           </div>

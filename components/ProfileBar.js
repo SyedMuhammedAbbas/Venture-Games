@@ -19,7 +19,7 @@ export default function ProfileBar({ filter, sethandle, handle }) {
 
   const onButtonClick = () => {
     {
-      handle == true ? sethandle(false) : sethandle(true);
+      handle ? sethandle(false) : sethandle(true);
     }
   };
   return (
