@@ -6,11 +6,7 @@ import { BsSortDown } from "react-icons/bs";
 import { Fragment, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import "../styles/profilebar.module.css";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import search from "../styles/Search.module.css";
 
 export default function ProfileBar({ filter, sethandle, handle }) {
   const icons =
@@ -24,7 +20,7 @@ export default function ProfileBar({ filter, sethandle, handle }) {
     }
   };
   return (
-    <div className="flex gap-9 2xl:gap-7 mobile:gap-5 fixed w-[100%] justify-end pr-28 2xl:pr-20 lg:pr-14 mobile:pr-7 mt-[140px] 2xl:mt-[127px] lg:mt-[91px] tablet:hidden p-3 rounded-br-2xl bg-black bg-opacity-30 backdrop-blur-xl z-[999]">
+    <div className="flex gap-9 2xl:gap-7 mobile:gap-5 fixed w-[100%] justify-end pr-28 2xl:pr-20 lg:pr-14 mobile:pr-7 mt-[140px] 2xl:mt-[127px] lg:mt-[91px] tablet:hidden p-3  bg-black bg-opacity-30 backdrop-blur-xl z-[999]">
       {filter == "true" && (
         <div className="flex gap-9 absolute left-20">
           <div
@@ -57,16 +53,16 @@ export default function ProfileBar({ filter, sethandle, handle }) {
         </form>
       </div> */}
 
-      <div className="wrap font-sfpro">
+      <div className={search.wrap}>
         <form action="" autocomplete="on">
           <input
-            className="search font-sfpro"
+            className={search.search}
             name="search"
             type="text"
             placeholder="What're we looking for ?"
           ></input>
           {/* <input id="search_submit" value="Rechercher" type="submit" /> */}
-          <button className={`${icons} search_submit`} type="submit">
+          <button className={`${icons} ${search.search_submit}`} type="submit">
             <BsSearch />
           </button>
         </form>
@@ -87,14 +83,14 @@ export default function ProfileBar({ filter, sethandle, handle }) {
         </div>
       </div>
       {open && (
-        <div className="grid w-60 absolute top-[58px] bg-[#313131] rounded-2xl p-[0rem] overflow-hidden">
-          <div className="h-[58px] text-[#c8c8c8] text-[20px] flex items-center transition-all py-[2rem] pl-[1rem] hover:bg-[#525357] hover:text-black hover:font-semibold">
+        <div className="grid w-60  top-[58px] bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] absolute rounded-2xl p-[0rem] overflow-hidden">
+          <div className="h-[58px] text-[#fff] text-[20px] flex items-center py-[2rem] pl-[1rem] hover:bg-[#525357] hover:text-black hover:font-semibold">
             <a className="cursor-pointer">Settings</a>
           </div>
-          <div className="h-[58px] text-[#c8c8c8] text-[20px] flex items-center transition-all py-[2rem] pl-[1rem] hover:bg-[#525357] hover:text-black hover:font-semibold">
+          <div className="h-[58px] text-[#fff] text-[20px] flex items-center py-[2rem] pl-[1rem] hover:bg-[#525357] hover:text-black hover:font-semibold">
             <a className="cursor-pointer">Help</a>
           </div>
-          <div className="h-[58px] text-[#c8c8c8] text-[20px] flex items-center transition-all py-[2rem] pl-[1rem] hover:bg-[#525357] hover:text-black hover:font-semibold">
+          <div className="h-[58px] text-[#fff] text-[20px] flex items-center py-[2rem] pl-[1rem] hover:bg-[#525357] hover:text-black hover:font-semibold">
             <a className="cursor-pointer">Sign Out</a>
           </div>
         </div>

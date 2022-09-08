@@ -9,12 +9,18 @@ export default function ShopProducts({ handle }) {
   const buttons =
     "text-white border-[1px] font-semibold border-white rounded-lg text-[25px] px-2 w-40 py-1 hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black";
 
+  const type = ["PS5", "PS4", "XBOX", "Nintendo"];
+  const genre = ["Action", "Adventure", "Thriller", "Driving"];
+  const category = ["Online", "Offline"];
+
   return (
     <div className="bg-[#FFB636] pt-[10%]">
       <div className="bg-[url('../images/background.png')] bg-[length:1700px_1800px] bg-no-repeat bg-[left_15vw_top_5rem]">
         <div className="flex pt-[10%]">
-          {handle == true && (
-            <div className="bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] w-[500px] mt-[0%] tablet:hidden h-[1300px] rounded-tr-[60px] rounded-br-[60px]">
+          {handle && (
+            <div
+              className={` bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] px-[60px] mt-[0%] tablet:hidden h-[1300px] rounded-tr-[70px] rounded-br-[70px]`}
+            >
               <div className="flex gap-4 justify-center my-7">
                 <div className={icons}>
                   <BsSliders />
@@ -24,27 +30,38 @@ export default function ShopProducts({ handle }) {
                 </div>
               </div>
 
-              <div className="grid ml-[50px] gap-4 border-y-[3px] border-white py-10 mr-14">
-                <button className={buttons}>PS4</button>
-                <button className={buttons}>PS5</button>
-                <button className={buttons}>XBOX</button>
-                <button className={buttons}>Nintendo</button>
+              <div className="border-t-[3px] border-blackOpac">
+                <div className="grid items-start gap-4 mr-[120px] py-10">
+                  {type.map((type, index) => (
+                    <button key={index} className={buttons}>
+                      {type}
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              <div className="grid ml-[50px] gap-4 border-b-[3px] border-white py-10 mr-14">
-                <button className={buttons}>Action</button>
-                <button className={buttons}>Adventure</button>
-                <button className={buttons}>Triller</button>
-                <button className={buttons}>Driving</button>
+              <div className="border-y-[3px] border-blackOpac">
+                <div className="grid items-start gap-4 mr-[120px] py-10">
+                  {genre.map((genre, index) => (
+                    <button key={index} className={buttons}>
+                      {genre}
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              <div className="grid ml-[50px] gap-4 border-b-[3px] border-white py-10 mr-14">
-                <button className={buttons}>Online</button>
-                <button className={buttons}>Offline</button>
+              <div className="border-b-[3px] border-blackOpac">
+                <div className="grid items-start gap-4 mr-[120px] py-10">
+                  {category.map((category, index) => (
+                    <button key={index} className={buttons}>
+                      {category}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           )}
-          <div className="flex flex-wrap justify-evenly gap-5 text-center mx-auto mt-[0%] mb-[5%]">
+          <div className="flex flex-wrap justify-start gap-5 text-center mx-[4vw] mt-[5%] mb-[5%]">
             {[...Array(n)].map((user) => (
               <div key={user} className="">
                 <FeaturedCard />
