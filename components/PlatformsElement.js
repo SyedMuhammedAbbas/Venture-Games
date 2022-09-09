@@ -17,14 +17,16 @@ export default function PlatformsElement() {
           Shop By Platform
         </div>
         <div className="flex gap-10 mobile:gap-5 xl:grid xl:grid-cols-2 mobile:grid-cols-2">
-          {platformLogos.map((index, platformLogos) => (
-            <Link key={index} href={`/${platformLogos}`}>
-              <a>
-                <div className={platformClass}>
-                  <img className={platformImgClass} src={platformLogos.src} />
-                </div>
-              </a>
-            </Link>
+          {platformLogos.map((platformLogos, index) => (
+            <div key={index}>
+              <Link href={`/${platformLogos}`}>
+                <a>
+                  <div className={platformClass}>
+                    <img className={platformImgClass} src={platformLogos.src} />
+                  </div>
+                </a>
+              </Link>
+            </div>
           ))}
         </div>
       </div>
