@@ -14,9 +14,9 @@ export default function LearnMore() {
       <ProfileBar />
       <LearnMoreHeading />
       <LearnMoreClientsSay />
-      <LearnMoreCeo />
-      <ClientsView />
-      <ContactUs />
+      {/* <LearnMoreCeo /> */}
+      {/* <ClientsView /> */}
+      {/* <ContactUs /> */}
       <Footer />
     </>
   );

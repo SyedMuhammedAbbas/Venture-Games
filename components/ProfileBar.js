@@ -24,7 +24,7 @@ export default function ProfileBar({ filter, sethandle, handle }) {
     }
   };
   return (
-    <div className="flex gap-9 2xl:gap-7 mobile:gap-5 fixed w-[100%] justify-end pr-28 2xl:pr-20 lg:pr-14 mobile:pr-7 mt-[140px] 2xl:mt-[127px] lg:mt-[91px] tablet:hidden p-3  bg-black bg-opacity-30 backdrop-blur-xl z-[999]">
+    <div className="flex gap-9 2xl:gap-7 mobile:gap-5 fixed w-[100%] justify-end pr-28 2xl:pr-20 lg:pr-14 mobile:pr-7 mt-[140px] 5.1xl:mt-[127px] lg:mt-[91px] tablet:hidden p-3  bg-black bg-opacity-30 backdrop-blur-xl z-[999]">
       {filter == "true" && (
         <div className="flex gap-9 absolute left-20">
           <div
