@@ -50,13 +50,6 @@ export default function ProfileBar({ filter, sethandle, handle }) {
         </div>
       )}
 
-      {/* <div>
-        <form className="search-box">
-          <input type="text" placeholder=" " />
-          <button type="reset"></button>
-        </form>
-      </div> */}
-
       <div className={search.wrap}>
         <form action="" autoComplete="on">
           <input
@@ -65,7 +58,6 @@ export default function ProfileBar({ filter, sethandle, handle }) {
             type="text"
             placeholder="What're we looking for ?"
           ></input>
-          {/* <input id="search_submit" value="Rechercher" type="submit" /> */}
           <button className={`${icons} ${search.search_submit}`} type="submit">
             <BsSearch />
           </button>

@@ -12,8 +12,11 @@ export default function SaleCard() {
         />
         <div className="flex mt-[-30px] ml-[10px]">
           <div className="flex gap-1">
-            {platforms.map((platforms) => (
-              <button className="text-black font-semibold h-4 bg-[#FFB636] px-3 rounded-md text-[12px]">
+            {platforms.map((platforms, index) => (
+              <button
+                key={index}
+                className="text-black font-semibold h-4 bg-[#FFB636] px-3 rounded-md text-[12px]"
+              >
                 {platforms}
               </button>
             ))}
