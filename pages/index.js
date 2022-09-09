@@ -27,14 +27,17 @@ export default function Home() {
           href="https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css"
         />
       </Head>
+
       <Header />
-      <ProfileBar />
-      <TopGames />
-      <Banner />
-      <Sale />
-      <PlatformsElement />
-      <Featured />
-      <ClientsView />
+      <div className="snap-y snap-mandatory">
+        <ProfileBar />
+        <TopGames />
+        <Banner />
+        <Sale />
+        <PlatformsElement />
+        <Featured />
+        <ClientsView />
+      </div>
       <a
         href="https://wa.me/2348100000000"
         className="whatsapp_float"

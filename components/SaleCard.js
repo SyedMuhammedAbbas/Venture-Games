@@ -7,7 +7,7 @@ export default function SaleCard() {
     <div className="w-[370px] mobile1:w-auto">
       <div className="h-[620px] p-2 rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile1:w-auto tablet1:mx-1">
         <img
-          className="rounded-3xl h-[400px] object-cover w-[350px] mobile1:w-auto"
+          className="rounded-3xl h-[400px]  object-cover w-[350px] mobile1:w-auto"
           src={Spiderman.src}
         />
         <div className="flex mt-[-30px] ml-[10px]">
@@ -17,16 +17,6 @@ export default function SaleCard() {
                 {platforms}
               </button>
             ))}
-
-            {/* <button className="text-black font-semibold h-4 bg-[#FFB636] px-3 rounded-md text-[12px]">
-              PS4
-            </button>
-            <button className="text-black font-semibold h-4 bg-[#FFB636] px-3 rounded-md text-[12px]">
-              PS5
-            </button>
-            <button className="text-black font-semibold h-4 bg-[#FFB636] px-3 rounded-md text-[12px]">
-              XBOX
-            </button> */}
           </div>
           <div className="grid gap-0 mt-[-45px] pl-[80px]">
             <div className="text-red-600 text-right line-through text-[20px]">
@@ -37,12 +27,16 @@ export default function SaleCard() {
         </div>
 
         <div className="grid gap-2 pl-4 overflow-y-hidden">
-          <div className="text-white text-[23px] mt-5">
-            Spiderman - Miles Morales
-          </div>
-          <div className="text-white text-[14px]">
-            Experience the Rise Of Miles Morales As The New Hero Masters
-            Incredible, Explosive New Powers To Become His Own Spider-Man.
+          <div className="grid mt-5 overflow-y-scroll h-[100px]">
+            <div className="text-white text-[23px] mt-0">
+              Spiderman - Miles Morales
+            </div>
+            <div className="text-white text-[14px]">
+              Experience the Rise Of Miles Morales As The New Hero Masters
+              Incredible, Explosive New Powers To Become His Own Spider-Man.
+              Experience the Rise Of Miles Morales As The New Hero Masters
+              Incredible, Explosive New Powers To Become His Own Spider-Man.
+            </div>
           </div>
           <div className="flex  gap-2 mt-[7px]">
             <button className="text-white border-[1px] font-semibold border-white rounded-lg text-[14px] px-8 py-1 hover:bg-white hover:text-black hover:border-black">
