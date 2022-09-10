@@ -16,7 +16,7 @@ export default function TopGames() {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
   return (
-    <div className="bg-[#FFB636] pt-[150px] pb-[90px] mobile:pb-0 lg:pt-[80px] tablet:pt-[40px] h-auto snap-center">
+    <div className="bg-[#FFB636] snap-start pt-[150px] pb-[90px] mobile:pb-0 lg:pt-[80px] tablet:pt-[40px] h-auto">
       <div className=" bg-[url('../images/background.png')] bg-[length:700px_800px] h-auto 4xl:bg-[length:700px_800px] tablet2:bg-[length:650px_750px] lg:bg-[length:550px_650px] tablet1:bg-[length:500px_600px] mobile:tablet1:bg-[length:500px_600px] bg-no-repeat bg-[left_15vw_top_5rem] 4xl:bg-[left_20%_top_5rem] xl:bg-[left_10%_top_5rem] tablet1:bg-[left_5%_top_10px] tablet2:bg-[left_5%_top_0px] mobile:bg-[left_5%_top_-40px]">
         <>
           {/* <ReactSimplyCarousel

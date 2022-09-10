@@ -29,8 +29,8 @@ export default function Home() {
       </Head>
 
       <Header />
-      <div className="snap-y snap-mandatory">
-        <ProfileBar />
+      <ProfileBar />
+      <div className="snap-y snap-mandatory overflow-hidden">
         <TopGames />
         <Banner />
         <Sale />

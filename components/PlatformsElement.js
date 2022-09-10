@@ -11,7 +11,7 @@ export default function PlatformsElement() {
   const platformImgClass =
     "w-[250px] justify-center py-[120px] mobile1:py-[60px] px-[20px] mobile1.1:px-[20px]";
   return (
-    <div className=" bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] h-[100%] p-36 snap-center px-64 5xl:p-32 5xl:px-auto 4xl:p-20 2xl:p-10 mobile:p-4 ">
+    <div className=" bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] h-[100%] p-36 snap-start px-64 5xl:p-32 5xl:px-auto 4xl:p-20 2xl:p-10 mobile:p-4 ">
       <div className="grid gap-10 justify-center border-[1px]  border-white rounded-[40px]  p-10 tablet2:p-5 pt-0 my-[30px]">
         <div className="text-[90px] 2xl:text-[70px] lg:text-[50px] tablet:text-[40px] text-center text-white font-hemi">
           Shop By Platform

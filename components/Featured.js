@@ -3,7 +3,7 @@ import FeaturedCard from "./FeaturedCard";
 
 export default function Featured() {
   return (
-    <div className="grid bg-[#FFB636] p-32 2xl:px-20 snap-center xl1:px-10 tablet2.1:px-0 2xl:py-7 tablet:py-5 border-b-black border-b-8">
+    <div className="grid bg-[#FFB636] p-32 2xl:px-20 snap-start xl1:px-10 tablet2.1:px-0 2xl:py-7 tablet:py-5 border-b-black border-b-8">
       <div className="flex">
         <div className="font-hemi text-black text-[80px] 2xl:text-[60px] lg:text-[40px] mobile1.1:text-[30px] lg:ml-5 ">
           Featured Products
