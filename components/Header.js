@@ -1,6 +1,7 @@
 import logo from "../images/logo.png";
 import { AiOutlineSearch } from "react-icons/ai";
 import Link from "next/link";
+import ProfileBar from "./ProfileBar";
 
 export default function Header() {
   const list =
@@ -8,6 +9,7 @@ export default function Header() {
 
   return (
     <>
+      {/* <div className="flex"> */}
       <div className="flex p-10 mx-auto justify-center bg-gradient-to-t from-black to-[#2c2c2c] fixed w-[100%] z-[999]">
         <ul className="flex gap-[8vw] uppercase text-white text-xl transition-all mb-[-10px] 4xl:text-lg xl:gap-[7vw] lg:mb-[-20px] ">
           <li className={list}>
@@ -46,6 +48,8 @@ export default function Header() {
           <li className={list}>contact</li>
         </ul>
       </div>
+      {/* <ProfileBar /> */}
+      {/* </div> */}
     </>
   );
 }

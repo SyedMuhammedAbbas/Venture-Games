@@ -5,13 +5,13 @@ import nintendo from "../images/nintendo.png";
 import Link from "next/link";
 
 export default function PlatformsElement() {
-  const platformLogos = [PS5, PS4, xbox, nintendo];
+  const platformLogos = [PS5, xbox, PS4, nintendo];
   const platformClass =
-    "border-[1px] h-[300px] tablet:h-[250px] mobile:h-[150px] mobile1:h-[100px] rounded-[40px] border-white mobile:rounded-[25px]";
+    "border-[1px] h-[300px] flex justify-center mobile1:h-[180px] mobile1:py-[-20px] rounded-[40px] border-white mobile:rounded-[35px]";
   const platformImgClass =
-    "w-[250px] justify-center py-[120px] px-[20px] mobile:py-[40px] mobile1.1:px-[15px]";
+    "w-[250px] justify-center py-[120px] mobile1:py-[60px] px-[20px] mobile1.1:px-[20px]";
   return (
-    <div className=" bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] p-36 snap-center px-64 5xl:p-32 5xl:px-auto 4xl:p-20 2xl:p-10 mobile:p-4 ">
+    <div className=" bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] h-[100%] p-36 snap-center px-64 5xl:p-32 5xl:px-auto 4xl:p-20 2xl:p-10 mobile:p-4 ">
       <div className="grid gap-10 justify-center border-[1px]  border-white rounded-[40px]  p-10 tablet2:p-5 pt-0 my-[30px]">
         <div className="text-[90px] 2xl:text-[70px] lg:text-[50px] tablet:text-[40px] text-center text-white font-hemi">
           Shop By Platform

@@ -19,7 +19,7 @@ export default function ClientsView() {
           </div>
         </div>
 
-        <div className="flex m-[50px] xl:m-[30px] xl2:m-[10vw] lg:m-10  gap-20 xl:gap-10 xl1:gap-5 xl2:gap-10 2xl:gap-14 justify-center pb-[50px] xl2:grid xl2:grid-cols-2 tablet3:grid-cols-1 tablet3:ml-[25vw] tablet2.1:ml-[20vw] mobile:ml-[17vw] mobile2.1:ml-[10vw] mobile1:ml-[5vw] mobile1.1:m-auto tablet3:p-auto tablet3:">
+        <div className="flex flex-wrap m-[50px] lg:m-10 gap-20 justify-center pb-[50px]">
           {[...Array(n)].map((user) => (
             <div
               key={user}
