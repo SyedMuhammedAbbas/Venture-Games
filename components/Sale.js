@@ -2,14 +2,24 @@ import SaleCard from "./SaleCard";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import React, { useState } from "react";
-import ReactSimplyCarousel from "react-simply-carousel";
+// import ReactSimplyCarousel from "react-simply-carousel";
+// import React, { useRef, useState } from "react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+// import { FreeMode, Navigation, Pagination, Scrollbar, Autoplay } from "swiper";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+import "swiper/css/bundle";
+import { Pagination, Navigation } from "swiper";
 
 export default function Sale() {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
   return (
-    <div className="grid bg-[#FFB636] p-[5vw] snap-start 3xl:px-[3vw] 2xl:px-[2vw] pt-[80px] mobile:px-1">
-      <div className="border-[5px] border-black rounded-[35px] pb-3 w-auto">
+    <div className="grid bg-[#FFB636] p-[5vw] w-[100%] overflow-x-hidden justify-center pt-[80px] mobile:px-1">
+      <div className="border-[5px] border-black rounded-[35px] pb-3  w-[120vw]">
         <div className="flex">
           <div className="font-hemi text-black text-[80px] xl:text-[7vw] bg-[#FFB636] mt-[-60px] lg:mt-[-50px] mobile:mt-[-30px] mobile1:mt-[-20px] mobilesm:mt-[10px] ml-[7vw] px-[30px] ">
             Flash Sale
@@ -23,196 +33,90 @@ export default function Sale() {
             </button>
           </div>
         </div>
-        <div className="mt-10 xl:mt-20 tablet1:hidden">
-          <ReactSimplyCarousel
-            activeSlideIndex={activeSlideIndex}
-            onRequestChange={setActiveSlideIndex}
-            itemsToShow={3}
-            itemsToScroll={1}
-            dotsNav={{
-              show: true,
-              itemBtnProps: {
-                style: {
-                  height: 12,
-                  width: 12,
-                  borderRadius: "50%",
-                  border: 0,
-                  marginLeft: "10px",
-                  marginRight: "10px",
-                  marginTop: "50px",
-                  marginBottom: "40px",
-                  background: "black",
-                  transition: "all 0.3s",
-                },
+        <div className="flex justify-center   m-auto mt-8 mx-10 h-[700px]">
+          <Swiper
+            slidesPerView={4}
+            spaceBetween={20}
+            // freeMode={true}
+            navigation={true}
+            centeredSlides={true}
+            pagination={{
+              clickable: true,
+            }}
+            breakpoints={{
+              340: {
+                slidesPerView: 1,
+                spaceBetween: 140,
               },
-              activeItemBtnProps: {
-                style: {
-                  height: 12,
-                  width: 35,
-                  borderRadius: "20px",
-                  border: 0,
-                  marginTop: "50px",
-                  marginBottom: "40px",
-                  background: "black",
-                  transition: "all 0.3s",
-                },
+              440: {
+                slidesPerView: 1,
+                spaceBetween: 130,
+              },
+              540: {
+                slidesPerView: 2,
+                spaceBetween: 120,
+              },
+              600: {
+                slidesPerView: 2,
+                spaceBetween: 140,
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 100,
+              },
+              740: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              840: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              1040: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+              },
+              1140: {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              1240: {
+                slidesPerView: 4,
+                spaceBetween: 30,
+              },
+              1340: {
+                slidesPerView: 5,
+                spaceBetween: 10,
               },
             }}
-            forwardBtnProps={{
-              style: {
-                alignSelf: "center",
-                background: "transparent",
-                border: "none",
-                color: "Black",
-                cursor: "pointer",
-                fontSize: "70px",
-                lineHeight: 1,
-                textAlign: "center",
-              },
-              children: (
-                <div>
-                  <MdKeyboardArrowRight />
-                </div>
-              ),
-            }}
-            backwardBtnProps={{
-              style: {
-                alignSelf: "center",
-                background: "#FFB636",
-                border: "none",
-                color: "Black",
-                cursor: "pointer",
-                fontSize: "70px",
-                lineHeight: 1,
-                textAlign: "center",
-              },
-              children: (
-                <div>
-                  <MdKeyboardArrowLeft />
-                </div>
-              ),
-            }}
-            responsiveProps={[
-              {
-                itemsToShow: 4,
-                itemsToScroll: 1,
-                maxWidth: 2000,
-                minWidth: 1700,
-              },
-              {
-                itemsToShow: 3,
-                itemsToScroll: 1,
-                maxWidth: 1700,
-                minWidth: 1320,
-              },
-              {
-                itemsToShow: 2,
-                itemsToScroll: 1,
-                maxWidth: 1320,
-                minWidth: 900,
-              },
-              {
-                itemsToShow: 1,
-                itemsToScroll: 1,
-                maxWidth: 900,
-                minWidth: 300,
-              },
-            ]}
-            speed={400}
-            easing="linear"
+            modules={[Navigation, Pagination, Navigation]}
+            className="mySwiper"
           >
-            <div>
+            <SwiperSlide>
               <SaleCard />
-            </div>
-            <div>
+            </SwiperSlide>
+            <SwiperSlide>
               <SaleCard />
-            </div>
-            <div>
+            </SwiperSlide>
+            <SwiperSlide>
               <SaleCard />
-            </div>
-            <div>
+            </SwiperSlide>
+            <SwiperSlide>
               <SaleCard />
-            </div>
-            <div>
+            </SwiperSlide>
+            <SwiperSlide>
               <SaleCard />
-            </div>
-            <div>
+            </SwiperSlide>
+            <SwiperSlide>
               <SaleCard />
-            </div>
-            <div>
+            </SwiperSlide>
+            <SwiperSlide>
               <SaleCard />
-            </div>
-          </ReactSimplyCarousel>
-        </div>
-
-        <div className="hidden tablet2:mt-10 tablet1:mt-20 tablet1:flex ">
-          <ReactSimplyCarousel
-            activeSlideIndex={activeSlideIndex}
-            onRequestChange={setActiveSlideIndex}
-            itemsToShow={1}
-            itemsToScroll={1}
-            dotsNav={{
-              show: true,
-              itemBtnProps: {
-                style: {
-                  height: 12,
-                  width: 12,
-                  borderRadius: "50%",
-                  border: 0,
-                  marginLeft: "10px",
-                  marginRight: "10px",
-                  marginTop: "50px",
-                  marginBottom: "40px",
-                  background: "black",
-                  transition: "all 0.3s",
-                },
-              },
-              activeItemBtnProps: {
-                style: {
-                  height: 12,
-                  width: 35,
-                  borderRadius: "20px",
-                  border: 0,
-                  marginTop: "50px",
-                  marginBottom: "40px",
-                  background: "black",
-                  transition: "all 0.3s",
-                },
-              },
-            }}
-            responsiveProps={[
-              {
-                itemsToShow: 1,
-                itemsToScroll: 1,
-                maxWidth: 900,
-                minWidth: 300,
-              },
-            ]}
-            speed={400}
-            easing="linear"
-          >
-            <div>
+            </SwiperSlide>
+            <SwiperSlide>
               <SaleCard />
-            </div>
-            <div>
-              <SaleCard />
-            </div>
-            <div>
-              <SaleCard />
-            </div>
-            <div>
-              <SaleCard />
-            </div>
-            <div>
-              <SaleCard />
-            </div>
-            <div>
-              <SaleCard />
-            </div>
-            <div>
-              <SaleCard />
-            </div>
-          </ReactSimplyCarousel>
+            </SwiperSlide>
+          </Swiper>
         </div>
       </div>
     </div>

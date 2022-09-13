@@ -4,9 +4,15 @@
 @tailwind components;
 :root{
   /* transform: scale(0.7); */
-  zoom: 75%
+  zoom: 75%; 
 }
 
+:root {
+  --swiper-theme-color: #000000 !important;
+}
+.mySwiper{
+  padding: 20px;
+}
 .profileBar{
   background: rgba(0, 0, 0, 0.3);
   /* filter: blur(20px); */
@@ -89,3 +95,5 @@
   background: "black"!important;
   transition: "all 0.3s"!important;
 }
+
+/* swiper */

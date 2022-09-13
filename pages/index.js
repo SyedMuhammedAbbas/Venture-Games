@@ -1,16 +1,10 @@
-import Banner from "../components/Banner";
-import ClientsView from "../components/ClientsView";
-import Featured from "../components/Featured";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import PlatformsElement from "../components/PlatformsElement";
 import ProfileBar from "../components/ProfileBar";
-import Sale from "../components/Sale";
-import TopGames from "../components/TopGames";
-import LearnMore from "./learnmore";
 import Head from "next/head";
+import Home from "./home";
 
-export default function Home() {
+export default function Index() {
   return (
     <>
       <Head>
@@ -28,16 +22,8 @@ export default function Home() {
         />
       </Head>
 
-      <Header />
-      <ProfileBar />
-      <div className="snap-y snap-mandatory overflow-hidden">
-        <TopGames />
-        <Banner />
-        <Sale />
-        <PlatformsElement />
-        <Featured />
-        <ClientsView />
-      </div>
+      {/* <Header /> */}
+      <Home />
       <a
         href="https://wa.me/2348100000000"
         className="whatsapp_float"
@@ -46,7 +32,7 @@ export default function Home() {
       >
         <i className="fa fa-whatsapp whatsapp-icon"></i>
       </a>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

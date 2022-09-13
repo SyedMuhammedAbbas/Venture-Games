@@ -2,9 +2,9 @@ import Controller from "../images/controller.png";
 
 export default function Banner() {
   return (
-    <div className="grid gap-20 pb-20 pl-64 snap-start mobile:pl-0 4xl:pl-[5vw] pt-20 bg-gradient-to-r from-[#000000] via-[#2d2d2d] to-[#000000] ">
+    <div className="grid gap-20 pb-20 pl-64 mobile:pl-0 4xl:pl-[5vw] pt-20 bg-gradient-to-r from-[#000000] via-[#2d2d2d] to-[#000000] ">
       <div className="flex mobile:grid mobile:justify-center mobile:gap-10 mobile:pl-[20px] ">
-        <div className="text-white text-[100px] 4xl:text-[7vw] mobile:text-[80px] mobilesm:text-auto font-hemi leading-[90px] 4xl:leading-[6vw] mobile:leading-[65px] mobilesm:leading-auto">
+        <div className="text-white text-[100px] 4xl:text-[7vw] mobile:text-[80px] mobilesm:text-auto font-hemi leading-[90px] 4xl:leading-[6vw] mobile:leading-[80px] ">
           Eat. <br />
           Sleep. <br />
           <span className="text-[#FFB636]">Game</span> <br /> Repeat.
