@@ -16,7 +16,7 @@ export default function TopGamesSlide() {
           <div className="text-[25px] text-black xl:text-[20px] font-[600] pb-4 mobile:font-normal">
             A marketplace that has popular artists from all around the world
           </div>
-          <button className="border-[2px] text-black border-slate-900 rounded px-2 py-2 text-[14px] font-bold">
+          <button className="border-[2px] border-black text-black border-slate-900 rounded px-2 py-2 text-[14px] font-bold">
             Learn More
           </button>
         </div>

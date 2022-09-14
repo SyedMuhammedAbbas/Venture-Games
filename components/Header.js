@@ -33,7 +33,7 @@ export default function Header() {
           <Link href="/">
             <a>
               <img
-                className="w-28 mt-[-25px] 5.1xl:w-24 lg:w-[70px] lg:h-14 tablet:w-[55px] tablet:h-[50px] tablet:mt-[-28px] "
+                className="w-28 mt-[-25px] 5.1xl:w-24 lg:w-[70px] lg:h-[70px] tablet:w-[55px] tablet:h-[50px] tablet:mt-[-28px] "
                 src={logo.src}
               />
             </a>

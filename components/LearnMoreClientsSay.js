@@ -14,7 +14,7 @@ export default function LearnMoreClientsSay() {
         </div>
 
         <div className="grid mt-[10vh] xl2:mt-[0vh] lg:ml-[20vw] mobile:ml-[20vw] mobile1:ml-0">
-          <p className=" text-[35px] 3xl:text-[30px] lg:text-[25px] mobile:text-[20px]">
+          <p className=" text-[35px] 3xl:text-[30px] lg:text-[25px] mobile:text-[20px] text-black">
             <h1 className="font-hemi text-[90px] 3xl:text-[70px] lg:text-[60px] mobile:text-[45px]">
               What We Do?
             </h1>

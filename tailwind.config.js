@@ -21,6 +21,7 @@ module.exports = withMT({
       xl: { max: "1260px" },
       xl1: { max: "1200px" },
       xl2: { max: "1100px" },
+      xl3: { max: "1050px" },
       lg: { max: "1000px" },
       tablet: { max: "960px" },
       tablet1: { max: "900px" },

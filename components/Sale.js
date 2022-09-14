@@ -13,9 +13,39 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import "swiper/css/bundle";
 import { Pagination, Navigation } from "swiper";
+import Spiderman from "../images/image 4.png";
 
 export default function Sale() {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const sale_products = [
+    {
+      product_title: "Spiderman - Miles Morales",
+      product_platform: ["ps4", "ps5", "xbox", "nintendo"],
+      old_price: 15999,
+      new_price: 11999,
+      product_description:
+        "Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man. Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man.",
+      product_image: Spiderman.src,
+    },
+    {
+      product_title: "Spiderman - Miles Morales",
+      product_platform: ["ps4", "ps5", "xbox", "nintendo"],
+      old_price: 15999,
+      new_price: 11999,
+      product_description:
+        "Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man. Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man.",
+      product_image: Spiderman.src,
+    },
+    {
+      product_title: "Spiderman - Miles Morales",
+      product_platform: ["ps4", "ps5", "xbox", "nintendo"],
+      old_price: 15999,
+      new_price: 11999,
+      product_description:
+        "Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man. Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man.",
+      product_image: Spiderman.src,
+    },
+  ];
 
   return (
     <div className="grid bg-[#FFB636] p-[5vw] w-[100%] overflow-x-hidden justify-center pt-[80px] mobile:px-1">
@@ -92,30 +122,18 @@ export default function Sale() {
             modules={[Navigation, Pagination, Navigation]}
             className="mySwiper"
           >
-            <SwiperSlide>
-              <SaleCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <SaleCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <SaleCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <SaleCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <SaleCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <SaleCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <SaleCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <SaleCard />
-            </SwiperSlide>
+            {sale_products.map((index) => (
+              <SwiperSlide>
+                <SaleCard
+                  title={index.product_title}
+                  desp={index.product_description}
+                  platform={index.product_platform}
+                  image={index.product_image}
+                  oldPrice={index.old_price}
+                  newPrice={index.new_price}
+                />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </div>
