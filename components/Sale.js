@@ -5,22 +5,85 @@ import React, { useState } from "react";
 // import ReactSimplyCarousel from "react-simply-carousel";
 // import React, { useRef, useState } from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 // import { FreeMode, Navigation, Pagination, Scrollbar, Autoplay } from "swiper";
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-import "swiper/css/bundle";
+// import "swiper/css";
+// import "swiper/css/free-mode";
+// import "swiper/css/pagination";
+// import "swiper/css/bundle";
 import { Pagination, Navigation } from "swiper";
 import Spiderman from "../images/image 4.png";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "" }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "" }}
+      onClick={onClick}
+    />
+  );
+}
 
 export default function Sale() {
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    // centerMode: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: false,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const sale_products = [
     {
       product_title: "Spiderman - Miles Morales",
-      product_platform: ["ps4", "ps5", "xbox", "nintendo"],
+      product_platform: ["ps4", "ps5", "xbox"],
       old_price: 15999,
       new_price: 11999,
       product_description:
@@ -29,7 +92,7 @@ export default function Sale() {
     },
     {
       product_title: "Spiderman - Miles Morales",
-      product_platform: ["ps4", "ps5", "xbox", "nintendo"],
+      product_platform: ["ps4", "ps5", "xbox"],
       old_price: 15999,
       new_price: 11999,
       product_description:
@@ -38,7 +101,61 @@ export default function Sale() {
     },
     {
       product_title: "Spiderman - Miles Morales",
-      product_platform: ["ps4", "ps5", "xbox", "nintendo"],
+      product_platform: ["ps4", "ps5", "xbox"],
+      old_price: 15999,
+      new_price: 11999,
+      product_description:
+        "Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man. Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man.",
+      product_image: Spiderman.src,
+    },
+    {
+      product_title: "Spiderman - Miles Morales",
+      product_platform: ["ps4", "ps5", "xbox"],
+      old_price: 15999,
+      new_price: 11999,
+      product_description:
+        "Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man. Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man.",
+      product_image: Spiderman.src,
+    },
+    {
+      product_title: "Spiderman - Miles Morales",
+      product_platform: ["ps4", "ps5", "xbox"],
+      old_price: 15999,
+      new_price: 11999,
+      product_description:
+        "Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man. Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man.",
+      product_image: Spiderman.src,
+    },
+    {
+      product_title: "Spiderman - Miles Morales",
+      product_platform: ["ps4", "ps5", "xbox"],
+      old_price: 15999,
+      new_price: 11999,
+      product_description:
+        "Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man. Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man.",
+      product_image: Spiderman.src,
+    },
+    {
+      product_title: "Spiderman - Miles Morales",
+      product_platform: ["ps4", "ps5", "xbox"],
+      old_price: 15999,
+      new_price: 11999,
+      product_description:
+        "Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man. Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man.",
+      product_image: Spiderman.src,
+    },
+    {
+      product_title: "Spiderman - Miles Morales",
+      product_platform: ["ps4", "ps5", "xbox"],
+      old_price: 15999,
+      new_price: 11999,
+      product_description:
+        "Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man. Experience the Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man.",
+      product_image: Spiderman.src,
+    },
+    {
+      product_title: "Spiderman - Miles Morales",
+      product_platform: ["ps4", "ps5", "xbox"],
       old_price: 15999,
       new_price: 11999,
       product_description:
@@ -63,78 +180,19 @@ export default function Sale() {
             </button>
           </div>
         </div>
-        <div className="flex justify-center   m-auto mt-8 mx-10 h-[700px]">
-          <Swiper
-            slidesPerView={4}
-            spaceBetween={20}
-            // freeMode={true}
-            navigation={true}
-            centeredSlides={true}
-            pagination={{
-              clickable: true,
-            }}
-            breakpoints={{
-              340: {
-                slidesPerView: 1,
-                spaceBetween: 140,
-              },
-              440: {
-                slidesPerView: 1,
-                spaceBetween: 130,
-              },
-              540: {
-                slidesPerView: 2,
-                spaceBetween: 120,
-              },
-              600: {
-                slidesPerView: 2,
-                spaceBetween: 140,
-              },
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 100,
-              },
-              740: {
-                slidesPerView: 2,
-                spaceBetween: 10,
-              },
-              840: {
-                slidesPerView: 2,
-                spaceBetween: 10,
-              },
-              1040: {
-                slidesPerView: 3,
-                spaceBetween: 10,
-              },
-              1140: {
-                slidesPerView: 4,
-                spaceBetween: 10,
-              },
-              1240: {
-                slidesPerView: 4,
-                spaceBetween: 30,
-              },
-              1340: {
-                slidesPerView: 5,
-                spaceBetween: 10,
-              },
-            }}
-            modules={[Navigation, Pagination, Navigation]}
-            className="mySwiper"
-          >
+        <div className="max-w-[1500px] mx-auto my-10">
+          <Slider {...settings}>
             {sale_products.map((index) => (
-              <SwiperSlide>
-                <SaleCard
-                  title={index.product_title}
-                  desp={index.product_description}
-                  platform={index.product_platform}
-                  image={index.product_image}
-                  oldPrice={index.old_price}
-                  newPrice={index.new_price}
-                />
-              </SwiperSlide>
+              <SaleCard
+                title={index.product_title}
+                desp={index.product_description}
+                platform={index.product_platform}
+                image={index.product_image}
+                oldPrice={index.old_price}
+                newPrice={index.new_price}
+              />
             ))}
-          </Swiper>
+          </Slider>
         </div>
       </div>
     </div>

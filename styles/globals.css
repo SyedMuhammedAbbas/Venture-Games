@@ -71,29 +71,19 @@
   filter: blur(20px);
   z-index: -1;
 }
-  /* Search bar */
-.swiper-pagination-bullet{
-  height: 12 !important;
-  width: 12!important;
-  border-radius: "50%"!important;
-  border: 0!important;
-  margin-left: "10px"!important;
-  margin-right: "10px"!important;
-  /* margin-top: "100px"!important; */
-  /* margin-bottom: "40px"!important; */
-  background: "black"!important;
-  transition: "all 0.3s"!important;
+
+/*  */
+.desp-scroll{
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
 }
 
-.swiper-pagination-bullet-active{
-  height: 12!important;
-  width: 35!important;
-  border-radius: "20px"!important;
-  border: 0!important;
-  margin-top: "50px"!important;
-  margin-bottom: "40px"!important;
-  background: "black"!important;
-  transition: "all 0.3s"!important;
+.desp-scroll::-webkit-scrollbar {
+  display: none;
 }
 
-/* swiper */
+/* Slick Slider */
+.slick-slide > div {
+  display: grid;
+  place-items: center;
+}

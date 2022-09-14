@@ -48,7 +48,7 @@ export default function FeaturedCard({
             </Link>
           </button>
           <button className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-4 py-1 hover:bg-white hover:text-black hover:border-black">
-            <Link href="/product">
+            <Link href="/cart">
               <a>Add to cart</a>
             </Link>
           </button>

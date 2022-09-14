@@ -11,7 +11,7 @@ export default function SaleCard({
 }) {
   const platforms = ["PS4", "PS5", "XBOX"];
   return (
-    <div className="w-[370px]">
+    <div className="w-[350px]">
       <div className="h-auto p-2 m-auto rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile1:w-auto tablet1:mx-1">
         <div>
           <img
@@ -39,7 +39,7 @@ export default function SaleCard({
         </div>
 
         <div className="grid gap-2 pl-4 overflow-y-hidden">
-          <div className="grid mt-4 overflow-y-scroll h-[100px]">
+          <div className="grid mt-4 overflow-y-scroll desp-scroll h-[100px]">
             <div className="text-white text-[23px] mt-0">{title}</div>
             <div className="text-white text-[14px]">{desp}</div>
           </div>
