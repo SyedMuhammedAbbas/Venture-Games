@@ -6,10 +6,8 @@ import ProfileBar from "../../components/ProfileBar";
 export default function Product() {
   return (
     <>
-      {/* <Header /> */}
       <ProfileBar cart={true} />
       <ProductCard />
-      {/* <Footer /> */}
     </>
   );
 }

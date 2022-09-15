@@ -81,7 +81,52 @@
 .desp-scroll::-webkit-scrollbar {
   display: none;
 }
+.dropdowntriangle{
+  position: absolute;
+  bottom: 0;
+  margin-bottom: -5px;
+  right: 90px;
+  /* margin-right: 10px; */
+  color: black;
+  opacity: 0.7;
+  z-index: 10;
+  width: 40px;
 
+}
+
+/* menu */
+.menu{
+  transition: 0.5s;
+}
+.burger-bar {
+  width: 1.5em;
+  height: 2px;
+  margin-bottom: 0px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.5em;
+}
+/* Animations */
+    /* Clicked */
+    .burger-bar, .clicked:nth-child(1){
+      transform: rotate(45deg) translate(-0.3em, 1em);
+      transition: ease-out 0.5s;
+  }
+  
+  .burger-bar, .clicked:nth-child(2){
+      transform: scale(0);
+      transition: ease-out 0.5s;
+  }
+  
+  .burger-bar, .clicked:nth-child(3){
+      transform: rotate(-45deg) translate(-0.4em, -1em);
+      transition: ease-out 0.5s;
+  }
+  
+  /* UnClicked */
+  .burger-bar , .unclicked{
+      transform: rotate(0) translate(0);
+      transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+  }
 /* Slick Slider */
 .slick-slide > div {
   display: grid;

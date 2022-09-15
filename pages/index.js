@@ -22,7 +22,6 @@ export default function Index() {
         />
       </Head>
 
-      {/* <Header /> */}
       <Home />
       <a
         href="https://wa.me/2348100000000"
@@ -32,7 +31,6 @@ export default function Index() {
       >
         <i className="fa fa-whatsapp whatsapp-icon"></i>
       </a>
-      {/* <Footer /> */}
     </>
   );
 }

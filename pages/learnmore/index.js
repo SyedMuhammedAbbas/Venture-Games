@@ -10,14 +10,12 @@ import ProfileBar from "../../components/ProfileBar";
 export default function LearnMore() {
   return (
     <>
-      {/* <Header /> */}
       <ProfileBar cart={true} />
       <LearnMoreHeading />
       <LearnMoreClientsSay />
       <LearnMoreCeo />
       <ClientsView />
       <ContactUs />
-      {/* <Footer /> */}
     </>
   );
 }

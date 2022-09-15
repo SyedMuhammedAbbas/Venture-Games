@@ -200,6 +200,7 @@ export default function Sale() {
           <Slider {...settings}>
             {sale_products.map((index) => (
               <SaleCard
+                key={index}
                 title={index.product_title}
                 desp={index.product_description}
                 platform={index.product_platform}
