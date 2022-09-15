@@ -18,22 +18,22 @@ export default function SaleCard({
             className="rounded-3xl h-[400px]  object-cover w-[350px] mobile1:w-auto"
             src={image}
           />
-          <div className="flex ml-[10px] mt-[-25px]">
+          <div className="grid ml-[10px] mt-[-40px]">
+            <div className="grid text-right pr-3 gap-0 mt-[-17%] pl-[40px] mobile:pl-[60px] mobile1:pl-[20px]">
+              <div className="text-red-600  line-through text-[20px]">
+                {oldPrice}
+              </div>
+              <div className="text-white text-[27px]">{newPrice}</div>
+            </div>
             <div className="flex gap-1">
               {platform.map((platform, index) => (
                 <button
                   key={index}
-                  className="text-black font-semibold h-4 mobile:h-5 bg-[#FFB636] px-3  rounded-md text-[12px]"
+                  className="text-black font-semibold h-4 mobile:h-5 uppercase bg-[#FFB636] px-3  rounded-md text-[12px]"
                 >
                   {platform}
                 </button>
               ))}
-            </div>
-            <div className="grid gap-0 mt-[-17%] pl-[80px] mobile:pl-[60px] mobile1:pl-[20px]">
-              <div className="text-red-600 text-right line-through text-[20px]">
-                1{oldPrice}
-              </div>
-              <div className="text-white text-[27px]">{newPrice}</div>
             </div>
           </div>
         </div>

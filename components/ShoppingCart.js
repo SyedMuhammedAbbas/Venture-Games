@@ -89,13 +89,13 @@ export default function ShoppingCart() {
               <div className="bg-gradient-to-tl from-[#b58126] via-black to-[#b58126] w-[900px] xl3:w-[650px] mobile1:w-[95%] rounded-tr-[40px] rounded-br-[40px] ">
                 <table>
                   <tr className=" text-white uppercase">
-                    <th className="pl-[50px] pt-10 text-left text-[20px] font-normal">
+                    <th className="pl-[50px] mobile1.1:pl-[20px] pt-10 text-left text-[20px] mobile1.1:text-[15px]  font-normal">
                       description
                     </th>
-                    <th className="pl-10 mobile1.1:pl-0 xl3:pl-0 pt-10 text-left text-[20px] font-normal">
+                    <th className="pl-10  mobile1.1:pl-0 xl3:pl-0 pt-10 text-left text-[20px] mobile1.1:text-[15px]  font-normal">
                       quantity
                     </th>
-                    <th className="pl-20 xl3:pl-10 pb-0 pt-10 xl3:pt-9 text-left text-[20px] font-normal">
+                    <th className="pl-20 xl3:pl-10 pb-0 pt-10 xl3:pt-9 text-left text-[20px] mobile1.1:text-[15px]  font-normal">
                       price
                     </th>
                   </tr>
@@ -105,7 +105,7 @@ export default function ShoppingCart() {
                         key={index}
                         className="border-b-[1px] border-[#9c9c9c] pb-10"
                       >
-                        <td className="p-20 py-10 px-5 mobile1.1:pr-0 pl-10 mobile1:pl-5">
+                        <td className="p-20 py-10 px-5 mobile1.1:pr-0 pl-10 mobile1:pl-5 mobile1.1:w-[100px]">
                           <div className="flex gap-4 xl3:grid xl3:gap-1">
                             <img
                               className="w-[170px] bg-contain mobile1.1:w-[150px] rounded-3xl"
@@ -117,17 +117,17 @@ export default function ShoppingCart() {
                               </div>
                               <div className="border-b-[1.5px] border-[#6f6f6f] w-[200px]"></div>
                               <div className="flex gap-2 pt-4">
-                                <button className=" font-semibold border-[1px] border-[#FFB636] px-3 h-5 rounded-md text-[14px] bg-[#FFB636] text-black">
+                                <button className=" font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1.1:h-auto mobile1.1:py-[1px] rounded-md text-[14px] bg-[#FFB636] text-black">
                                   {index.product_platform}
                                 </button>
-                                <button className=" font-semibold border-[1px] border-[#FFB636] px-3 h-5 rounded-md text-[14px] bg-[#FFB636] text-black">
+                                <button className=" font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1.1:h-auto mobile1.1:py-[1px] rounded-md text-[14px] bg-[#FFB636] text-black">
                                   {index.product_condition}
                                 </button>
                               </div>
                             </div>
                           </div>
                         </td>
-                        <td className="flex justify-center pt-[5rem]">
+                        <td className="pl-5 mt-[100%]">
                           <select
                             name="1"
                             className="border-[1px] rounded-xl text-white bg-transparent p-1 px-4 text-[20px]"
@@ -144,7 +144,7 @@ export default function ShoppingCart() {
                             )}
                           </select>
                         </td>
-                        <td className="pl-20 xl3:pl-10 xl3:pb-[135px]">
+                        <td className="pl-20 xl3:pl-10 mobile1.1:pl-4 ">
                           <h2 className="text-white text-[27px] mobile1:text-[20px]">
                             {index.product_price}{" "}
                             <span className="text-[15px]">Rs</span>
@@ -154,7 +154,7 @@ export default function ShoppingCart() {
                     );
                   })}
                 </table>
-                <div className="text-right text-[25px] py-7 pr-10 text-[#979797]">
+                <div className="text-right text-[25px] mobile1.1:text-[20px] py-7 pr-10 text-[#979797]">
                   Cart feels empty?{" "}
                   <Link href="/shop">
                     <a className="underline text-white cursor-pointer">
@@ -169,17 +169,17 @@ export default function ShoppingCart() {
               <h1 className="text-black text-[60px] xl3:text-[50px] mobile:text-[40px] tablet1:pl-10  capitalize">
                 order summary
               </h1>
-              <div className=" w-auto ">
-                <table className="bg-gradient-to-tl from-[#b58126] via-black to-[#b58126] rounded-tl-[35px] tablet1:rounded-tl-none tablet1:rounded-tr-[35px] tablet1:w-[650px] mobile1:w-auto">
+              <div className=" w-auto">
+                <table className="bg-gradient-to-tl from-[#b58126] via-black to-[#b58126] rounded-tl-[35px] tablet1:rounded-tl-none tablet1:rounded-tr-[35px] w-[100%] tablet1:w-[650px] mobile1:w-[100%]">
                   {order_summary.map((order_summary, index) => {
                     {
                       if (index === 0) {
                         return (
                           <tr key={index} className="">
-                            <td className="pt-10 pl-10 uppercase font-medium text-white text-[20px]">
+                            <td className="pt-10 pl-10 uppercase font-medium text-white text-[20px] mobile1.1:text-[17px]">
                               {order_summary}
                             </td>
-                            <td className="pt-10 pl-10  text-right uppercase font-medium text-white text-[20px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
+                            <td className="pt-10 absolute right-0 uppercase font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
                               {order_summary_values[index]}
                             </td>
                           </tr>
@@ -187,10 +187,10 @@ export default function ShoppingCart() {
                       } else if (order_summary === "total weight:") {
                         return (
                           <tr key={index} className="">
-                            <td className="pt-5 pl-10 pb-0 uppercase font-medium text-white text-[20px]">
+                            <td className="pt-5 pl-10 pb-0 uppercase font-medium text-white text-[20px] mobile1.1:text-[17px]">
                               {order_summary}
                             </td>
-                            <td className="pt-5 pl-[95px] pb-0 text-right font-medium text-white text-[20px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
+                            <td className="pt-5 absolute right-0 pb-0 text-right font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
                               {order_summary_values[index] + " kg"}
                             </td>
                           </tr>
@@ -198,10 +198,10 @@ export default function ShoppingCart() {
                       } else if (order_summary === "shipping fee:") {
                         return (
                           <tr key={index} className="">
-                            <td className="pt-5 pl-10 pb-10 uppercase font-medium text-white text-[20px]">
+                            <td className="pt-5 pl-10 pb-10 uppercase font-medium text-white text-[20px] mobile1.1:text-[17px]">
                               {order_summary}
                             </td>
-                            <td className="pt-5 pl-[95px] pb-10 text-right uppercase font-medium text-white text-[12px] tablet1:text-[20px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
+                            <td className="pt-6 pb-10 absolute right-0  uppercase font-medium text-white text-[12px] tablet1:text-[15px] mobile1.1:text-[14px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
                               {order_summary_values[index]}
                             </td>
                           </tr>
@@ -210,12 +210,12 @@ export default function ShoppingCart() {
                         return (
                           <tr
                             key={index}
-                            className="border-y-[1px] border-blackOpac"
+                            className="  border-t-[1px] border-blackOpac"
                           >
-                            <td className="py-5 pl-10 pb-10 uppercase font-medium text-white text-[20px]">
+                            <td className="py-3 pl-10 uppercase font-medium text-white text-[20px] mobile1.1:text-[17px]">
                               {order_summary}
                             </td>
-                            <td className="py-0 pl-10 text-right  font-medium text-white text-[20px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
+                            <td className="py-0 absolute pt-3 right-0 font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
                               {order_summary_values[index] + " Rs"}
                             </td>
                           </tr>
@@ -224,12 +224,12 @@ export default function ShoppingCart() {
                         return (
                           <tr
                             key={index}
-                            className="border-t-[1px] border-blackOpac pb-5"
+                            className="border-y-[1px] border-blackOpac"
                           >
-                            <td className="py-7 pl-10 pb-10 uppercase font-medium text-white text-[20px]">
+                            <td className="py-3 pl-10 pb-10 uppercase font-medium text-white text-[20px] mobile1.1:text-[17px]">
                               {order_summary}
                             </td>
-                            <td className="pt-0 pl-10 text-right uppercase font-medium text-white text-[20px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
+                            <td className="pt-3 absolute right-0 text-right uppercase font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
                               {order_summary_values[index]}
                             </td>
                           </tr>
@@ -237,10 +237,10 @@ export default function ShoppingCart() {
                       } else {
                         return (
                           <tr key={index} className="">
-                            <td className="pt-5 pl-10 uppercase font-medium text-white text-[20px]">
+                            <td className="pt-5 pl-10 uppercase font-medium text-white text-[20px] mobile1.1:text-[17px]">
                               {order_summary}
                             </td>
-                            <td className="pt-5 pl-10 text-right uppercase font-medium text-white text-[20px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
+                            <td className="pt-5 pl-10 absolute right-0 uppercase font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
                               {order_summary_values[index]}
                             </td>
                           </tr>
@@ -249,11 +249,11 @@ export default function ShoppingCart() {
                     }
                   })}
                 </table>
-                <div className="flex gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] py-[15px]">
+                <div className="flex gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]">
                   <div className="uppercase">
                     <a className="cursor-pointer">Next</a>
                   </div>
-                  <div className="text-white text-[35px] mt-[2px] cursor-pointer">
+                  <div className="text-white text-[35px] mobile1.1:text-[30px] mt-[2px] mobile1.1:mt-[1px] cursor-pointer">
                     <MdKeyboardArrowRight />
                   </div>
                 </div>

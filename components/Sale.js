@@ -17,37 +17,53 @@ import Spiderman from "../images/image 4.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+// import { MdKeyboardArrowRight } from "react-icons/md";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div
+    <button
       className={className}
-      style={{ ...style, display: "block", background: "" }}
       onClick={onClick}
-    />
+      style={{
+        fontSize: "60px",
+        opacity: "1",
+        color: "black",
+      }}
+    >
+      <MdKeyboardArrowRight />
+    </button>
   );
 }
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div
+    <button
       className={className}
-      style={{ ...style, display: "block", background: "" }}
       onClick={onClick}
-    />
+      style={{
+        fontSize: "50px",
+        opacity: "1",
+        color: "black",
+        // paddingLeft: "-20px",
+      }}
+    >
+      <MdKeyboardArrowLeft />
+    </button>
   );
 }
 
 export default function Sale() {
   var settings = {
     dots: true,
-    infinite: false,
+    dotsClass: "slick-dots",
+    infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
+
     // centerMode: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -180,7 +196,7 @@ export default function Sale() {
             </button>
           </div>
         </div>
-        <div className="max-w-[1500px] mx-auto my-10">
+        <div className="max-w-[90%] mx-auto my-10">
           <Slider {...settings}>
             {sale_products.map((index) => (
               <SaleCard
