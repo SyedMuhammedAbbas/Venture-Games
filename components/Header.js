@@ -49,9 +49,7 @@ export default function Header() {
             <div className={burger_class}></div>
           </div>
           <div className="hidden tablet:block">
-            <div className={menu_class}>
-              <div className="hidden tablet:block "></div>
-            </div>
+            <div className={menu_class}></div>
           </div>
 
           <Link href="/">

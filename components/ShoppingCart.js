@@ -5,6 +5,7 @@ import PS5Controller from "../images/ps5Controller.png";
 import Link from "next/link";
 import { MdDoubleArrow } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { useEffect, useState } from "react";
 
 export default function ShoppingCart() {
   const products = [
@@ -36,19 +37,31 @@ export default function ShoppingCart() {
   // Quantity
   const Number_Of_products = [1, 2, 3, 4, 5, 6, 7];
 
-  const total_items = products.length;
+  const [total_items, setTotal_Items] = useState(0);
+  const [total_weight, setTotal_Weight] = useState(0);
+  const [total_amount, setTotal_Amount] = useState(0);
+  const [total_all, setTotal_All] = useState(0);
 
-  const total_amount = products.reduce(
-    (total_amount, { product_price }) => total_amount + product_price,
-    0
-  );
-  const total_weight = products.reduce(
-    (total_weight, { product_weight }) => total_weight + product_weight,
-    0
-  );
+  useEffect(() => {
+    setTotal_Items(products.length);
+
+    setTotal_Amount(
+      products.reduce(
+        (total_amount, { product_price }) => total_amount + product_price,
+        0
+      )
+    );
+    setTotal_Weight(
+      products.reduce(
+        (total_weight, { product_weight }) => total_weight + product_weight,
+        0
+      )
+    );
+    setTotal_All(total_amount);
+  }, []);
+
   const t_weight = Math.round(total_weight * 100) / 100;
   const shipping_fee = "calculated at next step";
-  const total_all = total_amount;
 
   function coupon() {
     return (

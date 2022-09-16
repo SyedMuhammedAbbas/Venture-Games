@@ -41,6 +41,10 @@ module.exports = withMT({
       colors: {
         blackOpac: "hsla(0, 0%, 100%, .3)",
       },
+      backgroundImage: {
+        "gradient-radial":
+          "radial-gradient(top left,rgb(138, 101, 33) 34%,black 34%), radial-gradient(center,rgb(138, 101, 33) 34%, black 34%);",
+      },
       gridTemplateColumns: {
         // Simple 16 column grid
         colauto: "repeat( auto-fit, minmax(330px ,1fr) )",
