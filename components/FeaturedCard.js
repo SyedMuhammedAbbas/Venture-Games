@@ -18,14 +18,15 @@ export default function FeaturedCard({
         src={image}
       />
       <div className="flex gap-1 mt-[-30px] ml-[10px]">
-        {platform.map((platform, index) => (
-          <button
-            key={index}
-            className="text-black font-semibold uppercase bg-[#FFB636] px-3 rounded-md text-[12px]"
-          >
-            {platform}
-          </button>
-        ))}
+        {platform &&
+          platform.map((platform, index) => (
+            <button
+              key={index}
+              className="text-black font-semibold uppercase bg-[#FFB636] px-3 rounded-md text-[12px]"
+            >
+              {platform}
+            </button>
+          ))}
       </div>
 
       {/* </div> */}

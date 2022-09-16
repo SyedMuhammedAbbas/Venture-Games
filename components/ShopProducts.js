@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BsSliders } from "react-icons/bs";
 import FeaturedCard from "./FeaturedCard";
 // import SaleCard from './SaleCard'
+import Spiderman from "../images/image 4.png";
 
 export default function ShopProducts({ handle }) {
   const n = 12;
@@ -13,6 +14,36 @@ export default function ShopProducts({ handle }) {
   const genre = ["Action", "Adventure", "Thriller", "Driving"];
   const category = ["Online", "Offline"];
 
+  const featured_products = [
+    {
+      product_title: "Spiderman - Miles Morales",
+      old_price: 15999,
+      new_price: 11999,
+      product_platform: ["ps4", "ps5", "xbox", "nintendo"],
+      product_image: Spiderman.src,
+    },
+    {
+      product_title: "Spiderman - Miles Morales",
+      old_price: 12000,
+      new_price: 8000,
+      product_platform: ["ps4", "nintendo"],
+      product_image: Spiderman.src,
+    },
+    {
+      product_title: "Spiderman - Miles Morales",
+      old_price: 16999,
+      new_price: 12999,
+      product_platform: ["ps4", "ps5"],
+      product_image: Spiderman.src,
+    },
+    {
+      product_title: "Spiderman - Miles Morales",
+      old_price: 15999,
+      new_price: 11999,
+      product_platform: ["xbox", "nintendo"],
+      product_image: Spiderman.src,
+    },
+  ];
   return (
     <div className="bg-[#FFB636] ">
       <div className="bg-[url('../images/background.png')] bg-[length:1700px_1800px] bg-no-repeat bg-[left_15vw_top_5rem]">
@@ -62,9 +93,15 @@ export default function ShopProducts({ handle }) {
             </div>
           )}
           <div className="flex flex-wrap justify-start gap-5 text-center mx-[6%] mobile1.1:ml-0 tablet:justify-evenly mt-[0%] mb-[5%]">
-            {[...Array(n)].map((user) => (
-              <div key={user}>
-                <FeaturedCard />
+            {featured_products.map((index) => (
+              <div key={index}>
+                <FeaturedCard
+                  title={index.product_title}
+                  oldPrice={index.old_price}
+                  newPrice={index.new_price}
+                  image={index.product_image}
+                  platform={index.product_platform}
+                />
               </div>
             ))}
           </div>

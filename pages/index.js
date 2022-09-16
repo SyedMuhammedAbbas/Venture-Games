@@ -1,8 +1,5 @@
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import ProfileBar from "../components/ProfileBar";
 import Head from "next/head";
-import Home from "./home";
+import Home from "./Home";
 
 export default function Index() {
   return (
