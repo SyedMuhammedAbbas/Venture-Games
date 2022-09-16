@@ -10,7 +10,6 @@ export default function Shop() {
 
   return (
     <>
-      {/* <Header /> */}
       <ProfileBar
         filter="true"
         sethandle={sethandle}
@@ -19,7 +18,6 @@ export default function Shop() {
       />
       <ShopCover />
       <ShopProducts handle={handle} />
-      {/* <Footer /> */}
     </>
   );
 }
