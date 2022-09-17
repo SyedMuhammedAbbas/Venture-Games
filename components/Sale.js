@@ -43,10 +43,10 @@ function SamplePrevArrow(props) {
       className={className}
       onClick={onClick}
       style={{
-        fontSize: "50px",
+        fontSize: "60px",
         opacity: "1",
         color: "black",
-        // paddingLeft: "-20px",
+        // marginRight: "60px",
       }}
     >
       <MdKeyboardArrowLeft />

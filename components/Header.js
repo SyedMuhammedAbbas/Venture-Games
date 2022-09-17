@@ -6,7 +6,7 @@ import React, { useState } from "react";
 
 export default function Header() {
   const list =
-    "hover:text-[#FFB636]  focus:text-[#FFB636] cursor-pointer mt-[10px] xl:text-[1.5vw] lg:mt-[0px] tablet:hidden";
+    "hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat cursor-pointer mt-[10px] xl:text-[1.5vw] lg:mt-[0px] tablet:hidden";
   const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
   const [menu_class, setMenuClass] = useState(" hidden ");
   const [isMenuClicked, setIsMenuClicked] = useState(false);

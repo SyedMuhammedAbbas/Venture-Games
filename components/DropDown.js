@@ -6,9 +6,9 @@ import { GoTriangleUp } from "react-icons/go";
 export default function DropDown() {
   return (
     <>
-      <div className="absolute bottom-0 mb-[-5px] right-[10rem] text-[#000] opacity-70 z-10 text-[25px] 2xl:mb-[-12px] 2xl:right-32">
+      {/* <div className="absolute bottom-0 mb-[-5px] right-[10rem] text-[#000] opacity-70 z-10 text-[25px] 2xl:mb-[-12px] 2xl:right-32">
         <GoTriangleUp />
-      </div>
+      </div> */}
       <div className="grid w-60  top-[58px] bg-gradient-to-t from-black to-[#2c2c2c] opacity-90 absolute backdrop-blur-[20px] rounded-2xl p-[0rem] overflow-hidden">
         <div className=" h-[58px] text-[#fff] text-[20px] flex items-center py-[2rem] ml-6 border-b-[1px] border-blackOpac hover:bg-[#353535] hover:ml-0 hover:pl-6">
           <a className="cursor-pointer">Settings</a>

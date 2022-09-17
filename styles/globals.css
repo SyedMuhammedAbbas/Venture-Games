@@ -2,9 +2,16 @@
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
+@font-face { font-family: Hemi Head; src: url('hemi head bd it.ttf');
+font-family: SF Pro Display;src: url('SF-Pro-Display-Medium.otf');
+font-family: Montserrat;src: url('Montserrat-Medium.ttf'); }
 :root{
   /* transform: scale(0.7); */
   zoom: 75%; 
+}
+
+html{
+  font-family: SF Pro Display;
 }
 
 :root {
@@ -134,10 +141,13 @@
   place-items: center;
 }
 
-.slick-prev:before, .slick-next:before {
+.slick-prev:before{
   display: none;
 }
 
+.slick-next:before {
+  display: none;
+}
 .slick-dots{
   height: 12;
   width: 35;

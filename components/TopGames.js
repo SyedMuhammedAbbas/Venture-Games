@@ -87,6 +87,7 @@ export default function TopGames() {
             grabCursor={true}
             centeredSlides={true}
             autoplay={true}
+            loop={true}
             // slidesPerView={"auto"}
             // navigation
             pagination={{
