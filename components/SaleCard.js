@@ -9,31 +9,34 @@ export default function SaleCard({
   oldPrice,
   newPrice,
 }) {
-  const platforms = ["PS4", "PS5", "XBOX"];
   return (
-    <div className="w-[350px]">
+    <div className="w-[350px] mobile1.1:w-[370px]">
       <div className="h-auto p-2 m-auto rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile1:w-auto tablet1:mx-1">
-        <div>
+        <div className="relative text-center h-[400px]">
           <img
             className="rounded-3xl h-[400px]  object-cover w-[350px] mobile1:w-auto"
             src={image}
           />
-          <div className="grid ml-[10px] mt-[-40px]">
-            <div className="grid text-right pr-3 gap-0 mt-[-17%] pl-[40px] mobile:pl-[60px] mobile1:pl-[20px]">
-              <div className="text-red-600  line-through text-[20px]">
-                {oldPrice}
+          <div className="absolute left-2 bottom-2">
+            <div className="grid w-[350px]">
+              <div className="absolute right-10 bottom-7  grid gap-0 ">
+                <div className="text-red-600 font-bold  line-through text-[20px]">
+                  {oldPrice}
+                </div>
+                <div className="text-white font-bold text-[27px]">
+                  {newPrice}
+                </div>
               </div>
-              <div className="text-white text-[27px]">{newPrice}</div>
-            </div>
-            <div className="flex gap-1">
-              {platform.map((platform, index) => (
-                <button
-                  key={index}
-                  className="text-black font-semibold h-4 mobile:h-5 uppercase bg-[#FFB636] px-3  rounded-md text-[12px]"
-                >
-                  {platform}
-                </button>
-              ))}
+              <div className="flex gap-1 overflow-x-scroll desp-scroll w-[330px]">
+                {platform.map((platform, index) => (
+                  <button
+                    key={index}
+                    className="text-black font-bold py-[1px] uppercase bg-[#FFB636] px-3 rounded-md text-[14px]"
+                  >
+                    {platform}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>

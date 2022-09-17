@@ -38,7 +38,11 @@ export default function Header() {
               <a>gift cards</a>
             </Link>
           </li>
-          <li className={list}>consoles</li>
+          <li className={list}>
+            <Link href="/consoles">
+              <a>consoles</a>
+            </Link>
+          </li>
 
           <div
             className="tablet:space-y-[6px] hidden tablet:grid tablet:absolute tablet:left-10 tablet:mt-[-15px]"

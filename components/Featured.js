@@ -49,7 +49,7 @@ export default function Featured() {
           </button>
         </div>
       </div>
-      <div className="flex flex-wrap gap-10 justify-center xl:justify-start xl:ml-[6%] mt-[30px] mobile2:justify-center mobile2:ml-0 mobile:mt-[70px] mobile1.1:mt-[80px]">
+      <div className="flex flex-wrap gap-10 justify-center  mt-[30px] mobile2:justify-center mobile2:ml-0 mobile:mt-[70px] mobile1.1:mt-[80px]">
         {featured_products.map((index) => (
           <div key={index}>
             <FeaturedCard

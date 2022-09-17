@@ -60,7 +60,7 @@ export default function Sale() {
     dotsClass: "slick-dots",
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 6,
     slidesToScroll: 1,
     initialSlide: 0,
 
@@ -69,7 +69,25 @@ export default function Sale() {
     prevArrow: <SamplePrevArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 2400,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1800,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1350,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -78,7 +96,7 @@ export default function Sale() {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 1050,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -86,7 +104,7 @@ export default function Sale() {
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 690,
         settings: {
           arrows: false,
           slidesToShow: 1,
@@ -99,7 +117,7 @@ export default function Sale() {
   const sale_products = [
     {
       product_title: "Spiderman - Miles Morales",
-      product_platform: ["ps4", "ps5", "xbox"],
+      product_platform: ["ps4", "ps5", "xbox", "nintendo"],
       old_price: 15999,
       new_price: 11999,
       product_description:
@@ -181,13 +199,13 @@ export default function Sale() {
   ];
 
   return (
-    <div className="grid bg-[#FFB636] p-[5vw] w-[100%] overflow-x-hidden justify-center pt-[80px] mobile:px-1">
-      <div className="border-[5px] border-black rounded-[35px] pb-3  w-[120vw]">
+    <div className="grid bg-[#FFB636] py-[5vw] px-[40px] w-[100%] overflow-x-hidden justify-center pt-[80px] mobile:px-auto">
+      <div className="border-[5px] border-black rounded-[35px] pb-3  w-[125vw] mobile1.1:w-[100%]">
         <div className="flex">
           <div className="font-hemi text-black text-[80px] xl:text-[7vw] bg-[#FFB636] mt-[-60px] lg:mt-[-50px] mobile:mt-[-30px] mobile1:mt-[-20px] mobilesm:mt-[10px] ml-[7vw] px-[30px] ">
             Flash Sale
           </div>
-          <div className="absolute right-[9%] tablet2:right-[7%] mt-4">
+          <div className="relative flex  mt-4">
             <button className="flex text-black text-[30px] tablet2:text-[20px]">
               View all
               <div className="mt-0 text-[50px] tablet2:text-[35px]">
@@ -196,7 +214,7 @@ export default function Sale() {
             </button>
           </div>
         </div>
-        <div className="max-w-[90%] mx-auto my-10">
+        <div className="w-[100vw] mobile1.1:w-[90vw] mx-auto my-10">
           <Slider {...settings}>
             {sale_products.map((index) => (
               <SaleCard
