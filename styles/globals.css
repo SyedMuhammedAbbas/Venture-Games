@@ -2,16 +2,16 @@
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
-@font-face { font-family: Hemi Head; src: url('hemi head bd it.ttf');
-font-family: SF Pro Display;src: url('SF-Pro-Display-Medium.otf');
-font-family: Montserrat;src: url('Montserrat-Medium.ttf'); }
+@font-face { font-family: 'Hemi Head'; src: url('hemi head bd it.ttf');
+font-family: 'SF Pro Display';src: url('SF-Pro-Display-Medium.otf');
+font-family: 'Montserrat';src: url('Montserrat-Medium.ttf'); }
 :root{
   /* transform: scale(0.7); */
   zoom: 75%; 
 }
 
 html{
-  font-family: SF Pro Display;
+  font-family: 'SF Pro Display';
 }
 
 :root {
@@ -141,20 +141,49 @@ html{
   place-items: center;
 }
 
-.slick-prev:before{
+.slick-prev:before,.slick-next:before {
   display: none;
+  transform: translate(-100%, -50%) !important;
 }
 
-.slick-next:before {
-  display: none;
+ /* Dots */
+
+
+/* Custom Slick Dots */
+
+
+
+.ft-slick__dots--custom {
+  height: 8px;
+  width: 8px;
+  background-color: #000000;
+  border-radius: 4px;
+  /* padding-top: 0%; */
+  position: relative;
+  top: 35px;
+  transition: all 0.5s;
+  /* padding: 2px; */
 }
-.slick-dots{
-  height: 12;
-  width: 35;
-  border-radius: "20px";
-  border: 0;
-  margin-top: "50px";
-  margin-bottom: "40px";
-  background: "black";
-  transition: "all 0.3s";
+
+.slick-dots li {
+  width: 10px;
+  /* margin: 0 2px; */
+  /* transition: width 0.3s ease-in-out; */
+  transition: all 0.5s ease-out;
+}
+
+.slick-active {
+  width: 23px;
+  top: -12px;
+
+  /* transition: width 0.3s ease-in-out; */
+  transition: all 0.5s ease-out;
+}
+
+.slick-active .ft-slick__dots--custom {
+  width: 23px;
+  /* padding-right: 2px; */
+  /* top: 9px; */
+  /* margin-top: 50px; */
+  overflow: hidden;
 }

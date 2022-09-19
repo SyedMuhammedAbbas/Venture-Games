@@ -15,7 +15,7 @@ export default function Header() {
     if (!isMenuClicked) {
       setBurgerClass("burger-bar clicked");
       setMenuClass(
-        "block menu overflow-y-scroll overflow-x-hidden w-[350px] h-[125vh] bg-gradient-to-t from-black to-[#1c1c1c] fixed left-0 ml-[-1px] top-[82.5px] z-[0] shadow-lg border-t-[0.1px] border-gray-900"
+        "block menu overflow-y-scroll overflow-x-hidden w-[350px] h-[125vh] bg-gradient-to-t from-black to-[#1c1c1c] fixed left-0 ml-[-1px] top-[81px] z-[0] shadow-lg border-t-[0.1px] border-gray-900"
       );
     } else {
       setBurgerClass("burger-bar unclicked");
@@ -34,7 +34,7 @@ export default function Header() {
             </Link>
           </li>
           <li className={list}>
-            <Link href="/learnmore">
+            <Link href="/shop">
               <a>gift cards</a>
             </Link>
           </li>
@@ -71,7 +71,11 @@ export default function Header() {
 
           <li className={list}>games</li>
           <li className={list}>accessories</li>
-          <li className={list}>contact</li>
+          <li className={list}>
+            <Link href="/learnmore">
+              <a>learn more</a>
+            </Link>
+          </li>
         </ul>
       </div>
     </>

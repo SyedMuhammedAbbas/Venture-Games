@@ -5,6 +5,10 @@ import { BsInstagram } from "react-icons/bs";
 import { BiRightArrowCircle } from "react-icons/bi";
 
 export default function ContactUs() {
+  const address =
+    "Office 201,Jan Centre 2nd Floor, Opp,Tooso, Bahadurabad, Karachi";
+  const p_no = "+92 335 8243343";
+  const email = "contact@venturegames.com";
   return (
     <>
       <div className=" bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] p-36 py-10  5xl:p-32 5xl:px-auto 4xl:p-20 2xl:p-10 tablet2.1:p-4">
@@ -30,7 +34,7 @@ export default function ContactUs() {
                 <div className="mobile:w-[450px] mobile2.1:w-[350px] mobile1.1:w-auto flex justify-center">
                   <form className="bg-transparent border-[1px] border-white rounded-[40px]  text-white">
                     <input className="bg-transparent mx-8 mobile:mx-3 w-[350px] mobile2.1:w-[270px] mobile1.1:w-[240px] h-[45px] outline-none"></input>
-                    <button className="text-white text-[35px]">
+                    <button className="text-white text-[35px] align-middle">
                       <BiRightArrowCircle />
                     </button>
                   </form>
@@ -43,15 +47,14 @@ export default function ContactUs() {
                   Reach us at:
                 </div>
                 <div className="grid gap-3 justify-center text-center text-[20px] text-white border-[1px] border-white rounded-[40px] p-10 px-20 mobile2.1:px-10 mobile1.1:px-5">
-                  Office 201,Jan Centre 2nd Floor,
+                  {address}
                   <br />
-                  Opp,Tooso, Bahadurabad, Karachi
-                  <br />
+
                   <span className="border-y-[1px] border-white py-6">
-                    +92 335 8243343
+                    {p_no}
                   </span>
                   <br />
-                  <span className="mt-[-20px]">contact@venturegames.com</span>
+                  <span className="mt-[-20px]">{email}</span>
                 </div>
               </div>
 

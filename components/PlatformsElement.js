@@ -7,9 +7,9 @@ import Link from "next/link";
 export default function PlatformsElement({ consoles }) {
   const platformLogos = [PS5, xbox, PS4, nintendo];
   const platformClass =
-    "border-[1px] w-[260px] h-[350px] flex justify-center mobile1:h-[270px] mobile1:w-auto  rounded-[30px] border-white mobile:rounded-[35px]";
+    "border-[1px] w-[260px] h-[350px] flex justify-center mobile1:h-[270px] mobile1.1:h-[250px] mobilesm:h-[auto] mobile1:w-auto  rounded-[30px] border-white mobile:rounded-[35px]";
   const platformImgClass =
-    "w-[250px] justify-center px-5 py-[143px] mobile1:py-[100px] px-[20px] mobile1.1:px-[20px]";
+    "w-[250px] justify-center px-5 py-[143px] mobile1:py-[100px] mobile1.1:py-[110] px-[20px] mobile1.1:px-[20px]";
   return (
     <div
       className={`bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33]  ${
