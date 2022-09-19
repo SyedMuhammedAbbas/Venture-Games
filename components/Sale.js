@@ -207,7 +207,7 @@ export default function Sale() {
 
   return (
     <div className="grid bg-[#FFB636] py-[5vw] px-[40px] w-[100%] overflow-x-hidden justify-center pt-[80px] mobile:px-auto">
-      <div className="border-[5px] border-black rounded-[35px] pb-3  w-[125vw] ">
+      <div className="border-[5px] border-black rounded-[35px] pb-3  w-[125vw] sale">
         <div className="flex">
           <div className="font-hemi text-black text-[80px] xl:text-[7vw] bg-[#FFB636] mt-[-60px] lg:mt-[-50px] mobile:mt-[-30px] mobile1:mt-[-20px] mobilesm:mt-[10px] ml-[7vw] px-[30px] ">
             Flash Sale
@@ -221,7 +221,7 @@ export default function Sale() {
             </button>
           </div>
         </div>
-        <div className="w-[100vw] mobile1.1:w-[95%] h-[700px]  mx-auto my-10">
+        <div className="w-[100vw] mobile1.1:w-[95%] h-[700px] mx-auto my-10">
           <Slider {...settings}>
             {sale_products.map((index) => (
               <SaleCard

@@ -116,7 +116,7 @@ html{
 /* Animations */
     /* Clicked */
     .burger-bar, .clicked:nth-child(1){
-      transform: rotate(45deg) translate(-0.3em, 1em);
+      transform: rotate(45deg) translate(-0.2em, 1em);
       transition: ease-out 0.5s;
   }
   
@@ -126,7 +126,7 @@ html{
   }
   
   .burger-bar, .clicked:nth-child(3){
-      transform: rotate(-45deg) translate(-0.4em, -1em);
+      transform: rotate(-45deg) translate(-0.35em, -1em);
       transition: ease-out 0.5s;
   }
   
@@ -139,6 +139,9 @@ html{
 .slick-slide > div {
   display: grid;
   place-items: center;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .slick-prev:before,.slick-next:before {
@@ -150,8 +153,6 @@ html{
 
 
 /* Custom Slick Dots */
-
-
 
 .ft-slick__dots--custom {
   height: 8px;
@@ -186,4 +187,62 @@ html{
   /* top: 9px; */
   /* margin-top: 50px; */
   overflow: hidden;
+}
+
+@supports (-webkit-touch-callout: none) {
+  /* CSS specific to iOS devices */
+  /* Header */
+    /* img */
+    
+  .headsearch{
+    width: 30px;
+  }
+  /*  Sale  */
+  .sale{
+    width: 90vw;
+  }
+  /* slider */
+    /* dots */
+    .slick-active {
+      width: 23px;
+      top: 0px;
+    
+      /* transition: width 0.3s ease-in-out; */
+      transition: all 0.5s ease-out;
+    }
+  /* menu */
+  .menu{
+    margin-top: -1px;
+  }
+  .burger-bar {
+    width: 1.3em;
+  }
+   /* Animations */
+    /* Clicked */
+    .burger-bar, .clicked:nth-child(1){
+      transform: rotate(45deg) translate(-0.2em, 1em);
+      transition: ease-out 0.5s;
+  }
+  
+  .burger-bar, .clicked:nth-child(2){
+      transform: scale(0);
+      transition: ease-out 0.5s;
+  }
+  
+  .burger-bar, .clicked:nth-child(3){
+      transform: rotate(-45deg) translate(-0.3em, -1em);
+      transition: ease-out 0.5s;
+  }
+  
+  /* UnClicked */
+  .burger-bar , .unclicked{
+      transform: rotate(0) translate(0);
+      transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+  }
+
+  /* ClientView */
+    /* ClientsCard */
+    .clientcards{
+      width: 90vw;
+    }
 }

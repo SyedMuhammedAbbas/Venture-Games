@@ -26,7 +26,7 @@ export default function Header() {
   };
   return (
     <>
-      <div className="flex p-10 mx-auto justify-center bg-gradient-to-t from-black to-[#2c2c2c] fixed w-[100%] z-[999]">
+      <div className="flex p-10 mx-auto justify-center bg-gradient-to-t from-black to-[#2c2c2c] fixed tablet:h-[45px] w-[100%] z-[999]">
         <ul className="flex gap-[8vw] uppercase text-white text-xl transition-all mb-[-10px] 4xl:text-lg xl:gap-[7vw] lg:mb-[-20px] ">
           <li className={list}>
             <Link href="/shop">
@@ -43,34 +43,38 @@ export default function Header() {
               <a>consoles</a>
             </Link>
           </li>
+        </ul>
+        <div
+          className="tablet:space-y-[6px] hidden tablet:grid tablet:absolute tablet:left-10 tablet:mt-[-15px]"
+          onClick={updateMenu}
+        >
+          <div className={burger_class}></div>
+          <div className={burger_class}></div>
+          <div className={burger_class}></div>
+        </div>
+        <div className="hidden tablet:block">
+          <div className={menu_class}></div>
+        </div>
 
-          <div
-            className="tablet:space-y-[6px] hidden tablet:grid tablet:absolute tablet:left-10 tablet:mt-[-15px]"
-            onClick={updateMenu}
-          >
-            <div className={burger_class}></div>
-            <div className={burger_class}></div>
-            <div className={burger_class}></div>
-          </div>
-          <div className="hidden tablet:block">
-            <div className={menu_class}></div>
-          </div>
+        <Link href="/">
+          <a>
+            <img
+              className="w-28 mx-[10vw] header-img mt-[-25px] 5.1xl:w-24 lg:w-[45px] lg:h-[75px] tablet:w-[55px] tablet:h-[45px] tablet:mt-[-28px] "
+              src={logo.src}
+            />
+          </a>
+        </Link>
 
-          <Link href="/">
-            <a>
-              <img
-                className="w-28 mt-[-25px] 5.1xl:w-24 lg:w-[70px] lg:h-[70px] tablet:w-[55px] tablet:h-[50px] tablet:mt-[-28px] "
-                src={logo.src}
-              />
-            </a>
-          </Link>
-
-          <div className=" hidden tablet:text-[30px] tablet:text-white tablet:flex tablet:absolute tablet:right-10 tablet:mt-[-20px]">
-            <AiOutlineSearch />
-          </div>
-
+        <div className=" hidden tablet:text-[30px] headsearch tablet:text-white tablet:flex tablet:absolute tablet:right-10 tablet:mt-[-20px]">
+          <AiOutlineSearch />
+        </div>
+        <ul className="flex gap-[8vw] uppercase text-white text-xl transition-all mb-[-10px] 4xl:text-lg xl:gap-[7vw] lg:mb-[-20px]">
           <li className={list}>games</li>
-          <li className={list}>accessories</li>
+          <li className={list}>
+            <Link href="login">
+              <a>accessories</a>
+            </Link>
+          </li>
           <li className={list}>
             <Link href="/learnmore">
               <a>learn more</a>

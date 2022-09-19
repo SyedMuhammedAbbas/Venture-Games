@@ -92,7 +92,7 @@ export default function ShopProducts({ handle }) {
               </div>
             </div>
           )}
-          <div className="flex flex-wrap justify-start gap-5 text-center mx-[6%] mobile1.1:ml-0 tablet:justify-evenly mt-[0%] mb-[5%]">
+          <div className="flex flex-wrap justify-start mx-auto xl2:ml-[10%] mobile2:ml-auto mobile2:justify-center gap-5 text-center mb-[5%]">
             {featured_products.map((index) => (
               <div key={index}>
                 <FeaturedCard

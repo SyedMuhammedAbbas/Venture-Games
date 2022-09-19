@@ -1,7 +1,30 @@
-import Profile from "../images/profile-white.png";
+import ClientsViewCard from "./ClientsViewCard";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 export default function ClientsView() {
   const n = 3;
+  var settings = {
+    dots: false,
+    infinite: true,
+    speed: 400,
+
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 850,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+    ],
+  };
   return (
     <div className="bg-[#FFB636] p-32 tablet:pt-20 4xl:px-20 3xl:px-14 2xl:px-10 xl:px-5 mobile1.1:px-2">
       <div className="bg-gradient-to-r from-black via-stone-700 to-black pt-10 shadow-lg shadow-gray-800">
@@ -19,28 +42,21 @@ export default function ClientsView() {
           </div>
         </div>
 
-        <div className="flex flex-wrap m-[50px] lg:m-10 gap-20 justify-center pb-[50px]">
+        <div className="flex xl2:hidden flex-wrap m-[50px] lg:m-10 gap-20 justify-center pb-[50px]">
           {[...Array(n)].map((user) => (
-            <div
-              key={user}
-              className="bg-gradient-to-r from-black to-[#1c1c1c] rounded-2xl w-[340px] pt-10 mobile1.1:m-auto mobile1.1:p-auto mobile:w-[340px]"
-            >
-              <img
-                className="flex justify-center m-auto w-44 object-cover bg-slate-500 rounded-full mb-10"
-                src={Profile.src}
-              />
-              <div className="text-white  text-center mb-[15px] mobile:px-2">
-                Experience The Rise Of Miles Morales As The New Hero Masters
-                Incredible, Explosive New Powers To Become His Own Spider-{" "}
-                <br />
-                Man
-              </div>
-              <div className="flex justify-center m-auto border-t-8 w-[170px] border-[#FFB636] center pb-5"></div>
-              <div className="text-white text-center pb-10 text-[20px]">
-                Huzaifa John
-              </div>
+            <div key={user}>
+              <ClientsViewCard />
             </div>
           ))}
+        </div>
+        <div className="hidden xl2:block xl2:w-[90vw]  mobile1.1:w-[100%] clientcards xl2:h-[500px] xl2:m-10 xl2:mx-auto">
+          <Slider {...settings}>
+            {[...Array(n)].map((user) => (
+              <div key={user}>
+                <ClientsViewCard />
+              </div>
+            ))}
+          </Slider>
         </div>
       </div>
     </div>
