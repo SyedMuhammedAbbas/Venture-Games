@@ -14,6 +14,10 @@
   font-family: 'Montserrat';
   src: url('../fonts/Montserrat-Medium.ttf') format('woff2');  
 }
+@font-face { 
+  font-family: 'LEMON MILK';
+  src: url('../fonts/LEMONMILK-Regular.otf') format('woff2');  
+}
 :root{
   /* transform: scale(0.7); */
   zoom: 75%; 

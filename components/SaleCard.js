@@ -41,12 +41,12 @@ export default function SaleCard({
           </div>
         </div>
 
-        <div className="grid gap-2 pl-4 overflow-y-hidden">
+        <div className="grid gap-2  overflow-y-hidden">
           <div className="grid mt-4 overflow-y-scroll desp-scroll h-[100px]">
             <div className="text-white text-[23px] mt-0">{title}</div>
             <div className="text-white text-[14px]">{desp}</div>
           </div>
-          <div className="flex  gap-2 mt-[7px] pb-5">
+          <div className="flex pl-4 gap-2 mt-[7px] pb-5">
             <button className="text-white border-[1px] font-semibold border-white rounded-lg text-[14px] px-8 py-1 hover:bg-white hover:text-black hover:border-black">
               <Link href="/product">
                 <a>Buy Now</a>

@@ -11,6 +11,7 @@ module.exports = withMT({
       hemi: "Hemi Head",
       sfpro: "SF Pro Display",
       montserrat: "Montserrat",
+      lemonmilk: "LEMON MILK",
     },
     screens: {
       // => @media (min-width: 1024px) { ... }

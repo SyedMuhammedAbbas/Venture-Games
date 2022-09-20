@@ -10,11 +10,19 @@ export default function ClientsView() {
     infinite: true,
     speed: 400,
     dots: true,
-    slidesToShow: 2,
+    slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
     arrows: false,
     responsive: [
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
       {
         breakpoint: 850,
         settings: {
@@ -42,14 +50,7 @@ export default function ClientsView() {
           </div>
         </div>
 
-        <div className="flex xl2:hidden flex-wrap m-[50px] lg:m-10 gap-20 justify-center pb-[50px]">
-          {[...Array(n)].map((user) => (
-            <div key={user}>
-              <ClientsViewCard />
-            </div>
-          ))}
-        </div>
-        <div className="hidden xl2:block xl2:w-[90vw]  mobile1.1:w-[100%] clientcards xl2:h-[500px] xl2:m-10 xl2:mx-auto">
+        <div className=" block w-[90vw]  mobile1.1:w-[100%] clientcards h-[500px] m-10 mx-auto">
           <Slider {...settings}>
             {[...Array(n)].map((user) => (
               <div key={user}>
