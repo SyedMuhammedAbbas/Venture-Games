@@ -2,9 +2,18 @@
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
-@font-face { font-family: 'Hemi Head'; src: url('hemi head bd it.ttf');
-font-family: 'SF Pro Display';src: url('SF-Pro-Display-Medium.otf');
-font-family: 'Montserrat';src: url('Montserrat-Medium.ttf'); }
+@font-face { 
+  font-family: 'Hemi Head'; 
+  src: url('../fonts/hemi-head-bd-it.ttf') format('woff2');
+}
+@font-face { 
+  font-family: 'SF Pro Display';
+  src: url('../fonts/SF-Pro-Display-Medium.otf') format('woff2');
+}
+@font-face { 
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-Medium.ttf') format('woff2');  
+}
 :root{
   /* transform: scale(0.7); */
   zoom: 75%; 
@@ -190,6 +199,8 @@ html{
 }
 
 @supports (-webkit-touch-callout: none) {
+
+ 
   /* CSS specific to iOS devices */
   /* Header */
     /* img */
@@ -239,6 +250,11 @@ html{
       transform: rotate(0) translate(0);
       transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
   }
+
+  /* Featured Cards */
+    .featuredcards{
+      width: 90vw;
+    }
 
   /* ClientView */
     /* ClientsCard */

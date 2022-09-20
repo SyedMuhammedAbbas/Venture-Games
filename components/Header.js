@@ -11,11 +11,27 @@ export default function Header() {
   const [menu_class, setMenuClass] = useState(" hidden ");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
 
+  const pages_heading = [
+    "shop",
+    "gift cards",
+    "consoles",
+    "games",
+    "accessories",
+    "learn more",
+  ];
+  const pages_heading_links = [
+    "shop",
+    "giftcards",
+    "consoles",
+    "games",
+    "accessories",
+    "learnmore",
+  ];
   const updateMenu = () => {
     if (!isMenuClicked) {
       setBurgerClass("burger-bar clicked");
       setMenuClass(
-        "block menu overflow-y-scroll overflow-x-hidden w-[350px] h-[125vh] bg-gradient-to-t from-black to-[#1c1c1c] fixed left-0 ml-[-1px] top-[81px] z-[0] shadow-lg border-t-[0.1px] border-gray-900"
+        "block menu overflow-y-scroll overflow-x-hidden w-[350px] h-[125vh] bg-gradient-to-t from-black to-[#1c1c1c] fixed left-0 ml-[-1px] top-[79.2px] z-[0] shadow-lg border-t-[0.1px] border-gray-900"
       );
     } else {
       setBurgerClass("burger-bar unclicked");
@@ -24,6 +40,11 @@ export default function Header() {
 
     setIsMenuClicked(!isMenuClicked);
   };
+
+  function CloseMenu() {
+    setBurgerClass("burger-bar unclicked");
+    setMenuClass("hidden");
+  }
   return (
     <>
       <div className="flex p-10 mx-auto justify-center bg-gradient-to-t from-black to-[#2c2c2c] fixed tablet:h-[45px] w-[100%] z-[999]">
@@ -53,11 +74,24 @@ export default function Header() {
           <div className={burger_class}></div>
         </div>
         <div className="hidden tablet:block">
-          <div className={menu_class}></div>
+          <div className={menu_class}>
+            <ul className="grid uppercase text-white text-xl transition-all overflow-y-scroll">
+              {pages_heading.map((pages_heading, index) => (
+                <li
+                  key={index}
+                  className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat cursor-pointer py-3 border-b-[0.1px] border-blackOpac ml-6"
+                >
+                  <Link href={`/${pages_heading_links[index]}`}>
+                    <a onClick={CloseMenu}>{pages_heading}</a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <Link href="/">
-          <a>
+          <a onClick={CloseMenu}>
             <img
               className="w-28 mx-[10vw] header-img mt-[-25px] 5.1xl:w-24 lg:w-[45px] lg:h-[75px] tablet:w-[55px] tablet:h-[45px] tablet:mt-[-28px] "
               src={logo.src}

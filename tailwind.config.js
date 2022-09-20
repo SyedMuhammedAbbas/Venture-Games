@@ -9,7 +9,7 @@ module.exports = withMT({
   theme: {
     fontFamily: {
       hemi: "Hemi Head",
-      sfpro: "SF-Pro",
+      sfpro: "SF Pro Display",
       montserrat: "Montserrat",
     },
     screens: {

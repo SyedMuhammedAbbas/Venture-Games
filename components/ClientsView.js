@@ -6,10 +6,10 @@ import Slider from "react-slick";
 export default function ClientsView() {
   const n = 3;
   var settings = {
-    dots: false,
+    // dots: true,
     infinite: true,
     speed: 400,
-
+    dots: true,
     slidesToShow: 2,
     slidesToScroll: 1,
     initialSlide: 0,
