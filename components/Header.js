@@ -2,7 +2,7 @@ import logo from "../images/logo.png";
 import { AiOutlineSearch } from "react-icons/ai";
 import Link from "next/link";
 import ProfileBar from "./ProfileBar";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export default function Header() {
   const list =
@@ -10,6 +10,29 @@ export default function Header() {
   const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
   const [menu_class, setMenuClass] = useState(" hidden ");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
+
+  const wrapperRef = useRef(null);
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setBurgerClass("burger-bar unclicked");
+          setMenuClass("hidden");
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+
+  useOutsideAlerter(wrapperRef);
 
   const pages_heading = [
     "shop",
@@ -21,17 +44,19 @@ export default function Header() {
   ];
   const pages_heading_links = [
     "shop",
-    "giftcards",
     "consoles",
-    "games",
+    "consoles",
+    "consoles",
     "accessories",
     "learnmore",
   ];
+
+  const footer_links = ["about", "policies", "terms", "help"];
   const updateMenu = () => {
     if (!isMenuClicked) {
       setBurgerClass("burger-bar clicked");
       setMenuClass(
-        "block menu overflow-y-scroll overflow-x-hidden w-[350px] h-[125vh] bg-gradient-to-t from-black to-[#1c1c1c] fixed left-0 ml-[-1px] top-[79.2px] z-[0] shadow-lg border-t-[0.1px] border-gray-900"
+        "block menu overflow-y-scroll desp-scroll overflow-x-hidden w-[350px] h-[125vh] bg-gradient-to-t from-black to-[#1c1c1c] fixed left-0 ml-[-1px] top-[79.2px] z-[0] shadow-lg border-t-[0.1px] border-gray-900"
       );
     } else {
       setBurgerClass("burger-bar unclicked");
@@ -74,8 +99,8 @@ export default function Header() {
           <div className={burger_class}></div>
         </div>
         <div className="hidden tablet:block">
-          <div className={menu_class}>
-            <ul className="grid uppercase text-white text-xl transition-all overflow-y-scroll">
+          <div className={menu_class} ref={wrapperRef}>
+            <ul className="grid uppercase text-white text-xl transition-all overflow-y-scroll desp-scroll">
               {pages_heading.map((pages_heading, index) => (
                 <li
                   key={index}
@@ -83,6 +108,18 @@ export default function Header() {
                 >
                   <Link href={`/${pages_heading_links[index]}`}>
                     <a onClick={CloseMenu}>{pages_heading}</a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <ul className="grid uppercase text-white text-xl transition-all overflow-y-scroll desp-scroll">
+              {footer_links.map((footer_links, index) => (
+                <li
+                  key={index}
+                  className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat cursor-pointer py-3 border-b-[0.1px] border-blackOpac ml-6"
+                >
+                  <Link href={`/${footer_links}`}>
+                    <a onClick={CloseMenu}>{footer_links}</a>
                   </Link>
                 </li>
               ))}

@@ -3,6 +3,7 @@ import Teen from "../images/teenesbr.png";
 import { useState } from "react";
 
 export default function ProductCard() {
+  const genre = ["action", "thriller", "story"];
   return (
     <div className="bg-[#FFB636] pt-[15%] pb-[5%] mx-auto lg:pt-[80px] tablet:pt-[50px]">
       <div className="flex justify-center">
@@ -38,15 +39,15 @@ export default function ProductCard() {
           <div className="grid">
             <div className="flex">
               <div className="text-gray-400 text-[25px]">
-                Action <span className="">. </span>
+                Action <span className="text-[40px]">. </span>
               </div>
               <div className="text-gray-400 text-[25px]">
-                Thriller <span className="">. </span>
+                Thriller <span className="text-[40px]">. </span>
               </div>
               <div className="text-gray-400 text-[25px]">Story</div>
             </div>
             <div className="text-gray-400 text-[25px]">
-              Single Player <span className="">.</span> 2020
+              Single Player <span className="text-[40px]">.</span> 2020
             </div>
           </div>
           <div className="text-white">
