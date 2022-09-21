@@ -1,4 +1,4 @@
-import Controller from "../images/controller.png";
+import Controller from "../../images/controller.png";
 
 export default function Banner() {
   const bannerDesp =

@@ -274,4 +274,15 @@ html{
     .clientcards{
       width: 90vw;
     }
+  /* Login Page */
+  .loginheading1{
+    font-size: 20px;
+  }
+  .loginheading{
+    font-size: 50px;
+    line-height: 60px;
+  }
+
+  /* Product Card */
+ 
 }

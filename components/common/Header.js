@@ -1,7 +1,6 @@
-import logo from "../images/logo.png";
+import logo from "../../images/logo.png";
 import { AiOutlineSearch } from "react-icons/ai";
 import Link from "next/link";
-import ProfileBar from "./ProfileBar";
 import React, { useState, useEffect, useRef } from "react";
 
 export default function Header() {
@@ -47,7 +46,7 @@ export default function Header() {
     "consoles",
     "consoles",
     "consoles",
-    "accessories",
+    "login",
     "learnmore",
   ];
 
@@ -100,11 +99,11 @@ export default function Header() {
         </div>
         <div className="hidden tablet:block">
           <div className={menu_class} ref={wrapperRef}>
-            <ul className="grid uppercase text-white text-xl transition-all overflow-y-scroll desp-scroll">
+            <ul className="grid uppercase text-white text-lg transition-all overflow-y-scroll desp-scroll">
               {pages_heading.map((pages_heading, index) => (
                 <li
                   key={index}
-                  className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat cursor-pointer py-3 border-b-[0.1px] border-blackOpac ml-6"
+                  className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-blackOpac ml-6"
                 >
                   <Link href={`/${pages_heading_links[index]}`}>
                     <a onClick={CloseMenu}>{pages_heading}</a>
@@ -112,11 +111,11 @@ export default function Header() {
                 </li>
               ))}
             </ul>
-            <ul className="grid uppercase text-white text-xl transition-all overflow-y-scroll desp-scroll">
+            <ul className="grid uppercase text-white text-lg transition-all overflow-y-scroll desp-scroll">
               {footer_links.map((footer_links, index) => (
                 <li
                   key={index}
-                  className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat cursor-pointer py-3 border-b-[0.1px] border-blackOpac ml-6"
+                  className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-blackOpac ml-6"
                 >
                   <Link href={`/${footer_links}`}>
                     <a onClick={CloseMenu}>{footer_links}</a>

@@ -1,0 +1,54 @@
+.input {
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    position: relative;
+    display: block;
+    width: 217px;
+    height: 45px;
+    margin: 50px auto;
+    border: 1px solid #FFB636;
+    border-radius: 40px;
+    cursor: pointer;
+    background: #FFB636;
+  }
+
+  .input:after,
+  .input:before {
+    box-sizing: border-box;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 100px;
+    height: 35px;
+    border: 1px solid;
+    border-radius: 40px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 20px;
+    transition: all 0.3s ease-out;
+  }
+
+  .input:before {
+    content: "New";
+    color: #FFB636;
+    border-color: #000000;
+    background: #000000;
+  }
+
+  .input:after {
+    left: auto;
+    right: 5px;
+    content: "Used";
+    border-color: #000000;
+    color: #FFB636;
+    background: #000000;
+    opacity: 0.4;
+  }
+
+  .input:checked:after {
+    opacity: 1;
+  }
+
+  .input:checked:before {
+    opacity: 0.4;
+  }

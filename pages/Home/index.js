@@ -1,10 +1,10 @@
-import Banner from "../../components/Banner";
-import ClientsView from "../../components/ClientsView";
-import Featured from "../../components/Featured";
-import PlatformsElement from "../../components/PlatformsElement";
-import Sale from "../../components/Sale";
-import TopGames from "../../components/TopGames";
-import ProfileBar from "../../components/ProfileBar";
+import Banner from "../../components/home/Banner";
+import ClientsView from "../../components/common/ClientsView";
+import Featured from "../../components/home/Featured";
+import PlatformsElement from "../../components/common/PlatformsElement";
+import Sale from "../../components/home/Sale";
+import TopGames from "../../components/home/TopGames";
+import ProfileBar from "../../components/common/ProfileBar";
 
 export default function Home() {
   return (

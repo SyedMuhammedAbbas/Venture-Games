@@ -1,4 +1,4 @@
-import Spiderman from "../images/image 4.png";
+// import Spiderman from "../../images/image 4.png";
 import { useState } from "react";
 import ReactSimplyCarousel from "react-simply-carousel";
 import TopGamesSlide from "./TopGamesSlide";

@@ -1,6 +1,6 @@
 import { MdKeyboardArrowRight } from "react-icons/md";
 import FeaturedCard from "./FeaturedCard";
-import Spiderman from "../images/image 4.png";
+import Spiderman from "../../images/image 4.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

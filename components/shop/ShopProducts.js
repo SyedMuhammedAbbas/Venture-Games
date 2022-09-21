@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { BsSliders } from "react-icons/bs";
-import FeaturedCard from "./FeaturedCard";
+import FeaturedCard from "../home/FeaturedCard";
 // import SaleCard from './SaleCard'
-import Spiderman from "../images/image 4.png";
+import Spiderman from "../../images/image 4.png";
 
 export default function ShopProducts({ handle }) {
   const n = 12;

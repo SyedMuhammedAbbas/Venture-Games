@@ -1,4 +1,4 @@
-import PS5Controller from "../images/ps5Controller.png";
+import PS5Controller from "../../images/ps5Controller.png";
 
 export default function LearnMoreClientsSay() {
   const description =

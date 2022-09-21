@@ -9,7 +9,7 @@ import { FaSignOutAlt } from "react-icons/fa";
 import { Fragment, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import search from "../styles/Search.module.css";
+import search from "../../styles/Search.module.css";
 import DropDown from "./DropDown";
 import Link from "next/link";
 

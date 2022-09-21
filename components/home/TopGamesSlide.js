@@ -1,4 +1,4 @@
-import Spiderman from "../images/image 4.png";
+import Spiderman from "../../images/image 4.png";
 
 export default function TopGamesSlide() {
   return (

@@ -1,7 +1,7 @@
 // import CartProducts from "./CartProducts";
-import ProfileBar from "./ProfileBar";
-import Spiderman from "../images/image 4.png";
-import PS5Controller from "../images/ps5Controller.png";
+import ProfileBar from "../common/ProfileBar";
+import Spiderman from "../../images/image 4.png";
+import PS5Controller from "../../images/ps5Controller.png";
 import Link from "next/link";
 import { MdDoubleArrow } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";

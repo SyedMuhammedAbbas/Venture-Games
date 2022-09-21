@@ -1,4 +1,4 @@
-import ShopBack from "../images/shop-background.png";
+import ShopBack from "../../images/shop-background.png";
 
 export default function ShopCover() {
   return (

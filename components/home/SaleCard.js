@@ -1,4 +1,4 @@
-import Spiderman from "../images/image 4.png";
+// import Spiderman from "../../images/image 4.png";
 import Link from "next/link";
 
 export default function SaleCard({

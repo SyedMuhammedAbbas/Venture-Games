@@ -1,5 +1,5 @@
-import PlatformsElement from "../../components/PlatformsElement";
-import ProfileBar from "../../components/ProfileBar";
+import PlatformsElement from "../../components/common/PlatformsElement";
+import ProfileBar from "../../components/common/ProfileBar";
 
 export default function Consoles() {
   return (

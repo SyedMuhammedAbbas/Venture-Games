@@ -13,7 +13,7 @@ import React, { useState } from "react";
 // import "swiper/css/pagination";
 // import "swiper/css/bundle";
 import { Pagination, Navigation } from "swiper";
-import Spiderman from "../images/image 4.png";
+import Spiderman from "../../images/image 4.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";

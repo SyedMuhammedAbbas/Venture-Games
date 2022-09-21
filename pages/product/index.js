@@ -1,7 +1,5 @@
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
-import ProductCard from "../../components/ProductCard";
-import ProfileBar from "../../components/ProfileBar";
+import ProductCard from "../../components/common/ProductCard";
+import ProfileBar from "../../components/common/ProfileBar";
 
 export default function Product() {
   return (

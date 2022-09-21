@@ -1,4 +1,4 @@
-import Ceo from "../images/ceo.png";
+import Ceo from "../../images/ceo.png";
 
 export default function LearnMoreCeo() {
   return (

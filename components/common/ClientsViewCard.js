@@ -1,4 +1,4 @@
-import Profile from "../images/profile-white.png";
+import Profile from "../../images/profile-white.png";
 
 export default function ClientsViewCard() {
   return (
