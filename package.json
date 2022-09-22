@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export":"next build && next export",
+    "export": "next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
@@ -22,8 +22,11 @@
     "daisyui": "^2.27.0",
     "google-map-react": "^2.2.0",
     "next": "12.2.5",
+    "next-birthday": "^1.0.0",
     "npm": "^8.19.2",
     "react": "18.2.0",
+    "react-date-picker": "^9.0.0",
+    "react-datepicker": "^4.8.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
     "react-simply-carousel": "^8.3.5",

@@ -4,18 +4,21 @@ import { useState } from "react";
 import ShopCover from "../../components/shop/ShopCover";
 
 export default function Shop() {
-  const [handle, sethandle] = useState(false);
+  const [handleFilter, sethandleFilter] = useState(false);
+  const [handleSort, sethandleSort] = useState(false);
 
   return (
     <>
       <ProfileBar
         filter="true"
-        sethandle={sethandle}
-        handle={handle}
+        sethandleFilter={sethandleFilter}
+        handleFilter={handleFilter}
+        sethandleSort={sethandleSort}
+        handleSort={handleSort}
         cart={true}
       />
       <ShopCover />
-      <ShopProducts handle={handle} />
+      <ShopProducts handleFilter={handleFilter} handleSort={handleSort} />
     </>
   );
 }

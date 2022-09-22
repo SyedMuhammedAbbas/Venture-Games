@@ -23,13 +23,13 @@ export default function ProductCard() {
                   Spiderman - Miles Morales
                 </div>
                 <div className="flex gap-1">
-                  <button className="text-[#FFB636] font-semibold bg-transparent border-[1px] iosbuttons  border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px] hover:bg-[#FFB636] hover:text-black">
+                  <button className="text-[#FFB636] font-semibold bg-transparent border-[1px]  border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px] hover:bg-[#FFB636] hover:text-black">
                     PS4
                   </button>
-                  <button className="text-[#FFB636] font-semibold bg-transparent border-[1px] iosbuttons border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px] hover:bg-[#FFB636] hover:text-black">
+                  <button className="text-[#FFB636] font-semibold bg-transparent  border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px] hover:bg-[#FFB636] hover:text-black">
                     PS5
                   </button>
-                  <button className="text-[#FFB636] font-semibold bg-transparent border-[1px] iosbuttons border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px] hover:bg-[#FFB636] hover:text-black">
+                  <button className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px] hover:bg-[#FFB636] hover:text-black">
                     XBOX
                   </button>
                 </div>

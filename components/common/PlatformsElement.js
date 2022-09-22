@@ -14,7 +14,7 @@ export default function PlatformsElement({ consoles }) {
     <div
       className={`bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33]  ${
         consoles === true
-          ? "pt-[200px] pb-auto h-[125vh] px-36 5xl:px-32 4xl:px-20 2xl:px-auto mobile:px-4 tablet:pt-[90px] tablet:h-[100%] mobile1:h-[125vh] flex justify-center mobile1:flex mobile1:items-center"
+          ? "pt-[200px] pb-auto h-[100%] px-36 5xl:px-32 4xl:px-20 2xl:px-auto mobile:px-4 tablet:pt-[90px] tablet:h-[100%] mobile1:h-[125vh] flex justify-center mobile1:flex mobile1:items-center"
           : "p-36 5xl:px-32 4xl:px-20 2xl:px-auto mobile:p-4 h-[100%] mobile1:h-[125vh] flex justify-center mobile1:items-center"
       }  px-64 5xl:px-auto `}
     >

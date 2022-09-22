@@ -2,8 +2,10 @@ import logo from "../../images/logo.png";
 import { AiOutlineSearch } from "react-icons/ai";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 
 export default function Header() {
+  const router = useRouter();
   const list =
     "hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat cursor-pointer mt-[10px] xl:text-[1.5vw] lg:mt-[0px] tablet:hidden";
   const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
@@ -74,13 +76,13 @@ export default function Header() {
       <div className="flex p-10 mx-auto justify-center bg-gradient-to-t from-black to-[#2c2c2c] fixed tablet:h-[45px] w-[100%] z-[999]">
         <ul className="flex gap-[8vw] uppercase text-white text-xl transition-all mb-[-10px] 4xl:text-lg xl:gap-[7vw] lg:mb-[-20px] ">
           <li className={list}>
-            <Link href="/shop">
+            <Link href="/shop" as="/shop">
               <a>shop</a>
             </Link>
           </li>
           <li className={list}>
-            <Link href="/shop">
-              <a>gift cards</a>
+            <Link href="/shop" as="/shop">
+              gift cards
             </Link>
           </li>
           <li className={list}>
@@ -99,23 +101,39 @@ export default function Header() {
         </div>
         <div className="hidden tablet:block">
           <div className={menu_class} ref={wrapperRef}>
-            <ul className="grid uppercase text-white text-lg transition-all overflow-y-scroll desp-scroll">
+            <div className="flex justify-center gap-5 pt-10">
+              <Link href="login">
+                <button
+                  onClick={CloseMenu}
+                  className="text-[#FFB636] font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-10 py-3 rounded-[15px] text-[20px] "
+                >
+                  login
+                </button>
+              </Link>
+              <Link href="signup">
+                <button
+                  onClick={CloseMenu}
+                  className="text-[#FFB636] font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-10 py-3 rounded-[15px] text-[20px] "
+                >
+                  sign up
+                </button>
+              </Link>
+            </div>
+            <ul className="grid uppercase text-white text-lg transition-all mt-[20px] overflow-y-scroll desp-scroll">
               {pages_heading.map((pages_heading, index) => (
                 <li
                   key={index}
-                  className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-blackOpac ml-6"
+                  className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-[#272727] ml-6"
                 >
                   <Link href={`/${pages_heading_links[index]}`}>
                     <a onClick={CloseMenu}>{pages_heading}</a>
                   </Link>
                 </li>
               ))}
-            </ul>
-            <ul className="grid uppercase text-white text-lg transition-all overflow-y-scroll desp-scroll">
               {footer_links.map((footer_links, index) => (
                 <li
                   key={index}
-                  className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-blackOpac ml-6"
+                  className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-[#272727] ml-6"
                 >
                   <Link href={`/${footer_links}`}>
                     <a onClick={CloseMenu}>{footer_links}</a>

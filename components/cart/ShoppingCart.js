@@ -6,8 +6,11 @@ import Link from "next/link";
 import { MdDoubleArrow } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { AiOutlineDelete } from "react-icons/ai";
 
 export default function ShoppingCart() {
+  const router = useRouter();
   const products = [
     {
       product_title: "Spiderman - Miles Morales",
@@ -94,96 +97,103 @@ export default function ShoppingCart() {
       <div className="bg-[#FFB636] pb-20 h-[100%]">
         {products.length > 0 ? (
           <div className="flex xl3:grid">
-            <div className="pt-[13%] pb-[5%] xl3:pt-[17%] tablet:pt-[11%] mobile:pt-[150px]">
+            <div className="pt-[13%] pb-[5%] xl3:pt-[17%] tablet:pt-[11%] mobile:pt-[150px] w-[55%] tablet1:w-[80%] mobile:w-[90%] mobile1:w-[100%]">
               <h1 className="text-black text-[60px] xl3:text-[50px] mobile:text-[40px] pl-10 capitalize">
                 Shopping Cart
               </h1>
 
-              <div className="bg-gradient-to-tl from-[#b58126] via-black to-[#b58126] w-[900px] xl3:w-[650px] mobile1:w-[95%] rounded-tr-[40px] rounded-br-[40px] ">
-                <table>
-                  <tr className=" text-white uppercase">
-                    <th className="pl-[50px] mobile1.1:pl-[20px] pt-10 text-left text-[20px] mobile1.1:text-[15px]  font-normal">
-                      description
-                    </th>
-                    <th className="pl-10  mobile1.1:pl-0 xl3:pl-0 pt-10 text-left text-[20px] mobile1.1:text-[15px]  font-normal">
-                      quantity
-                    </th>
-                    <th className="pl-20 xl3:pl-10 pb-0 pt-10 xl3:pt-9 text-left text-[20px] mobile1.1:text-[15px]  font-normal">
-                      price
-                    </th>
-                  </tr>
-                  {products.map((index) => {
-                    return (
-                      <tr
-                        key={index}
-                        className="border-b-[1px] border-[#9c9c9c] pb-10"
-                      >
-                        <td className="p-20 py-10 px-5 mobile1.1:pr-0 pl-10 mobile1:pl-5 mobile1.1:w-[100px]">
-                          <div className="flex gap-4 xl3:grid xl3:gap-1">
-                            <img
-                              className="w-[170px] bg-contain mobile1.1:w-[150px] rounded-3xl"
-                              src={index.product_image}
-                            ></img>
-                            <div className="grid h-[50px] xl3:h-auto xl3:w-auto">
-                              <div className="text-white text-[25px] mobile1.1:text-[20px] pt-auto pb-4 ">
-                                {index.product_title}
-                              </div>
-                              <div className="border-b-[1.5px] border-[#6f6f6f] w-[200px]"></div>
-                              <div className="flex gap-2 pt-4">
-                                <button className=" font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1.1:h-auto mobile1.1:py-[1px] rounded-md text-[14px] bg-[#FFB636] text-black">
-                                  {index.product_platform}
-                                </button>
-                                <button className=" font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1.1:h-auto mobile1.1:py-[1px] rounded-md text-[14px] bg-[#FFB636] text-black">
-                                  {index.product_condition}
-                                </button>
+              <div className="bg-gradient-to-tl from-[#b58126] via-black to-[#b58126] w-[100%] pt-5  mobile1:w-[95%] rounded-tr-[40px] rounded-br-[40px] ">
+                <div className="h-[110vh] overflow-auto desp-scroll">
+                  <table className="w-[100%] ">
+                    <tr className=" text-white uppercase">
+                      <th className="pl-[50px] text-left mobile1.1:pl-[20px] pt-10  text-[20px] mobile1.1:text-[15px]  font-normal">
+                        description
+                      </th>
+                      <th className="pl-10  mobile1.1:pl-0 xl3:pl-0 pt-10 text-center text-[20px] mobile1.1:text-[15px]  font-normal">
+                        quantity
+                      </th>
+                      <th className="pl-20 xl3:pl-10 pb-0 pt-10 xl3:pt-9 text-left text-[20px] mobile1.1:text-[15px]  font-normal">
+                        price
+                      </th>
+                    </tr>
+                    {products.map((index) => {
+                      return (
+                        <tr
+                          key={index}
+                          className="border-b-[1px] border-[#626262] pb-10"
+                        >
+                          <td className="p-20 py-10 px-5 mobile1.1:pr-0 pl-10 mobile1:pl-5 mobile1.1:w-[100px]">
+                            <div className="flex gap-4 text-center xl3:grid xl3:gap-1 xl3:text-left">
+                              <img
+                                className="w-[170px] bg-contain mobile1.1:w-[150px] rounded-3xl"
+                                src={index.product_image}
+                              ></img>
+                              <div className="grid h-[50px] xl3:h-auto xl3:w-auto">
+                                <div className="text-white text-[25px] overflow-auto h-20 mobile1.1:text-[20px] pt-auto pb-4 ">
+                                  {index.product_title}
+                                </div>
+                                <div className="border-b-[1.5px] border-[#6f6f6f] w-[200px]"></div>
+                                <div className="flex gap-2 pt-4 w-[200px]">
+                                  <button className=" font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1.1:h-auto mobile1.1:py-[1px] rounded-md text-[14px] bg-[#FFB636] text-black">
+                                    {index.product_platform}
+                                  </button>
+                                  <button className=" font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1.1:h-auto mobile1.1:py-[1px] rounded-md text-[14px] bg-[#FFB636] text-black">
+                                    {index.product_condition}
+                                  </button>
+                                  <button className="text-[30px] text-[#FFB636] ml-10">
+                                    <AiOutlineDelete />
+                                  </button>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </td>
-                        <td className="pl-5 mt-[100%]">
-                          <select
-                            name="1"
-                            className="border-[1px] rounded-xl text-white bg-transparent p-1 px-4 text-[20px]"
-                          >
-                            {Number_Of_products.map(
-                              (Number_Of_products, index) => (
-                                <option
-                                  key={index}
-                                  className="text-black bg-transparent text-[20px]"
-                                >
-                                  {Number_Of_products}
-                                </option>
-                              )
-                            )}
-                          </select>
-                        </td>
-                        <td className="pl-20 xl3:pl-10 mobile1.1:pl-4 ">
-                          <h2 className="text-white text-[27px] mobile1:text-[20px]">
-                            {index.product_price}{" "}
-                            <span className="text-[15px]">Rs</span>
-                          </h2>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </table>
+                          </td>
+                          <td className="pl-5 mt-[100%] text-center">
+                            <select
+                              name="1"
+                              className="border-[1px] rounded-xl text-white bg-transparent p-1 px-4 text-[20px]"
+                            >
+                              {Number_Of_products.map(
+                                (Number_Of_products, index) => (
+                                  <option
+                                    key={index}
+                                    className="text-black bg-transparent text-[20px]"
+                                  >
+                                    {Number_Of_products}
+                                  </option>
+                                )
+                              )}
+                            </select>
+                          </td>
+                          <td className="pl-20 xl3:pl-10 mobile1.1:pl-4 ">
+                            <h2 className="text-white text-[27px] mobile1:text-[20px]">
+                              {index.product_price}{" "}
+                              <span className="text-[15px]">Rs</span>
+                            </h2>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </table>
+                </div>
                 <div className="text-right text-[25px] mobile1.1:text-[20px] py-7 pr-10 text-[#979797]">
-                  Cart feels empty?{" "}
-                  <Link href="/shop">
-                    <a className="underline text-white cursor-pointer">
-                      Shop More
-                    </a>
-                  </Link>
+                  Cart feels empty? {/* <Link href="/shop"> */}
+                  <a
+                    onClick={() => router.push("/shop")}
+                    className="underline text-white cursor-pointer"
+                  >
+                    Shop More
+                  </a>
+                  {/* </Link> */}
                 </div>
               </div>
             </div>
 
-            <div className="grid pt-[13%] xl3:pt-[17%] tablet:pt-[11%] tablet1:pt-0 absolute right-0 tablet1:relative tablet1:left-0 tablet1:w-[650px] mobile1:w-[95%]">
-              <h1 className="text-black text-[60px] xl3:text-[50px] mobile:text-[40px] tablet1:pl-10  capitalize">
+            <div className="grid pt-[13%] xl3:pt-[17%] tablet:pt-[11%] tablet1:pt-0 absolute right-0 tablet1:relative tablet1:left-0 w-[40%] tablet1:w-[80%] mobile:w-[90%] mobile1:w-[95%]">
+              <h1 className="text-black text-right tablet1:text-left mr-10 text-[60px] xl3:text-[50px] mobile:text-[40px] tablet1:pl-10  capitalize">
                 order summary
               </h1>
               <div className=" w-auto">
-                <table className="bg-gradient-to-tl from-[#b58126] via-black to-[#b58126] rounded-tl-[35px] tablet1:rounded-tl-none tablet1:rounded-tr-[35px] w-[100%] tablet1:w-[650px] mobile1:w-[100%]">
+                <table className="bg-gradient-to-tl from-[#b58126] via-black to-[#b58126] rounded-tl-[35px] tablet1:rounded-tl-none tablet1:rounded-tr-[35px] w-[100%]  mobile1:w-[100%]">
                   {order_summary.map((order_summary, index) => {
                     {
                       if (index === 0) {
@@ -270,7 +280,7 @@ export default function ShoppingCart() {
                     <MdKeyboardArrowRight />
                   </div>
                 </div>
-                <div className="text-[16 px] pt-5 tablet1:ml-10 text-[#545454] font-semibold ">
+                <div className="text-[1.5vw] tablet:text-[16px] pt-5 tablet1:ml-10 text-[#545454] font-semibold ">
                   By Clicking NEXT I agree to Venture Game's terms of services
                 </div>
               </div>
@@ -278,15 +288,14 @@ export default function ShoppingCart() {
           </div>
         ) : (
           <div className="flex mobile2:grid gap-7 mobile2:gap-1 text-center text-[45px] pr-10 text-[#868686] justify-center pt-[500px] h-[125vh]">
-            Cart is empty !{" "}
-            <Link href="/shop">
-              <div className="flex gap-1">
-                <a className=" text-white cursor-pointer">Shop Now</a>
-                <div className="text-white font-normal mt-3 cursor-pointer">
-                  <MdDoubleArrow />
-                </div>
+            Cart is empty ! {/* <Link href="/shop"> */}
+            <div className="flex gap-1" onClick={() => router.push("/shop")}>
+              <a className=" text-white cursor-pointer">Shop Now</a>
+              <div className="text-white font-normal mt-3 cursor-pointer">
+                <MdDoubleArrow />
               </div>
-            </Link>
+            </div>
+            {/* </Link> */}
           </div>
         )}
       </div>

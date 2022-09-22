@@ -13,15 +13,31 @@ import search from "../../styles/Search.module.css";
 import DropDown from "./DropDown";
 import Link from "next/link";
 
-export default function ProfileBar({ filter, sethandle, handle, cart }) {
+export default function ProfileBar({
+  filter,
+  sethandleFilter,
+  handleFilter,
+  handleSort,
+  sethandleSort,
+  cart,
+}) {
   const icons =
     "text-[30px] 2xl:text-[25px] lg:text-[21px] text-white cursor-pointer";
 
   const [open, setOpen] = useState(false);
 
-  const onButtonClick = () => {
+  const onButtonClickFilter = () => {
     {
-      handle ? sethandle(false) : sethandle(true);
+      handleFilter === true
+        ? sethandleFilter(false) & sethandleSort(false)
+        : sethandleFilter(true) & sethandleSort(false);
+    }
+  };
+  const onButtonClickSort = () => {
+    {
+      handleSort === true
+        ? sethandleSort(false) & sethandleFilter(false)
+        : sethandleSort(true) & sethandleFilter(false);
     }
   };
   return (
@@ -30,7 +46,7 @@ export default function ProfileBar({ filter, sethandle, handle, cart }) {
         <div className="flex gap-9 absolute left-20">
           <div
             className="flex gap-4 hover:cursor-pointer"
-            onClick={() => onButtonClick()}
+            onClick={() => onButtonClickFilter()}
           >
             <div className={icons}>
               <BsSliders />
@@ -40,7 +56,10 @@ export default function ProfileBar({ filter, sethandle, handle, cart }) {
             </div>
           </div>
 
-          <div className="flex gap-4">
+          <div
+            className="flex gap-4 hover:cursor-pointer"
+            onClick={() => onButtonClickSort()}
+          >
             <div className={icons}>
               <BsSortDown />
             </div>
