@@ -5,12 +5,21 @@ import PlatformsElement from "../../components/common/PlatformsElement";
 import Sale from "../../components/home/Sale";
 import TopGames from "../../components/home/TopGames";
 import ProfileBar from "../../components/common/ProfileBar";
+import { useState } from "react";
 
 export default function Home() {
+  const [handleSignup, sethandleSignup] = useState(false);
+  const [handleLogin, sethandleLogin] = useState(false);
   return (
     <div className="snap-both">
       <div>
-        <ProfileBar cart={true} />
+        <ProfileBar
+          cart={false}
+          handleLogin={handleLogin}
+          sethandleLogin={sethandleLogin}
+          handleSignup={handleSignup}
+          sethandleSignup={sethandleSignup}
+        />
       </div>
       <div className="snap-center ">
         <TopGames />

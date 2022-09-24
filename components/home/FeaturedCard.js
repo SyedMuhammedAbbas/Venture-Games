@@ -2,44 +2,42 @@
 import Link from "next/link";
 
 export default function FeaturedCard({
-  title,
-  oldPrice,
-  newPrice,
-  image,
-  platform,
+  product_title,
+  product_oldprice,
+  product_newprice,
+  product_image,
+  product_platform,
 }) {
   // const featured_product_platform = ["ps4", "ps5", "xbox", "nintendo"];
 
   return (
-    <div className="h-auto p-2 rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[320px] mobile:w-[350px]">
-      {/* <div className="bg-[url('../images/image 4.png')] bg-[length:400px_400px] bg-no-repeat"> */}
+    <div className="h-auto p-2 rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile:w-[350px]">
       <img
-        className="rounded-3xl justify-center h-[310px] object-cover w-[310px] mobile:w-[330px]"
-        src={image}
+        className="rounded-3xl justify-center h-[340px] object-contain w-[340px] mobile:w-[330px]"
+        src={product_image}
       />
       <div className="flex gap-1 mt-[-30px] ml-[10px]">
-        {platform &&
-          platform.map((platform, index) => (
+        {product_platform &&
+          product_platform.map((product_platform, index) => (
             <button
               key={index}
               className="text-black font-semibold uppercase bg-[#FFB636] px-3 rounded-md text-[12px]"
             >
-              {platform}
+              {product_platform}
             </button>
           ))}
       </div>
 
-      {/* </div> */}
       <div className="grid justify-center gap-3">
         <div className="text-white text-center text-[23px] mobile:text-[20px] mt-5">
-          {title}
+          {product_title}
         </div>
         <div className="flex gap-5 justify-center">
           <div className="text-red-600 line-through text-[25px] mobile:text-[19px]">
-            {oldPrice}
+            {product_oldprice}
           </div>
           <div className="text-white text-[25px] mobile:text-[21px]">
-            {newPrice} PKR
+            {product_newprice} PKR
           </div>
         </div>
         <div className="flex justify-center gap-2 mt-[-7px] mb-5">

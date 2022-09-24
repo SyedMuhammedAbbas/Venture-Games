@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function LoginPage() {
   return (
     <>
-      <div className="bg-[url('../images/loginbackground.png')] bg-[length:100%_100%] bg-no-repeat flex justify-center h-auto xl2:h-[100%] p-32 tablet2.1:px-20 mobile2.1:px-10 mobile1:px-5 mobile1.1:px-3 pt-[200px] tablet2.1:pt-[150px] pb-14 loginmaindivClass">
+      <div className="bg-[url('../images/loginbackground.png')]  bg-no-repeat flex justify-center bg-cover h-auto xl2:h-[100%] p-32 tablet2.1:px-20 mobile2.1:px-10 mobile1:px-5 mobile1.1:px-3 pt-[200px] tablet2.1:pt-[150px] py-[10%] loginmaindivClass">
         <div className="bg-black opacity-75 w-[100%] flex xl2:grid mobile:gap-10 rounded-[40px] p-10 h-[100vh] xl2:h-[137vh] mobile1:h-[110vh] mobile1.1:h-[90vh]">
           <div className="grid xl2:gap-5">
             <div className="text-[#FFB636] text-[35px] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">

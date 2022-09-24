@@ -20,6 +20,10 @@ export default function ProfileBar({
   handleSort,
   sethandleSort,
   cart,
+  handleLogin,
+  handleSignup,
+  sethandleLogin,
+  sethandleSignup,
 }) {
   const icons =
     "text-[30px] 2xl:text-[25px] lg:text-[21px] text-white cursor-pointer";
@@ -38,6 +42,21 @@ export default function ProfileBar({
       handleSort === true
         ? sethandleSort(false) & sethandleFilter(false)
         : sethandleSort(true) & sethandleFilter(false);
+    }
+  };
+
+  const onButtonClickSignup = () => {
+    {
+      handleSignup === true
+        ? sethandleSignup(false) & sethandleLogin(false)
+        : sethandleSignup(true) & sethandleLogin(false);
+    }
+  };
+  const onButtonClickLogin = () => {
+    {
+      handleLogin === true
+        ? sethandleLogin(false) & sethandleSignup(false)
+        : sethandleLogin(true) & sethandleSignup(false);
     }
   };
   return (
@@ -94,7 +113,46 @@ export default function ProfileBar({
         </div>
       )}
 
-      <div>
+      {handleLogin ? (
+        <button
+          onClick={() => onButtonClickSignup()}
+          className="border-[1px] border-white text-white hover:bg-white hover:text-black hover:border-black text-[25px] rounded-lg px-3"
+        >
+          <Link href="signup">
+            <a className="">signup</a>
+          </Link>
+        </button>
+      ) : handleSignup ? (
+        <button
+          onClick={() => onButtonClickLogin()}
+          className="border-[1px] border-white text-white hover:bg-white hover:text-black hover:border-black text-[25px] rounded-lg px-3"
+        >
+          <Link href="login">
+            <a className="">login</a>
+          </Link>
+        </button>
+      ) : (
+        <div className="flex gap-5">
+          <button
+            onClick={() => onButtonClickLogin()}
+            className="border-[1px] border-white text-white hover:bg-white hover:text-black hover:border-black text-[25px] rounded-lg px-3"
+          >
+            <Link href="login">
+              <a className="">login</a>
+            </Link>
+          </button>
+          <button
+            onClick={() => onButtonClickSignup()}
+            className="border-[1px] border-white text-white hover:bg-white hover:text-black hover:border-black text-[25px] rounded-lg px-3"
+          >
+            <Link href="signup">
+              <a className="">signup</a>
+            </Link>
+          </button>
+        </div>
+      )}
+
+      {/* <div>
         <div className="inline-flex text-[30px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]">
           Sufyan
           <div className="text-[34px] 2xl:text-[25px] lg:text-[21px] text-white mt-[9px] lg:mt-[3px]">
@@ -103,7 +161,7 @@ export default function ProfileBar({
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
       {open && <DropDown />}
     </div>
   );

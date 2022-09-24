@@ -102,7 +102,7 @@ export default function Header() {
         <div className="hidden tablet:block">
           <div className={menu_class} ref={wrapperRef}>
             <div className="flex justify-center gap-5 pt-10">
-              <Link href="login">
+              <Link href="/login">
                 <button
                   onClick={CloseMenu}
                   className="text-[#FFB636] font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-10 py-3 rounded-[15px] text-[20px] "
@@ -110,7 +110,7 @@ export default function Header() {
                   login
                 </button>
               </Link>
-              <Link href="signup">
+              <Link href="/signup">
                 <button
                   onClick={CloseMenu}
                   className="text-[#FFB636] font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-10 py-3 rounded-[15px] text-[20px] "
@@ -159,7 +159,7 @@ export default function Header() {
         <ul className="flex gap-[8vw] uppercase text-white text-xl transition-all mb-[-10px] 4xl:text-lg xl:gap-[7vw] lg:mb-[-20px]">
           <li className={list}>games</li>
           <li className={list}>
-            <Link href="login">
+            <Link href="/shop">
               <a>accessories</a>
             </Link>
           </li>

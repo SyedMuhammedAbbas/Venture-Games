@@ -6,7 +6,8 @@ import ShopCover from "../../components/shop/ShopCover";
 export default function Shop() {
   const [handleFilter, sethandleFilter] = useState(false);
   const [handleSort, sethandleSort] = useState(false);
-
+  const [handleSignup, sethandleSignup] = useState(false);
+  const [handleLogin, sethandleLogin] = useState(false);
   return (
     <>
       <ProfileBar
@@ -15,7 +16,12 @@ export default function Shop() {
         handleFilter={handleFilter}
         sethandleSort={sethandleSort}
         handleSort={handleSort}
-        cart={true}
+        // cart={true}
+        cart={false}
+        handleLogin={handleLogin}
+        sethandleLogin={sethandleLogin}
+        handleSignup={handleSignup}
+        sethandleSignup={sethandleSignup}
       />
       <ShopCover />
       <ShopProducts handleFilter={handleFilter} handleSort={handleSort} />

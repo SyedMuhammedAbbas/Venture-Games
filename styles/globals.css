@@ -22,7 +22,9 @@
   /* transform: scale(0.7); */
   zoom: 75%; 
 }
-
+.topgames,.flashSale{
+  zoom: 90%;
+}
 html{
   font-family: 'SF Pro Display';
 }
@@ -283,6 +285,7 @@ html{
     line-height: 60px;
   }
 
+  
   /* Product Card */
  
 }
