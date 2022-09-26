@@ -6,19 +6,19 @@ export default function Footer() {
       <ul className="flex gap-[20px] pl-7 mobile:hidden">
         <li className="flex no-underline">About.</li>
         <li className="flex no-underline">
-          {/* <Link href="/policies"> */}
-          <a onClick={() => router.push("/policies")}>Policies.</a>
-          {/* </Link> */}
+          <Link href="/policies">
+            <a>Policies.</a>
+          </Link>
         </li>
         <li className="flex no-underline">
-          {/* <Link href="/terms"> */}
-          <a onClick={() => router.push("/terms")}>Terms.</a>
-          {/* </Link> */}
+          <Link href="/terms">
+            <a>Terms.</a>
+          </Link>
         </li>
         <li className="flex no-underline">
-          {/* <Link href="/help"> */}
-          <a onClick={() => router.push("/help")}>Help.</a>
-          {/* </Link> */}
+          <Link href="/help">
+            <a>Help.</a>
+          </Link>
         </li>
       </ul>
 

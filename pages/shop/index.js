@@ -8,6 +8,8 @@ export default function Shop() {
   const [handleSort, sethandleSort] = useState(false);
   const [handleSignup, sethandleSignup] = useState(false);
   const [handleLogin, sethandleLogin] = useState(false);
+  const [Cart, setCart] = useState([]);
+
   return (
     <>
       <ProfileBar
@@ -16,15 +18,21 @@ export default function Shop() {
         handleFilter={handleFilter}
         sethandleSort={sethandleSort}
         handleSort={handleSort}
-        // cart={true}
-        cart={false}
+        cartshow={true}
         handleLogin={handleLogin}
         sethandleLogin={sethandleLogin}
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
+        Cart={Cart}
+        setCart={setCart}
       />
       <ShopCover />
-      <ShopProducts handleFilter={handleFilter} handleSort={handleSort} />
+      <ShopProducts
+        Cart={Cart}
+        setCart={setCart}
+        handleFilter={handleFilter}
+        handleSort={handleSort}
+      />
     </>
   );
 }

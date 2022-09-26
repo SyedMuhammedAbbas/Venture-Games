@@ -12,6 +12,7 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import search from "../../styles/Search.module.css";
 import DropDown from "./DropDown";
 import Link from "next/link";
+import { CartState } from "../../context/Context";
 
 export default function ProfileBar({
   filter,
@@ -19,7 +20,7 @@ export default function ProfileBar({
   handleFilter,
   handleSort,
   sethandleSort,
-  cart,
+  cartshow,
   handleLogin,
   handleSignup,
   sethandleLogin,
@@ -27,7 +28,9 @@ export default function ProfileBar({
 }) {
   const icons =
     "text-[30px] 2xl:text-[25px] lg:text-[21px] text-white cursor-pointer";
-
+  const {
+    state: { Cart },
+  } = CartState();
   const [open, setOpen] = useState(false);
 
   const onButtonClickFilter = () => {
@@ -103,11 +106,21 @@ export default function ProfileBar({
         </form>
       </div>
 
-      {cart && (
+      {cartshow && (
         <div className={icons}>
-          <Link href="/cart">
+          <Link
+            href={{
+              pathname: "/cart",
+              data: Cart,
+            }}
+          >
             <a>
-              <BsHandbag />
+              <button>
+                <BsHandbag />
+                <div class=" mt-[-10px] absolute z-10 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-[#000000] rounded-full border-2 border-white dark:border-gray-900">
+                  {Cart.length}
+                </div>
+              </button>
             </a>
           </Link>
         </div>
@@ -116,7 +129,7 @@ export default function ProfileBar({
       {handleLogin ? (
         <button
           onClick={() => onButtonClickSignup()}
-          className="border-[1px] border-white text-white hover:bg-white hover:text-black hover:border-black text-[25px] rounded-lg px-3"
+          className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3"
         >
           <Link href="signup">
             <a className="">signup</a>
@@ -125,7 +138,7 @@ export default function ProfileBar({
       ) : handleSignup ? (
         <button
           onClick={() => onButtonClickLogin()}
-          className="border-[1px] border-white text-white hover:bg-white hover:text-black hover:border-black text-[25px] rounded-lg px-3"
+          className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3"
         >
           <Link href="login">
             <a className="">login</a>
@@ -135,7 +148,7 @@ export default function ProfileBar({
         <div className="flex gap-5">
           <button
             onClick={() => onButtonClickLogin()}
-            className="border-[1px] border-white text-white hover:bg-white hover:text-black hover:border-black text-[25px] rounded-lg px-3"
+            className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3"
           >
             <Link href="login">
               <a className="">login</a>
@@ -143,7 +156,7 @@ export default function ProfileBar({
           </button>
           <button
             onClick={() => onButtonClickSignup()}
-            className="border-[1px] border-white text-white hover:bg-white hover:text-black hover:border-black text-[25px] rounded-lg px-3"
+            className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3"
           >
             <Link href="signup">
               <a className="">signup</a>
@@ -152,7 +165,7 @@ export default function ProfileBar({
         </div>
       )}
 
-      {/* <div>
+      <div>
         <div className="inline-flex text-[30px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]">
           Sufyan
           <div className="text-[34px] 2xl:text-[25px] lg:text-[21px] text-white mt-[9px] lg:mt-[3px]">
@@ -161,7 +174,7 @@ export default function ProfileBar({
             </a>
           </div>
         </div>
-      </div> */}
+      </div>
       {open && <DropDown />}
     </div>
   );

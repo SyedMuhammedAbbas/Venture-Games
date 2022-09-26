@@ -9,7 +9,7 @@ import Link from "next/link";
 import { FeaturedProducts } from "./FeaturedProducts";
 import { useState } from "react";
 
-export default function Featured() {
+export default function Featured({ products, Cart, setCart }) {
   var settings = {
     dots: true,
     dotsClass: "slick-dots",
@@ -89,37 +89,6 @@ export default function Featured() {
     ],
   };
   const [FeaturedItem, setFeaturedItem] = useState(FeaturedProducts);
-  const featured_products = [
-    {
-      product_title: "Spiderman - Miles Morales",
-      old_price: 15999,
-      new_price: 11999,
-      product_platform: ["ps4", "ps5", "xbox", "nintendo"],
-      product_image: Spiderman.src,
-    },
-    {
-      product_title: "Spiderman - Miles Morales",
-      old_price: 12000,
-      new_price: 8000,
-      product_platform: ["ps4", "nintendo"],
-      product_image: Spiderman.src,
-    },
-    {
-      product_title: "Spiderman - Miles Morales",
-      old_price: 16999,
-      new_price: 12999,
-      product_platform: ["ps4", "ps5"],
-      product_image: Spiderman.src,
-    },
-    {
-      product_title: "Spiderman - Miles Morales",
-      old_price: 15999,
-      new_price: 11999,
-      product_platform: ["xbox", "nintendo"],
-      product_image: Spiderman.src,
-    },
-  ];
-
   return (
     <div className="grid bg-[#FFB636] px-32 py-10 2xl:px-20 xl1:px-10 tablet2.1:px-0 2xl:py-7 tablet:py-5 border-b-black border-b-8">
       <div className="flex pb-10">
@@ -141,7 +110,11 @@ export default function Featured() {
         <Slider {...settings}>
           {FeaturedItem.map((currentItem) => (
             <div key={currentItem}>
-              <FeaturedCard {...currentItem} />
+              <FeaturedCard
+                products={currentItem}
+                Cart={Cart}
+                setCart={setCart}
+              />
             </div>
           ))}
         </Slider>

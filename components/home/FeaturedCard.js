@@ -1,24 +1,24 @@
 // import Spiderman from "../images/image 4.png";
 import Link from "next/link";
+import { CartState } from "../../context/Context";
 
-export default function FeaturedCard({
-  product_title,
-  product_oldprice,
-  product_newprice,
-  product_image,
-  product_platform,
-}) {
+export default function FeaturedCard({ products }) {
   // const featured_product_platform = ["ps4", "ps5", "xbox", "nintendo"];
 
+  const {
+    state: { Cart },
+    dispatch,
+  } = CartState();
+
   return (
-    <div className="h-auto p-2 rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile:w-[350px]">
+    <div className="h-[500px] p-2 rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile:w-[350px]">
       <img
-        className="rounded-3xl justify-center h-[340px] object-contain w-[340px] mobile:w-[330px]"
-        src={product_image}
+        className="rounded-3xl justify-center h-[340px] object-cover w-[340px] mobile:w-[330px]"
+        src={products.product_image}
       />
       <div className="flex gap-1 mt-[-30px] ml-[10px]">
-        {product_platform &&
-          product_platform.map((product_platform, index) => (
+        {products.product_platform &&
+          products.product_platform.map((product_platform, index) => (
             <button
               key={index}
               className="text-black font-semibold uppercase bg-[#FFB636] px-3 rounded-md text-[12px]"
@@ -29,15 +29,15 @@ export default function FeaturedCard({
       </div>
 
       <div className="grid justify-center gap-3">
-        <div className="text-white text-center text-[23px] mobile:text-[20px] mt-5">
-          {product_title}
+        <div className="text-white text-center text-[23px] h-8 overflow-auto desp-scroll mobile:text-[20px] mt-5">
+          {products.product_title}
         </div>
         <div className="flex gap-5 justify-center">
           <div className="text-red-600 line-through text-[25px] mobile:text-[19px]">
-            {product_oldprice}
+            {products.product_oldprice}
           </div>
           <div className="text-white text-[25px] mobile:text-[21px]">
-            {product_newprice} PKR
+            {products.product_newprice} PKR
           </div>
         </div>
         <div className="flex justify-center gap-2 mt-[-7px] mb-5">
@@ -46,11 +46,25 @@ export default function FeaturedCard({
               <a>View</a>
             </Link>
           </button>
-          <button className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-4 py-1 hover:bg-white hover:text-black hover:border-black">
-            <Link href="/cart">
+          {Cart.some((p) => p.product_id === products.product_id) ? (
+            <button
+              onClick={() => {
+                dispatch({ type: "REMOVE_FROM_CART", payload: products });
+              }}
+              className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-4 py-1 hover:bg-white hover:text-black hover:border-black"
+            >
+              <a>Remove from cart</a>
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                dispatch({ type: "ADD_TO_CART", payload: products });
+              }}
+              className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-4 py-1 hover:bg-white hover:text-black hover:border-black"
+            >
               <a>Add to cart</a>
-            </Link>
-          </button>
+            </button>
+          )}
         </div>
       </div>
     </div>

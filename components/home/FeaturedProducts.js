@@ -3,6 +3,7 @@ import PS5Controller from "../../images/ps5Controller.png";
 
 export const FeaturedProducts = [
   {
+    product_id: 1,
     product_title: "Spiderman - Miles Morales",
     product_oldprice: 16999,
     product_newprice: 12999,
@@ -13,8 +14,10 @@ export const FeaturedProducts = [
     product_platform: ["ps4", "ps5", "nintendo"],
     product_condition: "used",
     product_weight: 0.85,
+    product_quantity: 5,
   },
   {
+    product_id: 2,
     product_title: "PS5 Controller",
     product_oldprice: 16999,
     product_newprice: 12999,
@@ -25,8 +28,10 @@ export const FeaturedProducts = [
     product_platform: ["ps4", "ps5", "nintendo"],
     product_condition: "used",
     product_weight: 0.85,
+    product_quantity: 5,
   },
   {
+    product_id: 3,
     product_title: "Spiderman - Miles Morales",
     product_oldprice: 16999,
     product_newprice: 12999,
@@ -37,8 +42,10 @@ export const FeaturedProducts = [
     product_platform: ["ps4", "ps5", "nintendo"],
     product_condition: "used",
     product_weight: 0.85,
+    product_quantity: 5,
   },
   {
+    product_id: 4,
     product_title: "Spiderman - Miles Morales",
     product_oldprice: 16999,
     product_newprice: 12999,
@@ -49,5 +56,6 @@ export const FeaturedProducts = [
     product_platform: ["ps4", "ps5", "nintendo"],
     product_condition: "used",
     product_weight: 0.85,
+    product_quantity: 5,
   },
 ];

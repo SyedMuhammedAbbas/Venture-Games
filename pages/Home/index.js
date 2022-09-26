@@ -10,15 +10,19 @@ import { useState } from "react";
 export default function Home() {
   const [handleSignup, sethandleSignup] = useState(false);
   const [handleLogin, sethandleLogin] = useState(false);
+  const [Cart, setCart] = useState([]);
+
   return (
     <div className="snap-both">
       <div>
         <ProfileBar
-          cart={false}
+          cartshow={true}
           handleLogin={handleLogin}
           sethandleLogin={sethandleLogin}
           handleSignup={handleSignup}
           sethandleSignup={sethandleSignup}
+          Cart={Cart}
+          setCart={setCart}
         />
       </div>
       <div className="snap-center ">
@@ -34,7 +38,7 @@ export default function Home() {
         <PlatformsElement />
       </div>
       <div className="snap-center">
-        <Featured />
+        <Featured Cart={Cart} setCart={setCart} />
       </div>
       <div className="snap-center">
         <ClientsView />

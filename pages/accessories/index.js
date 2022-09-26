@@ -7,7 +7,7 @@ export default function Accessories() {
   return (
     <>
       <ProfileBar
-        cart={false}
+        cartshow={true}
         handleLogin={handleLogin}
         sethandleLogin={sethandleLogin}
         handleSignup={handleSignup}
