@@ -111,7 +111,7 @@ export default function Featured({ products, Cart, setCart }) {
           {FeaturedItem.map((currentItem) => (
             <div key={currentItem}>
               <FeaturedCard
-                products={currentItem}
+                product={currentItem}
                 Cart={Cart}
                 setCart={setCart}
               />

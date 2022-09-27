@@ -12,7 +12,8 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import search from "../../styles/Search.module.css";
 import DropDown from "./DropDown";
 import Link from "next/link";
-import { CartState } from "../../context/Context";
+// import { CartState } from "../../context/Context";
+import { useSelector } from "react-redux";
 
 export default function ProfileBar({
   filter,
@@ -26,11 +27,10 @@ export default function ProfileBar({
   sethandleLogin,
   sethandleSignup,
 }) {
+  const cart = useSelector((state) => state.cart);
   const icons =
     "text-[30px] 2xl:text-[25px] lg:text-[21px] text-white cursor-pointer";
-  const {
-    state: { Cart },
-  } = CartState();
+
   const [open, setOpen] = useState(false);
 
   const onButtonClickFilter = () => {
@@ -111,14 +111,13 @@ export default function ProfileBar({
           <Link
             href={{
               pathname: "/cart",
-              data: Cart,
             }}
           >
             <a>
               <button>
                 <BsHandbag />
                 <div class=" mt-[-10px] absolute z-10 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-[#000000] rounded-full border-2 border-white dark:border-gray-900">
-                  {Cart.length}
+                  {Object(cart.cartItems).length}
                 </div>
               </button>
             </a>

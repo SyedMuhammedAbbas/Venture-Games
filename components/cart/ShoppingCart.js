@@ -6,27 +6,29 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { useEffect, useState } from "react";
 // import CartItems from "./CartItems";
 import { AiOutlineDelete } from "react-icons/ai";
-import { CartState } from "../../context/Context";
+// import { CartState } from "../../context/Context";
+import { useSelector } from "react-redux";
+import { DeleteFromCart } from "../../features/counter/cartSlice";
+import { useDispatch } from "react-redux";
 
 export default function ShoppingCart() {
-  const {
-    state: { Cart },
-    dispatch,
-  } = CartState();
-
+  const cart = useSelector((state) => state.cart);
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
   const [total_amount, setTotal_Amount] = useState(0);
   // const [total_all, setTotal_All] = useState(0);
-
+  const dispatch = useDispatch();
+  const handleRemovefromCart = (cart) => {
+    dispatch(DeleteFromCart(cart));
+  };
   useEffect(() => {
-    setTotal_Items(Cart.length);
+    setTotal_Items(Object.values(cart.cartItems).length);
     setTotal_Amount(
       // Cart?.map((data) => data.product_newprice).reduce(
       //   (totalamount, index) => (totalamount = totalamount + index)
       // )
-      Cart.reduce(
-        (acc, curr) => acc + Number(curr.product_newprice) * curr.qty,
+      Object.values(cart.cartItems).reduce(
+        (acc, curr) => acc + Number(curr.product_newprice) * curr.quantity,
         0
       )
     );
@@ -36,15 +38,15 @@ export default function ShoppingCart() {
       //   (totalweight, index) => (totalweight = totalweight + index)
       // )
       Math.round(
-        Cart.reduce(
-          (acc, curr) => acc + Number(curr.product_weight) * curr.qty,
+        Object.values(cart.cartItems).reduce(
+          (acc, curr) => acc + Number(curr.product_weight) * curr.quantity,
           0
         ) * 100
       ) / 100
     );
     // setTotal_Weight(Math.round(total_weight * 100) / 100);
-  }, [Cart]);
-
+  }, [Object.values(cart.cartItems)]);
+  // console.log(cart.cartItems);
   const shipping_fee = "calculated at next step";
   function coupon() {
     return (
@@ -72,7 +74,7 @@ export default function ShoppingCart() {
   return (
     <>
       <div className="bg-[#FFB636] pb-20 h-[100%]">
-        {Cart.length > 0 ? (
+        {Object.keys(cart.cartItems).length > 0 ? (
           <div className="flex xl3:grid">
             <div className="pt-[13%] pb-[5%] xl3:pt-[17%] tablet:pt-[11%] mobile:pt-[150px] w-[55%] tablet1:w-[80%] mobile:w-[90%] mobile1:w-[100%]">
               <h1 className="text-black text-[60px] xl3:text-[50px] mobile:text-[40px] pl-10 capitalize">
@@ -93,10 +95,13 @@ export default function ShoppingCart() {
                         price
                       </th>
                     </tr>
-                    {Cart?.map((currentItem) => {
+                    {Object.values(cart.cartItems || {}).map((currentItem) => {
                       return (
                         // <CartItems key={currentItem} products={currentItem} />
-                        <tr className="border-b-[1px] border-[#626262] pb-10">
+                        <tr
+                          key={currentItem}
+                          className="border-b-[1px] border-[#626262] pb-10"
+                        >
                           <td className="p-20 py-10 px-5 mobile1.1:pr-0 pl-10 mobile1:pl-5 mobile1.1:w-[100px]">
                             <div className="flex gap-4 text-center xl3:grid xl3:gap-1 xl3:text-left">
                               <img
@@ -124,12 +129,9 @@ export default function ShoppingCart() {
                                     {currentItem.product_condition}
                                   </button>
                                   <button
-                                    onClick={() => {
-                                      dispatch({
-                                        type: "REMOVE_FROM_CART",
-                                        payload: currentItem,
-                                      });
-                                    }}
+                                    onClick={() =>
+                                      handleRemovefromCart(currentItem)
+                                    }
                                     className="text-[30px] text-[#ffffff] hover:text-[#FFB636] ml-10"
                                   >
                                     <AiOutlineDelete />
@@ -143,15 +145,7 @@ export default function ShoppingCart() {
                               as="select"
                               value={currentItem.qty}
                               className="border-[1px] rounded-xl text-white bg-transparent p-1 px-4 text-[20px]"
-                              onChange={(e) =>
-                                dispatch({
-                                  type: "CHANGE_CART_QTY",
-                                  payload: {
-                                    product_id: currentItem.product_id,
-                                    qty: e.target.value,
-                                  },
-                                })
-                              }
+                              onChange={(e) => {}}
                             >
                               {[
                                 ...Array(currentItem.product_quantity).keys(),
@@ -167,7 +161,8 @@ export default function ShoppingCart() {
                           </td>
                           <td className="pl-20 xl3:pl-10 mobile1.1:pl-4 ">
                             <h2 className="text-white text-[27px] mobile1:text-[20px]">
-                              {currentItem.product_newprice * currentItem.qty}{" "}
+                              {currentItem.product_newprice *
+                                currentItem.quantity}{" "}
                               <span className="text-[15px]">Rs</span>
                             </h2>
                           </td>
@@ -177,6 +172,7 @@ export default function ShoppingCart() {
                   </table>
                 </div>
                 <div className="text-right text-[25px] mobile1.1:text-[20px] py-7 pr-10 text-[#979797]">
+                  <button>Clear Cart</button>
                   Cart feels empty?
                   <Link href="/shop">
                     <a className="underline text-white cursor-pointer">

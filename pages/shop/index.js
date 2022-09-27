@@ -8,7 +8,7 @@ export default function Shop() {
   const [handleSort, sethandleSort] = useState(false);
   const [handleSignup, sethandleSignup] = useState(false);
   const [handleLogin, sethandleLogin] = useState(false);
-  const [Cart, setCart] = useState([]);
+  // const [Cart, setCart] = useState([]);
 
   return (
     <>
@@ -23,16 +23,9 @@ export default function Shop() {
         sethandleLogin={sethandleLogin}
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
-        Cart={Cart}
-        setCart={setCart}
       />
       <ShopCover />
-      <ShopProducts
-        Cart={Cart}
-        setCart={setCart}
-        handleFilter={handleFilter}
-        handleSort={handleSort}
-      />
+      <ShopProducts handleFilter={handleFilter} handleSort={handleSort} />
     </>
   );
 }

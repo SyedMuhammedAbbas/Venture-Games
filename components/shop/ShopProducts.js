@@ -4,15 +4,10 @@ import { BsSortDown } from "react-icons/bs";
 import FeaturedCard from "../home/FeaturedCard";
 // import SaleCard from './SaleCard'
 import Spiderman from "../../images/image 4.png";
-// import { Allproductsdata } from "../common/AllProductsData";
-import { CartState } from "../../context/Context";
+import { Allproductsdata } from "../common/AllProductsData";
+// import { CartState } from "../../context/Context";
 
-export default function ShopProducts({
-  handleFilter,
-  handleSort,
-  Cart,
-  setCart,
-}) {
+export default function ShopProducts({ handleFilter, handleSort }) {
   // const n = 12;
   const icons = "text-[35px] 2xl:text-[25px] lg:text-[21px] text-white";
   const buttons =
@@ -26,10 +21,8 @@ export default function ShopProducts({
 
   const n = 4;
   // const [AllItem, setAllItem] = useState(Allproductsdata);
-  const {
-    state: { Allproductsdata },
-  } = CartState();
-  console.log(Allproductsdata);
+
+  // console.log(Allproductsdata);
   return (
     <div className="bg-[#FFB636] ">
       <div className="bg-[url('../images/background.png')] bg-[length:1700px_1800px] bg-no-repeat bg-[left_15vw_top_0rem]">
@@ -105,12 +98,7 @@ export default function ShopProducts({
           )}
           <div className="flex flex-wrap justify-start ml-[5%] xl2:ml-[10%] mobile2:ml-auto mobile2:justify-center gap-5 text-center mb-[5%]">
             {Allproductsdata.map((currentItem) => (
-              <FeaturedCard
-                key={currentItem}
-                products={currentItem}
-                Cart={Cart}
-                setCart={setCart}
-              />
+              <FeaturedCard key={currentItem} product={currentItem} />
             ))}
           </div>
         </div>
