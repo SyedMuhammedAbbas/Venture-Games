@@ -111,7 +111,7 @@ export default function Sale() {
       },
     ],
   };
-  const [SaleItem, setSaleItem] = useState(SaleProducts);
+  // const [SaleItem, setSaleItem] = useState(SaleProducts);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
   return (
@@ -134,8 +134,8 @@ export default function Sale() {
         </div>
         <div className="w-[100vw] mobile1.1:w-[95%] h-auto mx-auto my-10">
           <Slider {...settings}>
-            {SaleItem?.map((currentItem) => {
-              return <SaleCard key={currentItem} {...currentItem} />;
+            {Object.values(SaleProducts).map((currentItem) => {
+              return <SaleCard key={currentItem} product={currentItem} />;
             })}
           </Slider>
         </div>

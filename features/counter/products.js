@@ -1,12 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { MdAttractions } from "react-icons/md";
-import { useState, useEffect } from "react";
+import { MdAttractions } from "react-icons/md";
+import { Allproductsdata } from "../../components/common/AllProductsData";
 
-const initialState = {
-  cartItems: {},
-  cartTotalQuantity: 0,
-  cartTotalAmount: 0,
-};
+const initialState = { allProducts: Allproductsdata };
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -22,15 +18,12 @@ export const cartSlice = createSlice({
     },
 
     DeleteFromCart(state, action) {
-      delete state.cartItems[action.payload.id];
-    },
-    SetProdQuantity(state, action) {
-      state.cartItems[action.payload.id].quantity = action.payload.quantity;
+      state.cartItems.filter((p) => p.id !== action.payload.id);
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { AddToCart, DeleteFromCart, SetProdQuantity } = cartSlice.actions;
+export const { AddToCart, DeleteFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

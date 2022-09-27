@@ -27,7 +27,7 @@ export default function ProfileBar({
   sethandleLogin,
   sethandleSignup,
 }) {
-  const cart = useSelector((state) => state.cart);
+  const cartItem = useSelector((state) => state.cart.cartItems);
   const icons =
     "text-[30px] 2xl:text-[25px] lg:text-[21px] text-white cursor-pointer";
 
@@ -117,7 +117,7 @@ export default function ProfileBar({
               <button>
                 <BsHandbag />
                 <div class=" mt-[-10px] absolute z-10 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-[#000000] rounded-full border-2 border-white dark:border-gray-900">
-                  {Object(cart.cartItems).length}
+                  {Object.values(cartItem).length}
                 </div>
               </button>
             </a>

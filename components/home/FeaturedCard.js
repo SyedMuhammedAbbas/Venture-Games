@@ -20,7 +20,7 @@ export default function FeaturedCard({ product }) {
   //   dispatch(ViewProduct(products));
   // };
   function sendProps() {
-    Router.push({ pathname: "/product", query: { ...product } });
+    Router.push({ pathname: "/product", query: { id: product.id } });
   }
   return (
     <div className="h-[500px] p-2 rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile:w-[350px]">

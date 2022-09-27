@@ -97,7 +97,7 @@ export default function ShopProducts({ handleFilter, handleSort }) {
             </div>
           )}
           <div className="flex flex-wrap justify-start ml-[5%] xl2:ml-[10%] mobile2:ml-auto mobile2:justify-center gap-5 text-center mb-[5%]">
-            {Allproductsdata.map((currentItem) => (
+            {Object.values(Allproductsdata).map((currentItem) => (
               <FeaturedCard key={currentItem} product={currentItem} />
             ))}
           </div>

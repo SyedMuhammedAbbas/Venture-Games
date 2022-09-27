@@ -1,5 +1,5 @@
-import { productsdata } from "./CartProductsData";
-import ProfileBar from "../common/ProfileBar";
+// import { productsdata } from "./CartProductsData";
+// import ProfileBar from "../common/ProfileBar";
 import Link from "next/link";
 import { MdDoubleArrow } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -9,25 +9,34 @@ import { AiOutlineDelete } from "react-icons/ai";
 // import { CartState } from "../../context/Context";
 import { useSelector } from "react-redux";
 import { DeleteFromCart } from "../../features/counter/cartSlice";
+import { SetProdQuantity } from "../../features/counter/cartSlice";
 import { useDispatch } from "react-redux";
+// import { useState } from "react";
 
 export default function ShoppingCart() {
-  const cart = useSelector((state) => state.cart);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  // const [cart, setCart] = useState({ cartItems });
+
+  // const Cart = Object.values(cart);
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
   const [total_amount, setTotal_Amount] = useState(0);
   // const [total_all, setTotal_All] = useState(0);
   const dispatch = useDispatch();
-  const handleRemovefromCart = (cart) => {
-    dispatch(DeleteFromCart(cart));
+  const handleDeleteFromCart = (currentItems) => {
+    dispatch(DeleteFromCart(currentItems));
   };
+  const handleQuantityCart = (id, newQuantity) => {
+    dispatch(SetProdQuantity({ id: id, quantity: newQuantity }));
+  };
+  // const [ProdQuantity, setProdQuantity] = useState(0);
   useEffect(() => {
-    setTotal_Items(Object.values(cart.cartItems).length);
+    setTotal_Items(Object.values(cartItems).length);
     setTotal_Amount(
       // Cart?.map((data) => data.product_newprice).reduce(
       //   (totalamount, index) => (totalamount = totalamount + index)
       // )
-      Object.values(cart.cartItems).reduce(
+      Object.values(cartItems).reduce(
         (acc, curr) => acc + Number(curr.product_newprice) * curr.quantity,
         0
       )
@@ -38,14 +47,14 @@ export default function ShoppingCart() {
       //   (totalweight, index) => (totalweight = totalweight + index)
       // )
       Math.round(
-        Object.values(cart.cartItems).reduce(
+        Object.values(cartItems).reduce(
           (acc, curr) => acc + Number(curr.product_weight) * curr.quantity,
           0
         ) * 100
       ) / 100
     );
     // setTotal_Weight(Math.round(total_weight * 100) / 100);
-  }, [Object.values(cart.cartItems)]);
+  }, [Object.values(cartItems)]);
   // console.log(cart.cartItems);
   const shipping_fee = "calculated at next step";
   function coupon() {
@@ -74,7 +83,7 @@ export default function ShoppingCart() {
   return (
     <>
       <div className="bg-[#FFB636] pb-20 h-[100%]">
-        {Object.keys(cart.cartItems).length > 0 ? (
+        {Object.values(cartItems).length > 0 ? (
           <div className="flex xl3:grid">
             <div className="pt-[13%] pb-[5%] xl3:pt-[17%] tablet:pt-[11%] mobile:pt-[150px] w-[55%] tablet1:w-[80%] mobile:w-[90%] mobile1:w-[100%]">
               <h1 className="text-black text-[60px] xl3:text-[50px] mobile:text-[40px] pl-10 capitalize">
@@ -95,9 +104,8 @@ export default function ShoppingCart() {
                         price
                       </th>
                     </tr>
-                    {Object.values(cart.cartItems || {}).map((currentItem) => {
+                    {Object.values(cartItems || {}).map((currentItem) => {
                       return (
-                        // <CartItems key={currentItem} products={currentItem} />
                         <tr
                           key={currentItem}
                           className="border-b-[1px] border-[#626262] pb-10"
@@ -130,7 +138,7 @@ export default function ShoppingCart() {
                                   </button>
                                   <button
                                     onClick={() =>
-                                      handleRemovefromCart(currentItem)
+                                      handleDeleteFromCart(currentItem)
                                     }
                                     className="text-[30px] text-[#ffffff] hover:text-[#FFB636] ml-10"
                                   >
@@ -143,9 +151,14 @@ export default function ShoppingCart() {
                           <td className="pl-5 mt-[100%] text-center">
                             <select
                               as="select"
-                              value={currentItem.qty}
+                              value={currentItem.quantity}
                               className="border-[1px] rounded-xl text-white bg-transparent p-1 px-4 text-[20px]"
-                              onChange={(e) => {}}
+                              onChange={(e) => {
+                                handleQuantityCart(
+                                  currentItem.id,
+                                  e.target.value
+                                );
+                              }}
                             >
                               {[
                                 ...Array(currentItem.product_quantity).keys(),
@@ -269,7 +282,9 @@ export default function ShoppingCart() {
                 </table>
                 <div className="flex gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]">
                   <div className="uppercase">
-                    <a className="cursor-pointer">Next</a>
+                    <Link href="/checkout">
+                      <a className="cursor-pointer">Next</a>
+                    </Link>
                   </div>
                   <div className="text-white text-[35px] mobile1.1:text-[30px] mt-[2px] mobile1.1:mt-[1px] cursor-pointer">
                     <MdKeyboardArrowRight />

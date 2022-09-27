@@ -9,7 +9,7 @@ import Link from "next/link";
 import { FeaturedProducts } from "./FeaturedProducts";
 import { useState } from "react";
 
-export default function Featured({ products, Cart, setCart }) {
+export default function Featured({ products }) {
   var settings = {
     dots: true,
     dotsClass: "slick-dots",
@@ -88,7 +88,7 @@ export default function Featured({ products, Cart, setCart }) {
       // },
     ],
   };
-  const [FeaturedItem, setFeaturedItem] = useState(FeaturedProducts);
+  // const [FeaturedItem, setFeaturedItem] = useState(FeaturedProducts);
   return (
     <div className="grid bg-[#FFB636] px-32 py-10 2xl:px-20 xl1:px-10 tablet2.1:px-0 2xl:py-7 tablet:py-5 border-b-black border-b-8">
       <div className="flex pb-10">
@@ -108,13 +108,9 @@ export default function Featured({ products, Cart, setCart }) {
       </div>
       <div className="w-[110vw]  featuredcards mx-auto my-auto h-[550px] mt-[40px] mb-10">
         <Slider {...settings}>
-          {FeaturedItem.map((currentItem) => (
+          {Object.values(FeaturedProducts).map((currentItem) => (
             <div key={currentItem}>
-              <FeaturedCard
-                product={currentItem}
-                Cart={Cart}
-                setCart={setCart}
-              />
+              <FeaturedCard product={currentItem} />
             </div>
           ))}
         </Slider>

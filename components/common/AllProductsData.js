@@ -3,8 +3,8 @@ import PS5Controller from "../../images/ps5Controller.png";
 import ps5DiscEdition from "../../images/products/ps5_Disc_Edition.jpg";
 import ps4controller2 from "../../images/products/ps4 controller 2.jpg";
 
-export const Allproductsdata = [
-  {
+export const Allproductsdata = {
+  1: {
     id: 1,
     product_title: "Playstation 5 Disc Edition",
     product_oldprice: 130888,
@@ -18,7 +18,7 @@ export const Allproductsdata = [
     product_weight: 14,
     product_quantity: 5,
   },
-  {
+  2: {
     id: 2,
     product_title: "Marvel's Spider-Man: Miles Morales",
     product_oldprice: 16999,
@@ -32,7 +32,7 @@ export const Allproductsdata = [
     product_weight: 0.8,
     product_quantity: 5,
   },
-  {
+  3: {
     id: 3,
     product_title: "DualSense Controller",
     product_oldprice: 16999,
@@ -46,7 +46,7 @@ export const Allproductsdata = [
     product_weight: 0.8,
     product_quantity: 5,
   },
-  {
+  4: {
     id: 4,
     product_title: "Spiderman - Miles Morales",
     product_oldprice: 16999,
@@ -60,7 +60,7 @@ export const Allproductsdata = [
     product_weight: 0.8,
     product_quantity: 5,
   },
-  {
+  5: {
     id: 5,
     product_title: "Spiderman - Miles Morales",
     product_oldprice: 16999,
@@ -74,7 +74,7 @@ export const Allproductsdata = [
     product_weight: 0.8,
     product_quantity: 5,
   },
-  {
+  6: {
     id: 6,
     product_title: "Spiderman - Miles Morales",
     product_oldprice: 16999,
@@ -88,7 +88,7 @@ export const Allproductsdata = [
     product_weight: 0.8,
     product_quantity: 5,
   },
-  {
+  7: {
     id: 7,
     product_title: "Spiderman - Miles Morales",
     product_oldprice: 16999,
@@ -102,7 +102,7 @@ export const Allproductsdata = [
     product_weight: 0.8,
     product_quantity: 5,
   },
-  {
+  8: {
     id: 8,
     product_title: "Spiderman - Miles Morales",
     product_oldprice: 16999,
@@ -116,4 +116,4 @@ export const Allproductsdata = [
     product_weight: 0.8,
     product_quantity: 5,
   },
-];
+};
