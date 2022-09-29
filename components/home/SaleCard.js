@@ -44,7 +44,7 @@ export default function SaleCard({ product }) {
         </div>
 
         <div className="grid gap-2  overflow-y-hidden">
-          <div className="grid overflow-y-scroll desp-scroll h-[60px]">
+          <div className="grid overflow-y-scroll desp-scroll h-[35px]">
             <div className="text-white text-[23px] mt-0">
               {product.product_title}
             </div>

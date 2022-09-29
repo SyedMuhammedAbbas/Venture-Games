@@ -77,7 +77,7 @@ html{
               width: 40px;
               height: 40px;
               bottom: 20px;
-              right: 0px;
+              right: 20px;
               font-size: 22px;
           }
       }
@@ -104,19 +104,6 @@ html{
 .desp-scroll::-webkit-scrollbar {
   display: none;
 }
-.dropdowntriangle{
-  position: absolute;
-  bottom: 0;
-  margin-bottom: -5px;
-  right: 90px;
-  /* margin-right: 10px; */
-  color: black;
-  opacity: 0.7;
-  z-index: 10;
-  width: 40px;
-
-}
-
 
 /* menu */
 .menu{

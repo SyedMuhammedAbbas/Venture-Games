@@ -64,7 +64,9 @@ export default function CheckOut() {
             <div className="bg-gradient-to-tl from-[#b58126] via-black to-[#b58126] w-[100%] p-10  mobile1:w-[95%] rounded-tr-[40px] rounded-br-[40px] ">
               <div className="grid gap-5">
                 <div className="grid gap-5">
-                  <h1 className="text-white text-[60px]">Consignee Details</h1>
+                  <h1 className="text-white text-[60px] mobile:text-[40px]">
+                    Consignee Details
+                  </h1>
                   <div className="grid gap-8">
                     <div>
                       <input
@@ -85,8 +87,10 @@ export default function CheckOut() {
                   </div>
                 </div>
                 <div className="grid gap-2">
-                  <h1 className="text-white text-[60px]">Shipment details</h1>
-                  <div className="mr-[100%]">
+                  <h1 className="text-white text-[60px] mobile:text-[40px]">
+                    Shipment details
+                  </h1>
+                  <div className="">
                     <input type="checkbox" className={toggel1.input}></input>
                   </div>
                   <div className="grid gap-10">

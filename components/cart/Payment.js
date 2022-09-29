@@ -60,7 +60,9 @@ export default function CheckOut() {
             <div className="bg-gradient-to-tl from-[#b58126] via-black to-[#b58126] w-[100%] p-10  mobile1:w-[95%] rounded-tr-[40px] rounded-br-[40px] ">
               <div className="grid gap-10">
                 <div className="grid gap-6">
-                  <h1 className="text-white text-[60px]">Consignee Details</h1>
+                  <h1 className="text-white text-[60px] mobile:text-[40px]">
+                    Consignee Details
+                  </h1>
                   <div className="grid gap-8">
                     <div>
                       <input
@@ -81,7 +83,9 @@ export default function CheckOut() {
                   </div>
                 </div>
                 <div className="grid gap-2">
-                  <h1 className="text-white text-[60px]">Payment Method</h1>
+                  <h1 className="text-white text-[60px] mobile:text-[40px]">
+                    Payment Method
+                  </h1>
 
                   <div className="grid gap-8">
                     <div className="flex gap-[4%] mobile2:grid mobile2:gap-7">
@@ -127,7 +131,7 @@ export default function CheckOut() {
                       ""
                     )}
                     <div>
-                      <button className="uppercase text-white text-[25px] font-semibold tracking-wider w-[70%] mobile2:w-[90%] py-4 rounded-lg bg-[#68BA01]">
+                      <button className="uppercase text-white text-[25px] mobile:text-[20px] font-semibold tracking-wider w-[70%] mobile2:w-[90%] py-4 rounded-lg bg-[#68BA01]">
                         <Link href="/thankyou">
                           <a>pay now - pkr 45,450</a>
                         </Link>

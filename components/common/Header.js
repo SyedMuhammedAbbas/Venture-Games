@@ -22,6 +22,7 @@ export default function Header() {
         if (ref.current && !ref.current.contains(event.target)) {
           setBurgerClass("burger-bar unclicked");
           setMenuClass("hidden");
+          document.body.style.overflow = "unset";
         }
       }
       // Bind the event listener
@@ -59,9 +60,13 @@ export default function Header() {
       setMenuClass(
         "block menu overflow-y-scroll desp-scroll overflow-x-hidden w-[350px] h-[125vh] bg-gradient-to-t from-black to-[#1c1c1c] fixed left-0 ml-[-1px] top-[79.2px] z-[0] shadow-lg border-t-[0.1px] border-gray-900"
       );
+      if (typeof window != "undefined" && window.document) {
+        document.body.style.overflow = "hidden";
+      }
     } else {
       setBurgerClass("burger-bar unclicked");
       setMenuClass("hidden");
+      document.body.style.overflow = "unset";
     }
 
     setIsMenuClicked(!isMenuClicked);
@@ -70,6 +75,7 @@ export default function Header() {
   function CloseMenu() {
     setBurgerClass("burger-bar unclicked");
     setMenuClass("hidden");
+    document.body.style.overflow = "unset";
   }
   return (
     <>
@@ -108,14 +114,6 @@ export default function Header() {
                   className="text-[#FFB636] font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-10 py-3 rounded-[15px] text-[20px] "
                 >
                   login
-                </button>
-              </Link>
-              <Link href="/signup">
-                <button
-                  onClick={CloseMenu}
-                  className="text-[#FFB636] font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-10 py-3 rounded-[15px] text-[20px] "
-                >
-                  sign up
                 </button>
               </Link>
             </div>
