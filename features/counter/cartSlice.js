@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { MdAttractions } from "react-icons/md";
-import { useState, useEffect } from "react";
 
 const initialState = {
   cartItems: {},

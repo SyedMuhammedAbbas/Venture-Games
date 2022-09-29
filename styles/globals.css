@@ -19,8 +19,7 @@
   src: url('../fonts/LEMONMILK-Regular.otf') format('woff2');  
 }
 :root{
-  /* transform: scale(0.7); */
-  zoom: 75%; 
+  zoom: 75%;  
 }
 .topgames,.flashSale{
   zoom: 90%;
@@ -182,11 +181,21 @@ html{
   transition: all 0.5s;
   /* padding: 2px; */
 }
-
+.ft-slick__dots--customClientViewPage{
+  height: 8px;
+  width: 8px;
+  background-color: #fff;
+  border-radius: 4px;
+  /* padding-top: 0%; */
+  position: relative;
+  top: 35px;
+  transition: all 0.5s;
+}
 .slick-dots li {
   width: 10px;
   /* margin: 0 2px; */
   /* transition: width 0.3s ease-in-out; */
+
   transition: all 0.5s ease-out;
 }
 
@@ -205,7 +214,13 @@ html{
   /* margin-top: 50px; */
   overflow: hidden;
 }
-
+.slick-active .ft-slick__dots--customClientViewPage{
+  width: 23px;
+  /* padding-right: 2px; */
+  /* top: 9px; */
+  /* margin-top: 50px; */
+  overflow: hidden;
+}
 @supports (-webkit-touch-callout: none) {
 
  

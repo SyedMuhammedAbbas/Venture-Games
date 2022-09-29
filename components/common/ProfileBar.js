@@ -12,7 +12,6 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import search from "../../styles/Search.module.css";
 import DropDown from "./DropDown";
 import Link from "next/link";
-// import { CartState } from "../../context/Context";
 import { useSelector } from "react-redux";
 
 export default function ProfileBar({
@@ -48,20 +47,6 @@ export default function ProfileBar({
     }
   };
 
-  const onButtonClickSignup = () => {
-    {
-      handleSignup === true
-        ? sethandleSignup(false) & sethandleLogin(false)
-        : sethandleSignup(true) & sethandleLogin(false);
-    }
-  };
-  const onButtonClickLogin = () => {
-    {
-      handleLogin === true
-        ? sethandleLogin(false) & sethandleSignup(false)
-        : sethandleLogin(true) & sethandleSignup(false);
-    }
-  };
   return (
     <div className="flex gap-9 2xl:gap-7 mobile:gap-5 fixed w-[100%] mt-[126.5px] lg:mt-[105px] justify-end pr-28 2xl:pr-20 lg:pr-14 mobile:pr-7 tablet:hidden p-3  bg-black bg-opacity-30 backdrop-blur-xl z-[999]">
       {filter == "true" && (
@@ -124,47 +109,15 @@ export default function ProfileBar({
           </Link>
         </div>
       )}
-
-      {handleLogin ? (
-        <button
-          onClick={() => onButtonClickSignup()}
-          className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3"
-        >
-          <Link href="signup">
-            <a className="">signup</a>
-          </Link>
-        </button>
-      ) : handleSignup ? (
-        <button
-          onClick={() => onButtonClickLogin()}
-          className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3"
-        >
+      <div className="flex gap-5">
+        <button className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3">
           <Link href="login">
             <a className="">login</a>
           </Link>
         </button>
-      ) : (
-        <div className="flex gap-5">
-          <button
-            onClick={() => onButtonClickLogin()}
-            className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3"
-          >
-            <Link href="login">
-              <a className="">login</a>
-            </Link>
-          </button>
-          <button
-            onClick={() => onButtonClickSignup()}
-            className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3"
-          >
-            <Link href="signup">
-              <a className="">signup</a>
-            </Link>
-          </button>
-        </div>
-      )}
+      </div>
 
-      <div>
+      {/* <div>
         <div className="inline-flex text-[30px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]">
           Sufyan
           <div className="text-[34px] 2xl:text-[25px] lg:text-[21px] text-white mt-[9px] lg:mt-[3px]">
@@ -173,7 +126,7 @@ export default function ProfileBar({
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
       {open && <DropDown />}
     </div>
   );

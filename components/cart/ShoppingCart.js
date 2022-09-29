@@ -1,27 +1,20 @@
-// import { productsdata } from "./CartProductsData";
-// import ProfileBar from "../common/ProfileBar";
 import Link from "next/link";
 import { MdDoubleArrow } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useEffect, useState } from "react";
-// import CartItems from "./CartItems";
 import { AiOutlineDelete } from "react-icons/ai";
-// import { CartState } from "../../context/Context";
 import { useSelector } from "react-redux";
 import { DeleteFromCart } from "../../features/counter/cartSlice";
 import { SetProdQuantity } from "../../features/counter/cartSlice";
 import { useDispatch } from "react-redux";
-// import { useState } from "react";
 
 export default function ShoppingCart() {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  // const [cart, setCart] = useState({ cartItems });
 
-  // const Cart = Object.values(cart);
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
   const [total_amount, setTotal_Amount] = useState(0);
-  // const [total_all, setTotal_All] = useState(0);
+
   const dispatch = useDispatch();
   const handleDeleteFromCart = (currentItems) => {
     dispatch(DeleteFromCart(currentItems));
@@ -29,13 +22,9 @@ export default function ShoppingCart() {
   const handleQuantityCart = (id, newQuantity) => {
     dispatch(SetProdQuantity({ id: id, quantity: newQuantity }));
   };
-  // const [ProdQuantity, setProdQuantity] = useState(0);
   useEffect(() => {
     setTotal_Items(Object.values(cartItems).length);
     setTotal_Amount(
-      // Cart?.map((data) => data.product_newprice).reduce(
-      //   (totalamount, index) => (totalamount = totalamount + index)
-      // )
       Object.values(cartItems).reduce(
         (acc, curr) => acc + Number(curr.product_newprice) * curr.quantity,
         0
@@ -43,9 +32,6 @@ export default function ShoppingCart() {
     );
 
     setTotal_Weight(
-      // Cart?.map((data) => data.product_weight).reduce(
-      //   (totalweight, index) => (totalweight = totalweight + index)
-      // )
       Math.round(
         Object.values(cartItems).reduce(
           (acc, curr) => acc + Number(curr.product_weight) * curr.quantity,
@@ -53,9 +39,8 @@ export default function ShoppingCart() {
         ) * 100
       ) / 100
     );
-    // setTotal_Weight(Math.round(total_weight * 100) / 100);
   }, [Object.values(cartItems)]);
-  // console.log(cart.cartItems);
+
   const shipping_fee = "calculated at next step";
   function coupon() {
     return (

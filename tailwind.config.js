@@ -15,6 +15,7 @@ module.exports = withMT({
     },
     screens: {
       // => @media (min-width: 1024px) { ... }
+      xxl: { max: "2300px" },
       "5xl": { max: "1780px" },
       "5.1xl": { max: "1640px" },
       "4xl": { max: "1580px" },

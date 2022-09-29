@@ -1,7 +1,7 @@
 export default function Terms() {
   return (
     <>
-      <div className="bg-white text-[20px] text-black pt-[10%] px-20 pb-20 tablet:pt-[20%] tablet:px-5">
+      <div className="bg-[#FFB636] text-[20px] text-black pt-[10%] px-20 pb-20 tablet:pt-[20%] tablet:px-5">
         <div>
           <h1 className="text-[35px]">
             <strong>

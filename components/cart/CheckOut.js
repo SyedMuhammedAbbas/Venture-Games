@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import toggel1 from "../../styles/Toggel1.module.css";
-// import { Checkbox } from "@material-tailwind/react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 
@@ -21,9 +20,6 @@ export default function CheckOut() {
   useEffect(() => {
     setTotal_Items(Object.values(cartItems).length);
     setTotal_Amount(
-      // Cart?.map((data) => data.product_newprice).reduce(
-      //   (totalamount, index) => (totalamount = totalamount + index)
-      // )
       Object.values(cartItems).reduce(
         (acc, curr) => acc + Number(curr.product_newprice) * curr.quantity,
         0
@@ -31,9 +27,6 @@ export default function CheckOut() {
     );
 
     setTotal_Weight(
-      // Cart?.map((data) => data.product_weight).reduce(
-      //   (totalweight, index) => (totalweight = totalweight + index)
-      // )
       Math.round(
         Object.values(cartItems).reduce(
           (acc, curr) => acc + Number(curr.product_weight) * curr.quantity,
@@ -41,7 +34,6 @@ export default function CheckOut() {
         ) * 100
       ) / 100
     );
-    // setTotal_Weight(Math.round(total_weight * 100) / 100);
   }, [Object.values(cartItems)]);
   const order_summary = [
     "total items:",

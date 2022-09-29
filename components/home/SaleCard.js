@@ -1,4 +1,3 @@
-// import Spiderman from "../../images/image 4.png";
 import Link from "next/link";
 import { AddToCart } from "../../features/counter/cartSlice";
 import { useDispatch } from "react-redux";
@@ -49,9 +48,6 @@ export default function SaleCard({ product }) {
             <div className="text-white text-[23px] mt-0">
               {product.product_title}
             </div>
-            <div className="text-white text-[14px]">
-              {product.product_description}
-            </div>
           </div>
           <div className="flex pl-4 gap-2 mt-5 pb-5">
             <button
@@ -66,9 +62,7 @@ export default function SaleCard({ product }) {
               onClick={() => sendProps()}
               className="text-white border-[1px] font-semibold border-white rounded-lg text-[14px] px-4 py-1 hover:bg-white hover:text-black hover:border-black"
             >
-              {/* <Link href="/product"> */}
               <a>Learn More</a>
-              {/* </Link> */}
             </button>
           </div>
         </div>

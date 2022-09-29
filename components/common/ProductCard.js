@@ -1,15 +1,7 @@
-import Spiderman from "../../images/image 4.png";
 import Teen from "../../images/teenesbr.png";
-import { useState } from "react";
 import toggel from "../../styles/Toggel.module.css";
-// import { productState } from "../../context/Context";
-import { useSelector } from "react-redux";
 
 export default function ProductCard({ productId }) {
-  // const genre = ["action", "thriller", "story"];
-
-  // const product = ;
-  console.log(productId);
   return (
     <div className="bg-[#FFB636] pt-[15%] pb-[5%] mx-auto lg:pt-[15%] mobile1:pt-[20%] h-[100%] tablet3:h-[100%] mobile2:h-[100%]   flex justify-center items-center align-middle">
       <div className="flex justify-center ">

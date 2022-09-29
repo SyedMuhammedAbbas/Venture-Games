@@ -4,7 +4,6 @@ import Spiderman from "../../images/image 4.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import Slider from "react-slick";
 import Link from "next/link";
 import { FeaturedProducts } from "./FeaturedProducts";
 import { useState } from "react";
@@ -15,15 +14,13 @@ export default function Featured({ products }) {
     dotsClass: "slick-dots",
     infinite: true,
     speed: 400,
+    autoplay: true,
+    autoplaySpeed: 2000,
     slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
     appendDots: (dots) => <ul>{dots}</ul>,
-    customPaging: (i) => (
-      <div className="ft-slick__dots--custom">
-        {/* <div className="loading" /> */}
-      </div>
-    ),
+    customPaging: (i) => <div className="ft-slick__dots--custom"></div>,
     responsive: [
       {
         breakpoint: 2400,
@@ -70,25 +67,8 @@ export default function Featured({ products }) {
           dots: true,
         },
       },
-      // {
-      //   breakpoint: 1100,
-      //   settings: {
-      //     slidesToShow: 2,
-      //     slidesToScroll: 1,
-      //     initialSlide: 2,
-      //   },
-      // },
-      // {
-      //   breakpoint: 730,
-      //   settings: {
-      //     arrows: false,
-      //     slidesToShow: 1,
-      //     slidesToScroll: 1,
-      //   },
-      // },
     ],
   };
-  // const [FeaturedItem, setFeaturedItem] = useState(FeaturedProducts);
   return (
     <div className="grid bg-[#FFB636] px-32 py-10 2xl:px-20 xl1:px-10 tablet2.1:px-0 2xl:py-7 tablet:py-5 border-b-black border-b-8">
       <div className="flex pb-10">

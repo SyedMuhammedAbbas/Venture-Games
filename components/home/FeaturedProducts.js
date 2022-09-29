@@ -60,4 +60,32 @@ export const FeaturedProducts = {
     product_weight: 0.8,
     product_quantity: 5,
   },
+  4: {
+    id: 4,
+    product_title: "Spiderman - Miles Morales",
+    product_oldprice: 16999,
+    product_newprice: 12999,
+    product_description:
+      "Experience The Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man.",
+    product_image: Spiderman.src,
+    product_genre: ["Action", "Thriller", "Story"],
+    product_platform: ["ps4", "xbox"],
+    product_condition: "used",
+    product_weight: 0.8,
+    product_quantity: 5,
+  },
+  4: {
+    id: 4,
+    product_title: "Spiderman - Miles Morales",
+    product_oldprice: 16999,
+    product_newprice: 12999,
+    product_description:
+      "Experience The Rise Of Miles Morales As The New Hero Masters Incredible, Explosive New Powers To Become His Own Spider-Man.",
+    product_image: Spiderman.src,
+    product_genre: ["Action", "Thriller", "Story"],
+    product_platform: ["ps4", "xbox"],
+    product_condition: "used",
+    product_weight: 0.8,
+    product_quantity: 5,
+  },
 };

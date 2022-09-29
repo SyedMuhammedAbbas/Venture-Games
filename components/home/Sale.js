@@ -52,6 +52,8 @@ export default function Sale() {
     dotsClass: "slick-dots",
     infinite: true,
     speed: 400,
+    autoplay: true,
+    autoplaySpeed: 2000,
     slidesToShow: 6,
     slidesToScroll: 1,
     initialSlide: 0,
@@ -111,8 +113,6 @@ export default function Sale() {
       },
     ],
   };
-  // const [SaleItem, setSaleItem] = useState(SaleProducts);
-  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
   return (
     <div className="grid bg-[#FFB636] py-[5vw] px-[40px] w-[100%] overflow-x-hidden justify-center pt-[80px] mobile:px-auto">
@@ -121,7 +121,7 @@ export default function Sale() {
           <div className="font-hemi text-black text-[80px] xl:text-[7vw] bg-[#FFB636] mt-[-60px] lg:mt-[-50px] mobile:mt-[-30px] mobile1:mt-[-20px] mobilesm:mt-[10px] ml-[7vw] px-[30px] ">
             Flash Sale
           </div>
-          <div className="flex absolute right-20 mobile:right-10  mt-4">
+          <div className="flex absolute right-32 xxl:right-24 4xl:right-20 mobile:right-10  mt-4">
             <Link href="/shop">
               <button className="flex text-black text-[30px] tablet2:text-[20px]">
                 View all

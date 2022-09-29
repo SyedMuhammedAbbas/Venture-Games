@@ -6,7 +6,7 @@ export default function Banner() {
   const bannerClosing = " Venture Games, Play Beyond";
   return (
     <div className="grid gap-20 pb-20  mobile:pl-0 4xl:pl-[5vw] pt-20 bg-gradient-to-r from-[#000000] via-[#2d2d2d] to-[#000000] ">
-      <div className="flex mobile:grid mobile:justify-center mobile:gap-10 mobile:pl-[20px] ">
+      <div className="flex mobile:grid mobile:justify-center w-[100vw] [3000px]:w-[100%] mobile:gap-10 mobile:pl-[20px] ">
         <div className="text-white pl-32 mobile:pl-5 text-[100px] 4xl:text-[7vw] mobile:text-[80px] mobilesm:text-auto font-hemi leading-[90px] 4xl:leading-[6vw] mobile:leading-[80px] ">
           Eat. <br />
           Sleep. <br />
@@ -18,11 +18,9 @@ export default function Banner() {
         />
       </div>
 
-      <div className="flex text-center text-white text-[40px] px-20 mobile:px-5 3xl:text-[2.5vw] mobile:text-[25px] mobile:m-3 mobile:text-center">
+      <div className="flex justify-center text-center text-white text-[40px] px-20 mobile:px-5 3xl:text-[2.5vw] mobile:text-[25px] mobile:m-3 mobile:text-center">
         {bannerDesp}
-        {/* <span className="flex ml-5 mobile:justify-center mobile:ml-0"> */}
         {bannerClosing}
-        {/* </span> */}
       </div>
     </div>
   );

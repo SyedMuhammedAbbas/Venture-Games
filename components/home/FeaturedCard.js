@@ -1,24 +1,13 @@
-// import Spiderman from "../images/image 4.png";
 import Link from "next/link";
-// import { CartState } from "../../context/Context";
 import { useDispatch } from "react-redux";
 import { AddToCart } from "../../features/counter/cartSlice";
-// import { useLocation } from "react-router-dom";
 import Router from "next/router";
 
 export default function FeaturedCard({ product }) {
-  // const featured_product_platform = ["ps4", "ps5", "xbox", "nintendo"];
   const dispatch = useDispatch();
   const handleAddtoCart = (product) => {
     dispatch(AddToCart(product));
   };
-  // const location = useLocation();
-  // const id = pathname.split("/")[2];
-  // console.log(product);
-
-  // const handleViewProd = (products) => {
-  //   dispatch(ViewProduct(products));
-  // };
   function sendProps() {
     Router.push({ pathname: "/product", query: { id: product.id } });
   }
@@ -57,9 +46,7 @@ export default function FeaturedCard({ product }) {
             onClick={() => sendProps()}
             className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-8 py-1 hover:bg-white hover:text-black hover:border-black"
           >
-            {/* <Link href={"/product/[id]"} as={`/product/${product.id}`}> */}
             <a>View</a>
-            {/* </Link> */}
           </button>
 
           <button

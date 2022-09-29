@@ -4,12 +4,18 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 export default function ClientsView() {
-  const n = 3;
+  const n = 7;
   var settings = {
-    // dots: true,
     infinite: true,
     speed: 400,
     dots: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    dotsClass: "slick-dots",
+    appendDots: (dots) => <ul>{dots}</ul>,
+    customPaging: (i) => (
+      <div className="ft-slick__dots--customClientViewPage"></div>
+    ),
     slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
@@ -50,7 +56,7 @@ export default function ClientsView() {
           </div>
         </div>
 
-        <div className=" block w-[90vw]  mobile1.1:w-[100%] clientcards h-[500px] m-10 mx-auto">
+        <div className=" block w-[90vw]  mobile1.1:w-[100%] clientcards h-[550px] m-10 mx-auto">
           <Slider {...settings}>
             {[...Array(n)].map((user) => (
               <div key={user}>

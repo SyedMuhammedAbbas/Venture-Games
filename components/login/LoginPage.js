@@ -54,7 +54,7 @@ export default function LoginPage() {
                     <BsArrowRightShort />
                   </button>
                 </form>
-                <div className="text-[#ae1f1f] text-[20px]">
+                <div className="text-[#ff0404] text-[20px]">
                   This is a required field.
                 </div>
               </div>
@@ -70,6 +70,12 @@ export default function LoginPage() {
                 <button className="bg-white px-20 xl2:px-14 mobile1.1:px-10 py-3 mobile1.1:py-1 opacity-100 rounded-xl text-[35px] xl2:text-[30px] z-10">
                   <FcGoogle />
                 </button>
+              </div>
+              <div className="text-[20px] text-white">
+                not a member yet?{" "}
+                <Link href="signup">
+                  <a>signup</a>
+                </Link>{" "}
               </div>
             </div>
           </div>

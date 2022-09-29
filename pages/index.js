@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Home from "./Home";
 import LearnMore from "./learnmore";
-import whatsapplogo from "../images/whatsapp-circle.png";
 
 export default function Index() {
   return (
