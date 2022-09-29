@@ -3,13 +3,14 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import toggel1 from "../../styles/Toggel1.module.css";
 // import { Checkbox } from "@material-tailwind/react";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 
 export default function CheckOut() {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
   const [total_amount, setTotal_Amount] = useState(0);
-  const shipping_fee = "calculated at next step";
+  const shipping_fee = 450;
   function coupon() {
     return (
       <button className="border-[1px] border-white rounded-lg px-4 bg-transparent uppercase hover:text-black hover:border-black hover:bg-white">
@@ -64,7 +65,7 @@ export default function CheckOut() {
       <div className="bg-[#FFB636] pb-20 h-[100%]">
         <div className="flex xl3:grid w-[100%]">
           <div className="pt-[13%] pb-[5%] xl3:pt-[17%] tablet:pt-[11%] mobile:pt-[150px] w-[55%] tablet1:w-[80%] mobile:w-[90%] mobile1:w-[100%]">
-            <h1 className="text-black text-[60px] xl3:text-[50px] mobile:text-[40px] pl-10 capitalize">
+            <h1 className="text-black font-semibold text-[60px] xl3:text-[50px] mobile:text-[40px] pl-10 capitalize">
               Delivery Information
             </h1>
 
@@ -75,25 +76,25 @@ export default function CheckOut() {
                   <div className="grid gap-8">
                     <div>
                       <input
-                        className="w-[100%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Email Address"
                       ></input>
                     </div>
-                    <div className="flex gap-5">
+                    <div className="flex gap-[2%] mobile2:grid mobile2:gap-8">
                       <input
-                        className="w-[100%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                        className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="First Name"
                       ></input>
                       <input
-                        className="w-[100%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                        className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Last Name"
                       ></input>
                     </div>
                   </div>
                 </div>
-                <div className="grid gap-5">
+                <div className="grid gap-2">
                   <h1 className="text-white text-[60px]">Shipment details</h1>
-                  <div className="text-left">
+                  <div className="mr-[100%]">
                     <input type="checkbox" className={toggel1.input}></input>
                   </div>
                   <div className="grid gap-10">
@@ -101,15 +102,15 @@ export default function CheckOut() {
 
                     <div className="grid gap-8">
                       <input
-                        className="w-[100%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Address Line 1"
                       ></input>
                       <input
-                        className="w-[100%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Address Line 2"
                       ></input>
                       <input
-                        className="w-[100%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Contact Number"
                       ></input>
                     </div>
@@ -157,7 +158,7 @@ export default function CheckOut() {
           </div>
 
           <div className="grid pt-[13%] xl3:pt-[17%] tablet:pt-[11%]  tablet1:pt-0 absolute right-0 tablet1:relative tablet1:left-0 w-[40%] tablet1:w-[80%] mobile:w-[90%] mobile1:w-[95%]">
-            <h1 className="text-black text-right tablet1:text-left mr-10 text-[60px] xl3:text-[50px] mobile:text-[40px] tablet1:pl-10  capitalize">
+            <h1 className="text-black font-semibold text-right tablet1:text-left mr-10 text-[60px] xl3:text-[50px] mobile:text-[40px] tablet1:pl-10  capitalize">
               order summary
             </h1>
             <div className="w-auto ">
@@ -192,7 +193,7 @@ export default function CheckOut() {
                           <td className="pt-5 pl-10 pb-10 uppercase font-medium text-white text-[20px] mobile1.1:text-[17px]">
                             {order_summary}
                           </td>
-                          <td className="pt-6 pb-10 absolute right-0  uppercase font-medium text-white text-[12px] tablet1:text-[15px] mobile1.1:text-[14px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
+                          <td className="pt-5 absolute right-0 pb-0 text-right font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
                             {order_summary_values[index]}
                           </td>
                         </tr>
@@ -242,7 +243,9 @@ export default function CheckOut() {
               </table>
               <div className="flex gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]">
                 <div className="uppercase">
-                  <a className="cursor-pointer">continue to payment</a>
+                  <Link href="/payment">
+                    <a className="cursor-pointer">continue to payment</a>
+                  </Link>
                 </div>
                 <div className="text-white text-[35px] mobile1.1:text-[30px] mt-[2px] mobile1.1:mt-[1px] cursor-pointer">
                   <MdKeyboardArrowRight />

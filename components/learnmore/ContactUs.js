@@ -33,7 +33,10 @@ export default function ContactUs() {
                 </div>
                 <div className="mobile:w-[450px] mobile2.1:w-[350px] mobile1.1:w-auto flex justify-center">
                   <form className="bg-transparent border-[1px] border-white rounded-[40px]  text-white">
-                    <input className="bg-transparent mx-8 mobile:mx-3 w-[350px] mobile2.1:w-[270px] mobile1.1:w-[240px] h-[45px] outline-none"></input>
+                    <input
+                      placeholder="sarah@venturegames.com"
+                      className="bg-transparent mx-8 mobile:mx-3 w-[350px] mobile2.1:w-[270px] mobile1.1:w-[240px] h-[45px] outline-none"
+                    ></input>
                     <button className="text-white text-[35px] align-middle">
                       <BiRightArrowCircle />
                     </button>

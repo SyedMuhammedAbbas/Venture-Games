@@ -3,6 +3,7 @@ import { useState } from "react";
 import toggel from "../../styles/Toggel.module.css";
 import { Allproductsdata } from "../../components/common/AllProductsData";
 import { useRouter } from "next/router";
+import { BiError } from "react-icons/bi";
 
 export default function Product() {
   // console.log(product);
@@ -11,7 +12,12 @@ export default function Product() {
   const productId = parseInt(query.id);
   const product = Allproductsdata[productId];
   return !product ? (
-    <div>Product Not Found</div>
+    <div className="bg-[#FFB636] pt-[20%] w-[100%] h-[125vh] flex justify-center text-white text-[35px]">
+      <div className="text-white text-[35px] mt-[8px] mr-4">
+        <BiError />
+      </div>
+      Product Not Found
+    </div>
   ) : (
     <div className="bg-[#FFB636] pt-[15%] pb-[5%] mx-auto lg:pt-[15%] mobile1:pt-[20%] h-[100%] tablet3:h-[100%] mobile2:h-[100%]   flex justify-center items-center align-middle">
       <div className="flex justify-center ">
@@ -85,7 +91,7 @@ export default function Product() {
                   Buy Now
                 </button>
                 <button className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black ">
-                  Add to product
+                  Add to Cart
                 </button>
               </div>
 

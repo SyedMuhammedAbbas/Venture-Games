@@ -116,7 +116,7 @@ export default function ProfileBar({
             <a>
               <button>
                 <BsHandbag />
-                <div class=" mt-[-10px] absolute z-10 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-[#000000] rounded-full border-2 border-white dark:border-gray-900">
+                <div class=" mt-[-10px] mr-6 pt-[1.5px] absolute z-10 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-[#000000] rounded-full border-2 border-white dark:border-gray-900">
                   {Object.values(cartItem).length}
                 </div>
               </button>

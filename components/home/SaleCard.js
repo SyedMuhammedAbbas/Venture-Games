@@ -54,7 +54,10 @@ export default function SaleCard({ product }) {
             </div>
           </div>
           <div className="flex pl-4 gap-2 mt-5 pb-5">
-            <button className="text-white border-[1px] font-semibold border-white rounded-lg text-[14px] px-8 py-1 hover:bg-white hover:text-black hover:border-black">
+            <button
+              onClick={() => handleAddtoCart(product)}
+              className="text-white border-[1px] font-semibold border-white rounded-lg text-[14px] px-8 py-1 hover:bg-white hover:text-black hover:border-black"
+            >
               <Link href="/cart">
                 <a>Buy Now</a>
               </Link>

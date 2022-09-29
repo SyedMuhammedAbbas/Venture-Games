@@ -8,7 +8,7 @@
 }
 @font-face { 
   font-family: 'SF Pro Display';
-  src: url('../fonts/SF-Pro-Display-Medium.otf') format('woff2');
+  src: url('../fonts/SF-Pro-Display-Light.otf') format('woff2');
 }
 @font-face { 
   font-family: 'Montserrat';
@@ -53,12 +53,14 @@ html{
           height: 60px;
           bottom: 40px;
           right: 40px;
-          background-color: #25d366;
+          /* background-image: url('../images/whattsapp_logo.png'); */
+          /* background-color: #25d366; */
           color: #FFF;
           border-radius: 50px;
           text-align: center;
           font-size: 30px;
-          box-shadow: 2px 2px 3px #999;
+          /* fill: #25d366; */
+          /* box-shadow: 2px 2px 3px #999; */
           z-index: 100;
       }
 

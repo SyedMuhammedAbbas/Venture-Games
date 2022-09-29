@@ -14,7 +14,7 @@ export default function LearnMore() {
   return (
     <>
       <ProfileBar
-        cart={true}
+        cartshow={true}
         handleLogin={handleLogin}
         sethandleLogin={sethandleLogin}
         handleSignup={handleSignup}

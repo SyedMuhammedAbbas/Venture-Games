@@ -6,16 +6,18 @@ import FeaturedCard from "../home/FeaturedCard";
 import Spiderman from "../../images/image 4.png";
 import { Allproductsdata } from "../common/AllProductsData";
 // import { CartState } from "../../context/Context";
+import { useSelector } from "react-redux";
 
 export default function ShopProducts({ handleFilter, handleSort }) {
   // const n = 12;
+  const products = useSelector((state) => state.products.allProducts);
   const icons = "text-[35px] 2xl:text-[25px] lg:text-[21px] text-white";
   const buttons =
-    "text-white border-[1px] font-semibold border-white rounded-lg text-[25px] px-2 w-40 py-1 hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black";
+    "text-white uppercase border-[1px] font-semibold border-white rounded-lg text-[25px] px-2 w-40 py-1 hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black";
 
-  const type = ["PS5", "PS4", "XBOX", "Nintendo"];
-  const genre = ["Action", "Adventure", "Thriller", "Driving"];
-  const category = ["Online", "Offline"];
+  const type = ["ps5", "ps4", "xbox", "nintendo"];
+  const genre = ["action", "adventure", "thriller", "driving"];
+  const category = ["online", "offline"];
   // const [Cart, setCart] = useState([]);
   const sortbyprice = ["Low to High", "High to Low"];
 
@@ -43,7 +45,7 @@ export default function ShopProducts({ handleFilter, handleSort }) {
               <div className="border-t-[3px] border-blackOpac">
                 <div className="grid items-start gap-4 mr-[120px] py-10">
                   {type.map((type, index) => (
-                    <button key={index} className={buttons}>
+                    <button value={type} key={index} className={buttons}>
                       {type}
                     </button>
                   ))}
@@ -53,7 +55,7 @@ export default function ShopProducts({ handleFilter, handleSort }) {
               <div className="border-y-[3px] border-blackOpac">
                 <div className="grid items-start gap-4 mr-[120px] py-10">
                   {genre.map((genre, i) => (
-                    <button key={i} className={buttons}>
+                    <button value={genre} key={i} className={buttons}>
                       {genre}
                     </button>
                   ))}
@@ -63,7 +65,7 @@ export default function ShopProducts({ handleFilter, handleSort }) {
               <div className="border-b-[3px] border-blackOpac">
                 <div className="grid items-start gap-4 mr-[120px] py-10">
                   {category.map((category, ind) => (
-                    <button key={ind} className={buttons}>
+                    <button value={category} key={ind} className={buttons}>
                       {category}
                     </button>
                   ))}
@@ -88,7 +90,7 @@ export default function ShopProducts({ handleFilter, handleSort }) {
               <div className="border-t-[3px] border-blackOpac">
                 <div className="grid items-start gap-4 mr-[120px] py-10">
                   {sortbyprice.map((sortbyprice, index) => (
-                    <button key={index} className={buttons}>
+                    <button value={sortbyprice} key={index} className={buttons}>
                       {sortbyprice}
                     </button>
                   ))}
@@ -97,7 +99,7 @@ export default function ShopProducts({ handleFilter, handleSort }) {
             </div>
           )}
           <div className="flex flex-wrap justify-start ml-[5%] xl2:ml-[10%] mobile2:ml-auto mobile2:justify-center gap-5 text-center mb-[5%]">
-            {Object.values(Allproductsdata).map((currentItem) => (
+            {Object.values(products).map((currentItem) => (
               <FeaturedCard key={currentItem} product={currentItem} />
             ))}
           </div>

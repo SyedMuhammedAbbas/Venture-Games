@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Home from "./Home";
 import LearnMore from "./learnmore";
+import whatsapplogo from "../images/whatsapp-circle.png";
 
 export default function Index() {
   return (
@@ -22,14 +23,6 @@ export default function Index() {
 
       <Home />
       {/* <LearnMore /> */}
-      <a
-        href="https://wa.me/2348100000000"
-        className="whatsapp_float"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <i className="fa fa-whatsapp whatsapp-icon"></i>
-      </a>
     </>
   );
 }
