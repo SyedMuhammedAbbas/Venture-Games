@@ -12,14 +12,14 @@ export default function Product() {
   const productId = parseInt(query.id);
   const product = Allproductsdata[productId];
   return !product ? (
-    <div className="bg-[#FFB636] pt-[20%] w-[100%] h-[125vh] flex justify-center text-white text-[35px]">
+    <div className="bg-[#FFB636] snap-center pt-[20%] w-[100%] h-[125vh] flex justify-center text-white text-[35px]">
       <div className="text-white text-[35px] mt-[8px] mr-4">
         <BiError />
       </div>
       Product Not Found
     </div>
   ) : (
-    <div className="bg-[#FFB636] pt-[15%] pb-[5%] mx-auto lg:pt-[15%] mobile1:pt-[20%] h-[100%] tablet3:h-[100%] mobile2:h-[100%]   flex justify-center items-center align-middle">
+    <div className="bg-[#FFB636] snap-start pt-[15%] pb-[5%] mx-auto lg:pt-[15%] mobile1:pt-[20%] h-[100%] tablet3:h-[100%] mobile2:h-[100%]   flex justify-center items-center align-middle">
       <div className="flex justify-center ">
         <img
           className="w-[550px] h-[550px] bg-[#606060] z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"

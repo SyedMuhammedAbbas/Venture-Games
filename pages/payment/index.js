@@ -3,7 +3,7 @@ import Payment from "../../components/cart/Payment";
 export default function PaymentPage() {
   return (
     <>
-      <div>
+      <div className="snap-start">
         <Payment />
       </div>
     </>

@@ -14,7 +14,7 @@ export default function TopGames() {
     (state) => state.carouselProducts.Products
   );
   return (
-    <div className="bg-[#FFB636] pt-[150px] pb-[90px] mobile:pb-0 lg:pt-[90px] tablet:pt-[60px] h-auto topgames">
+    <div className="bg-[#FFB636]  pb-[90px] mobile:pb-0 lg:pt-[90px] tablet:pt-[60px] h-auto topgames">
       <div className="flex justify-center bg-[url('../images/background.png')] bg-[length:700px_800px] pb-20 h-auto 4xl:bg-[length:700px_800px] tablet2:bg-[length:650px_750px] lg:bg-[length:550px_650px] tablet1:bg-[length:500px_600px] mobile:tablet1:bg-[length:500px_600px] bg-no-repeat bg-[left_40%_top_5rem] 4xl:bg-[left_25%_top_5rem] xl:bg-[left_25%_top_5rem] tablet1:bg-[left_25%_top_10px] tablet2:bg-[left_25%_top_0px] mobile:bg-[left_25%_top_-40px]">
         <>
           <Swiper

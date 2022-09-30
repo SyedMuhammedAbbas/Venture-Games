@@ -70,7 +70,7 @@ export default function Featured({ products }) {
     ],
   };
   return (
-    <div className="grid bg-[#FFB636] px-32 py-10 2xl:px-20 xl1:px-10 tablet2.1:px-0 2xl:py-7 tablet:py-5 border-b-black border-b-8">
+    <div className="grid relative bg-[#FFB636] px-32 py-10 2xl:px-20 xl1:px-10 tablet2.1:px-0 2xl:py-7 tablet:py-5 border-b-black border-b-8">
       <div className="flex pb-10">
         <div className="font-hemi pl-[10%] text-black text-[80px] 2xl:text-[60px] lg:text-[40px] mobile:text-[40px] mobile1:text-[30px] lg:ml-5 ">
           Featured Products

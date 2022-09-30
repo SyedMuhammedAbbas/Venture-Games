@@ -5,7 +5,9 @@ export default function Login() {
   return (
     <>
       <ProfileBar cartshow={false} />
-      <LoginPage />
+      <div className="snap-center">
+        <LoginPage />
+      </div>
     </>
   );
 }

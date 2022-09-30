@@ -24,8 +24,12 @@ export default function Shop() {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
-      <ShopCover />
-      <ShopProducts handleFilter={handleFilter} handleSort={handleSort} />
+      <div className="snap-center">
+        <ShopCover />
+      </div>
+      <div className="snap-start">
+        <ShopProducts handleFilter={handleFilter} handleSort={handleSort} />
+      </div>
     </>
   );
 }

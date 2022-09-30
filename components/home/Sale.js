@@ -1,9 +1,6 @@
 import SaleCard from "./SaleCard";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import React, { useState } from "react";
-import { Pagination, Navigation } from "swiper";
-import Spiderman from "../../images/image 4.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -17,7 +14,7 @@ function SampleNextArrow(props) {
       className={className}
       onClick={onClick}
       style={{
-        fontSize: "60px",
+        fontSize: "80px",
         opacity: "1",
         color: "black",
       }}
@@ -34,11 +31,11 @@ function SamplePrevArrow(props) {
       className={className}
       onClick={onClick}
       style={{
-        ...style,
-        fontSize: "60px",
+        // ...style,
+        fontSize: "80px",
         opacity: "1",
         color: "black",
-        transform: `translateX(${-150}%`,
+        transform: `translateX(${-295}%`,
       }}
     >
       <MdKeyboardArrowLeft />
@@ -115,7 +112,7 @@ export default function Sale() {
   };
 
   return (
-    <div className="grid bg-[#FFB636] py-[5vw] px-[40px] w-[100%] overflow-x-hidden justify-center pt-[80px] mobile:px-auto">
+    <div className="grid bg-[#FFB636] relative py-[5vw] px-[40px] w-[100%] overflow-x-hidden justify-center pt-[80px] mobile:px-auto">
       <div className="border-[5px] border-black rounded-[35px] pb-3  w-[125vw] sale">
         <div className="flex">
           <div className="font-hemi text-black text-[80px] xl:text-[7vw] bg-[#FFB636] mt-[-60px] lg:mt-[-50px] mobile:mt-[-30px] mobile1:mt-[-20px] mobilesm:mt-[10px] ml-[7vw] px-[30px] ">
@@ -132,7 +129,7 @@ export default function Sale() {
             </Link>
           </div>
         </div>
-        <div className="w-[100vw] mobile1.1:w-[95%] h-auto mx-auto my-10">
+        <div className="w-[110vw] mobile1.1:w-[95%] h-auto mx-auto my-10">
           <Slider {...settings}>
             {Object.values(SaleProducts).map((currentItem) => {
               return <SaleCard key={currentItem} product={currentItem} />;

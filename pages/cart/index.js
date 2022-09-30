@@ -14,7 +14,9 @@ export default function Cart({ cart }) {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
-      <ShoppingCart cart={cart} />
+      <div className="snap-start">
+        <ShoppingCart />
+      </div>
     </>
   );
 }

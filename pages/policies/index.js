@@ -1,7 +1,7 @@
 export default function Policies() {
   return (
     <>
-      <div className="bg-[#FFB636] text-[20px] text-black pt-[10%] px-20 pb-20 tablet:pt-[20%] tablet:px-5">
+      <div className="bg-[#FFB636] snap-start text-[20px] text-black pt-[10%] px-20 pb-20 tablet:pt-[20%] tablet:px-5">
         <h1 className="text-[45px]">
           <span style={{ textDecoration: "underline" }}>Policies</span>
         </h1>

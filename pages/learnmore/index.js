@@ -20,11 +20,24 @@ export default function LearnMore() {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
-      <LearnMoreHeading />
-      <LearnMoreClientsSay />
-      <LearnMoreCeo />
-      <ClientsView />
-      <ContactUs />
+      <div className="snap-center">
+        <LearnMoreHeading />
+      </div>
+      <div className="snap-center">
+        <LearnMoreClientsSay />
+      </div>
+      <div className="snap-center">
+        <LearnMoreCeo />
+      </div>
+      <div className="snap-center">
+        <LearnMoreClientsSay />
+      </div>
+      <div className="snap-center">
+        <ClientsView />
+      </div>
+      <div className="snap-center">
+        <ContactUs />
+      </div>
     </>
   );
 }

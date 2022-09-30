@@ -14,7 +14,9 @@ export default function Consoles() {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
-      <PlatformsElement consoles={true} />
+      <div className="snap-start">
+        <PlatformsElement consoles={true} />
+      </div>
     </>
   );
 }

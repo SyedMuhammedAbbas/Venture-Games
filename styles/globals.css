@@ -7,8 +7,12 @@
   src: url('../fonts/hemi-head-bd-it.ttf') format('woff2');
 }
 @font-face { 
-  font-family: 'SF Pro Display';
+  font-family: 'SF Pro Display Light';
   src: url('../fonts/SF-Pro-Display-Light.otf') format('woff2');
+}
+@font-face { 
+  font-family: 'SF Pro Display Medium';
+  src: url('../fonts/SF-Pro-Display-Medium.otf') format('woff2');
 }
 @font-face { 
   font-family: 'Montserrat';
@@ -24,13 +28,21 @@
 .topgames,.flashSale{
   zoom: 90%;
 }
+/* .homecontent{
+  zoom: 80%;
+} */
 html{
-  font-family: 'SF Pro Display';
+  font-family: 'SF Pro Display Light';
+  /* scroll-snap-type: proximity; */
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 150px;
+  
 }
-
 :root {
   --swiper-theme-color: #000000 !important;
+  
 }
+
 .mySwiper{
   padding: 20px;
 }
@@ -290,6 +302,11 @@ html{
   }
 
   
-  /* Product Card */
- 
+  /*Platform Elment*/
+ .platformElementMainClass{
+  width: 90vw;
+ }
+ .platformElementClass{
+  width: 80vw;
+ }
 }

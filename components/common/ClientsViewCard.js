@@ -3,7 +3,7 @@ import Profile from "../../images/profile-white.png";
 export default function ClientsViewCard() {
   return (
     <>
-      <div className="bg-gradient-to-r from-black to-[#1c1c1c] rounded-2xl w-[340px] pt-10 mobile1.1:m-auto mobile1.1:p-auto mobile:w-[340px]">
+      <div className="bg-gradient-to-r from-black to-[#1c1c1c] rounded-2xl px-2 w-[340px] pt-10 mobile1.1:m-auto mobile1.1:p-auto mobile:w-[340px]">
         <img
           className="flex justify-center m-auto w-44 object-cover bg-slate-500 rounded-full mb-10"
           src={Profile.src}

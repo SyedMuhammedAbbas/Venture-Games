@@ -7,10 +7,10 @@ export default function TopGamesSlide({ carouselProd }) {
           src={carouselProd.product_image}
         ></img>
         <div className="block mt-16 tablet1:mt-10 tablet2:w-[400px] mobile:w-auto mobile1:w-auto tablet2:mx-[10px]">
-          <div className="text-[50px] text-black font-[900] leading-[55px] pb-4 xl:text-[45px] xl:leading-[50px] tablet1:text-[35px] tablet1:leading-[40px] mobile:leading-[45px] ">
+          <div className="text-[50px] text-black font-sfpro font-[800] tracking-wide leading-[55px] pb-4 xl:text-[45px] xl:leading-[50px] tablet1:text-[35px] tablet1:leading-[40px] mobile:leading-[45px] ">
             {carouselProd.product_heading}
           </div>
-          <div className="text-[25px] text-black xl:text-[20px] font-[600] pb-4 ">
+          <div className="text-[25px] tracking-wide text-black xl:text-[20px] font-[600] pb-4 ">
             {carouselProd.product_subheading}{" "}
           </div>
           <button className="border-[2px] border-black text-black border-slate-900 rounded px-2 py-2 text-[14px] font-bold">

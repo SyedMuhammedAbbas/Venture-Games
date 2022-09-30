@@ -9,13 +9,14 @@ module.exports = withMT({
   theme: {
     fontFamily: {
       hemi: "Hemi Head",
-      sfpro: "SF Pro Display",
+      sfpro: "SF Pro Display Medium",
       montserrat: "Montserrat",
       lemonmilk: "LEMON MILK",
     },
     screens: {
       // => @media (min-width: 1024px) { ... }
       xxl: { max: "2300px" },
+      xxl1: { min: "2000px" },
       "5xl": { max: "1780px" },
       "5.1xl": { max: "1640px" },
       "4xl": { max: "1580px" },

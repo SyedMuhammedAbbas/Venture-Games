@@ -11,17 +11,25 @@ function MyApp({ Component, pageProps }) {
     <>
       <Provider store={store}>
         <Header />
-        <Component {...pageProps} />
-        <a
-          href="https://wa.me/2348100000000"
-          className="whatsapp_float"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {/* <i className="fa fa-whatsapp whatsapp-icon"></i> */}
-          <img src={whatsapplogo.src}></img>
-        </a>
-        <Footer />
+        <div className="h-[120px] tablet:h-[70px]">&nbsp;</div>
+        <body>
+          <Component {...pageProps} />
+
+          <a
+            href="https://wa.me/2348100000000"
+            className="whatsapp_float"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {/* <i className="fa fa-whatsapp whatsapp-icon"></i> */}
+            <img src={whatsapplogo.src}></img>
+          </a>
+          {/* <div className="h-[80px] tablet:h-[60px] ">&nbsp;</div> */}
+
+          <div className="snap-start">
+            <Footer />
+          </div>
+        </body>
       </Provider>
     </>
   );
