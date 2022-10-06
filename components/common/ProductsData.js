@@ -3,10 +3,10 @@ import Spiderman from "../../images/image 4.png";
 import ps4controller2 from "../../images/products/ps4 controller 2.jpg";
 
 export const ProductsData = {
-  Spiderman: [
+  "Marvel's Spider-Man: Miles Morales": [
     {
       _id: "63373cbc2a39742c5ca8f712",
-      Title: "Playstation 5 Disc Edition",
+      Title: "Marvel's Spider-Man: Miles Morales",
       Weight: 123,
       isKid: false,
       Price: 123,

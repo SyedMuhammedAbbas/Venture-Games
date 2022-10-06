@@ -11,13 +11,20 @@ export default function Product() {
   // console.log(product);
   const router = useRouter();
   const query = router.query;
-  const productId = parseInt(query.id);
-  // console.log(productId);
+  const productGroup = query.productTitle;
+
+  // console.log(productGroup);
   const Products = useSelector((state) => state.products.allProducts);
   // const items = Object.values(Products);
-  // console.log(Products[0]);
-  const product = Products[productId];
-
+  console.log(Products);
+  // console.log(Object.keys(Products));
+  const item = Object.keys(Products).map((index, i) => {
+    if (Object.keys(index[i]) === productGroup) {
+      return Object.values(index[i]);
+    }
+  });
+  const ProductItems = item;
+  console.log(item);
   // const dispatch = useDispatch();
   // useEffect(() => {
   //   dispatch(getProducts());
@@ -36,7 +43,7 @@ export default function Product() {
       Old ? setOld(false) & setNew(true) : setOld(true) & setNew(false);
     }
   }
-  return !product ? (
+  return !item ? (
     <div className="bg-[#FFB636] snap-center pt-[20%] w-[100%] h-[125vh] flex justify-center text-white text-[35px]">
       <div className="text-white text-[35px] mt-[8px] mr-4">
         <BiError />
@@ -48,7 +55,7 @@ export default function Product() {
       <div className="flex justify-center ">
         <img
           className="w-[550px] h-[550px] bg-[#606060] z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"
-          src={product.Images}
+          src={ProductItems.Images}
         ></img>
         <div className="grid gap-0 h-[500px] xl:h-[400px] tablet:h-[500px] tablet3:h-[100%] mobile2:h-[650px] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[1.5%] tablet:mt-[10%] mobile2:mt-[34%] mobile1:pt-[30%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-br-[45px] tablet:rounded-bl-[45px]">
           <div className="tablet:pl-[90px] mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
@@ -81,21 +88,29 @@ export default function Product() {
               </div>
               <div className="grid gap-2 w-[300px] overflow-y-scroll desp-scroll">
                 <div className="text-white text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px] tablet:w-[250px] mobile1:w-[300px] font-semibold ">
-                  {product.Title}
+                  {ProductItems.Title}
                 </div>
                 <div className="flex gap-1">
-                  {/* {product.product_platform &&
-                    product.product_platform.map((product_platform, index) => (
+                  {/* {product.map((product_platform) => ( */}
+                  {/* <button
+                    // key={product_platform}
+                    className="text-[#FFB636] uppercase font-semibold bg-transparent  border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px] hover:bg-[#FFB636] hover:text-black"
+                  > */}
+                  {/* {ProductItems.map((index) => {
+                    return (
                       <button
                         key={index}
                         className="text-[#FFB636] uppercase font-semibold bg-transparent  border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px] hover:bg-[#FFB636] hover:text-black"
                       >
-                        {product_platform}
+                        {index.Platform}
                       </button>
-                    ))} */}
-                  <button className="text-[#FFB636] uppercase font-semibold bg-transparent  border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px] hover:bg-[#FFB636] hover:text-black">
+                    );
+                  })} */}
+                  {/* </button> */}
+                  {/* ))} */}
+                  {/* <button className="text-[#FFB636] uppercase font-semibold bg-transparent  border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px] hover:bg-[#FFB636] hover:text-black">
                     {Object.values(product.Platform.Title)}
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -103,18 +118,17 @@ export default function Product() {
               <div className="grid">
                 <div className="grid gap-5 xl:gap-2 mobile1:gap-0">
                   <div className="flex">
-                    {product.Genre &&
-                      product.Genre.map((Genre, i) => (
-                        <div
-                          key={i}
-                          className="text-gray-400 text-[25px] mobile1:text-[20px] capitalize"
-                        >
-                          {Genre}{" "}
-                          <span className="text-[40px] mobile1:text-[20px]">
-                            .{" "}
-                          </span>
-                        </div>
-                      ))}
+                    {/* {Object.values(ProductItems.Genre).map((i) => (
+                      <div
+                        key={i}
+                        className="text-gray-400 text-[25px] mobile1:text-[20px] capitalize"
+                      >
+                        {i.Title}{" "}
+                        <span className="text-[40px] mobile1:text-[20px]">
+                          .{" "}
+                        </span>
+                      </div>
+                    ))} */}
                   </div>
                   <div className="border-b-[2px] border-gray-400 w-[250px]"></div>
                 </div>
@@ -122,15 +136,17 @@ export default function Product() {
                   Single Player <span className="text-[40px]">.</span> 2020
                 </div>
               </div>
-              <div className="text-white pt-0 pb-5">{product.Description}</div>
+              <div className="text-white pt-0 pb-5">
+                {ProductItems.Description}
+              </div>
             </div>
             <div className="flex gap-5 border-y-2 border-gray-600 w-[250px] mobile1:w-[300px] pt-1 xl:mt-5 mb-5">
               <div className="text-red-600 line-through text-[23px] mobile1:text-[20px]">
-                {product.Price}
+                {ProductItems.Price}
               </div>
               <div className="border-r-2 border-gray-600 h-5 mt-3"></div>
               <div className="text-white text-[25px] mobile1:text-[20px]">
-                {product.Price} PKR
+                {ProductItems.Price} PKR
               </div>
             </div>
 

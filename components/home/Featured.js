@@ -17,15 +17,16 @@ export default function Featured({ products }) {
   //   dispatch(getProducts());
   // }, []);
   // const list = Products.length;
+  console.log(Products.length);
   var settings = {
     dots: true,
     dotsClass: "slick-dots",
-    infinite: Products.length > 4,
+    infinite: true,
     speed: 400,
     autoplay: true,
     autoplaySpeed: 2000,
     // slidesToShow: 4,
-    slidesToShow: Products.length > 4 ? 4 : Products.length,
+    slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
     appendDots: (dots) => <ul>{dots}</ul>,
@@ -95,15 +96,25 @@ export default function Featured({ products }) {
           </Link>
         </div>
       </div>
-      <div className="w-[110vw]  featuredcards mx-auto my-auto h-[550px] mt-[40px] mb-10">
-        <Slider {...settings}>
+      {Products.length < 4 ? (
+        <div className="w-[110vw] featuredcards mx-auto my-auto h-auto mt-[40px] mb-10">
+          <Slider {...settings}>
+            {Object.values(Products).map((currentItem) => (
+              <div key={currentItem}>
+                <FeaturedCard product={currentItem} />
+              </div>
+            ))}
+          </Slider>
+        </div>
+      ) : (
+        <div className="flex flex-wrap gap-10 justify-center mt-[40px] mb-10">
           {Object.values(Products).map((currentItem) => (
             <div key={currentItem}>
               <FeaturedCard product={currentItem} />
             </div>
           ))}
-        </Slider>
-      </div>
+        </div>
+      )}
     </div>
   );
 }

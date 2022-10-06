@@ -9,14 +9,17 @@ export default function FeaturedCard({ product }) {
     dispatch(AddToCart(product));
   };
   function sendProps() {
-    Router.push({ pathname: "/product", query: { id: product[0]._id } });
+    Router.push({
+      pathname: "/product",
+      query: product[0].Title,
+    });
   }
   // console.log(product);
-  const platforms = product.map((index) => {
-    return index.Platform.Title;
-  });
+  // const platforms = product.map((index) => {
+  //   return index.Platform.Title;
+  // });
 
-  console.log(platforms);
+  // console.log(platforms);
   return (
     <div className="h-[500px] p-2 rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile:w-[350px]">
       <img
