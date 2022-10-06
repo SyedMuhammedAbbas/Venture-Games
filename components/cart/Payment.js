@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+// import {PaymentSessionInternal} from "https://testbankalfalah.gateway.mastercard.com/form/version/54/merchant/NIFT/session.js";
+import { handleClientScriptLoad } from "next/script";
 
 export default function CheckOut() {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
   const [total_amount, setTotal_Amount] = useState(0);
-  const shipping_fee = 450;
+  const shipping_fee = 450; 
+
+  const MASTER_CARD_SESSION_JS_SRC = "https://testbankalfalah.gateway.mastercard.com/form/version/54/merchant/NIFT/session.js";
+  const MPGS_TIMEOUT = 5000;
 
   useEffect(() => {
     setTotal_Items(Object.values(cartItems).length);
@@ -103,7 +108,7 @@ export default function CheckOut() {
                       </button>
                     </div>
                     {getVal ? (
-                      <div className="grid gap-7 transition-all">
+                      <div id="PGWHPCCARDContainer2" className="grid gap-7 transition-all">
                         <div>
                           <input
                             className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
