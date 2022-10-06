@@ -1,8 +1,12 @@
+import ps5DiscEdition from "../../images/products/ps5_Disc_Edition.jpg";
+import Spiderman from "../../images/image 4.png";
+import ps4controller2 from "../../images/products/ps4 controller 2.jpg";
+
 export const ProductsData = {
   Spiderman: [
     {
       _id: "63373cbc2a39742c5ca8f712",
-      Title: "123",
+      Title: "Playstation 5 Disc Edition",
       Weight: 123,
       isKid: false,
       Price: 123,
@@ -20,9 +24,7 @@ export const ProductsData = {
         _id: "6335aaf1a365eeb5ab5519bf",
         Title: "ps5",
       },
-      Images: [
-        "https://venture-games.s3.amazonaws.com/1641051570670vlcsnap-2022-01-01-20h39m30s666.png",
-      ],
+      Images: [ps5DiscEdition.src],
       Quantity: 0,
       AvgBuyingPrice: 0,
       AvgLogisticsPrice: 0,
@@ -33,7 +35,7 @@ export const ProductsData = {
     },
     {
       _id: "63373e342a39742c5ca8f725",
-      Title: "1234",
+      Title: "Marvel's Spider-Man: Miles Morales",
       Weight: 123,
       isKid: false,
       Price: 123,
@@ -51,9 +53,7 @@ export const ProductsData = {
         _id: "6335aaf8a365eeb5ab5519c3",
         Title: "xbox",
       },
-      Images: [
-        "https://venture-games.s3.amazonaws.com/1641051570670vlcsnap-2022-01-01-20h39m30s666.png",
-      ],
+      Images: [Spiderman.src],
       Quantity: 0,
       AvgBuyingPrice: 0,
       AvgLogisticsPrice: 0,
@@ -66,7 +66,7 @@ export const ProductsData = {
   Batman: [
     {
       _id: "633ad4660b0c8eaaa786c016",
-      Title: "1",
+      Title: "DualSense Controller",
       Weight: 1,
       isKid: false,
       Price: 1,
@@ -88,9 +88,7 @@ export const ProductsData = {
         _id: "6335aaf8a365eeb5ab5519c3",
         Title: "ps4",
       },
-      Images: [
-        "https://venture-games.s3.amazonaws.com/1641051570670vlcsnap-2022-01-01-20h39m30s666.png",
-      ],
+      Images: [ps4controller2.src],
       Quantity: 0,
       AvgBuyingPrice: 0,
       AvgLogisticsPrice: 0,

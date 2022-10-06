@@ -5,21 +5,23 @@ import { Allproductsdata } from "../../components/common/AllProductsData";
 import { useRouter } from "next/router";
 import { BiError } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../features/counter/productsSlice";
+// import { getProducts } from "../../features/counter/productsSlice";
 
 export default function Product() {
   // console.log(product);
   const router = useRouter();
   const query = router.query;
-  const productId = parseInt(query._id);
+  const productId = parseInt(query.id);
+  // console.log(productId);
+  const Products = useSelector((state) => state.products.allProducts);
+  // const items = Object.values(Products);
+  // console.log(Products[0]);
+  const product = Products[productId];
 
-  const { allProducts, loading } = useSelector((state) => state.products);
-  const product = allProducts[productId];
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getProducts());
-  }, []);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getProducts());
+  // }, []);
 
   const [New, setNew] = useState(true);
   const [Old, setOld] = useState(false);

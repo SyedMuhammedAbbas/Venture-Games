@@ -8,22 +8,24 @@ import Link from "next/link";
 import { FeaturedProducts } from "./FeaturedProducts";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../features/counter/productsSlice";
+// import { getProducts } from "../../features/counter/productsSlice";
 
 export default function Featured({ products }) {
-  const { allProducts, loading } = useSelector((state) => state.products);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getProducts());
-  }, []);
+  const Products = useSelector((state) => state.products.allProducts);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getProducts());
+  // }, []);
+  // const list = Products.length;
   var settings = {
     dots: true,
     dotsClass: "slick-dots",
-    infinite: true,
+    infinite: Products.length > 4,
     speed: 400,
     autoplay: true,
     autoplaySpeed: 2000,
-    slidesToShow: 4,
+    // slidesToShow: 4,
+    slidesToShow: Products.length > 4 ? 4 : Products.length,
     slidesToScroll: 1,
     initialSlide: 0,
     appendDots: (dots) => <ul>{dots}</ul>,
@@ -95,7 +97,7 @@ export default function Featured({ products }) {
       </div>
       <div className="w-[110vw]  featuredcards mx-auto my-auto h-[550px] mt-[40px] mb-10">
         <Slider {...settings}>
-          {Object.values(allProducts).map((currentItem) => (
+          {Object.values(Products).map((currentItem) => (
             <div key={currentItem}>
               <FeaturedCard product={currentItem} />
             </div>
