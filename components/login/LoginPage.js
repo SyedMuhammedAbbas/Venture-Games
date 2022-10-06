@@ -35,7 +35,8 @@ export default function LoginPage() {
   async function resetPassword () {
     forgetPassword();
     let response = await axios.get("https://localhost:3001/forgetPass", {params: {
-      Email: Email
+      OTP: OTP,
+      Password: Password
     }});
   }
 
@@ -45,10 +46,9 @@ export default function LoginPage() {
       Email: Email,
       password: Password
     })
-    console.log("Here");
     const res = {
       "name": "Tuaha",
-      "age": 23,
+      "age": 21,
       "token": 'asdasdasdasdasd'
     }
     dispatch(Login(res));
