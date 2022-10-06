@@ -5,8 +5,11 @@ import { useState } from "react";
 import { store } from "../app/store";
 import { Provider } from "react-redux";
 import whatsapplogo from "../images/whatsapp-circle.png";
+import initMyFirebase from '../firebase/FirebaseInit';
 
 function MyApp({ Component, pageProps }) {
+
+  initMyFirebase();
   return (
     <>
       <Provider store={store}>

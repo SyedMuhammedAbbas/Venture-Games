@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+// import {PaymentSessionInternal} from "https://testbankalfalah.gateway.mastercard.com/form/version/54/merchant/NIFT/session.js";
+import { handleClientScriptLoad } from "next/script";
 
 export default function CheckOut() {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
   const [total_amount, setTotal_Amount] = useState(0);
-  const shipping_fee = 450;
+  const shipping_fee = 450; 
+
 
   useEffect(() => {
     setTotal_Items(Object.values(cartItems).length);
