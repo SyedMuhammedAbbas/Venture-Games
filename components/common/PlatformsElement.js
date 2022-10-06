@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function PlatformsElement({ consoles }) {
   const platformLogos = [PS5, xbox, PS4, nintendo];
   const platformClass =
-    "border-[1px] w-[340px] h-[450px] flex justify-center items-center rounded-[35px]  xl1:rounded-[30px] border-white mobile:rounded-[35px]";
+    "snap-center border-[1px] w-[340px] h-[450px] flex justify-center items-center rounded-[35px]  xl1:rounded-[30px] border-white mobile:rounded-[35px]";
   const platformImgClass = " w-[290px]  justify-center";
   return (
     <div className="bg-gradient-to-tr from-[#805712] via-black to-[#805712] p-20 5xl:px-20 px-64 5xl:px-auto 4xl:px-10 2xl:px-auto mobile:p-4 h-[100%] mobile1:h-[125vh] flex justify-center mobile1:items-center">
@@ -15,7 +15,7 @@ export default function PlatformsElement({ consoles }) {
         <div className="text-[90px] 2xl:text-[70px] lg:text-[50px] tablet:text-[40px] mobile:text-[25px] text-center text-white font-hemi">
           Shop By Platform
         </div>
-        <div className="flex justify-center 2xl:justify-start gap-10 mobile:gap-5 w-[110vw] platformElementClass overflow-x-auto desp-scroll">
+        <div className="flex justify-center 2xl:justify-start gap-10 mobile:gap-5 w-[110vw] platformElementClass overflow-x-auto platform-items-scroll h-[500px] snap-x snap-mandatory">
           {platformLogos.map((platformLogos, index) => (
             <div key={index}>
               <Link href={`/${platformLogos}`}>

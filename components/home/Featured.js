@@ -6,9 +6,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import { FeaturedProducts } from "./FeaturedProducts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../features/counter/productsSlice";
 
 export default function Featured({ products }) {
+  const { allProducts, loading } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
   var settings = {
     dots: true,
     dotsClass: "slick-dots",
@@ -88,7 +95,7 @@ export default function Featured({ products }) {
       </div>
       <div className="w-[110vw]  featuredcards mx-auto my-auto h-[550px] mt-[40px] mb-10">
         <Slider {...settings}>
-          {Object.values(FeaturedProducts).map((currentItem) => (
+          {Object.values(allProducts).map((currentItem) => (
             <div key={currentItem}>
               <FeaturedCard product={currentItem} />
             </div>

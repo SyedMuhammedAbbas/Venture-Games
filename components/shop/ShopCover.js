@@ -2,8 +2,8 @@ import ShopBack from "../../images/shop-background.png";
 
 export default function ShopCover() {
   return (
-    <div className="grid w-full bg-black h-[100%] mobile:h-[125vh]  items-center ">
-      <div className="grid">
+    <div className="grid w-full bg-black  min-h-[125vh] max-h-[100%]  items-center ">
+      <div className="grid relative">
         <img
           className="flex justify-center object-contain shopcoverClass"
           src={ShopBack.src}

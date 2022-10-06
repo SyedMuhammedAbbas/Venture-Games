@@ -8,7 +8,7 @@ export default function Consoles() {
   return (
     <>
       <ProfileBar
-        cart={false}
+        cartshow={false}
         handleLogin={handleLogin}
         sethandleLogin={sethandleLogin}
         handleSignup={handleSignup}

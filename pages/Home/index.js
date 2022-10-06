@@ -21,22 +21,22 @@ export default function Home() {
         sethandleSignup={sethandleSignup}
       />
       <div>
-        <div className="snap-end mobile:snap-start ">
+        <div className="snap-start  ">
           <TopGames />
         </div>
-        <div className="snap-end mobile:snap-start">
+        <div className="snap-center ">
           <Banner />
         </div>
-        <div className="snap-start mobile:snap-start">
+        <div className="snap-center ">
           <Sale />
         </div>
-        <div className="snap-center mobile:snap-start">
+        <div className="snap-center ">
           <PlatformsElement />
         </div>
-        <div className="snap-start mobile:snap-center">
+        <div className="snap-start">
           <Featured />
         </div>
-        <div className="snap-center mobile:snap-start">
+        <div className="snap-center ">
           <ClientsView />
         </div>
       </div>

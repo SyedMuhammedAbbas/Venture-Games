@@ -1,16 +1,39 @@
 import Teen from "../../images/teenesbr.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toggel from "../../styles/Toggel.module.css";
 import { Allproductsdata } from "../../components/common/AllProductsData";
 import { useRouter } from "next/router";
 import { BiError } from "react-icons/bi";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../features/counter/productsSlice";
 
 export default function Product() {
   // console.log(product);
   const router = useRouter();
   const query = router.query;
-  const productId = parseInt(query.id);
-  const product = Allproductsdata[productId];
+  const productId = parseInt(query._id);
+
+  const { allProducts, loading } = useSelector((state) => state.products);
+  const product = allProducts[productId];
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+
+  const [New, setNew] = useState(true);
+  const [Old, setOld] = useState(false);
+
+  function handleNew() {
+    {
+      New ? setNew(false) & setOld(true) : setNew(true) & setOld(false);
+    }
+  }
+  function handleOld() {
+    {
+      Old ? setOld(false) & setNew(true) : setOld(true) & setNew(false);
+    }
+  }
   return !product ? (
     <div className="bg-[#FFB636] snap-center pt-[20%] w-[100%] h-[125vh] flex justify-center text-white text-[35px]">
       <div className="text-white text-[35px] mt-[8px] mr-4">
@@ -19,46 +42,72 @@ export default function Product() {
       Product Not Found
     </div>
   ) : (
-    <div className="bg-[#FFB636] snap-start pt-[15%] pb-[5%] mx-auto lg:pt-[15%] mobile1:pt-[20%] h-[100%] tablet3:h-[100%] mobile2:h-[100%]   flex justify-center items-center align-middle">
+    <div className="bg-[#FFB636] snap-start flex justify-center items-center min-h-[125vh] max-h-[100%] mobile2:py-[4%]">
       <div className="flex justify-center ">
         <img
           className="w-[550px] h-[550px] bg-[#606060] z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"
-          src={product.product_image}
+          src={product.Images}
         ></img>
-        <div className="grid gap-0 h-[500px] xl:h-[400px] tablet:h-[500px] tablet3:h-[100%] mobile2:h-[650px] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[1.5%] tablet:mt-[10%] mobile2:mt-[34%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-br-[45px] tablet:rounded-bl-[45px]">
+        <div className="grid gap-0 h-[500px] xl:h-[400px] tablet:h-[500px] tablet3:h-[100%] mobile2:h-[650px] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[1.5%] tablet:mt-[10%] mobile2:mt-[34%] mobile1:pt-[30%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-br-[45px] tablet:rounded-bl-[45px]">
           <div className="tablet:pl-[90px] mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
-            <div className=" tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
-              <div className="pl-[60%] tablet3:pl-[30%] mt-[20px] mb-[-25px] tablet3:mt-[10px]">
-                <input type="checkbox" className={toggel.input}></input>
+            <div className="relative  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
+              <div className=" absolute right-8 top-4 xl:top-6">
+                <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px]">
+                  <button
+                    className={`capitalize text-[20px] font-semibold py-1 px-10 ${
+                      New
+                        ? "bg-[#000] text-[#FFB636] rounded-[40px]"
+                        : "bg-transparent text-[#000]"
+                    }`}
+                    value="new"
+                    onClick={handleNew}
+                  >
+                    new
+                  </button>
+                  <button
+                    className={`capitalize ml-[-20px] text-[20px] font-semibold py-1 px-10 ${
+                      Old
+                        ? "bg-[#000] text-[#FFB636] rounded-[40px]"
+                        : "bg-transparent text-[#000]"
+                    }`}
+                    value="old"
+                    onClick={handleOld}
+                  >
+                    used
+                  </button>
+                </div>
               </div>
-              <div className="w-[300px] overflow-y-scroll desp-scroll mt-[-10%] xl:mt-[-15%] mobile1:mt-[-17%]">
-                <div className="text-white text-[35px] tablet:text-[30px] mobile1:text-[25px] tablet:w-[250px] mobile1:w-[300px] font-semibold ">
-                  {product.product_title}
+              <div className="grid gap-2 w-[300px] overflow-y-scroll desp-scroll">
+                <div className="text-white text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px] tablet:w-[250px] mobile1:w-[300px] font-semibold ">
+                  {product.Title}
                 </div>
                 <div className="flex gap-1">
-                  {product.product_platform &&
+                  {/* {product.product_platform &&
                     product.product_platform.map((product_platform, index) => (
                       <button
                         key={index}
-                        className="text-[#FFB636] font-semibold bg-transparent  border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px] hover:bg-[#FFB636] hover:text-black"
+                        className="text-[#FFB636] uppercase font-semibold bg-transparent  border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px] hover:bg-[#FFB636] hover:text-black"
                       >
                         {product_platform}
                       </button>
-                    ))}
+                    ))} */}
+                  <button className="text-[#FFB636] uppercase font-semibold bg-transparent  border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px] hover:bg-[#FFB636] hover:text-black">
+                    {Object.values(product.Platform.Title)}
+                  </button>
                 </div>
               </div>
             </div>
-            <div className="overflow-y-scroll desp-scroll h-[150px] w-[350px] mt-4 xl:h-[100px] tablet3:w-[300px] mobile1:pt-2">
+            <div className="overflow-y-scroll desp-scroll h-[150px] w-[350px] mt-4 xl:h-[80px] tablet:h-[120px] tablet3:w-[300px] mobile1:pt-2">
               <div className="grid">
                 <div className="grid gap-5 xl:gap-2 mobile1:gap-0">
                   <div className="flex">
-                    {product.product_genre &&
-                      product.product_genre.map((product_genre, i) => (
+                    {product.Genre &&
+                      product.Genre.map((Genre, i) => (
                         <div
                           key={i}
                           className="text-gray-400 text-[25px] mobile1:text-[20px] capitalize"
                         >
-                          {product_genre}{" "}
+                          {Genre}{" "}
                           <span className="text-[40px] mobile1:text-[20px]">
                             .{" "}
                           </span>
@@ -71,17 +120,15 @@ export default function Product() {
                   Single Player <span className="text-[40px]">.</span> 2020
                 </div>
               </div>
-              <div className="text-white pt-0 pb-5">
-                {product.product_description}
-              </div>
+              <div className="text-white pt-0 pb-5">{product.Description}</div>
             </div>
             <div className="flex gap-5 border-y-2 border-gray-600 w-[250px] mobile1:w-[300px] pt-1 xl:mt-5 mb-5">
               <div className="text-red-600 line-through text-[23px] mobile1:text-[20px]">
-                {product.product_oldprice}
+                {product.Price}
               </div>
               <div className="border-r-2 border-gray-600 h-5 mt-3"></div>
               <div className="text-white text-[25px] mobile1:text-[20px]">
-                {product.product_newprice} PKR
+                {product.Price} PKR
               </div>
             </div>
 

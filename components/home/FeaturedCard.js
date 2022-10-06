@@ -11,34 +11,41 @@ export default function FeaturedCard({ product }) {
   function sendProps() {
     Router.push({ pathname: "/product", query: { id: product.id } });
   }
+  console.log(product);
+  // const values = Object.values(product);
+  // const product = values[0];
   return (
     <div className="h-[500px] p-2 rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile:w-[350px]">
       <img
-        className="rounded-3xl justify-center h-[340px] object-cover w-[340px] mobile:w-[330px]"
-        src={product.product_image}
+        className="rounded-3xl flex justify-center h-[340px] object-contain w-[340px] mobile:w-[330px]"
+        src={product[0].Images}
       />
       <div className="flex gap-1 mt-[-30px] ml-[10px]">
-        {product.product_platform &&
-          product.product_platform.map((product_platform, index) => (
+        {Object.values(product) &&
+          Object.values(product).map((Platform, index) => (
             <button
               key={index}
               className="text-black font-semibold uppercase bg-[#FFB636] px-3 rounded-md text-[12px]"
             >
-              {product_platform}
+              {Platform.Title}
             </button>
           ))}
       </div>
-
+      {/* <div className="flex gap-1 mt-[-30px] ml-[10px]">
+        <button className="text-black font-semibold uppercase bg-[#FFB636] px-3 rounded-md text-[12px]">
+          {Object.values(product.Platform.Title)}
+        </button>
+      </div> */}
       <div className="grid justify-center gap-3">
         <div className="text-white text-center text-[23px] h-8 overflow-auto desp-scroll mobile:text-[20px] mt-5">
-          {product.product_title}
+          {product[0].Title};
         </div>
         <div className="flex gap-5 justify-center">
           <div className="text-red-600 line-through text-[25px] mobile:text-[19px]">
-            {product.product_oldprice}
+            {product[0].Price}
           </div>
           <div className="text-white text-[25px] mobile:text-[21px]">
-            {product.product_newprice} PKR
+            {product[0].Price} PKR
           </div>
         </div>
         <div className="flex justify-center gap-2 mt-[-7px] mb-5">

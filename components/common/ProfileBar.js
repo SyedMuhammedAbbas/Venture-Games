@@ -48,7 +48,7 @@ export default function ProfileBar({
   };
 
   return (
-    <div className="flex gap-9 2xl:gap-7 mobile:gap-5 fixed w-[100%] justify-end pr-28 2xl:pr-20 lg:pr-14 mobile:pr-7 tablet:hidden p-3  bg-black bg-opacity-30 backdrop-blur-xl z-[999]">
+    <div className="flex items-center gap-9 2xl:gap-7 mobile:gap-5 fixed w-[100%] justify-end pr-28 2xl:pr-20 lg:pr-14 mobile:pr-7 tablet:hidden p-3  bg-black bg-opacity-30 backdrop-blur-xl z-[999]">
       {filter == "true" && (
         <div className="flex gap-9 absolute left-20">
           <div
@@ -58,9 +58,9 @@ export default function ProfileBar({
             <div className={icons}>
               <BsSliders />
             </div>
-            <div className="text-[30px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]">
+            <button className="text-[30px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]">
               Filter
-            </div>
+            </button>
           </div>
 
           <div
@@ -70,9 +70,9 @@ export default function ProfileBar({
             <div className={icons}>
               <BsSortDown />
             </div>
-            <div className="text-[30px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]">
+            <button className="text-[30px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]">
               Sort
-            </div>
+            </button>
           </div>
         </div>
       )}
@@ -101,7 +101,7 @@ export default function ProfileBar({
             <a>
               <button>
                 <BsHandbag />
-                <div class=" mt-[-10px] mr-6 pt-[1.5px] absolute z-10 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-[#000000] rounded-full border-2 border-white dark:border-gray-900">
+                <div class=" mt-[-10px] mr-20 pt-[3.5px] absolute z-10 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-[#000000] rounded-full ">
                   {Object.values(cartItem).length}
                 </div>
               </button>
@@ -117,16 +117,14 @@ export default function ProfileBar({
         </button>
       </div>
 
-      {/* <div>
-        <div className="inline-flex text-[30px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]">
-          Sufyan
-          <div className="text-[34px] 2xl:text-[25px] lg:text-[21px] text-white mt-[9px] lg:mt-[3px]">
-            <a className="cursor-pointer">
-              <MdKeyboardArrowDown onClick={() => setOpen(!open)} />
-            </a>
-          </div>
+      <div className="flex items-center text-[30px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]">
+        Sufyan
+        <div className="text-[34px] 2xl:text-[25px] lg:text-[21px] text-white mt-[9px] lg:mt-[3px]">
+          <a className="cursor-pointer">
+            <MdKeyboardArrowDown onClick={() => setOpen(!open)} />
+          </a>
         </div>
-      </div> */}
+      </div>
       {open && <DropDown />}
     </div>
   );

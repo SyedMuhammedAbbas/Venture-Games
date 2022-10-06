@@ -70,7 +70,7 @@ export default function ShoppingCart() {
       <div className="bg-[#FFB636] pb-20 h-[100%]">
         {Object.values(cartItems).length > 0 ? (
           <div className="flex xl3:grid">
-            <div className="pt-[13%] pb-[5%] xl3:pt-[17%] tablet:pt-[11%] mobile:pt-[150px] w-[55%] tablet1:w-[80%] mobile:w-[90%] mobile1:w-[100%]">
+            <div className="pt-[5%] pb-[5%] xl3:pt-[7%] tablet:pt-[7%] w-[55%] tablet1:w-[80%] mobile:w-[90%] mobile1:w-[100%]">
               <h1 className="text-black font-semibold text-[60px] xl3:text-[50px] mobile:text-[40px] pl-10 capitalize">
                 Shopping Cart
               </h1>
@@ -181,7 +181,7 @@ export default function ShoppingCart() {
               </div>
             </div>
 
-            <div className="grid pt-[13%] xl3:pt-[17%] tablet:pt-[11%]  tablet1:pt-0 absolute right-0 tablet1:relative tablet1:left-0 w-[40%] tablet1:w-[80%] mobile:w-[90%] mobile1:w-[95%]">
+            <div className="grid pt-[5%] xl3:pt-[7%] tablet:pt-[7%]  tablet1:pt-0 absolute right-0 tablet1:relative tablet1:left-0 w-[40%] tablet1:w-[80%] mobile:w-[90%] mobile1:w-[95%]">
               <h1 className="text-black font-semibold text-right tablet1:text-left mr-10 text-[60px] xl3:text-[50px] mobile:text-[40px] tablet1:pl-10  capitalize">
                 order summary
               </h1>

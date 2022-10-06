@@ -1,11 +1,35 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { Allproductsdata } from "../../components/common/AllProductsData";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+// import { Allproductsdata } from "../../components/common/AllProductsData";
+import { ProductsData } from "../../components/common/ProductsData";
 
-const initialState = { allProducts: Allproductsdata };
+// export const getProducts = createAsyncThunk(
+//   "products/getProducts",
+//   async () => {
+//     return fetch("https://api.venturegames.pk/Products").then((res) =>
+//       res.json()
+//     );
+//   }
+// );
+
+const initialState = {
+  allProducts: ProductsData,
+};
 
 export const productsSlice = createSlice({
   name: "products",
   initialState,
+  // extraReducers: {
+  //   [getProducts.pending]: (state, action) => {
+  //     state.loading = true;
+  //   },
+  //   [getProducts.fulfilled]: (state, action) => {
+  //     state.loading = false;
+  //     state.allProducts = action.payload;
+  //   },
+  //   [getProducts.rejected]: (state, action) => {
+  //     state.loading = false;
+  //   },
+  // },
   reducers: {
     FilterByType(state, action) {
       state.allProducts.filter((p) => p.id);
