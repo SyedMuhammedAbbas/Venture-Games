@@ -29,7 +29,7 @@ export default function Settings() {
   }
   return (
     <>
-      <div className="min-h-[125vh] max-h-[100%] bg-[#FFB636] py-[5%] px-[10%] mobile:px-[5%]">
+      <div className="min-h-[140vh] max-h-[100%] bg-[#FFB636] py-[5%] px-[10%] mobile:px-[5%]">
         <div>
           <h1 className="text-[#000] text-[60px] pb-[2%] font-semibold">
             Account Settings / {userName}

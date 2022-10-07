@@ -1,7 +1,7 @@
 import Teen from "../../images/teenesbr.png";
 import { useState, useEffect } from "react";
 import toggel from "../../styles/Toggel.module.css";
-import { Allproductsdata } from "../../components/common/AllProductsData";
+// import { Allproductsdata } from "../../components/common/AllProductsData";
 import { useRouter } from "next/router";
 import { BiError } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";

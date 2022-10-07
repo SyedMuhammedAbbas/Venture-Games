@@ -11,7 +11,7 @@ export default function FeaturedCard({ product }) {
   function sendProps() {
     Router.push({
       pathname: "/product",
-      query: product[0].Title,
+      query: Object.keys(product),
     });
   }
   // console.log(product);

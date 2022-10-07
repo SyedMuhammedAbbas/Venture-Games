@@ -10,7 +10,7 @@ export default function ContactUs() {
   const email = "contact@venturegames.com";
   return (
     <>
-      <div className=" bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] p-36 py-10  5xl:p-32 5xl:px-auto 4xl:p-20 2xl:p-10 tablet2.1:p-4">
+      <div className=" bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] p-36 py-10  5xl:p-32 5xl:px-auto 4xl:p-20 2xl:p-10 tablet2.1:p-4 min-h-[140vh] max-h-[100%]">
         <div className="text-[90px] 2xl:text-[70px] lg:text-[50px] tablet:text-[40px] text-center text-white font-hemi">
           Lets Get In Touch
         </div>

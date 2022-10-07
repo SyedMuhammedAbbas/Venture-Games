@@ -23,14 +23,8 @@
   src: url('../fonts/LEMONMILK-Regular.otf') format('woff2');  
 }
 :root{
-  zoom: 75%;  
+  zoom: 65%;  
 }
-.topgames,.flashSale{
-  zoom: 90%;
-}
-/* .homecontent{
-  zoom: 80%;
-} */
 html{
   font-family: 'SF Pro Display Light';
   /* scroll-snap-type: proximity; */
@@ -38,6 +32,34 @@ html{
   scroll-padding-top: 150px;
   
 }
+
+@media only screen and (min-width: 1200px){
+  :root{
+    zoom: 60%;  
+  } 
+  html{
+    scroll-snap-type: y mandatory;
+    
+  }
+  .topgamesCarousel{
+    zoom: 120%;
+  }
+  .platformElement{
+    zoom: 100%;
+  }
+}
+
+
+/* .topgames{
+  zoom: 100%;
+}
+.flashSale{
+  zoom: 100%;
+} */
+/* .homecontent{
+  zoom: 80%;
+} */
+
 :root {
   --swiper-theme-color: #000000 !important;
   

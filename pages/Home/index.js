@@ -21,7 +21,7 @@ export default function Home() {
         sethandleSignup={sethandleSignup}
       />
       <div>
-        <div className="snap-start  ">
+        <div className="snap-center  ">
           <TopGames />
         </div>
         <div className="snap-center ">
@@ -33,7 +33,7 @@ export default function Home() {
         <div className="snap-center ">
           <PlatformsElement />
         </div>
-        <div className="snap-start">
+        <div className="snap-center">
           <Featured />
         </div>
         <div className="snap-center ">
