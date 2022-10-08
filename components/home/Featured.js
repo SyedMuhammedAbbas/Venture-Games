@@ -96,25 +96,15 @@ export default function Featured({ products }) {
           </Link>
         </div>
       </div>
-      {Products.length < 4 ? (
-        <div className="w-[110vw] featuredcards mx-auto my-auto h-auto mt-[40px] mb-10">
-          <Slider {...settings}>
-            {Object.values(Products).map((currentItem) => (
-              <div key={currentItem}>
-                <FeaturedCard product={currentItem} />
-              </div>
-            ))}
-          </Slider>
-        </div>
-      ) : (
-        <div className="flex flex-wrap gap-10 justify-center mt-[40px] mb-10">
+      <div className="w-[110vw] featuredcards mx-auto my-auto h-auto mt-[40px] mb-10">
+        <Slider {...settings}>
           {Object.values(Products).map((currentItem) => (
             <div key={currentItem}>
               <FeaturedCard product={currentItem} />
             </div>
           ))}
-        </div>
-      )}
+        </Slider>
+      </div>
     </div>
   );
 }

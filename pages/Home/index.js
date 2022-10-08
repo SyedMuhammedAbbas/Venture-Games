@@ -13,14 +13,14 @@ export default function Home() {
 
   return (
     <>
-      <ProfileBar
-        cartshow={true}
-        handleLogin={handleLogin}
-        sethandleLogin={sethandleLogin}
-        handleSignup={handleSignup}
-        sethandleSignup={sethandleSignup}
-      />
       <div>
+        <ProfileBar
+          cartshow={true}
+          handleLogin={handleLogin}
+          sethandleLogin={sethandleLogin}
+          handleSignup={handleSignup}
+          sethandleSignup={sethandleSignup}
+        />
         <div className="snap-center  ">
           <TopGames />
         </div>

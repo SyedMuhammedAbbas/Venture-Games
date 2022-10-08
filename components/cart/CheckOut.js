@@ -17,6 +17,18 @@ export default function CheckOut() {
       </button>
     );
   }
+  const [New, setNew] = useState(true);
+  const [Old, setOld] = useState(false);
+  function handleNew() {
+    {
+      New ? setNew(false) & setOld(true) : setNew(true) & setOld(false);
+    }
+  }
+  function handleOld() {
+    {
+      Old ? setOld(false) & setNew(true) : setOld(true) & setNew(false);
+    }
+  }
   useEffect(() => {
     setTotal_Items(Object.values(cartItems).length);
     setTotal_Amount(
@@ -90,8 +102,32 @@ export default function CheckOut() {
                   <h1 className="text-white text-[60px] mobile:text-[40px]">
                     Shipment details
                   </h1>
-                  <div className="">
+                  {/* <div className="">
                     <input type="checkbox" className={toggel1.input}></input>
+                  </div> */}
+                  <div className="flex gap-0 bg-[#FFB636] rounded-[10px] p-[1px] w-[270px]">
+                    <button
+                      className={`capitalize text-[20px] font-semibold py-1 px-10 ${
+                        New
+                          ? "bg-[#000] text-[#FFB636] rounded-[10px]"
+                          : "bg-transparent text-[#000]"
+                      }`}
+                      value="Karachi"
+                      onClick={handleNew}
+                    >
+                      Karachi
+                    </button>
+                    <button
+                      className={`capitalize text-[20px] font-semibold py-1 px-10 ${
+                        Old
+                          ? "bg-[#000] text-[#FFB636] rounded-[10px]"
+                          : "bg-transparent text-[#000]"
+                      }`}
+                      value="Other"
+                      onClick={handleOld}
+                    >
+                      Other
+                    </button>
                   </div>
                   <div className="grid gap-10">
                     <h1 className="text-white text-[30px]">Shipping Address</h1>

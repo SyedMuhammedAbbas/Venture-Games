@@ -11,20 +11,23 @@ export default function Product() {
   // console.log(product);
   const router = useRouter();
   const query = router.query;
+  // console.log(query);
   const productGroup = query.productTitle;
 
-  // console.log(productGroup);
+  console.log(productGroup);
+
   const Products = useSelector((state) => state.products.allProducts);
   // const items = Object.values(Products);
-  console.log(Products);
+  // console.log(Products);
   // console.log(Object.keys(Products));
   const item = Object.keys(Products).map((index, i) => {
-    if (Object.keys(index[i]) === productGroup) {
+    if (Object.keys(index[i]) === query) {
       return Object.values(index[i]);
     }
   });
-  const ProductItems = item;
   console.log(item);
+  const ProductItems = item;
+  // console.log(item);
   // const dispatch = useDispatch();
   // useEffect(() => {
   //   dispatch(getProducts());

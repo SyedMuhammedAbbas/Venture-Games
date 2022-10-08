@@ -1,51 +1,44 @@
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { AddToCart } from "../../features/counter/cartSlice";
 import Router from "next/router";
+// import { keyframes } from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function FeaturedCard({ product }) {
   const dispatch = useDispatch();
   const handleAddtoCart = (product) => {
     dispatch(AddToCart(product));
   };
+  const data = product;
   function sendProps() {
     Router.push({
       pathname: "/product",
-      query: Object.keys(product),
+      query: data,
     });
   }
-  // console.log(product);
-  // const platforms = product.map((index) => {
-  //   return index.Platform.Title;
-  // });
 
-  // console.log(platforms);
   return (
     <div className="h-[500px] p-2 rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile:w-[350px]">
       <img
         className="rounded-3xl flex justify-center h-[340px] object-cover w-[340px] mobile:w-[330px]"
-        src={product[0].Images}
+        src={product.Images}
       />
       <div className="flex gap-1 mt-[-30px] ml-[10px]">
-        {product.map((index) => (
-          <button
-            key={index}
-            className="text-black font-semibold uppercase bg-[#FFB636] px-3 rounded-md text-[12px]"
-          >
-            {index.Platform.Title}
-          </button>
-        ))}
+        <button className="text-black font-semibold uppercase bg-[#FFB636] px-3 rounded-md text-[12px]">
+          {product.Platform.Title}
+        </button>
       </div>
       <div className="grid justify-center gap-3">
         <div className="text-white text-center text-[23px] h-8 overflow-auto desp-scroll mobile:text-[20px] mt-5">
-          {product[0].Title}
+          {product.Title}
         </div>
         <div className="flex gap-5 justify-center">
           <div className="text-red-600 line-through text-[25px] mobile:text-[19px]">
-            {product[0].Price}
+            {product.Price}
           </div>
           <div className="text-white text-[25px] mobile:text-[21px]">
-            {product[0].Price} PKR
+            {product.Price} PKR
           </div>
         </div>
         <div className="flex justify-center gap-2 mt-[-7px] mb-5">

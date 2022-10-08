@@ -15,7 +15,9 @@ export default function CheckOutPage() {
           handleSignup={handleSignup}
           sethandleSignup={sethandleSignup}
         />
-        <CheckOut />
+        <div className="snap-start">
+          <CheckOut />
+        </div>
       </div>
     </>
   );
