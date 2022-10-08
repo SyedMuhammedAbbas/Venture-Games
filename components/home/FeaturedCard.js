@@ -17,7 +17,13 @@ export default function FeaturedCard({ product }) {
       query: data,
     });
   }
+  const platforms = Object.values(product.ProductGroup.AvailablePlatforms).map(
+    (index) => {
+      return index.Title;
+    }
+  );
 
+  console.log(platforms);
   return (
     <div className="h-[500px] p-2 rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile:w-[350px]">
       <img
@@ -25,9 +31,20 @@ export default function FeaturedCard({ product }) {
         src={product.Images}
       />
       <div className="flex gap-1 mt-[-30px] ml-[10px]">
-        <button className="text-black font-semibold uppercase bg-[#FFB636] px-3 rounded-md text-[12px]">
-          {product.Platform.Title}
-        </button>
+        {/* {Object.keys(product).forEach(([index, val]) => {
+          <button className="text-black font-semibold uppercase bg-[#FFB636] px-3 rounded-md text-[12px]">
+            {index[ProductGroup].map((i) => {
+              return val[ProductGroup];
+            })}
+          </button>;
+        })} */}
+        {Object.values(product.ProductGroup.AvailablePlatforms).map((index) => {
+          return (
+            <button className="text-black font-semibold uppercase bg-[#FFB636] px-3 rounded-md text-[12px]">
+              {index.Title}
+            </button>
+          );
+        })}
       </div>
       <div className="grid justify-center gap-3">
         <div className="text-white text-center text-[23px] h-8 overflow-auto desp-scroll mobile:text-[20px] mt-5">

@@ -11,6 +11,22 @@ export const ProductsData = [
     Price: 1,
     BuyingPrice: 1,
     Description: "1",
+    ProductGroup: {
+      _id: "634056369e44739587b95d16",
+      Title: "PUBG Game",
+      AvailableColours: [],
+      AvailablePlatforms: [
+        {
+          _id: "6335aaf8a365eeb5ab5519c3",
+          Title: "xbox",
+        },
+        {
+          _id: "6335aaf1a365eeb5ab5519bf",
+          Title: "ps5",
+        },
+      ],
+    },
+
     Type: "Used",
     Genre: [
       {
@@ -44,6 +60,22 @@ export const ProductsData = [
     Price: 5000,
     BuyingPrice: 4998,
     Description: "testing",
+    ProductGroup: {
+      _id: "634056369e44739587b95d16",
+      Title: "PUBG Game",
+      AvailableColours: [],
+      AvailablePlatforms: [
+        {
+          _id: "6335aaf8a365eeb5ab5519c3",
+          Title: "xbox",
+        },
+        {
+          _id: "6335aaf1a365eeb5ab5519bf",
+          Title: "ps5",
+        },
+      ],
+    },
+
     Type: "New",
     Genre: [
       {
@@ -79,6 +111,22 @@ export const ProductsData = [
     Price: 123,
     BuyingPrice: 123,
     Description: "123",
+    ProductGroup: {
+      _id: "634056369e44739587b95d16",
+      Title: "PUBG Game",
+      AvailableColours: [],
+      AvailablePlatforms: [
+        {
+          _id: "6335aaf8a365eeb5ab5519c3",
+          Title: "xbox",
+        },
+        {
+          _id: "6335aaf1a365eeb5ab5519bf",
+          Title: "ps5",
+        },
+      ],
+    },
+
     Type: "New",
     Genre: [
       {
@@ -108,6 +156,22 @@ export const ProductsData = [
     Price: 123,
     BuyingPrice: 123,
     Description: "123",
+    ProductGroup: {
+      _id: "634056369e44739587b95d16",
+      Title: "PUBG Game",
+      AvailableColours: [],
+      AvailablePlatforms: [
+        {
+          _id: "6335aaf8a365eeb5ab5519c3",
+          Title: "xbox",
+        },
+        {
+          _id: "6335aaf1a365eeb5ab5519bf",
+          Title: "ps5",
+        },
+      ],
+    },
+
     Type: "Used",
     Genre: [
       {

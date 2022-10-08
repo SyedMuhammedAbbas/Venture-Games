@@ -105,6 +105,11 @@ export default function LoginPage() {
                     <BsArrowRightShort />
                   </button>
                 </form>
+                <div className="text-[20px] text-[#FFB636] pt-[3%] float-right">
+                  <Link href="/forgetPassPage">
+                    <a>Forget Password</a>
+                  </Link>{" "}
+                </div>
               </div>
             ) : (
               <div className="text-[#FFB636] text-[35px] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
@@ -147,12 +152,6 @@ export default function LoginPage() {
                     }}
                   />
                 </button>
-              </div>
-              <div className="text-[20px] text-white">
-                not a member yet?{" "}
-                <Link href="signup">
-                  <a>signup</a>
-                </Link>{" "}
               </div>
             </div>
           </div>
