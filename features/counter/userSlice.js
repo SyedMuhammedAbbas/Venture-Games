@@ -1,22 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { signOut } from "firebase/auth";
 
+const initialState = {
+  userDetails: {},
+  token: true
+}
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: {
-    userDetails: {},
-    token: null,
-  },
+  initialState,
   reducers: {
     Login(state, action) { 
         console.log("In Here");
         state.userDetails = action.payload;
-        state.token = action.payload.token;
+        state.token = true;
+    },
+    SignOut(state) {
+      console.log("here")
+      state.userDetails = {};
     }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const {Login } = userSlice.actions;
+export const {Login, SignOut } = userSlice.actions;
 
 export default userSlice.reducer;

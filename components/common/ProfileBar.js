@@ -13,6 +13,7 @@ import search from "../../styles/Search.module.css";
 import DropDown from "./DropDown";
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function ProfileBar({
   filter,
@@ -26,7 +27,17 @@ export default function ProfileBar({
   sethandleLogin,
   sethandleSignup,
 }) {
+  const [token, setToken] = useState();
+  useEffect(() => {
+    let tok = JSON.parse(localStorage.getItem("token"));
+    console.log(tok); 
+    setToken(tok);
+  }, [])
   const cartItem = useSelector((state) => state.cart.cartItems);
+  const user = useSelector((state) => state.user.userDetails);
+  const userToken = useSelector((state) => state.user.token);
+  // console.log(token);
+  console.log(user);
   const icons =
     "text-[30px] 2xl:text-[25px] lg:text-[21px] text-white cursor-pointer";
 
@@ -46,6 +57,8 @@ export default function ProfileBar({
         : sethandleSort(true) & sethandleFilter(false);
     }
   };
+
+  // console.log(userToken);
 
   return (
     <div className="flex items-center gap-9 2xl:gap-7 mobile:gap-5 fixed w-[100%] justify-end pr-28 2xl:pr-20 lg:pr-14 mobile:pr-7 tablet:hidden p-3  bg-black bg-opacity-30 backdrop-blur-xl z-[999]">
@@ -118,7 +131,7 @@ export default function ProfileBar({
       </div>
 
       <div className="flex items-center text-[30px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]">
-        Sufyan
+        {user.FullName}
         <div className="text-[34px] 2xl:text-[25px] lg:text-[21px] text-white mt-[9px] lg:mt-[3px]">
           <a className="cursor-pointer">
             <MdKeyboardArrowDown onClick={() => setOpen(!open)} />

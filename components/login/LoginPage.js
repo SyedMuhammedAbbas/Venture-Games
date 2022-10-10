@@ -54,7 +54,7 @@ export default function LoginPage() {
       if (response.data) {
         setNext(true);
       } else {
-        console.log("Not SignedIn");
+        router.push("/signup");
       }
     }
   }
