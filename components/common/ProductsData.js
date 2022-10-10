@@ -61,7 +61,7 @@ export const ProductsData = [
     BuyingPrice: 4998,
     Description: "testing",
     ProductGroup: {
-      _id: "634056369e44739587b95d16",
+      _id: "634056369e44739587b95d17",
       Title: "PUBG Game",
       AvailableColours: [],
       AvailablePlatforms: [
@@ -112,7 +112,7 @@ export const ProductsData = [
     BuyingPrice: 123,
     Description: "123",
     ProductGroup: {
-      _id: "634056369e44739587b95d16",
+      _id: "634056369e44739587b95d18",
       Title: "PUBG Game",
       AvailableColours: [],
       AvailablePlatforms: [
@@ -157,7 +157,7 @@ export const ProductsData = [
     BuyingPrice: 123,
     Description: "123",
     ProductGroup: {
-      _id: "634056369e44739587b95d16",
+      _id: "634056369e44739587b95d19",
       Title: "PUBG Game",
       AvailableColours: [],
       AvailablePlatforms: [

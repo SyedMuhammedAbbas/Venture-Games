@@ -1,37 +1,37 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import { Allproductsdata } from "../../components/common/AllProductsData";
-import { ProductsData } from "../../components/common/ProductsData";
+// import { ProductsData } from "../../components/common/ProductsData";
 
-// export const getProducts = createAsyncThunk(
-//   "products/getProducts",
-//   async () => {
-//     return fetch("https://api.venturegames.pk/Products").then((res) =>
-//       res.json()
-//     );
-//   }
-// );
+export const getProducts = createAsyncThunk(
+  "products/getProducts",
+  async () => {
+    return fetch("https://api.venturegames.pk/Products").then((res) =>
+      res.json()
+    );
+  }
+);
 
 const initialState = {
-  allProducts: ProductsData,
+  allProducts: [],
 };
 
 export const productsSlice = createSlice({
   name: "products",
   initialState,
-  // extraReducers: {
-  //   [getProducts.pending]: (state, action) => {
-  //     state.loading = true;
-  //   },
-  //   [getProducts.fulfilled]: (state, action) => {
-  //     state.loading = false;
-  //     state.allProducts = action.payload;
-  //   },
-  //   [getProducts.rejected]: (state, action) => {
-  //     state.loading = false;
-  //   },
-  // },
+  extraReducers: {
+    [getProducts.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getProducts.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.allProducts = action.payload;
+    },
+    [getProducts.rejected]: (state, action) => {
+      state.loading = false;
+    },
+  },
   reducers: {
-    FilterByType(state, action) {
+    FilterByConsole(state, action) {
       state.allProducts.filter((p) => p.id);
     },
     FilterByGenre(state, action) {},
@@ -43,7 +43,7 @@ export const productsSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
-  FilterByType,
+  FilterByConsole,
   FilterByGenre,
   FilterByCategory,
   SortLowToHigh,

@@ -5,7 +5,11 @@ import FeaturedCard from "../home/FeaturedCard";
 // import Spiderman from "../../images/image 4.png";
 // import { Allproductsdata } from "../common/AllProductsData";
 import { useDispatch, useSelector } from "react-redux";
-// import { getProducts } from "../../features/counter/productsSlice";
+import {
+  FilterByConsole,
+  FilterByGenre,
+  getProducts,
+} from "../../features/counter/productsSlice";
 
 export default function ShopProducts({ handleFilter, handleSort }) {
   const Products = useSelector((state) => state.products.allProducts);
@@ -13,15 +17,26 @@ export default function ShopProducts({ handleFilter, handleSort }) {
   const buttons =
     "text-white uppercase border-[1px] font-semibold border-white rounded-lg text-[25px] px-2 w-40 py-1 hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black";
 
-  const type = ["ps5", "ps4", "xbox", "nintendo"];
+  const platforms = ["ps5", "ps4", "xbox", "nintendo"];
   const genre = ["action", "adventure", "thriller", "driving"];
   const category = ["online", "offline"];
   const sortbyprice = ["Low to High", "High to Low"];
 
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getProducts());
-  // }, []);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+
+  const item = Products.map((index) => {
+    return index.PlatformGroup;
+  });
+  console.log(item);
+  function FilterConsole(Products) {
+    dispatch(FilterByConsole(Products));
+  }
+  function FilterGenre(Products) {
+    dispatch(FilterByGenre(Products));
+  }
 
   return (
     <div className="bg-[#FFB636] ">
@@ -46,8 +61,13 @@ export default function ShopProducts({ handleFilter, handleSort }) {
 
             <div className="border-t-[3px] border-blackOpac">
               <div className="grid items-start gap-4 mr-[120px] py-10">
-                {type.map((type, index) => (
-                  <button value={type} key={index} className={buttons}>
+                {platforms.map((type, index) => (
+                  <button
+                    value={type}
+                    key={index}
+                    className={buttons}
+                    onClick={FilterConsole(Products)}
+                  >
                     {type}
                   </button>
                 ))}

@@ -58,7 +58,7 @@ export default function Header() {
     if (!isMenuClicked) {
       setBurgerClass("burger-bar clicked");
       setMenuClass(
-        "block menu overflow-y-scroll desp-scroll overflow-x-hidden w-[350px] h-[125vh] bg-gradient-to-t from-black to-[#1c1c1c] fixed left-0 ml-[-1px] top-[79.2px] z-[0] shadow-lg border-t-[0.1px] border-gray-900"
+        "block menu overflow-y-scroll desp-scroll overflow-x-hidden w-[350px] min-h-[145vh] max-h-[100%] bg-gradient-to-t from-black to-[#1c1c1c] fixed left-0 ml-[-1px] top-[79.2px] z-[0] shadow-lg border-t-[0.1px] border-gray-900"
       );
       if (typeof window != "undefined" && window.document) {
         document.body.style.overflow = "hidden";

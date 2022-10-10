@@ -10,11 +10,15 @@ export default function FeaturedCard({ product }) {
   const handleAddtoCart = (product) => {
     dispatch(AddToCart(product));
   };
-  const data = product;
+
+  const data = product.ProductGroup._id;
+
+  // console.log(data);
+
   function sendProps() {
     Router.push({
       pathname: "/product",
-      query: data,
+      query: { id: data },
     });
   }
   const platforms = Object.values(product.ProductGroup.AvailablePlatforms).map(
@@ -23,7 +27,7 @@ export default function FeaturedCard({ product }) {
     }
   );
 
-  console.log(platforms);
+  // console.log(platforms);
   return (
     <div className="h-[500px] p-2 rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile:w-[350px]">
       <img
