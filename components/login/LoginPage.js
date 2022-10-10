@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { Login } from "../../features/counter/userSlice";
 import axios from "axios";
+import { useCookies } from "react-cookie";
+import { parseCookies } from "../../helpers/"
+import { Router, useRouter } from "next/router";
 
 export default function LoginPage() {
   const provider = new GoogleAuthProvider();
@@ -15,62 +18,92 @@ export default function LoginPage() {
   provider.addScope("https://www.googleapis.com/auth/userinfo.email");
   provider.addScope("https://www.googleapis.com/auth/userinfo.profile");
   const dispatch = useDispatch();
+  const [cookie, setCookie] = useCookies(["token"])
   const [next, setNext] = useState(false);
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const user = useSelector((state) => state.user.userDetails);
+  const router = useRouter();
 
-  function handleNext(e) {
+  async function forgetPassword() {
+    console.log(Email);
+    let response = await axios.post("https://api.venturegames.pk/ForgotPassword", {
+      EmailAddress: Email
+    });
+    router.push('/forgetPassPage')
+  }
+
+
+  async function hasEmail(e) {
     e.preventDefault();
     if (Email.length === 0) {
       setEmail("");
       setNext(false);
-    } else {
-      setNext(true);
     }
-  }
-
-  function forgetPassword() {
-    setEmail("");
-    setNext(false);
-  }
-
-  async function resetPassword() {
-    forgetPassword();
-    let response = await axios.get("https://localhost:3001/forgetPass", {
+    else {
+      let response = await axios.get("https://api.venturegames.pk/EmailExists", {
       params: {
-        OTP: OTP,
-        Password: Password,
-      },
-    });
+        EmailAddress: Email
+      }
+      });
+      console.log(response);
+      if(response.data) {
+        setNext(true);
+      }
+      else {
+        console.log("Not SignedIn");
+      }
+    }
   }
 
   async function handleLogin(e) {
     e.preventDefault();
-    let response = await axios.post("", {
-      Email: Email,
-      password: Password,
-    });
-    const res = {
-      name: "Tuaha",
-      age: 21,
-      token: "asdasdasdasdasd",
-    };
-    dispatch(Login(res));
+    try {
+      let response = await axios.post("https://api.venturegames.pk/SignIn", {
+        EmailAddress: Email,
+        Password: Password,
+      });
+
+      console.log(response.data.output);
+      console.log(response);
+
+      dispatch(Login(response.data.output));
+      localStorage.setItem("token", JSON.stringify(response.data.Token));
+
+      router.push('/');
+      
+    }
+    catch (err) {
+      console.log(err)
+    }
+    
     console.log(user);
   }
 
   function handleGoogleLogin() {
     const auth = getAuth();
     signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        //const credential = GoogleAuthProvider.credentialFromResult(result);
-        //const token = credential.accessToken;
-        // The signed-in user info.
+      .then(async (result) => {
+        //This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        console.log(token);
+        //The signed-in user info.
         const user = result.user;
         console.log(user);
-        // ...
+        console.log(user.accessToken);
+        let response = await axios.post("https://api.venturegames.pk/Google/SignIn", {
+          access_token: token,
+          id_token: user.accessToken
+        })
+        
+        console.log(response.data.output);
+        console.log(response);
+
+        dispatch(Login(response.data.user));
+        localStorage.setItem("token", JSON.stringify(response.data.Token));
+
+        router.push('/');
       })
       .catch((error) => {
         console.error(error);
@@ -105,11 +138,12 @@ export default function LoginPage() {
                     <BsArrowRightShort />
                   </button>
                 </form>
-                <div className="text-[20px] text-[#FFB636] pt-[3%] float-right">
-                  <Link href="/forgetPassPage">
-                    <a>Forget Password</a>
-                  </Link>{" "}
-                </div>
+                <button className="text-[20px] text-[#FFB636] pt-[3%] float-right hover:pointer" onClick={() => {forgetPassword()}}>
+                  Forget Password
+                  {/* <Link href="/forgetPassPage"> */}
+                    {/* <a className="cursor-pointer">Forget Password</a> */}
+                  {/* </Link>{" "} */}
+                </button>
               </div>
             ) : (
               <div className="text-[#FFB636] text-[35px] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
@@ -125,7 +159,7 @@ export default function LoginPage() {
                   ></input>
                   <button
                     onClick={(e) => {
-                      handleNext(e);
+                      hasEmail(e);
                     }}
                     className="text-[35px] text-[#FFB636] align-middle "
                   >
@@ -170,4 +204,19 @@ export default function LoginPage() {
       </div>
     </>
   );
+}
+
+LoginPage.getInitialProps = async ({ req, res }) => {
+  const data = parseCookies(req)
+
+if (res) {
+    if (Object.keys(data).length === 0 && data.constructor === Object) {
+      res.writeHead(301, { Location: "/" })
+      res.end()
+    }
+  }
+
+  return {
+    data: data && data,
+  }
 }

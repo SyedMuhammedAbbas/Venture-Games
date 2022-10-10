@@ -6,11 +6,13 @@ import { store } from "../app/store";
 import { Provider } from "react-redux";
 import whatsapplogo from "../images/whatsapp-circle.png";
 import initMyFirebase from "../firebase/FirebaseInit";
+import { CookiesProvider } from "react-cookie";
 
 function MyApp({ Component, pageProps }) {
   initMyFirebase();
   return (
     <>
+      <CookiesProvider>
       <Provider store={store}>
         <Header />
         <div className="h-[120px] tablet:h-[70px]">&nbsp;</div>
@@ -33,6 +35,7 @@ function MyApp({ Component, pageProps }) {
           </div>
         </body>
       </Provider>
+      </CookiesProvider>
     </>
   );
 }

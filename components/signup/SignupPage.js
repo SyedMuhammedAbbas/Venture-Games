@@ -1,8 +1,32 @@
 import { BsArrowRightShort } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
+import { useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
 
-export default function LoginPage() {
+export default function SignupPage({ data }) {
+  const [fullName, setFullName] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const [Contact, setContact] = useState("");
+  const router = useRouter();
+
+  async function handleSignUp() {
+    try {
+      await axios.post("https://app.venturegames.pk/SignUp", {
+      FullName: fullName,
+      EmailAddress: Email,
+      ContactNumber: Contact,
+      Password: Password
+    })
+    router.push('/login');  
+  }
+  catch(error) {
+    console.error(error);
+  }
+  }
+
   return (
     <>
       <div className="bg-[url('../images/loginbackground.png')]  bg-no-repeat flex justify-center bg-cover h-auto xl2:h-[100%] p-32 tablet2.1:px-20 mobile2.1:px-10 mobile1:px-5 mobile1.1:px-3 pt-[200px] tablet2.1:pt-[150px] py-[10%] loginmaindivClass">
@@ -14,6 +38,8 @@ export default function LoginPage() {
                 <input
                   placeholder="Sarah Ali"
                   className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
+                  onChange={(e) => {setFullName(e.target.value)}}
+                  value={fullName}
                 ></input>
               </form>
             </div>
@@ -23,6 +49,8 @@ export default function LoginPage() {
                 <input
                   placeholder="Sarah@venturegames.com"
                   className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
+                  onChange={(e) => {setEmail(e.target.value)}}
+                  value={Email}
                 ></input>
               </form>
             </div>
@@ -31,7 +59,10 @@ export default function LoginPage() {
               <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
                 <input
                   placeholder="password"
+                  type='password'
                   className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
+                  onChange={(e) => {setPassword(e.target.value)}}
+                  value={Password}
                 ></input>
               </form>
             </div>
@@ -46,11 +77,15 @@ export default function LoginPage() {
                   placeholder:text-[#78694f] mobile1:w-[350px]
                   placeholder:opacity-90 placeholder:text-[25px]
                   mobile1.1:placeholder:text-[15px]"
+                  onChange={(e) => {setContact(e.target.value)}}
+                  value={Contact}
                 ></input>
               </form>
             </div>
             <div>
-              <button className="mt-[5%] float-right text-[30px] flex items-center text-[#FFB636] align-middle ">
+              <button 
+                onClick={(e) => {handleSignUp()}}
+                className="mt-[5%] float-right text-[30px] flex items-center text-[#FFB636] align-middle ">
                 next
                 <BsArrowRightShort />
               </button>
@@ -71,4 +106,19 @@ export default function LoginPage() {
       </div>
     </>
   );
+}
+
+SignupPage.getInitialProps = async ({ req, res }) => {
+  const data = parseCookies(req)
+
+if (res) {
+    if (Object.keys(data).length === 0 && data.constructor === Object) {
+      res.writeHead(301, { Location: "/" })
+      res.end()
+    }
+  }
+
+  return {
+    data: data && data,
+  }
 }
