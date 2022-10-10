@@ -120,12 +120,12 @@ export default function LoginPage() {
         <div className="bg-black opacity-75 w-[100%] relative flex xl2:grid mobile:gap-10 rounded-[40px] p-10 min-h-[100vh] max-h-[100%] ">
           <div className="grid xl2:gap-5">
             {next ? (
-              <div className="text-[#FFB636] text-[35px] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
+              <div className="text-[#FFB636] w-[500px] mobile:w-auto text-[35px] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
                 Password
                 <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
                   <input
                     placeholder="Sarah@venturegames.com"
-                    className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
+                    className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
                     type="password"
                     required
                     onChange={(e) => {
@@ -143,7 +143,7 @@ export default function LoginPage() {
                   </button>
                 </form>
                 <button
-                  className="text-[20px] text-[#FFB636] pt-[3%] float-right hover:pointer"
+                  className="text-[20px] text-[#FFB636] pt-[3%] float-right mobile:float-left hover:pointer"
                   onClick={() => {
                     forgetPassword();
                   }}
@@ -155,12 +155,12 @@ export default function LoginPage() {
                 </button>
               </div>
             ) : (
-              <div className="text-[#FFB636] text-[35px] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
+              <div className="text-[#FFB636] w-[500px] mobile:w-auto text-[35px] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
                 Enter your email to get started
                 <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
                   <input
                     placeholder="Sarah@venturegames.com"
-                    className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
+                    className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
                     type="email"
                     required
                     onChange={(e) => setEmail(e.target.value)}

@@ -19,38 +19,39 @@ export default function SignupPage({ data }) {
   async function handleSignUp() {
     try {
       let response = await axios.post("https://api.venturegames.pk/SignUp", {
-      FullName: fullName,
-      EmailAddress: Email,
-      ContactNumber: Contact,
-      Password: Password
-    })
+        FullName: fullName,
+        EmailAddress: Email,
+        ContactNumber: Contact,
+        Password: Password,
+      });
 
-    console.log(response.data.user);
-    console.log(response);
+      console.log(response.data.user);
+      console.log(response);
 
-    dispatch(Login(response.data.user));
-    localStorage.setItem("token", JSON.stringify(response.data.Token));
+      dispatch(Login(response.data.user));
+      localStorage.setItem("token", JSON.stringify(response.data.Token));
 
-    router.push('/');  
-    console.log(user);
-  }
-  catch(error) {
-    console.error(error);
-  }
+      router.push("/");
+      console.log(user);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
     <>
       <div className="bg-[url('../images/loginbackground.png')]  bg-no-repeat flex justify-center bg-cover h-auto xl2:h-[100%] p-32 tablet2.1:px-20 mobile2.1:px-10 mobile1:px-5 mobile1.1:px-3 pt-[200px] tablet2.1:pt-[150px] py-[10%] loginmaindivClass">
         <div className="bg-black relative opacity-75 w-[100%] flex xl2:grid mobile:gap-10 rounded-[40px] p-10 h-full">
-          <div className="grid xl2:gap-5">
+          <div className="grid xl2:gap-5 w-[500px]">
             <div className="text-[#FFB636] text-[35px] xl2:w-[500px] mobile1:w-auto mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
               Full Name
               <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
                 <input
                   placeholder="Sarah Ali"
-                  className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
-                  onChange={(e) => {setFullName(e.target.value)}}
+                  className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
+                  onChange={(e) => {
+                    setFullName(e.target.value);
+                  }}
                   value={fullName}
                 ></input>
               </form>
@@ -60,8 +61,10 @@ export default function SignupPage({ data }) {
               <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
                 <input
                   placeholder="Sarah@venturegames.com"
-                  className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
-                  onChange={(e) => {setEmail(e.target.value)}}
+                  className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                   value={Email}
                 ></input>
               </form>
@@ -71,9 +74,11 @@ export default function SignupPage({ data }) {
               <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
                 <input
                   placeholder="password"
-                  type='password'
-                  className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
-                  onChange={(e) => {setPassword(e.target.value)}}
+                  type="password"
+                  className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                   value={Password}
                 ></input>
               </form>
@@ -86,18 +91,23 @@ export default function SignupPage({ data }) {
                   type="tel"
                   pattern="[0-9]{4}-[0-9]{7}"
                   className="bg-transparent text-[#FFB636]
-                  placeholder:text-[#78694f] mobile1:w-[350px]
+                  placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px]
                   placeholder:opacity-90 placeholder:text-[25px]
                   mobile1.1:placeholder:text-[15px]"
-                  onChange={(e) => {setContact(e.target.value)}}
+                  onChange={(e) => {
+                    setContact(e.target.value);
+                  }}
                   value={Contact}
                 ></input>
               </form>
             </div>
             <div>
-              <button 
-                onClick={(e) => {handleSignUp()}}
-                className="mt-[5%] float-right text-[30px] flex items-center text-[#FFB636] align-middle ">
+              <button
+                onClick={(e) => {
+                  handleSignUp();
+                }}
+                className="mt-[5%] float-right mobile:float-left text-[30px] flex items-center text-[#FFB636] align-middle "
+              >
                 next
                 <BsArrowRightShort />
               </button>
@@ -121,16 +131,16 @@ export default function SignupPage({ data }) {
 }
 
 SignupPage.getInitialProps = async ({ req, res }) => {
-  const data = parseCookies(req)
+  const data = parseCookies(req);
 
-if (res) {
+  if (res) {
     if (Object.keys(data).length === 0 && data.constructor === Object) {
-      res.writeHead(301, { Location: "/" })
-      res.end()
+      res.writeHead(301, { Location: "/" });
+      res.end();
     }
   }
 
   return {
     data: data && data,
-  }
-}
+  };
+};

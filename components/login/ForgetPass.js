@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BsArrowRightShort } from "react-icons/bs";
-import axios from 'axios';
-import Link  from 'next/link';
+import axios from "axios";
+import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function ForgetPass() {
@@ -15,17 +15,19 @@ export default function ForgetPass() {
     console.log(OTP);
     console.log(password);
     try {
-      if(password == newPassword) {
-        let response = await axios.post("https://api.venturegames.pk/ResetPassword", {
-        NewPassword: password,
-        resetPasswordToken: OTP
-      });
-      if(response.data == 'Password Resetted') {
-        router.push('/login');
+      if (password == newPassword) {
+        let response = await axios.post(
+          "https://api.venturegames.pk/ResetPassword",
+          {
+            NewPassword: password,
+            resetPasswordToken: OTP,
+          }
+        );
+        if (response.data == "Password Resetted") {
+          router.push("/login");
+        }
       }
-      }
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error);
     }
   }
@@ -33,14 +35,16 @@ export default function ForgetPass() {
     <>
       <div className="bg-[url('../images/loginbackground.png')]  bg-no-repeat flex justify-center bg-cover h-auto xl2:h-[100%] p-32 tablet2.1:px-20 mobile2.1:px-10 mobile1:px-5 mobile1.1:px-3 pt-[200px] tablet2.1:pt-[150px] py-[10%] loginmaindivClass">
         <div className="bg-black opacity-75 w-[100%] relative flex xl2:grid mobile:gap-10 rounded-[40px] p-10 min-h-[100vh] max-h-[100%] ">
-          <div className="grid xl2:gap-5">
+          <div className="grid xl2:gap-5 w-[500px] ">
             <div className="text-[#FFB636] text-[35px] mobile1:text-[25px] mobile1.1:text-[20px] mt-[5%] xl2:mt-[5%] loginheading1">
               OTP
               <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
                 <input
-                  className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
+                  className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
                   type="text"
-                  onChange={(e) => {setOTP(e.target.value)}}
+                  onChange={(e) => {
+                    setOTP(e.target.value);
+                  }}
                   value={OTP}
                   required
                 ></input>
@@ -51,9 +55,11 @@ export default function ForgetPass() {
               <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
                 <input
                   placeholder="password"
-                  className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
+                  className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
                   type="password"
-                  onChange={(e) => {setPassword(e.target.value)}}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                   value={password}
                   required
                 ></input>
@@ -64,20 +70,25 @@ export default function ForgetPass() {
               <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
                 <input
                   placeholder="confirm password"
-                  className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
+                  className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
                   type="Password"
-                  onChange={(e) => {setNewPassword(e.target.value)}}
+                  onChange={(e) => {
+                    setNewPassword(e.target.value);
+                  }}
                   value={newPassword}
                   required
                 ></input>
               </form>
             </div>
-            <div>         
-              <button 
+            <div>
+              <button
                 className="mt-[5%] float-right text-[30px] flex items-center text-[#FFB636] align-middle "
-                onClick={(e) => {resetPassword(e)}}>
+                onClick={(e) => {
+                  resetPassword(e);
+                }}
+              >
                 next
-                <BsArrowRightShort/>
+                <BsArrowRightShort />
               </button>
             </div>
           </div>
