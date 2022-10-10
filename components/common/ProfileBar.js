@@ -122,13 +122,13 @@ export default function ProfileBar({
           </Link>
         </div>
       )}
-      {!userToken ? <div className="flex gap-5">
+      <div className="flex gap-5">
         <button className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3">
           <Link href="login">
             <a className="">login</a>
           </Link>
         </button>
-      </div>:""}
+      </div>
 
       <div className="flex items-center text-[30px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]">
         {user.FullName}

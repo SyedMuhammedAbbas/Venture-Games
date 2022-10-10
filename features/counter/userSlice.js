@@ -17,7 +17,7 @@ export const userSlice = createSlice({
     },
     SignOut(state) {
       console.log("here")
-      Object.assign(state, initialState)
+      state.userDetails = {};
     }
   },
 });
