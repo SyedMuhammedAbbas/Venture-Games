@@ -3,6 +3,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 export default function Header() {
   const router = useRouter();
@@ -11,6 +12,11 @@ export default function Header() {
   const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
   const [menu_class, setMenuClass] = useState(" hidden ");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
+  const [token, setToken] = useState();
+  const user = useSelector((state) => state.user.userDetails);
+  useEffect(() => {
+    setToken(JSON.parse(localStorage.getItem("token")));
+  }, [])
 
   const wrapperRef = useRef(null);
   function useOutsideAlerter(ref) {
@@ -107,7 +113,7 @@ export default function Header() {
         </div>
         <div className="hidden tablet:block">
           <div className={menu_class} ref={wrapperRef}>
-            <div className="flex justify-center gap-5 pt-10">
+            {token==="" ? <div className="flex justify-center gap-5 pt-10">
               <Link href="/login">
                 <button
                   onClick={CloseMenu}
@@ -116,7 +122,10 @@ export default function Header() {
                   login
                 </button>
               </Link>
-            </div>
+            </div>: 
+            <button>
+              {user.FullName}
+            </button>}
             <ul className="grid uppercase text-white text-lg transition-all mt-[20px] overflow-y-scroll desp-scroll">
               {pages_heading.map((pages_heading, index) => (
                 <li

@@ -4,23 +4,35 @@ import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { Login } from "../../features/counter/userSlice";
 
 export default function SignupPage({ data }) {
+  const dispatch = useDispatch();
   const [fullName, setFullName] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [Contact, setContact] = useState("");
   const router = useRouter();
+  const user = useSelector((state) => state.user.userDetails);
 
   async function handleSignUp() {
     try {
-      await axios.post("https://app.venturegames.pk/SignUp", {
+      let response = await axios.post("https://api.venturegames.pk/SignUp", {
       FullName: fullName,
       EmailAddress: Email,
       ContactNumber: Contact,
       Password: Password
     })
-    router.push('/login');  
+
+    console.log(response.data.user);
+    console.log(response);
+
+    dispatch(Login(response.data.user));
+    localStorage.setItem("token", JSON.stringify(response.data.Token));
+
+    router.push('/');  
+    console.log(user);
   }
   catch(error) {
     console.error(error);

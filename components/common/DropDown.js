@@ -3,8 +3,23 @@ import { IoIosHelpCircle } from "react-icons/io";
 import { FaSignOutAlt } from "react-icons/fa";
 import { GoTriangleUp } from "react-icons/go";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { SignOut } from "../../features/counter/userSlice";
+import { useRouter } from "next/router";
 
 export default function DropDown() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.userDetails);
+  const router = useRouter();
+
+  function flush() {
+    console.log("flush")
+    dispatch(SignOut({}));
+    localStorage.clear();
+    //router.push('/');
+    console.log(user);
+  }
+  
   return (
     <>
       <div className="grid w-60  top-[60px] bg-gradient-to-t from-black to-[#2c2c2c] opacity-95 absolute backdrop-blur-[20px] rounded-2xl p-[0rem] overflow-hidden">
@@ -24,7 +39,7 @@ export default function DropDown() {
           </div>
         </div>
         <div className="h-[58px] text-[#fff] text-[20px] flex items-center py-[2rem] ml-6 hover:bg-[#353535] hover:ml-0 hover:pl-6">
-          <button className="cursor-pointer">Sign Out</button>
+          <button className="cursor-pointer" onClick={() => {flush()}}>Sign Out</button>
           <div className="text-white text-[24px] absolute right-6">
             <FaSignOutAlt />
           </div>
