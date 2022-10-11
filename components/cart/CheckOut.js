@@ -9,7 +9,11 @@ export default function CheckOut() {
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
   const [total_amount, setTotal_Amount] = useState(0);
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const shipping_fee = 450;
+  const user = useSelector((state) => state.user.userDetails);
   function coupon() {
     return (
       <button className="border-[1px] border-white rounded-lg px-4 bg-transparent uppercase hover:text-black hover:border-black hover:bg-white">
@@ -46,6 +50,13 @@ export default function CheckOut() {
         ) * 100
       ) / 100
     );
+
+    if(user) {
+      setEmail(user.EmailAddress);
+      const [first, last] = user.FullName.split(' ');
+      setFirstName(first);
+      setLastName(last);
+    }
   }, [Object.values(cartItems)]);
   const order_summary = [
     "total items:",
@@ -84,16 +95,19 @@ export default function CheckOut() {
                       <input
                         className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Email Address"
+                        value={email}
                       ></input>
                     </div>
                     <div className="flex gap-[2%] mobile2:grid mobile2:gap-8">
                       <input
                         className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="First Name"
+                        value={firstName}
                       ></input>
                       <input
                         className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Last Name"
+                        value={lastName}
                       ></input>
                     </div>
                   </div>

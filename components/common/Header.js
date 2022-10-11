@@ -3,20 +3,19 @@ import { AiOutlineSearch } from "react-icons/ai";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { SignOut } from "../../features/counter/userSlice";
 
 export default function Header() {
   const router = useRouter();
+  const dispatch = useDispatch();
   const list =
     "hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat cursor-pointer mt-[10px] xl:text-[1.5vw] lg:mt-[0px] tablet:hidden";
   const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
   const [menu_class, setMenuClass] = useState(" hidden ");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
-  const [token, setToken] = useState();
   const user = useSelector((state) => state.user.userDetails);
-  useEffect(() => {
-    setToken(JSON.parse(localStorage.getItem("token")));
-  }, []);
+  const token = useSelector((state) => state.user.token);
 
   const wrapperRef = useRef(null);
   function useOutsideAlerter(ref) {
@@ -83,6 +82,14 @@ export default function Header() {
     setMenuClass("hidden");
     document.body.style.overflow = "unset";
   }
+
+  function flush() {
+    console.log("flush")
+    dispatch(SignOut({}));
+    localStorage.clear();
+    //router.push('/');
+    console.log(user);
+  }
   return (
     <>
       <div className="flex p-10 mx-auto h-[120px] justify-center bg-gradient-to-t from-black to-[#2c2c2c] fixed tablet:h-[45px] w-[100%] z-[999]">
@@ -113,7 +120,7 @@ export default function Header() {
         </div>
         <div className="hidden tablet:block">
           <div className={menu_class} ref={wrapperRef}>
-            {token ? (
+            {!token ? (
               <div className="flex justify-center gap-5 pt-10">
                 <Link href="/login">
                   <button
@@ -150,12 +157,15 @@ export default function Header() {
                   </Link>
                 </li>
               ))}
-              <li className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-[#272727] ml-6">
+              {token && <li className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-[#272727] ml-6">
                 Account
-              </li>
-              <li className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-[#272727] ml-6">
+              </li>}
+              {token && 
+              <li 
+                className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-[#272727] ml-6"
+                onClick={() => {flush()}}>
                 Signout
-              </li>
+              </li>}
             </ul>
           </div>
         </div>

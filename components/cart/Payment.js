@@ -9,12 +9,18 @@ export default function CheckOut() {
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
   const [total_amount, setTotal_Amount] = useState(0);
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const shipping_fee = 450; 
+  const user = useSelector((state) => state.user.userDetails);
+
 
   const MASTER_CARD_SESSION_JS_SRC = "https://testbankalfalah.gateway.mastercard.com/form/version/54/merchant/NIFT/session.js";
   const MPGS_TIMEOUT = 5000;
 
   useEffect(() => {
+    console.log("inside");
     setTotal_Items(Object.values(cartItems).length);
     setTotal_Amount(
       Object.values(cartItems).reduce(
@@ -31,6 +37,13 @@ export default function CheckOut() {
         ) * 100
       ) / 100
     );
+
+    if(user) {
+      setEmail(user.EmailAddress);
+      const [first, last] = user.FullName.split(' ');
+      setFirstName(first);
+      setLastName(last);
+    }
   }, [Object.values(cartItems)]);
   const order_summary = [
     "total items:",
@@ -53,6 +66,8 @@ export default function CheckOut() {
   function handleCOD() {
     setVal(false);
   }
+
+  console.log(user);
   return (
     <>
       <div className="bg-[#FFB636] pb-20 h-[100%]">
@@ -73,16 +88,19 @@ export default function CheckOut() {
                       <input
                         className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Email Address"
+                        value={email}
                       ></input>
                     </div>
                     <div className="flex gap-[2%] mobile2:grid mobile2:gap-8">
                       <input
                         className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="First Name"
+                        value={firstName}
                       ></input>
                       <input
                         className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Last Name"
+                        value={lastName}
                       ></input>
                     </div>
                   </div>
