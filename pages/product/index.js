@@ -5,7 +5,6 @@ import toggel from "../../styles/Toggel.module.css";
 import { useRouter } from "next/router";
 import { BiError } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { ApiError } from "next/dist/server/api-utils";
 import axios from "axios";
 // import { getProducts } from "../../features/counter/productsSlice";
 import ProfileBar from "../../components/common/ProfileBar";
@@ -65,6 +64,7 @@ export default function Product() {
 
   const [New, setNew] = useState(true);
   const [Old, setOld] = useState(false);
+  const [selectedPlatformFlag, setSelectedPlatformFlag] = useState(true);
 
   function handleNew() {
     {
@@ -156,16 +156,37 @@ export default function Product() {
                     <div className="flex gap-1">
                       {DisplayedProduct.ProductGroup.AvailablePlatforms.map(
                         (index) => {
-                          return (
-                            <button
-                              onClick={() => {
-                                getTitle(index);
-                              }}
-                              className="text-[#FFB636] uppercase font-semibold bg-transparent  border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px] hover:bg-[#FFB636] hover:text-black"
-                            >
-                              {index.Title}
-                            </button>
-                          );
+                          if (selectedPlatform === index.Title) {
+                            return (
+                              <button
+                                onClick={() => {
+                                  getTitle(index);
+                                }}
+                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                  selectedPlatformFlag
+                                    ? "bg-[#FFB636] text-black"
+                                    : "text-[#FFB636] bg-transparent"
+                                }`}
+                              >
+                                {index.Title}
+                              </button>
+                            );
+                          } else {
+                            return (
+                              <button
+                                onClick={() => {
+                                  getTitle(index);
+                                }}
+                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                  selectedPlatformFlag
+                                    ? "bg-[#FFB636] text-black"
+                                    : "text-[#FFB636] bg-transparent"
+                                }`}
+                              >
+                                {index.Title}
+                              </button>
+                            );
+                          }
                         }
                       )}
                     </div>

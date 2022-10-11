@@ -16,7 +16,7 @@ export default function Header() {
   const user = useSelector((state) => state.user.userDetails);
   useEffect(() => {
     setToken(JSON.parse(localStorage.getItem("token")));
-  }, [])
+  }, []);
 
   const wrapperRef = useRef(null);
   function useOutsideAlerter(ref) {
@@ -113,19 +113,22 @@ export default function Header() {
         </div>
         <div className="hidden tablet:block">
           <div className={menu_class} ref={wrapperRef}>
-            {token==="" ? <div className="flex justify-center gap-5 pt-10">
-              <Link href="/login">
-                <button
-                  onClick={CloseMenu}
-                  className="text-[#FFB636] font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-10 py-3 rounded-[15px] text-[20px] "
-                >
-                  login
-                </button>
-              </Link>
-            </div>: 
-            <button>
-              {user.FullName}
-            </button>}
+            {token ? (
+              <div className="flex justify-center gap-5 pt-10">
+                <Link href="/login">
+                  <button
+                    onClick={CloseMenu}
+                    className="text-[#FFB636] font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-10 py-3 rounded-[15px] text-[20px] "
+                  >
+                    login
+                  </button>
+                </Link>
+              </div>
+            ) : (
+              <button className="capitalize text-xl text-white">
+                {user.FullName}
+              </button>
+            )}
             <ul className="grid uppercase text-white text-lg transition-all mt-[20px] overflow-y-scroll desp-scroll">
               {pages_heading.map((pages_heading, index) => (
                 <li
