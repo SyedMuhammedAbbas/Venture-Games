@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signOut } from "firebase/auth";
 
 const initialState = {
   userDetails: {},
-  token: true
+  token: false
 }
 
 export const userSlice = createSlice({
@@ -18,6 +17,7 @@ export const userSlice = createSlice({
     SignOut(state) {
       console.log("here")
       state.userDetails = {};
+      state.token = false;
     }
   },
 });

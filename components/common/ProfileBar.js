@@ -28,18 +28,17 @@ export default function ProfileBar({
   sethandleLogin,
   sethandleSignup,
 }) {
-  const [token, setToken] = useState();
   const [searchResult, setSearchResult] = useState();
-  useEffect(() => {
-    let tok = JSON.parse(localStorage.getItem("token"));
-    console.log(tok); 
-    setToken(tok);
-  }, [])
+  const token = useSelector((state) => state.user.token);
+  // useEffect(() => {
+  //   // console.log(tok); 
+  //   setToken(tok);
+  // }, [])
   const cartItem = useSelector((state) => state.cart.cartItems);
   const user = useSelector((state) => state.user.userDetails);
-  const userToken = useSelector((state) => state.user.token);
+  // const userToken = useSelector((state) => state.user.token);
   // console.log(token);
-  console.log(user);
+  // console.log(user);
   const icons =
     "text-[30px] 2xl:text-[25px] lg:text-[21px] text-white cursor-pointer";
 
@@ -62,17 +61,18 @@ export default function ProfileBar({
 
   async function getProducts(e) {
     e.preventDefault();
-    // let response = await axios.get("https://api.venturegames.pk/Products", {
-    //   params: {
-    //     Title: title
-    //   }
-    // })
+    let response = await axios.get("https://api.venturegames.pk/Products", {
+      params: {
+        Title: spi
+      }
+    })
 
-    // console.log(response);
-    console.log("Search")
+    console.log(response.data);
+    // console.log("Search")
   }
 
-  // console.log(userToken);
+  console.log(token);
+  console.log(user);
 
   return (
     <div className="flex items-center gap-9 2xl:gap-7 mobile:gap-5 fixed w-[100%] justify-end pr-28 2xl:pr-20 lg:pr-14 mobile:pr-7 tablet:hidden p-3  bg-black bg-opacity-30 backdrop-blur-xl z-[999]">
@@ -103,7 +103,7 @@ export default function ProfileBar({
           </div>
         </div>
       )}
-
+      <button onClick={(e) => {getProducts(e)}}>Click Me</button>
       <div className={search.wrap}>
         <form action="" autoComplete="on">
           <input
@@ -141,23 +141,23 @@ export default function ProfileBar({
           </Link>
         </div>
       )}
-      <div className="flex gap-5">
+      {!token && <div className="flex gap-5">
         <button className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3">
           <Link href="login">
             <a className="">login</a>
           </Link>
         </button>
-      </div>
+      </div>}
 
       <div className="flex items-center text-[30px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]">
         {user.FullName}
-        <div className="text-[34px] 2xl:text-[25px] lg:text-[21px] text-white mt-[9px] lg:mt-[3px]">
+        {token && <div className="text-[34px] 2xl:text-[25px] lg:text-[21px] text-white mt-[9px] lg:mt-[3px]">
           <a className="cursor-pointer">
             <MdKeyboardArrowDown onClick={() => setOpen(!open)} />
           </a>
-        </div>
+        </div>}
       </div>
-      {open && <DropDown />}
+      {open && <DropDown setOp = {setOpen}/>}
     </div>
   );
 }

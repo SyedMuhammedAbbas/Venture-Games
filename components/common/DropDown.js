@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SignOut } from "../../features/counter/userSlice";
 import { useRouter } from "next/router";
 
-export default function DropDown() {
+export default function DropDown( {setOp} ) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userDetails);
   const router = useRouter();
@@ -16,10 +16,11 @@ export default function DropDown() {
     console.log("flush")
     dispatch(SignOut({}));
     localStorage.clear();
+    setOp(false);
     //router.push('/');
     console.log(user);
   }
-  
+
   return (
     <>
       <div className="grid w-60  top-[60px] bg-gradient-to-t from-black to-[#2c2c2c] opacity-95 absolute backdrop-blur-[20px] rounded-2xl p-[0rem] overflow-hidden">

@@ -188,12 +188,13 @@ export default function LoginPage() {
                 <span>Sign in with...</span>
               </div>
               <div>
-                <button className="bg-white px-20 xl2:px-14 mobile1.1:px-10 py-3 mobile1.1:py-1 opacity-100 rounded-xl text-[35px] xl2:text-[30px] z-10">
-                  <FcGoogle
-                    onClick={() => {
-                      handleGoogleLogin();
-                    }}
-                  />
+              <button
+                  onClick={() => {
+                    handleGoogleLogin();
+                  }}
+                  className="bg-white px-20 xl2:px-14 mobile1.1:px-10 py-3 mobile1.1:py-1 opacity-100 rounded-xl text-[35px] xl2:text-[30px] z-10"
+                >
+                  <FcGoogle />
                 </button>
               </div>
             </div>
