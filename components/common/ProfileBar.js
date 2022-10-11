@@ -14,6 +14,7 @@ import DropDown from "./DropDown";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import axios from "axios";
 
 export default function ProfileBar({
   filter,
@@ -28,6 +29,7 @@ export default function ProfileBar({
   sethandleSignup,
 }) {
   const [token, setToken] = useState();
+  const [searchResult, setSearchResult] = useState();
   useEffect(() => {
     let tok = JSON.parse(localStorage.getItem("token"));
     console.log(tok); 
@@ -57,6 +59,18 @@ export default function ProfileBar({
         : sethandleSort(true) & sethandleFilter(false);
     }
   };
+
+  async function getProducts(e) {
+    e.preventDefault();
+    // let response = await axios.get("https://api.venturegames.pk/Products", {
+    //   params: {
+    //     Title: title
+    //   }
+    // })
+
+    // console.log(response);
+    console.log("Search")
+  }
 
   // console.log(userToken);
 
@@ -97,10 +111,15 @@ export default function ProfileBar({
             name="search"
             type="text"
             placeholder="What're we looking for ?"
+            value={searchResult}
+            onChange={(e) => {setSearchResult(e.target.value)}}
           ></input>
-          <button className={`${icons} ${search.search_submit}`} type="submit">
-            <BsSearch />
-          </button>
+          {!searchResult ? <button className={`${icons} ${search.search_submit}`} type="submit" >
+            <BsSearch /> 
+          </button>:
+          <button >
+            <MdKeyboardArrowDown onClick={(e) => {getProducts(e)}} /> 
+          </button>}
         </form>
       </div>
 
