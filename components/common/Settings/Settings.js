@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 export default function Settings() {
-  const userName = "Sufyan";
-  const userEmail = "sufyan@venturegames.com";
+  const user = useSelector((state) => state.user.userDetails)
+  const userName = user.FullName;
+  const userEmail = user.EmailAddress;
   const userPassword = "**************";
 
   const [pass, setPass] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [Orders, setOrders] = useState(false);
   const [Details, setDetails] = useState(false);
 
@@ -26,6 +31,21 @@ export default function Settings() {
     {
       Details ? setDetails(false) : setDetails(true);
     }
+  }
+  async function handlePasswordChange(e) {
+    e.preventDefault();
+    const token = JSON.parse(localStorage.getItem("token"));
+    console.log(token);
+    let config = {
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    }
+    let response = await axios.post("https://api.venturegames.pk/ChangePassword", {
+      Password: password,
+      NewPassword: newPassword,
+    }, config)
+    console.log(response);
   }
   return (
     <>
@@ -104,6 +124,8 @@ export default function Settings() {
                   <input
                     className="w-[500px] text-white text-[23px] placeholder:text-blackOpac mobile2:w-[90%] placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                     placeholder="Current Password"
+                    value={password}
+                    onChange={(e) => {setPassword(e.target.value)}}
                   ></input>
                 </div>
                 <div className="grid gap-5">
@@ -111,8 +133,11 @@ export default function Settings() {
                   <input
                     className="w-[500px] text-white text-[23px] placeholder:text-blackOpac mobile2:w-[90%] placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                     placeholder="New Password"
+                    value={newPassword}
+                    onChange={(e) => {setNewPassword(e.target.value)}}
                   ></input>
                 </div>
+                <button onClick={(e) => {handlePasswordChange(e)}}>Set Password</button>
               </div>
             )}
           </div>
