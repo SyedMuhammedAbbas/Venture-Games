@@ -18,7 +18,7 @@ export default function PlatformsElement({ consoles }) {
         <div className="flex justify-center 2xl:justify-start gap-10 mobile:gap-5 w-[110vw] platformElementClass overflow-x-auto platform-items-scroll h-[500px] snap-x snap-mandatory">
           {platformLogos.map((platformLogos, index) => (
             <div key={index}>
-              <Link href={`/${platformLogos}`}>
+              <Link href="/shop">
                 <a>
                   <div className={platformClass}>
                     <img className={platformImgClass} src={platformLogos.src} />

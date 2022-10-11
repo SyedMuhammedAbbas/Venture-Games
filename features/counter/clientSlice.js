@@ -2,31 +2,28 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import { Allproductsdata } from "../../components/common/AllProductsData";
 // import { ProductsData } from "../../components/common/ProductsData";
 
-export const getProducts = createAsyncThunk(
-  "products/getProducts",
-  async () => {
-    return fetch("https://api.venturegames.pk/Products").then((res) =>
-      res.json()
-    );
-  }
-);
+export const getReviews = createAsyncThunk("products/getProducts", async () => {
+  return fetch("https://api.venturegames.pk/Products").then((res) =>
+    res.json()
+  );
+});
 
 const initialState = {
   allProducts: [],
 };
 
-export const productsSlice = createSlice({
+export const clientSlice = createSlice({
   name: "reviews",
   initialState,
   extraReducers: {
-    [getProducts.pending]: (state, action) => {
+    [getReviews.pending]: (state, action) => {
       state.loading = true;
     },
-    [getProducts.fulfilled]: (state, action) => {
+    [getReviews.fulfilled]: (state, action) => {
       state.loading = false;
       state.allProducts = action.payload;
     },
-    [getProducts.rejected]: (state, action) => {
+    [getReviews.rejected]: (state, action) => {
       state.loading = false;
     },
   },
@@ -42,12 +39,6 @@ export const productsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {
-  FilterByConsole,
-  FilterByGenre,
-  FilterByCategory,
-  SortLowToHigh,
-  SortHighToLow,
-} = productsSlice.actions;
+export const {} = clientSlice.actions;
 
-export default productsSlice.reducer;
+export default clientSlice.reducer;

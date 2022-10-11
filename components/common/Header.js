@@ -150,6 +150,12 @@ export default function Header() {
                   </Link>
                 </li>
               ))}
+              <li className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-[#272727] ml-6">
+                Account
+              </li>
+              <li className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-[#272727] ml-6">
+                Signout
+              </li>
             </ul>
           </div>
         </div>
@@ -167,7 +173,11 @@ export default function Header() {
           <AiOutlineSearch />
         </div>
         <ul className="flex gap-[15vw] uppercase text-white text-xl transition-all mb-[-10px] 4xl:text-lg xl:gap-[10vw] lg:mb-[-20px]">
-          <li className={list}>games</li>
+          <li className={list}>
+            <Link href="/shop">
+              <a>games</a>
+            </Link>
+          </li>
           <li className={list}>
             <Link href="/shop">
               <a>accessories</a>
