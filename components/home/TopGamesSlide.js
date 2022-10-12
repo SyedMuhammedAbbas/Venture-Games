@@ -4,7 +4,7 @@ export default function TopGamesSlide({ carouselProd }) {
       <div className="flex justify-center snap-center topgamesCarousel min-h-[120vh] max-h-[100%] pt-[10rem] mobile:pt-[4em]  pb-[8rem] tablet2:pb-auto gap-10  tablet2:gap-1  tablet2:grid   tablet2:justify-center">
         <div className="flex justify-center">
           <img
-            className="w-[500px] h-[500px] rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet1:w-[330px] tablet1:h-[330px]  tablet2:w-[450px] tablet2:h-[450px]  mobile:w-[80vw] mobile:h-[80vw]   mobile1:w-[400px] mobile1:h-[400px] mobilesm:w-[250px] mobilesm:h-[250px]"
+            className="w-[500px] h-[500px] rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet1:w-[330px] tablet1:h-[330px]  tablet2:w-[450px] tablet2:h-[450px]  mobile:w-[80vw] mobile:h-[80vw]   mobile1:w-[370px] mobile1:h-[370px] mobilesm:w-[250px] mobilesm:h-[250px]"
             src={carouselProd.product_image}
           ></img>
         </div>

@@ -35,6 +35,7 @@ export default function ProfileBar({
   //   setToken(tok);
   // }, [])
   const cartItem = useSelector((state) => state.cart.cartItems);
+  const totalCartItems = useSelector((state) => state.cart.cartTotalQuantity);
   const user = useSelector((state) => state.user.userDetails);
   // const userToken = useSelector((state) => state.user.token);
   // console.log(token);
@@ -152,7 +153,7 @@ export default function ProfileBar({
               <button>
                 <BsHandbag />
                 <div class=" mt-[-10px] mr-20 pt-[3.5px] absolute z-10 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-[#000000] rounded-full ">
-                  {Object.values(cartItem).length}
+                  {totalCartItems}
                 </div>
               </button>
             </a>

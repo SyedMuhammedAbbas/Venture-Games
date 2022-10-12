@@ -54,7 +54,7 @@ export default function Header() {
     "consoles",
     "consoles",
     "consoles",
-    "login",
+    "shop",
     "learnmore",
   ];
 
@@ -118,7 +118,7 @@ export default function Header() {
           <div className={burger_class}></div>
           <div className={burger_class}></div>
         </div>
-        <div className="hidden tablet:block">
+        <div className="hidden tablet:block tablet:relative">
           <div className={menu_class} ref={wrapperRef}>
             <div
               className={` justify-center pt-10 ${
@@ -189,16 +189,18 @@ export default function Header() {
 
         <Link href="/">
           <a onClick={CloseMenu}>
-            <img
-              className="w-28 mx-[10vw] header-img mt-[-25px] 5.1xl:w-24 lg:w-[45px] lg:h-[75px] tablet:w-[55px] tablet:h-[45px] tablet:mt-[-28px] "
-              src={logo.src}
-            />
+            <div className="tablet:flex tablet:absolute tablet:right-3">
+              <img
+                className="w-28 mx-[10vw] header-img mt-[-25px] 5.1xl:w-24 lg:w-[45px] lg:h-[75px] tablet:w-[50px] tablet:h-[40px] tablet:mt-[-28px] "
+                src={logo.src}
+              />
+            </div>
           </a>
         </Link>
 
-        <div className=" hidden tablet:text-[30px] headsearch tablet:text-white tablet:flex tablet:absolute tablet:right-10 tablet:mt-[-20px]">
+        {/* <div className=" hidden tablet:text-[30px] headsearch tablet:text-white tablet:flex tablet:absolute tablet:right-10 tablet:mt-[-20px]">
           <AiOutlineSearch />
-        </div>
+        </div> */}
         <ul className="flex gap-[15vw] uppercase text-white text-xl transition-all mb-[-10px] 4xl:text-lg xl:gap-[10vw] lg:mb-[-20px]">
           <li className={list}>
             <Link href="/shop">

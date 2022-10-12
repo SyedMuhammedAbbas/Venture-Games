@@ -98,7 +98,7 @@ export default function ShoppingCart() {
                           <td className="p-20 py-10 px-5 mobile1.1:pr-0 pl-10 mobile1:pl-5 mobile1.1:w-[100px]">
                             <div className="flex gap-4 text-center xl3:grid xl3:gap-1 xl3:text-left">
                               <img
-                                className="w-[170px] bg-contain mobile1.1:w-[150px] rounded-3xl"
+                                className="w-[170px] h-[170px] bg-contain mobile1.1:w-[150px] mobile1.1:h-[150px] rounded-3xl"
                                 src={currentItem.Images}
                               ></img>
                               <div className="grid h-[50px] xl3:h-auto xl3:w-auto">
