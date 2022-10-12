@@ -42,10 +42,10 @@ export default function SignupPage({ data }) {
     <>
       <div className="bg-[url('../images/loginbackground.png')]  bg-no-repeat flex justify-center bg-cover h-auto xl2:h-[100%] p-32 tablet2.1:px-20 mobile2.1:px-10 mobile1:px-5 mobile1.1:px-3 pt-[200px] tablet2.1:pt-[150px] py-[10%] loginmaindivClass">
         <div className="bg-black relative opacity-75 w-[100%] flex xl2:grid mobile:gap-10 rounded-[40px] p-10 h-full">
-          <div className="grid xl2:gap-5 w-[500px]">
-            <div className="text-[#FFB636] text-[35px] xl2:w-[500px] mobile1:w-auto mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
+          <div className="grid xl2:gap-5 w-[500px] mobile:w-[80%]">
+            <div className="text-[#FFB636] text-[35px] xl2:w-[500px] mobile1:w-[100%] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
               Full Name
-              <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
+              <form className="border-b-[2px] xl2:w-[500px] mobile1:w-[100%] flex border-[#FFB636]">
                 <input
                   placeholder="Sarah Ali"
                   className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
@@ -56,9 +56,9 @@ export default function SignupPage({ data }) {
                 ></input>
               </form>
             </div>
-            <div className="text-[#FFB636] text-[35px] xl2:w-[500px] mobile1:w-auto mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
+            <div className="text-[#FFB636] text-[35px] xl2:w-[500px] mobile1:w-[100%] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
               Email
-              <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
+              <form className="border-b-[2px] xl2:w-[500px] mobile1:w-[100%] flex border-[#FFB636]">
                 <input
                   placeholder="Sarah@venturegames.com"
                   className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
@@ -69,9 +69,9 @@ export default function SignupPage({ data }) {
                 ></input>
               </form>
             </div>
-            <div className="text-[#FFB636] text-[35px] xl2:w-[500px] mobile1:w-auto mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
+            <div className="text-[#FFB636] text-[35px] xl2:w-[500px] mobile1:w-[100%] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
               Password
-              <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
+              <form className="border-b-[2px] xl2:w-[500px] mobile1:w-[100%] flex border-[#FFB636]">
                 <input
                   placeholder="password"
                   type="password"
@@ -83,9 +83,9 @@ export default function SignupPage({ data }) {
                 ></input>
               </form>
             </div>
-            <div className="text-[#FFB636] text-[35px] xl2:w-[500px] mobile1:w-auto mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
+            <div className="text-[#FFB636] text-[35px] xl2:w-[500px] mobile1:w-[100%] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
               Contact No.
-              <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
+              <form className="border-b-[2px] xl2:w-[500px] mobile1:w-[100%] flex border-[#FFB636]">
                 <input
                   placeholder="contact"
                   type="tel"

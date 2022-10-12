@@ -11,12 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 // import { getProducts } from "../../features/counter/productsSlice";
 
 export default function Featured({ products }) {
-  const Products = useSelector((state) => state.products.allProducts);
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getProducts());
-  // }, []);
-  // const list = Products.length;
+  // const Products = useSelector((state) => state.products.allProducts);
+  const Products = FeaturedProducts;
   console.log(Products.length);
   var settings = {
     dots: true,

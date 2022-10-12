@@ -12,11 +12,11 @@ export default function CheckOut() {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const shipping_fee = 450; 
+  const shipping_fee = 450;
   const user = useSelector((state) => state.user.userDetails);
 
-
-  const MASTER_CARD_SESSION_JS_SRC = "https://testbankalfalah.gateway.mastercard.com/form/version/54/merchant/NIFT/session.js";
+  const MASTER_CARD_SESSION_JS_SRC =
+    "https://testbankalfalah.gateway.mastercard.com/form/version/54/merchant/NIFT/session.js";
   const MPGS_TIMEOUT = 5000;
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function CheckOut() {
     setTotal_Items(Object.values(cartItems).length);
     setTotal_Amount(
       Object.values(cartItems).reduce(
-        (acc, curr) => acc + Number(curr.product_newprice) * curr.quantity,
+        (acc, curr) => acc + Number(curr.Price) * curr.quantity,
         0
       )
     );
@@ -32,15 +32,15 @@ export default function CheckOut() {
     setTotal_Weight(
       Math.round(
         Object.values(cartItems).reduce(
-          (acc, curr) => acc + Number(curr.product_weight) * curr.quantity,
+          (acc, curr) => acc + Number(curr.Weight) * curr.quantity,
           0
         ) * 100
       ) / 100
     );
 
-    if(user) {
+    if (user) {
       setEmail(user.EmailAddress);
-      const [first, last] = user.FullName.split(' ');
+      const [first, last] = user.FullName.split(" ");
       setFirstName(first);
       setLastName(last);
     }
@@ -126,7 +126,10 @@ export default function CheckOut() {
                       </button>
                     </div>
                     {getVal ? (
-                      <div id="PGWHPCCARDContainer2" className="grid gap-7 transition-all">
+                      <div
+                        id="PGWHPCCARDContainer2"
+                        className="grid gap-7 transition-all"
+                      >
                         <div>
                           <input
                             className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"

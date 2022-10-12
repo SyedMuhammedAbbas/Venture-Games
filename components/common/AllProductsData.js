@@ -17,6 +17,21 @@ export const Allproductsdata = {
     product_condition: "new",
     product_weight: 14,
     product_quantity: 5,
+    ProductGroup: {
+      _id: "634056369e44739587b95d16",
+      Title: "PUBG Game",
+      AvailableColours: [],
+      AvailablePlatforms: [
+        {
+          _id: "6335aaf8a365eeb5ab5519c3",
+          Title: "xbox",
+        },
+        {
+          _id: "6335aaf1a365eeb5ab5519bf",
+          Title: "ps5",
+        },
+      ],
+    },
   },
   2: {
     id: 2,
@@ -31,6 +46,21 @@ export const Allproductsdata = {
     product_condition: "new",
     product_weight: 0.8,
     product_quantity: 5,
+    ProductGroup: {
+      _id: "634056369e44739587b95d16",
+      Title: "PUBG Game",
+      AvailableColours: [],
+      AvailablePlatforms: [
+        {
+          _id: "6335aaf8a365eeb5ab5519c3",
+          Title: "xbox",
+        },
+        {
+          _id: "6335aaf1a365eeb5ab5519bf",
+          Title: "ps5",
+        },
+      ],
+    },
   },
   3: {
     id: 3,
@@ -45,6 +75,21 @@ export const Allproductsdata = {
     product_condition: "used",
     product_weight: 0.8,
     product_quantity: 5,
+    ProductGroup: {
+      _id: "634056369e44739587b95d16",
+      Title: "PUBG Game",
+      AvailableColours: [],
+      AvailablePlatforms: [
+        {
+          _id: "6335aaf8a365eeb5ab5519c3",
+          Title: "xbox",
+        },
+        {
+          _id: "6335aaf1a365eeb5ab5519bf",
+          Title: "ps5",
+        },
+      ],
+    },
   },
   4: {
     id: 4,
@@ -59,6 +104,21 @@ export const Allproductsdata = {
     product_condition: "used",
     product_weight: 0.8,
     product_quantity: 5,
+    ProductGroup: {
+      _id: "634056369e44739587b95d16",
+      Title: "PUBG Game",
+      AvailableColours: [],
+      AvailablePlatforms: [
+        {
+          _id: "6335aaf8a365eeb5ab5519c3",
+          Title: "xbox",
+        },
+        {
+          _id: "6335aaf1a365eeb5ab5519bf",
+          Title: "ps5",
+        },
+      ],
+    },
   },
   5: {
     id: 5,
@@ -73,6 +133,21 @@ export const Allproductsdata = {
     product_condition: "used",
     product_weight: 0.8,
     product_quantity: 5,
+    ProductGroup: {
+      _id: "634056369e44739587b95d16",
+      Title: "PUBG Game",
+      AvailableColours: [],
+      AvailablePlatforms: [
+        {
+          _id: "6335aaf8a365eeb5ab5519c3",
+          Title: "xbox",
+        },
+        {
+          _id: "6335aaf1a365eeb5ab5519bf",
+          Title: "ps5",
+        },
+      ],
+    },
   },
   6: {
     id: 6,
@@ -87,6 +162,21 @@ export const Allproductsdata = {
     product_condition: "used",
     product_weight: 0.8,
     product_quantity: 5,
+    ProductGroup: {
+      _id: "634056369e44739587b95d16",
+      Title: "PUBG Game",
+      AvailableColours: [],
+      AvailablePlatforms: [
+        {
+          _id: "6335aaf8a365eeb5ab5519c3",
+          Title: "xbox",
+        },
+        {
+          _id: "6335aaf1a365eeb5ab5519bf",
+          Title: "ps5",
+        },
+      ],
+    },
   },
   7: {
     id: 7,
@@ -101,6 +191,21 @@ export const Allproductsdata = {
     product_condition: "used",
     product_weight: 0.8,
     product_quantity: 5,
+    ProductGroup: {
+      _id: "634056369e44739587b95d16",
+      Title: "PUBG Game",
+      AvailableColours: [],
+      AvailablePlatforms: [
+        {
+          _id: "6335aaf8a365eeb5ab5519c3",
+          Title: "xbox",
+        },
+        {
+          _id: "6335aaf1a365eeb5ab5519bf",
+          Title: "ps5",
+        },
+      ],
+    },
   },
   8: {
     id: 8,
@@ -115,5 +220,20 @@ export const Allproductsdata = {
     product_condition: "used",
     product_weight: 0.8,
     product_quantity: 5,
+    ProductGroup: {
+      _id: "634056369e44739587b95d16",
+      Title: "PUBG Game",
+      AvailableColours: [],
+      AvailablePlatforms: [
+        {
+          _id: "6335aaf8a365eeb5ab5519c3",
+          Title: "xbox",
+        },
+        {
+          _id: "6335aaf1a365eeb5ab5519bf",
+          Title: "ps5",
+        },
+      ],
+    },
   },
 };

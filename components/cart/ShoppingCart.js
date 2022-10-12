@@ -20,13 +20,13 @@ export default function ShoppingCart() {
     dispatch(DeleteFromCart(currentItems));
   };
   const handleQuantityCart = (id, newQuantity) => {
-    dispatch(SetProdQuantity({ id: id, quantity: newQuantity }));
+    dispatch(SetProdQuantity({ id: _id, quantity: newQuantity }));
   };
   useEffect(() => {
     setTotal_Items(Object.values(cartItems).length);
     setTotal_Amount(
       Object.values(cartItems).reduce(
-        (acc, curr) => acc + Number(curr.product_newprice) * curr.quantity,
+        (acc, curr) => acc + Number(curr.Price) * curr.quantity,
         0
       )
     );
@@ -34,7 +34,7 @@ export default function ShoppingCart() {
     setTotal_Weight(
       Math.round(
         Object.values(cartItems).reduce(
-          (acc, curr) => acc + Number(curr.product_weight) * curr.quantity,
+          (acc, curr) => acc + Number(curr.Weight) * curr.quantity,
           0
         ) * 100
       ) / 100
@@ -67,7 +67,7 @@ export default function ShoppingCart() {
   ];
   return (
     <>
-      <div className="bg-[#FFB636] pb-20 h-[100%]">
+      <div className="bg-[#FFB636] pb-20 min-h-[140vh] max-h-[100%] mobile:min-h-[100vh]">
         {Object.values(cartItems).length > 0 ? (
           <div className="flex xl3:grid">
             <div className="pt-[5%] pb-[5%] xl3:pt-[7%] tablet:pt-[7%] w-[55%] tablet1:w-[80%] mobile:w-[90%] mobile1:w-[100%]">
@@ -99,27 +99,27 @@ export default function ShoppingCart() {
                             <div className="flex gap-4 text-center xl3:grid xl3:gap-1 xl3:text-left">
                               <img
                                 className="w-[170px] bg-contain mobile1.1:w-[150px] rounded-3xl"
-                                src={currentItem.product_image}
+                                src={currentItem.Images}
                               ></img>
                               <div className="grid h-[50px] xl3:h-auto xl3:w-auto">
                                 <div className="text-white text-[25px] overflow-auto desp-scroll h-20 mobile1.1:text-[20px] pt-auto pb-4 ">
-                                  {currentItem.product_title}
+                                  {currentItem.Title}
                                 </div>
                                 <div className="border-b-[1.5px] border-[#6f6f6f] w-[200px]"></div>
                                 <div className="flex gap-2 pt-4 w-[200px]">
-                                  {currentItem.product_platform &&
+                                  {/* {currentItem.Platform &&
                                     currentItem.product_platform.map(
-                                      (product_platform, index) => (
-                                        <button
-                                          key={index}
-                                          className="font-semibold uppercase border-[1px] border-[#FFB636] px-3 h-5 mobile1.1:h-auto mobile1.1:py-[1px] rounded-md text-[14px] bg-[#FFB636] text-black"
-                                        >
-                                          {product_platform}
-                                        </button>
-                                      )
-                                    )}
+                                      (product_platform, index) => ( */}
+                                  <button
+                                    // key={index}
+                                    className="font-semibold uppercase border-[1px] border-[#FFB636] px-3 h-5 mobile1.1:h-auto mobile1.1:py-[1px] rounded-md text-[14px] bg-[#FFB636] text-black"
+                                  >
+                                    {currentItem.Platform.Title}
+                                  </button>
+                                  {/* )
+                                    )} */}
                                   <button className=" font-semibold uppercase border-[1px] border-[#FFB636] px-3 h-5 mobile1.1:h-auto mobile1.1:py-[1px] rounded-md text-[14px] bg-[#FFB636] text-black">
-                                    {currentItem.product_condition}
+                                    {currentItem.Type}
                                   </button>
                                   <button
                                     onClick={() =>
@@ -140,27 +140,26 @@ export default function ShoppingCart() {
                               className="border-[1px] rounded-xl text-white bg-transparent p-1 px-4 text-[20px]"
                               onChange={(e) => {
                                 handleQuantityCart(
-                                  currentItem.id,
+                                  currentItem._id,
                                   e.target.value
                                 );
                               }}
                             >
-                              {[
-                                ...Array(currentItem.product_quantity).keys(),
-                              ].map((index) => (
-                                <option
-                                  key={index + 1}
-                                  className="text-black bg-transparent text-[20px]"
-                                >
-                                  {index + 1}
-                                </option>
-                              ))}
+                              {[...Array(currentItem.Quantity).keys()].map(
+                                (index) => (
+                                  <option
+                                    key={index + 1}
+                                    className="text-black bg-transparent text-[20px]"
+                                  >
+                                    {index + 1}
+                                  </option>
+                                )
+                              )}
                             </select>
                           </td>
                           <td className="pl-20 xl3:pl-10 mobile1.1:pl-4 ">
                             <h2 className="text-white text-[27px] mobile1:text-[20px]">
-                              {currentItem.product_newprice *
-                                currentItem.quantity}{" "}
+                              {currentItem.Price * currentItem.quantity}{" "}
                               <span className="text-[15px]">Rs</span>
                             </h2>
                           </td>
@@ -169,8 +168,8 @@ export default function ShoppingCart() {
                     })}
                   </table>
                 </div>
-                <div className="text-right text-[25px] mobile1.1:text-[20px] py-7 pr-10 text-[#979797]">
-                  <button>Clear Cart</button>
+                <div className="text-right text-[25px] mobile:text-[15px] py-7 pr-10 text-[#979797] ">
+                  {/* <button>Clear Cart</button> */}
                   Cart feels empty?
                   <Link href="/shop">
                     <a className="underline text-white cursor-pointer">

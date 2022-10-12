@@ -112,7 +112,7 @@ export default function Sale() {
   };
 
   return (
-    <div className="grid bg-[#FFB636] min-h-[140vh] max-h-[100%]  px-[40px] w-[100%] overflow-x-hidden justify-center py-20 mobile:px-auto">
+    <div className="grid bg-[#FFB636] min-h-[100vh] max-h-[100%]  px-[40px] w-[100%] overflow-x-hidden justify-center py-[10%] mobile:px-auto">
       <div className="border-[5px] relative border-black rounded-[35px] pb-3  w-[125vw] sale">
         <div className="flex">
           <div className="font-hemi text-black text-[80px] xl:text-[7vw] bg-[#FFB636] mt-[-60px] lg:mt-[-50px] mobile:mt-[-30px] mobile1:mt-[-20px] mobilesm:mt-[10px] ml-[7vw] px-[30px] ">

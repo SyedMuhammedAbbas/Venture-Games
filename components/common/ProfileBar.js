@@ -31,7 +31,7 @@ export default function ProfileBar({
   const [searchResult, setSearchResult] = useState();
   const token = useSelector((state) => state.user.token);
   // useEffect(() => {
-  //   // console.log(tok); 
+  //   // console.log(tok);
   //   setToken(tok);
   // }, [])
   const cartItem = useSelector((state) => state.cart.cartItems);
@@ -63,9 +63,9 @@ export default function ProfileBar({
     e.preventDefault();
     let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
-        Title: spi
-      }
-    })
+        Title: spi,
+      },
+    });
 
     console.log(response.data);
     // console.log("Search")
@@ -103,8 +103,14 @@ export default function ProfileBar({
           </div>
         </div>
       )}
-      <button onClick={(e) => {getProducts(e)}}>Click Me</button>
-      <div className={search.wrap}>
+      {/* <button
+        onClick={(e) => {
+          getProducts(e);
+        }}
+      >
+        Click Me
+      </button> */}
+      {/* <div className={search.wrap}>
         <form action="" autoComplete="on">
           <input
             className={search.search}
@@ -112,16 +118,28 @@ export default function ProfileBar({
             type="text"
             placeholder="What're we looking for ?"
             value={searchResult}
-            onChange={(e) => {setSearchResult(e.target.value)}}
+            onChange={(e) => {
+              setSearchResult(e.target.value);
+            }}
           ></input>
-          {!searchResult ? <button className={`${icons} ${search.search_submit}`} type="submit" >
-            <BsSearch /> 
-          </button>:
-          <button >
-            <MdKeyboardArrowDown onClick={(e) => {getProducts(e)}} /> 
-          </button>}
+          {!searchResult ? (
+            <button
+              className={`${icons} ${search.search_submit}`}
+              type="submit"
+            >
+              <BsSearch />
+            </button>
+          ) : (
+            <button>
+              <MdKeyboardArrowDown
+                onClick={(e) => {
+                  getProducts(e);
+                }}
+              />
+            </button>
+          )}
         </form>
-      </div>
+      </div> */}
 
       {cartshow && (
         <div className={icons}>
@@ -141,23 +159,27 @@ export default function ProfileBar({
           </Link>
         </div>
       )}
-      {!token && <div className="flex gap-5">
-        <button className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3">
-          <Link href="login">
-            <a className="">login</a>
-          </Link>
-        </button>
-      </div>}
+      {!token && (
+        <div className="flex gap-5">
+          <button className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3">
+            <Link href="login">
+              <a className="">login</a>
+            </Link>
+          </button>
+        </div>
+      )}
 
       <div className="flex items-center text-[30px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]">
         {user.FullName}
-        {token && <div className="text-[34px] 2xl:text-[25px] lg:text-[21px] text-white mt-[9px] lg:mt-[3px]">
-          <a className="cursor-pointer">
-            <MdKeyboardArrowDown onClick={() => setOpen(!open)} />
-          </a>
-        </div>}
+        {token && (
+          <div className="text-[34px] 2xl:text-[25px] lg:text-[21px] text-white mt-[9px] lg:mt-[3px]">
+            <a className="cursor-pointer">
+              <MdKeyboardArrowDown onClick={() => setOpen(!open)} />
+            </a>
+          </div>
+        )}
       </div>
-      {open && <DropDown setOp = {setOpen}/>}
+      {open && <DropDown setOp={setOpen} />}
     </div>
   );
 }

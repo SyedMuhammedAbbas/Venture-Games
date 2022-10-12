@@ -84,7 +84,7 @@ export default function Header() {
   }
 
   function flush() {
-    console.log("flush")
+    console.log("flush");
     dispatch(SignOut({}));
     localStorage.clear();
     //router.push('/');
@@ -120,23 +120,32 @@ export default function Header() {
         </div>
         <div className="hidden tablet:block">
           <div className={menu_class} ref={wrapperRef}>
-            {!token ? (
-              <div className="flex justify-center gap-5 pt-10">
+            <div
+              className={` justify-center pt-10 ${
+                token ? "grid gap-7" : "flex gap-5"
+              }`}
+            >
+              <Link href="/cart">
+                <button className="text-[#FFB636] font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-5 py-3 rounded-[15px] text-[20px] mobile:text-[15px]">
+                  View Cart
+                </button>
+              </Link>
+              {!token ? (
                 <Link href="/login">
                   <button
                     onClick={CloseMenu}
-                    className="text-[#FFB636] font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-10 py-3 rounded-[15px] text-[20px] "
+                    className="text-[#FFB636] font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-10 py-3 rounded-[15px] text-[20px] mobile:text-[15px]"
                   >
                     login
                   </button>
                 </Link>
-              </div>
-            ) : (
-              <button className="capitalize text-xl text-white">
-                {user.FullName}
-              </button>
-            )}
-            <ul className="grid uppercase text-white text-lg transition-all mt-[20px] overflow-y-scroll desp-scroll">
+              ) : (
+                <button className="capitalize text-xl text-white pt-10">
+                  {user.FullName}
+                </button>
+              )}
+            </div>
+            <ul className="grid uppercase text-white text-lg transition-all mt-[20px] h-[100vh] mobile:h-[70vh]  overflow-y-scroll desp-scroll">
               {pages_heading.map((pages_heading, index) => (
                 <li
                   key={index}
@@ -157,15 +166,23 @@ export default function Header() {
                   </Link>
                 </li>
               ))}
-              {token && <li className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-[#272727] ml-6">
-                Account
-              </li>}
-              {token && 
-              <li 
-                className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-[#272727] ml-6"
-                onClick={() => {flush()}}>
-                Signout
-              </li>}
+              {token && (
+                <li className="hover:text-[#FFB636]  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-[#272727] ml-6">
+                  <Link href="/settings">
+                    <a onClick={CloseMenu}>Account</a>
+                  </Link>
+                </li>
+              )}
+              {token && (
+                <li
+                  className="hover:text-[#FFB636] mobile:mb-20  focus:text-[#FFB636] font-montserrat py-3 cursor-pointer border-b-[0.1px] border-[#272727] ml-6"
+                  onClick={() => {
+                    flush();
+                  }}
+                >
+                  <a onClick={CloseMenu}>Signout</a>
+                </li>
+              )}
             </ul>
           </div>
         </div>

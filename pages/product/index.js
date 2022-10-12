@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 // import { getProducts } from "../../features/counter/productsSlice";
 import ProfileBar from "../../components/common/ProfileBar";
+import { AddToCart } from "../../features/counter/cartSlice";
 
 export default function Product() {
   // console.log(product);
@@ -98,12 +99,18 @@ export default function Product() {
     }
     return true;
   });
+
+  const dispatch = useDispatch();
+  const handleAddtoCart = (DisplayedProduct) => {
+    dispatch(AddToCart(DisplayedProduct));
+  };
+
   console.log(0);
   console.log(DisplayedProduct);
   console.log(1);
   return (
     <>
-      <ProfileBar />
+      <ProfileBar cartshow={true} />
       {!items ? (
         !items && (
           <div className="bg-[#FFB636] snap-center pt-[20%] w-[100%] min-h-[140vh] flex justify-center text-white text-[35px]">
@@ -124,9 +131,9 @@ export default function Product() {
               <div className="tablet:pl-[90px] mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
                 <div className="relative  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
                   <div className=" absolute right-8 top-4 xl:top-6">
-                    <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px]">
+                    <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[217px]">
                       <button
-                        className={`capitalize text-[20px] font-semibold py-1 px-10 ${
+                        className={`capitalize text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
                           New
                             ? "bg-[#000] text-[#FFB636] rounded-[40px]"
                             : "bg-transparent text-[#000]"
@@ -137,7 +144,7 @@ export default function Product() {
                         new
                       </button>
                       <button
-                        className={`capitalize ml-[-20px] text-[20px] font-semibold py-1 px-10 ${
+                        className={`capitalize ml-[-20px] text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
                           Old
                             ? "bg-[#000] text-[#FFB636] rounded-[40px]"
                             : "bg-transparent text-[#000]"
@@ -233,7 +240,10 @@ export default function Product() {
                     <button className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black cursor-pointer">
                       Buy Now
                     </button>
-                    <button className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black ">
+                    <button
+                      onClick={() => handleAddtoCart(DisplayedProduct)}
+                      className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black "
+                    >
                       Add to Cart
                     </button>
                   </div>
