@@ -123,7 +123,7 @@ export default function ShoppingCart() {
                                   </button>
                                   <button
                                     onClick={() =>
-                                      handleDeleteFromCart(currentItem)
+                                      handleDeleteFromCart(currentItem._id)
                                     }
                                     className="text-[30px] text-[#ffffff] hover:text-[#FFB636] ml-10"
                                   >

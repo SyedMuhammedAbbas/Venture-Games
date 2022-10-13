@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 export default function Settings() {
-  const user = useSelector((state) => state.user.userDetails)
+  const user = useSelector((state) => state.user.userDetails);
   const userName = user.FullName;
   const userEmail = user.EmailAddress;
   const userPassword = "**************";
@@ -38,13 +38,17 @@ export default function Settings() {
     console.log(token);
     let config = {
       headers: {
-        'Authorization': 'Bearer ' + token
-      }
-    }
-    let response = await axios.post("https://api.venturegames.pk/ChangePassword", {
-      Password: password,
-      NewPassword: newPassword,
-    }, config)
+        Authorization: "Bearer " + token,
+      },
+    };
+    let response = await axios.post(
+      "https://api.venturegames.pk/ChangePassword",
+      {
+        Password: password,
+        NewPassword: newPassword,
+      },
+      config
+    );
     console.log(response);
   }
   return (
@@ -125,7 +129,9 @@ export default function Settings() {
                     className="w-[500px] text-white text-[23px] placeholder:text-blackOpac mobile2:w-[90%] placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                     placeholder="Current Password"
                     value={password}
-                    onChange={(e) => {setPassword(e.target.value)}}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
                   ></input>
                 </div>
                 <div className="grid gap-5">
@@ -134,10 +140,21 @@ export default function Settings() {
                     className="w-[500px] text-white text-[23px] placeholder:text-blackOpac mobile2:w-[90%] placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                     placeholder="New Password"
                     value={newPassword}
-                    onChange={(e) => {setNewPassword(e.target.value)}}
+                    onChange={(e) => {
+                      setNewPassword(e.target.value);
+                    }}
                   ></input>
                 </div>
-                <button onClick={(e) => {handlePasswordChange(e)}}>Set Password</button>
+                <div className="flex justify-center">
+                  <button
+                    className="border border-blackOpac bg-transparent rounded-[10px] font-semibold text-[20px] text-[#fff] hover:text-[#000] hover:bg-white hover:border-[#fff] w-[200px] py-2"
+                    onClick={(e) => {
+                      handlePasswordChange(e);
+                    }}
+                  >
+                    Set Password
+                  </button>
+                </div>
               </div>
             )}
           </div>

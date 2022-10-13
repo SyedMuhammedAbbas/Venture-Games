@@ -38,7 +38,7 @@ export default function CheckOut() {
       ) / 100
     );
 
-    if (user) {
+    if (user.FullName) {
       setEmail(user.EmailAddress);
       const [first, last] = user.FullName.split(" ");
       setFirstName(first);

@@ -58,7 +58,7 @@ export default function Header() {
     "learnmore",
   ];
 
-  const footer_links = ["about", "policies", "terms", "help"];
+  const footer_links = ["policies", "terms", "help"];
   const updateMenu = () => {
     if (!isMenuClicked) {
       setBurgerClass("burger-bar clicked");
@@ -126,7 +126,7 @@ export default function Header() {
               }`}
             >
               <Link href="/cart">
-                <button className="text-[#FFB636] font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-5 py-3 rounded-[15px] text-[20px] mobile:text-[15px]">
+                <button className="text-[#FFB636] capitalize font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-5 py-3 rounded-[15px] text-[20px] mobile:text-[15px]">
                   View Cart
                 </button>
               </Link>
@@ -134,7 +134,7 @@ export default function Header() {
                 <Link href="/login">
                   <button
                     onClick={CloseMenu}
-                    className="text-[#FFB636] font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-10 py-3 rounded-[15px] text-[20px] mobile:text-[15px]"
+                    className="text-[#FFB636] capitalize font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-10 py-3 rounded-[15px] text-[20px] mobile:text-[15px]"
                   >
                     login
                   </button>
