@@ -1,30 +1,24 @@
 import Teen from "../../images/teenesbr.png";
 import { useState, useEffect } from "react";
 import toggel from "../../styles/Toggel.module.css";
-// import { Allproductsdata } from "../../components/common/AllProductsData";
 import { useRouter } from "next/router";
 import { BiError } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-// import { getProducts } from "../../features/counter/productsSlice";
 import ProfileBar from "../../components/common/ProfileBar";
 import { AddToCart } from "../../features/counter/cartSlice";
 
 export default function Product() {
-  // console.log(product);
   const router = useRouter();
   const id = router.query.id;
-  // const querydata = Object.keys(query);
-  // console.log(querydata[0]);
   const productGroup = id;
-  console.log(productGroup);
+  // console.log(productGroup);
 
   const [Products, setProducts] = useState([]);
   const [items, setItems] = useState(false);
-  // const [DisplayedProduct, setDisplayedProduct] = useState();
   const [selectedPlatform, setSelectedPlatform] = useState();
   const [selectedType, setSelectedType] = useState();
-  const [selectedColor, setSelectedColor] = useState();
+  const [selectedColour, setSelectedColour] = useState();
 
   async function fetchData() {
     console.log("here");
@@ -40,8 +34,8 @@ export default function Product() {
     if (response.data[0].Platform) {
       setSelectedPlatform(response.data[0].Platform.Title);
     }
-    if (response.data[0].Color) {
-      setSelectedColor(response.data[0].Color.Title);
+    if (response.data[0].Colour) {
+      setSelectedColour(response.data[0].Colour.Title);
     }
     // setDisplayedProduct(Products[0]);
   }
@@ -50,17 +44,17 @@ export default function Product() {
     console.log("hello");
     fetchData().then(() => {
       setItems(true);
-      // setDisplayedProduct(Products[0]);
-      // console.log(Products[0]);
-      // console.log(DisplayedProduct);
     });
   }, []);
 
-  // console.log(DisplayedProduct);
-
   function getTitle(SelectedObject) {
-    const selPlatform = SelectedObject.Platform.Title;
+    const selPlatform = SelectedObject.Title;
     setSelectedPlatform(selPlatform);
+  }
+
+  function getColour(selectedObject) {
+    const colours = selectedObject.Title;
+    setSelectedColour(colours);
   }
 
   const [New, setNew] = useState(true);
@@ -70,19 +64,25 @@ export default function Product() {
   function handleNew() {
     {
       New ? setNew(false) & setOld(true) : setNew(true) & setOld(false);
+      if(Products.length > 1) {
+        setSelectedType("New");
+      }
     }
   }
   function handleOld() {
     {
       Old ? setOld(false) & setNew(true) : setOld(true) & setNew(false);
+      if(Products.length > 1) {
+        setSelectedType("Used");
+      }
     }
   }
-  console.log(3);
+  // console.log(3);
   // console.log(Products);
   console.log(selectedType);
-  console.log(selectedColor);
+  console.log(selectedColour);
   console.log(selectedPlatform);
-  console.log(4);
+  // console.log(4);
   let DisplayedProduct = Products.find((product) => {
     if (product.Type !== selectedType) {
       return false;
@@ -92,22 +92,24 @@ export default function Product() {
         return false;
       }
     }
-    if (selectedColor) {
-      if (!product.Color || product.Color.Title !== selectedColor) {
+    if (selectedColour) {
+      if (!product.Colour || product.Colour.Title !== selectedColour) {
         return false;
       }
     }
     return true;
   });
 
+  console.log(DisplayedProduct);
+
   const dispatch = useDispatch();
   const handleAddtoCart = (DisplayedProduct) => {
     dispatch(AddToCart(DisplayedProduct));
   };
 
-  console.log(0);
-  console.log(DisplayedProduct);
-  console.log(1);
+  // console.log(0);
+  // console.log(DisplayedProduct);
+  // console.log(1);
   return (
     <>
       <ProfileBar cartshow={true} />
@@ -183,6 +185,43 @@ export default function Product() {
                               <button
                                 onClick={() => {
                                   getTitle(index);
+                                }}
+                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                  selectedPlatformFlag
+                                    ? "bg-[#FFB636] text-black"
+                                    : "text-[#FFB636] bg-transparent"
+                                }`}
+                              >
+                                {index.Title}
+                              </button>
+                            );
+                          }
+                        }
+                      )}
+                    </div>
+                    <div className="flex gap-1">
+                      {DisplayedProduct.ProductGroup.AvailableColours.map(
+                        (index) => {
+                          if (selectedColour === index.Title) {
+                            return (
+                              <button
+                                onClick={() => {
+                                  getColour(index);
+                                }}
+                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                  selectedPlatformFlag
+                                    ? "bg-[#FFB636] text-black"
+                                    : "text-[#FFB636] bg-transparent"
+                                }`}
+                              >
+                                {index.Title}
+                              </button>
+                            );
+                          } else {
+                            return (
+                              <button
+                                onClick={() => {
+                                  getColour(index);
                                 }}
                                 className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
                                   selectedPlatformFlag
