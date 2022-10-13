@@ -30,6 +30,7 @@ export default function ProfileBar({
 }) {
   const [searchResult, setSearchResult] = useState();
   const token = useSelector((state) => state.user.token);
+  const cartTotalQuantity = useSelector((state) => state.cart.cartTotalQuantity)
   // useEffect(() => {
   //   // console.log(tok); 
   //   setToken(tok);
@@ -63,7 +64,7 @@ export default function ProfileBar({
     e.preventDefault();
     let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
-        Title: spi
+        Title: "spi"
       }
     })
 
@@ -134,7 +135,7 @@ export default function ProfileBar({
               <button>
                 <BsHandbag />
                 <div class=" mt-[-10px] mr-20 pt-[3.5px] absolute z-10 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-[#000000] rounded-full ">
-                  {Object.values(cartItem).length}
+                  {cartTotalQuantity}
                 </div>
               </button>
             </a>

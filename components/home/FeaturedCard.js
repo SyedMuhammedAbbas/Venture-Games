@@ -69,13 +69,6 @@ export default function FeaturedCard({ product }) {
           >
             <a>View</a>
           </button>
-
-          <button
-            onClick={() => handleAddtoCart(product)}
-            className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-4 py-1 hover:bg-white hover:text-black hover:border-black"
-          >
-            <a>Add to cart</a>
-          </button>
         </div>
       </div>
     </div>
