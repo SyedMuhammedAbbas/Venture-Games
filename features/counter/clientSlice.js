@@ -1,15 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import { Allproductsdata } from "../../components/common/AllProductsData";
-// import { ProductsData } from "../../components/common/ProductsData";
 
-export const getReviews = createAsyncThunk("products/getProducts", async () => {
-  return fetch("https://api.venturegames.pk/Products").then((res) =>
+export const getReviews = createAsyncThunk("reviews/getPReviews", async () => {
+  return fetch("https://api.venturegames.pk/ViewReview").then((res) =>
     res.json()
   );
 });
 
 const initialState = {
-  allProducts: [],
+  allReviews: [],
 };
 
 export const clientSlice = createSlice({
@@ -29,7 +27,7 @@ export const clientSlice = createSlice({
   },
   reducers: {
     FilterByConsole(state, action) {
-      state.allProducts.filter((p) => p.id);
+      state.allReviews.filter((p) => p.id);
     },
     FilterByGenre(state, action) {},
     FilterByCategory(state, action) {},

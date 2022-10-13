@@ -11,12 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 // import { getProducts } from "../../features/counter/productsSlice";
 
 export default function Featured({ products }) {
-  const Products = useSelector((state) => state.products.allProducts);
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getProducts());
-  // }, []);
-  // const list = Products.length;
+  // const Products = useSelector((state) => state.products.allProducts);
+  const Products = FeaturedProducts;
   console.log(Products.length);
   var settings = {
     dots: true,
@@ -80,7 +76,7 @@ export default function Featured({ products }) {
     ],
   };
   return (
-    <div className="grid relative bg-[#FFB636] min-h-[140vh] max-h-[100%] px-32 mobile:px-10 py-10  border-b-black border-b-8">
+    <div className="grid relative justify-center bg-[#FFB636] min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] px-32 mobile:px-10 py-10  border-b-black border-b-8">
       <div className="flex pb-10">
         <div className="font-hemi pl-[10%] mobile:pl-0 text-black text-[80px] 2xl:text-[60px] lg:text-[40px] mobile:text-[40px] mobile1:text-[30px] lg:ml-5 mobile:ml-0 mobile:float-left">
           Featured Products

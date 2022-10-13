@@ -175,7 +175,7 @@ export default function LoginPage() {
                     <BsArrowRightShort />
                   </button>
                 </form>
-                <div className="text-[#ff0404] text-[20px]">
+                <div className="text-[#ff0404] text-[20px] mobile:text-[15px]">
                   This is a required field.
                 </div>
               </div>
@@ -188,7 +188,7 @@ export default function LoginPage() {
                 <span>Sign in with...</span>
               </div>
               <div>
-              <button
+                <button
                   onClick={() => {
                     handleGoogleLogin();
                   }}

@@ -11,38 +11,29 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     AddToCart(state, action) {
-      // let flag = false;
-      // for (let i = 0; i < state.cartItems.length; i++) {
-      //   if (state.cartItems[i]._id === action.payload._id) {
-      //     flag = true;
-      //     let quan = state.cartItems[i].quantity;
-      //     quan += 1;
-      //     const prod = action.payload;
-      //     state.cartItems[i] = {
-      //       prod,
-      //       quantity: quan,
-      //     };
-      //     state.cartTotalQuantity += 1;
-      //   }
-      // }
-      // if(!flag) {
-      //   const prod = action.payload;
-      //   state.cartItems[state.cartTotalQuantity] = {
-      //     prod,
-      //     quantity: 1,
-      //   };
-      //   state.cartTotalQuantity += 1;
-      // }
-      const prod = action.payload;
-      state.cartItems[state.cartTotalQuantity] = prod;
-      state.cartTotalQuantity += 1;
-
-      console.log("hello in cart");
-      console.log(state.cartItems);
+      if (state.cartItems[state.cartTotalQuantity] === undefined) {
+        state.cartItems[state.cartTotalQuantity] = action.payload;
+        state.cartItems[state.cartTotalQuantity].quantity += 1;
+        state.cartTotalQuantity += 1;
+      } else {
+        for (let i = 0; i < state.cartTotalQuantity; i++) {
+          if (action.payload._id === state.cartItems[i]._id) {
+            state.cartItems[i].quantity += 1;
+          } else {
+            state.cartItems[state.cartTotalQuantity] = action.payload;
+            state.cartTotalQuantity += 1;
+          }
+        }
+      }
     },
 
     DeleteFromCart(state, action) {
-      delete state.cartItems[action.payload.id];
+      for (let i = 0; i < state.cartTotalQuantity; i++) {
+        if (action.payload === state.cartItems[i]._id) {
+          delete state.cartItems[i];
+        }
+      }
+      state.cartTotalQuantity -= 1;
     },
     SetProdQuantity(state, action) {
       state.cartItems[action.payload.id].quantity = action.payload.quantity;

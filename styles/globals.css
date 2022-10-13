@@ -23,7 +23,10 @@
   src: url('../fonts/LEMONMILK-Regular.otf') format('woff2');  
 }
 :root{
-  zoom: 65%;  
+  zoom: 75%;  
+}
+.topgamesCarousel{
+  zoom: 110%;
 }
 html{
   font-family: 'SF Pro Display Light';
@@ -35,14 +38,14 @@ html{
 
 @media only screen and (min-width: 1200px){
   :root{
-    zoom: 60%;  
+    zoom: 65%;  
   } 
   html{
     scroll-snap-type: y mandatory;
     
   }
   .topgamesCarousel{
-    zoom: 120%;
+    zoom: 110%;
   }
   .platformElement{
     zoom: 100%;

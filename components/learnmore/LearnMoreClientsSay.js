@@ -1,8 +1,6 @@
 import PS5Controller from "../../images/ps5Controller.png";
 
-export default function LearnMoreClientsSay() {
-  const description =
-    "Venture Games is one of the earliest pioneers in the online gaming space. We provide authentic new & used consoles,accessories,cards & demanded game Cd’s to quench your thirst for gaming and satisfy the player in you. We make sure to provide notch services with local and international warranty for the items we sell. Don't wait further, order now to be a veteran player in your league.";
+export default function LearnMoreClientsSay({ heading, description }) {
   return (
     <>
       <div className="flex bg-[#FFB636] h-auto justify-center items-center min-h-[140vh] max-h-[100%] p-10 pt-[10vh] pb-[10vh] lg:grid lg:pt-[5vh]">
@@ -17,8 +15,8 @@ export default function LearnMoreClientsSay() {
 
         <div className="grid mt-[10vh] xl2:mt-[0vh] lg:ml-[20vw] mobile:ml-[20vw] mobile1:ml-0">
           <p className=" text-[35px] 3xl:text-[30px] lg:text-[25px] mobile:text-[20px] text-black">
-            <h1 className="font-hemi text-[90px] 3xl:text-[70px] lg:text-[60px] mobile:text-[45px]">
-              What We Do?
+            <h1 className="font-hemi text-[90px] capitalize 3xl:text-[70px] lg:text-[60px] mobile:text-[45px]">
+              {heading}
             </h1>
             {description}
           </p>

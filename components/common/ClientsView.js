@@ -2,9 +2,11 @@ import ClientsViewCard from "./ClientsViewCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { ClientsData } from "./ClientsData";
 
 export default function ClientsView() {
   const n = 7;
+
   var settings = {
     infinite: true,
     speed: 400,
@@ -39,6 +41,7 @@ export default function ClientsView() {
       },
     ],
   };
+  console.log(ClientsData);
   return (
     <div className="bg-[#FFB636] min-h-[140vh] max-h-[100%] p-32 tablet:pt-20 4xl:px-20 3xl:px-14 2xl:px-10 xl:px-5 mobile1.1:px-2">
       <div className="bg-gradient-to-b from-[#141414] via-stone-700 to-[#2a2a2a] pt-10 shadow-lg shadow-gray-800">
@@ -58,9 +61,9 @@ export default function ClientsView() {
 
         <div className=" block w-[90vw]  mobile1.1:w-[100%] clientcards h-[550px] m-10 mx-auto">
           <Slider {...settings}>
-            {[...Array(n)].map((user) => (
-              <div key={user}>
-                <ClientsViewCard />
+            {Object.values(ClientsData).map((user) => (
+              <div key={user._id}>
+                <ClientsViewCard client={user} />
               </div>
             ))}
           </Slider>
