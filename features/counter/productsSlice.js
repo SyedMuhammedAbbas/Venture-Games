@@ -8,7 +8,6 @@ export const getProducts = createAsyncThunk(
   async () => {
     return fetch("https://api.venturegames.pk/Products").then((res) =>
       res.json()
-      
     );
   }
 );
