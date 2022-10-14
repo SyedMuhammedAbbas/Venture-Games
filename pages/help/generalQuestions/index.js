@@ -1,7 +1,21 @@
+import ProfileBar from "../../../components/common/ProfileBar";
+import { useState } from "react";
+
 export default function GeneralQuestions() {
+  const [handleSignup, sethandleSignup] = useState(false);
+  const [handleLogin, sethandleLogin] = useState(false);
   return (
     <>
-      <div className="bg-[#FFB636] text-[20px] text-black pt-[10%] px-20 pb-20 min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] tablet:pt-[20%] tablet:px-5 snap-start">
+      <div className="snap-start">
+        <ProfileBar
+          cartshow={true}
+          handleLogin={handleLogin}
+          sethandleLogin={sethandleLogin}
+          handleSignup={handleSignup}
+          sethandleSignup={sethandleSignup}
+        />
+      </div>
+      <div className="bg-[#FFB636] text-[25px] mobile:text-[20px] text-black pt-[10%] px-20 pb-20 min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] tablet:pt-[20%] tablet:px-5 snap-start">
         <p>
           <strong>
             <span className="underline text-[25px] text-[#000]">

@@ -51,10 +51,10 @@ export default function Header() {
   ];
   const pages_heading_links = [
     "shop",
+    "giftcards",
     "consoles",
     "consoles",
-    "consoles",
-    "shop",
+    "accessories",
     "learnmore",
   ];
 
@@ -100,9 +100,7 @@ export default function Header() {
             </Link>
           </li>
           <li className={list}>
-            <Link href="/shop" as="/shop">
-              gift cards
-            </Link>
+            <Link href="/giftcards">gift cards</Link>
           </li>
           <li className={list}>
             <Link href="/consoles">
@@ -208,7 +206,7 @@ export default function Header() {
             </Link>
           </li>
           <li className={list}>
-            <Link href="/shop">
+            <Link href="/accessories">
               <a>accessories</a>
             </Link>
           </li>

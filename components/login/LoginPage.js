@@ -143,7 +143,7 @@ export default function LoginPage() {
                   </button>
                 </form>
                 <button
-                  className="text-[20px] text-[#FFB636] pt-[3%] float-right mobile:float-left hover:pointer"
+                  className="text-[15px] text-[#FFB636] pt-[3%] float-right mobile:float-left hover:pointer"
                   onClick={() => {
                     forgetPassword();
                   }}

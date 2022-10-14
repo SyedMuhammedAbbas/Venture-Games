@@ -1,8 +1,21 @@
 import Link from "next/link";
+import ProfileBar from "../../components/common/ProfileBar";
+import { useState } from "react";
 
 export default function Policies() {
+  const [handleSignup, sethandleSignup] = useState(false);
+  const [handleLogin, sethandleLogin] = useState(false);
   return (
     <>
+      <div className="snap-start">
+        <ProfileBar
+          cartshow={true}
+          handleLogin={handleLogin}
+          sethandleLogin={sethandleLogin}
+          handleSignup={handleSignup}
+          sethandleSignup={sethandleSignup}
+        />
+      </div>
       <div className="bg-[#FFB636] snap-start text-[20px] min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] text-black pt-[10%] px-20 pb-20 tablet:pt-[20%] tablet:px-5">
         <h1 className="text-[45px]">
           <span className="underline ">Policies</span>

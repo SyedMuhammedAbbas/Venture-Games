@@ -8,7 +8,7 @@ export default function ClientsViewCard({ client }) {
           className="flex justify-center m-auto w-44 h-44 object-contain bg-slate-500 rounded-full mb-10"
           src={client.Images}
         />
-        <div className="text-white text-[15px] text-center mb-[15px] h-[90px] desp-scroll overflow-y-scroll mobile:px-2">
+        <div className="text-white text-[20px] mobile:text-[15px] text-center mb-[15px] h-[90px] desp-scroll overflow-y-scroll mobile:px-2">
           {client.Description}
         </div>
         <div className="flex justify-center m-auto border-t-8 w-[170px] border-[#FFB636] center pb-5"></div>

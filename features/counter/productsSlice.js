@@ -16,7 +16,7 @@ const initialState = {
 };
 
 export const productsSlice = createSlice({
-  name: "reviews",
+  name: "products",
   initialState,
   extraReducers: {
     [getProducts.pending]: (state, action) => {

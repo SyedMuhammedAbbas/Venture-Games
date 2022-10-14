@@ -1,7 +1,21 @@
+import ProfileBar from "../../../components/common/ProfileBar";
+import { useState } from "react";
+
 export default function Cancellation() {
+  const [handleSignup, sethandleSignup] = useState(false);
+  const [handleLogin, sethandleLogin] = useState(false);
   return (
     <>
-      <div className="bg-[#FFB636] text-[20px] snap-start text-black pt-[10%] px-20 pb-20 min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] tablet:pt-[20%] tablet:px-5">
+      <div className="snap-start">
+        <ProfileBar
+          cartshow={true}
+          handleLogin={handleLogin}
+          sethandleLogin={sethandleLogin}
+          handleSignup={handleSignup}
+          sethandleSignup={sethandleSignup}
+        />
+      </div>
+      <div className="bg-[#FFB636] text-[25px] mobile:text-[20px] snap-start text-black pt-[10%] px-20 pb-20 min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] tablet:pt-[20%] tablet:px-10">
         <p>
           <strong>
             <span style={{ textDecoration: "underline" }}>
