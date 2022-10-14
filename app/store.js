@@ -4,38 +4,42 @@ import cartReducer from "../features/counter/cartSlice";
 import productReducer from "../features/counter/productsSlice";
 import carouselProductReducer from "../features/counter/carouselSlice";
 import userReducer from "../features/counter/UserSlice";
-import storage from 'redux-persist/lib/storage';
-import { combineReducers } from 'redux';
+import storage from "redux-persist/lib/storage";
+import accessoriesReducer from "../features/counter/accessoriesSlice";
+import girftcardsReducer from "../features/counter/giftcardsSlice";
+import { combineReducers } from "redux";
 import {
-    persistReducer,
-    FLUSH,
-    REHYDRATE,
-    PAUSE,
-    PERSIST,
-    PURGE,
-    REGISTER,
-} from 'redux-persist';
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
 };
 
 const reducers = combineReducers({
   cart: cartReducer,
+  accessories: accessoriesReducer,
+  giftcards: girftcardsReducer,
   products: productReducer,
   carouselProducts: carouselProductReducer,
-  user: userReducer});
+  user: userReducer,
+});
 
-const persistedReducer = persistReducer(persistConfig, reducers);  
+const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            serializableCheck: {
-                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-            },
-          }),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
-

@@ -19,14 +19,14 @@ export const giftcardsSlice = createSlice({
   name: "giftcards",
   initialState,
   extraReducers: {
-    [getProducts.pending]: (state, action) => {
+    [getGiftCards.pending]: (state, action) => {
       state.loading = true;
     },
-    [getProducts.fulfilled]: (state, action) => {
+    [getGiftCards.fulfilled]: (state, action) => {
       state.loading = false;
       state.allProducts = action.payload;
     },
-    [getProducts.rejected]: (state, action) => {
+    [getGiftCards.rejected]: (state, action) => {
       state.loading = false;
     },
   },

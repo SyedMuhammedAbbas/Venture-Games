@@ -15,7 +15,7 @@ const initialState = {
   allAccessories: [],
 };
 
-export const accesoriesSlice = createSlice({
+export const accessoriesSlice = createSlice({
   name: "accessories",
   initialState,
   extraReducers: {
