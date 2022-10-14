@@ -64,9 +64,9 @@ export default function ProfileBar({
     e.preventDefault();
     let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
-        Title: spi,
-      },
-    });
+        Title: "spi"
+      }
+    })
 
     console.log(response.data);
     // console.log("Search")

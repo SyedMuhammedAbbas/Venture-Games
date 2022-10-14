@@ -75,6 +75,7 @@ export default function LoginPage() {
 
       router.push("/");
     } catch (err) {
+      alert("Invalid Credentials");
       console.log(err);
     }
 
