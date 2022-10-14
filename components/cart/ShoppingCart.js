@@ -10,7 +10,8 @@ import { useDispatch } from "react-redux";
 
 export default function ShoppingCart() {
   const cartItems = useSelector((state) => state.cart.cartItems);
-
+  // console.log(cartItems[0]);
+  console.log(Object.values(cartItems).length)
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
   const [total_amount, setTotal_Amount] = useState(0);
