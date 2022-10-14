@@ -5,10 +5,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const getGiftCards = createAsyncThunk(
   "giftcards/getGiftCards",
   async () => {
+    let setgiftcards = "Gift Cards";
     return fetch(
-      encodeURIComponent(
-        "https://api.venturegames.pk/Products?ProductCategory=Gift Cards"
-      )
+      `https://api.venturegames.pk/Products?ProductCategory=${encodeURIComponent(
+        setgiftcards
+      )}`
     ).then((res) => res.json());
   }
 );
