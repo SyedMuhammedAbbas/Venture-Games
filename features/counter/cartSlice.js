@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  cartItems: {},
+  cartItems: [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
 };
@@ -11,15 +11,28 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     AddToCart(state, action) {
-      if (state.cartItems[state.cartTotalQuantity] === undefined) {
-        state.cartItems[state.cartTotalQuantity] = action.payload;
-        state.cartItems[state.cartTotalQuantity].quantity += 1;
-        state.cartTotalQuantity += 1;
+      let flag = false;
+      
+      if (state.cartTotalQuantity == 0) {
+        if(action.payload.Quantity > 0)
+        {
+          state.cartItems[state.cartTotalQuantity] = action.payload;
+          state.cartItems[state.cartTotalQuantity].quantity = 1;
+          state.cartTotalQuantity += 1;
+        }
       } else {
         for (let i = 0; i < state.cartTotalQuantity; i++) {
           if (action.payload._id === state.cartItems[i]._id) {
-            state.cartItems[i].quantity += 1;
-          } else {
+            if(state.cartItems[i].quantity < action.payload.Quantity)
+            flag = true;
+            let quan = state.cartItems[i].quantity;
+            quan += 1;
+            state.cartItems[i].quantity = quan;
+          }
+        }
+        if(!flag) {
+          if(action.payload.Quantity > 0)
+          {
             state.cartItems[state.cartTotalQuantity] = action.payload;
             state.cartTotalQuantity += 1;
           }
@@ -28,9 +41,11 @@ export const cartSlice = createSlice({
     },
 
     DeleteFromCart(state, action) {
-      for (let i = 0; i < state.cartTotalQuantity; i++) {
+      console.log(action.payload);
+      for (let i = 0; i < state.cartItems.length; i++) {
+        console.log("here")
         if (action.payload === state.cartItems[i]._id) {
-          delete state.cartItems[i];
+          state.cartItems.splice(i, 1);
         }
       }
       state.cartTotalQuantity -= 1;
