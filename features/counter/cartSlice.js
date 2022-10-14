@@ -34,6 +34,7 @@ export const cartSlice = createSlice({
           if(action.payload.Quantity > 0)
           {
             state.cartItems[state.cartTotalQuantity] = action.payload;
+            state.cartItems[state.cartTotalQuantity].quantity = 1;
             state.cartTotalQuantity += 1;
           }
         }
@@ -51,7 +52,11 @@ export const cartSlice = createSlice({
       state.cartTotalQuantity -= 1;
     },
     SetProdQuantity(state, action) {
-      state.cartItems[action.payload.id].quantity = action.payload.quantity;
+      for (let i = 0; i < state.cartItems.length; i++) {
+        if (state.cartItems[i]._id === action.payload._id) {
+          state.cartItems[i].quantity = action.payload.quantity;
+        }
+      }
     },
   },
 });

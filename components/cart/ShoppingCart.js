@@ -10,18 +10,19 @@ import { useDispatch } from "react-redux";
 
 export default function ShoppingCart() {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  // console.log(cartItems[0]);
+  console.log(cartItems[1].quantity);
   console.log(Object.values(cartItems).length)
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
   const [total_amount, setTotal_Amount] = useState(0);
+  const [currentQuantity, setCurrentQuantity] = useState();
 
   const dispatch = useDispatch();
   const handleDeleteFromCart = (currentItems) => {
     dispatch(DeleteFromCart(currentItems));
   };
   const handleQuantityCart = (id, newQuantity) => {
-    dispatch(SetProdQuantity({ id: _id, quantity: newQuantity }));
+    dispatch(SetProdQuantity({ _id: id, quantity: newQuantity }));
   };
   useEffect(() => {
     setTotal_Items(Object.values(cartItems).length);
