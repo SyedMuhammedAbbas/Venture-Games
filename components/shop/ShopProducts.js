@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { BsSliders } from "react-icons/bs";
 import { BsSortDown } from "react-icons/bs";
 import FeaturedCard from "../home/FeaturedCard";
-// import Spiderman from "../../images/image 4.png";
-// import { Allproductsdata } from "../common/AllProductsData";
+import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
 import {
   FilterByConsole,
   FilterByGenre,
   getProducts,
+  SortLowToHigh,
+  SortHighToLow
 } from "../../features/counter/productsSlice";
 
 export default function ShopProducts({ handleFilter, handleSort }) {
@@ -17,8 +18,8 @@ export default function ShopProducts({ handleFilter, handleSort }) {
   const buttons =
     "text-white uppercase border-[1px] font-semibold border-white rounded-lg text-[25px] px-2 w-40 py-1 hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black";
 
-  const platforms = ["ps5", "ps4", "xbox", "nintendo"];
-  const genre = ["action", "adventure", "thriller", "driving"];
+  const platforms = ["PS5", "PS4", "XBOX"];
+  const genre = ["Action", "adventure", "thriller", "Driving/Racing"];
   const category = ["online", "offline"];
   const sortbyprice = ["Low to High", "High to Low"];
 
@@ -28,9 +29,9 @@ export default function ShopProducts({ handleFilter, handleSort }) {
   }, []);
 
   const item = Products.map((index) => {
-    return index.PlatformGroup;
+    return index.ProductGroup;
   });
-  console.log(item);
+  // console.log(item);
   function FilterConsole(Products) {
     dispatch(FilterByConsole(Products));
   }
@@ -38,6 +39,72 @@ export default function ShopProducts({ handleFilter, handleSort }) {
     dispatch(FilterByGenre(Products));
   }
 
+  async function sortByPlatform(type) {
+    let plats = await axios.get("https://api.venturegames.pk/GetPlatforms");
+    console.log(plats.data);
+    let selectedPlat = plats.data.find((index) => {
+      return(index.Title == type)
+    })
+    let response = await axios.get("https://api.venturegames.pk/Products", {
+        params: {
+          Platform: selectedPlat._id
+        }
+      })
+      console.log(response.data);
+      if(response.data.length > 0) {
+        dispatch(FilterByGenre(response.data));
+      }
+      else {
+        alert("No Product");
+      }
+  }
+
+  async function sortByCategory () {
+
+  }
+
+  async function sortByGenre(genre) {
+    let gens = await axios.get("https://api.venturegames.pk/GetGenres");
+    console.log(gens.data);
+    let selectedGen = gens.data.find((index) => {
+      return(index.Title == genre)
+    })
+    let response = await axios.get("https://api.venturegames.pk/Products", {
+        params: {
+          Genre: selectedGen._id
+        }
+      })
+      console.log(response.data);
+      if(response.data.length > 0) {
+        dispatch(FilterByConsole(response.data))
+      }
+      else {
+        alert("No Product");
+      }  
+  }
+
+  async function sortLowHigh() {
+    // e.preventDefault();
+      let response = await axios.get("https://api.venturegames.pk/Products", {
+        params: {
+          Sort: "PriceLowHigh"
+        }
+      })
+      console.log(response.data);
+    dispatch(SortLowToHigh(response.data)) 
+  }
+
+  async function sortHighLow() {
+    // e.preventDefault();
+      let response = await axios.get("https://api.venturegames.pk/Products", {
+        params: {
+          Sort: "PriceHighLow"
+        }
+      })
+      console.log(response.data);
+    dispatch(SortHighToLow(response.data)) 
+  }
+  // console.log(Products);
   return (
     <div className="bg-[#FFB636] ">
       <div className="bg-[url('../images/background.png')] bg-[length:1700px_1800px] bg-no-repeat bg-[left_15vw_top_0rem]">
@@ -66,7 +133,7 @@ export default function ShopProducts({ handleFilter, handleSort }) {
                     value={type}
                     key={index}
                     className={buttons}
-                    onClick={FilterConsole(Products)}
+                    onClick={() => {sortByPlatform(type)}}
                   >
                     {type}
                   </button>
@@ -77,7 +144,7 @@ export default function ShopProducts({ handleFilter, handleSort }) {
             <div className="border-y-[3px] border-blackOpac">
               <div className="grid items-start gap-4 mr-[120px] py-10">
                 {genre.map((genre, i) => (
-                  <button value={genre} key={i} className={buttons}>
+                  <button value={genre} key={i} className={buttons} onClick={() => {sortByGenre(genre)}}>
                     {genre}
                   </button>
                 ))}
@@ -112,7 +179,13 @@ export default function ShopProducts({ handleFilter, handleSort }) {
               <div className="border-t-[3px] border-blackOpac">
                 <div className="grid items-start gap-4 mr-[120px] py-10">
                   {sortbyprice.map((sortbyprice, index) => (
-                    <button value={sortbyprice} key={index} className={buttons}>
+                    <button value={sortbyprice} key={index} className={buttons} onClick={() => {
+                      if(sortbyprice == 'Low to High') {
+                        sortLowHigh();
+                      } 
+                      else {
+                        sortHighLow();
+                      }}}>
                       {sortbyprice}
                     </button>
                   ))}

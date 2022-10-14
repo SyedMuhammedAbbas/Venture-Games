@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 // import { Allproductsdata } from "../../components/common/AllProductsData";
 // import { ProductsData } from "../../components/common/ProductsData";
 
@@ -7,6 +8,7 @@ export const getProducts = createAsyncThunk(
   async () => {
     return fetch("https://api.venturegames.pk/Products").then((res) =>
       res.json()
+      
     );
   }
 );
@@ -25,6 +27,7 @@ export const productsSlice = createSlice({
     [getProducts.fulfilled]: (state, action) => {
       state.loading = false;
       state.allProducts = action.payload;
+      console.log(state.allProducts);
     },
     [getProducts.rejected]: (state, action) => {
       state.loading = false;
@@ -32,12 +35,18 @@ export const productsSlice = createSlice({
   },
   reducers: {
     FilterByConsole(state, action) {
-      state.allProducts.filter((p) => p.id);
+      state.allProducts = action.payload;
     },
-    FilterByGenre(state, action) {},
+    FilterByGenre(state, action) {
+      state.allProducts = action.payload;
+    },
     FilterByCategory(state, action) {},
-    SortLowToHigh(state, action) {},
-    SortHighToLow(state, action) {},
+    SortLowToHigh(state, action) {
+      state.allProducts = action.payload;
+    },
+    SortHighToLow(state, action) {
+      state.allProducts = action.payload;
+    },
   },
 });
 

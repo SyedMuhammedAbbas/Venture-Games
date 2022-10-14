@@ -19,6 +19,7 @@ export default function Product() {
   const [selectedPlatform, setSelectedPlatform] = useState();
   const [selectedType, setSelectedType] = useState();
   const [selectedColour, setSelectedColour] = useState();
+  const [particularItem, setParticularItem] = useState(true);
 
   async function fetchData() {
     console.log("here");
@@ -66,6 +67,10 @@ export default function Product() {
       New ? setNew(false) & setOld(true) : setNew(true) & setOld(false);
       if(Products.length > 1) {
         setSelectedType("New");
+        setParticularItem(true);
+      }
+      else {
+        setParticularItem(false);
       }
     }
   }
@@ -74,6 +79,10 @@ export default function Product() {
       Old ? setOld(false) & setNew(true) : setOld(true) & setNew(false);
       if(Products.length > 1) {
         setSelectedType("Used");
+        setParticularItem(true);
+      }
+      else {
+        setParticularItem(false);
       }
     }
   }

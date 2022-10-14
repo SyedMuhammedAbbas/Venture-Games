@@ -6,14 +6,16 @@ import { store } from "../app/store";
 import { Provider } from "react-redux";
 import whatsapplogo from "../images/whatsapp-circle.png";
 import initMyFirebase from "../firebase/FirebaseInit";
-import { CookiesProvider } from "react-cookie";
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 
 function MyApp({ Component, pageProps }) {
+  let persistor = persistStore(store);
   initMyFirebase();
   return (
     <>
-      <CookiesProvider>
       <Provider store={store}>
+        <PersistGate persistor={persistor}>
         <Header />
         <div className="h-[120px] tablet:h-[70px]">&nbsp;</div>
         <body>
@@ -34,8 +36,8 @@ function MyApp({ Component, pageProps }) {
             <Footer />
           </div>
         </body>
+        </PersistGate>
       </Provider>
-      </CookiesProvider>
     </>
   );
 }
