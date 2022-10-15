@@ -40,7 +40,6 @@ export const cartSlice = createSlice({
     },
 
     DeleteFromCart(state, action) {
-      console.log(action.payload);
       for (let i = 0; i < state.cartItems.length; i++) {
         console.log("here");
         if (action.payload === state.cartItems[i]._id) {

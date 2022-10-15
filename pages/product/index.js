@@ -12,6 +12,7 @@ export default function Product() {
   const router = useRouter();
   const id = router.query.id;
   const productGroup = id;
+  const token = useSelector((state) => state.user.token);
   // console.log(productGroup);
 
   const [Products, setProducts] = useState([]);
@@ -112,8 +113,27 @@ export default function Product() {
   console.log(DisplayedProduct);
 
   const dispatch = useDispatch();
-  const handleAddtoCart = (DisplayedProduct) => {
-    dispatch(AddToCart(DisplayedProduct));
+
+  const handleAddtoCart = async (DisplayedProduct) => {
+    if(token && DisplayedProduct.Quantity > 0) {
+      dispatch(AddToCart(DisplayedProduct));
+      const jwtToken = JSON.parse(localStorage.getItem("token"));
+      let config = {
+        headers: {
+          Authorization: "Bearer " + jwtToken,
+        },
+      };
+      await axios.put("https://api.venturegames.pk/UpdateCart", {
+        Quantity: 1,
+        Product: DisplayedProduct._id
+      }, config);
+    }
+    else if(DisplayedProduct.Quantity <= 0) {
+      alert('Product Not available');
+    }
+    else {
+      router.push('/login');
+    }
   };
 
   // console.log(0);

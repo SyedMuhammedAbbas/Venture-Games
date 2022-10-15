@@ -8,12 +8,16 @@ import Link from "next/link";
 import { FeaturedProducts } from "./FeaturedProducts";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { useRef } from "react";
 // import { getProducts } from "../../features/counter/productsSlice";
 
 export default function Featured({ products }) {
   // const Products = useSelector((state) => state.products.allProducts);
-  const Products = FeaturedProducts;
-  console.log(Products.length);
+  // const Products = FeaturedProducts;
+  // console.log(Products.length);
+  const [Products, setProducts] = useState([]);
+  const dataFetchedRef = useRef(false);
   var settings = {
     dots: true,
     dotsClass: "slick-dots",
@@ -75,6 +79,29 @@ export default function Featured({ products }) {
       },
     ],
   };
+  async function fetchFeaturedProducts () {
+    let response = await axios.get("https://api.venturegames.pk/Products", {
+      params: {
+        Sale: true
+      }
+    })
+    console.log(response);
+    setProducts(response.data);
+  }
+
+  useEffect(() => {
+    if(dataFetchedRef.current) {
+      return;
+    }
+    else {
+      dataFetchedRef.current = true;
+      fetchFeaturedProducts()
+      .catch((error) => {
+        console.error(error);
+      })
+    }
+  }, [])
+
   return (
     <div className="grid relative justify-center bg-[#FFB636] min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] px-32 mobile:px-10 py-10  border-b-black border-b-8">
       <div className="flex pb-10">
