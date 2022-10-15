@@ -8,7 +8,6 @@ export const getProducts = createAsyncThunk(
   async () => {
     return fetch("https://api.venturegames.pk/Products").then((res) =>
       res.json()
-      
     );
   }
 );
@@ -40,7 +39,9 @@ export const productsSlice = createSlice({
     FilterByGenre(state, action) {
       state.allProducts = action.payload;
     },
-    FilterByCategory(state, action) {},
+    FilterByCategory(state, action) {
+      state.allProducts = action.payload;
+    },
     SortLowToHigh(state, action) {
       state.allProducts = action.payload;
     },

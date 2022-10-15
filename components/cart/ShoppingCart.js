@@ -7,22 +7,39 @@ import { useSelector } from "react-redux";
 import { DeleteFromCart } from "../../features/counter/cartSlice";
 import { SetProdQuantity } from "../../features/counter/cartSlice";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 export default function ShoppingCart() {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  console.log(cartItems[1].quantity);
-  console.log(Object.values(cartItems).length)
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
   const [total_amount, setTotal_Amount] = useState(0);
-  const [currentQuantity, setCurrentQuantity] = useState();
 
   const dispatch = useDispatch();
-  const handleDeleteFromCart = (currentItems) => {
+  const handleDeleteFromCart = async (currentItems) => {
     dispatch(DeleteFromCart(currentItems));
+    const jwtToken = JSON.parse(localStorage.getItem("token"));
+    let config = {
+      headers: {
+        Authorization: "Bearer " + jwtToken,
+      },
+    };
+    await axios.delete("https://api.venturegames.pk/RemoveProductCart", {
+      Product: currentItems
+    }, config)
   };
-  const handleQuantityCart = (id, newQuantity) => {
+  const handleQuantityCart = async (id, newQuantity) => {
     dispatch(SetProdQuantity({ _id: id, quantity: newQuantity }));
+    const jwtToken = JSON.parse(localStorage.getItem("token"));
+    let config = {
+      headers: {
+        Authorization: "Bearer " + jwtToken,
+      },
+    };
+    await axios.post("https://api.venturegames.pk/AddtoCart", {
+      Product: id,
+      Quantity: newQuantity
+    }, config);
   };
   useEffect(() => {
     setTotal_Items(Object.values(cartItems).length);

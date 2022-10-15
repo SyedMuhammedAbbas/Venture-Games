@@ -5,7 +5,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Link from "next/link";
-import { SaleProducts } from "./SaleProducts";
+import axios from 'axios';
+// import { SaleProducts } from "./SaleProducts";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useReducer } from "react";
+import { useRef } from "react";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -44,6 +49,19 @@ function SamplePrevArrow(props) {
 }
 
 export default function Sale() {
+  const [SaleProducts, setSaleProducts] = useState([]);
+  const dataFetchedRef = useRef(false)
+
+  async function fetchSaleProducts() {
+    let response = await axios.get("https://api.venturegames.pk/Products", {
+      params: {
+        Sale: true
+      }
+    })
+    console.log(response);
+    setSaleProducts(response.data);
+  }
+
   var settings = {
     dots: true,
     dotsClass: "slick-dots",
@@ -110,6 +128,20 @@ export default function Sale() {
       },
     ],
   };
+
+  useEffect(() => {
+    if(dataFetchedRef.current) {
+      return;
+    }
+    else {
+      dataFetchedRef.current = true;
+      fetchSaleProducts()
+      .catch((error) => {
+        console.error(error);
+      })
+      console.log('i fire once');
+    }
+  }, [])
 
   return (
     <div className="grid bg-[#FFB636] min-h-[100vh] max-h-[100%]  px-[40px] w-[100%] overflow-x-hidden justify-center py-[10%] mobile:px-auto">
