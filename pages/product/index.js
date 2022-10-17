@@ -118,15 +118,17 @@ export default function Product() {
     if(token && DisplayedProduct.Quantity > 0) {
       dispatch(AddToCart(DisplayedProduct));
       const jwtToken = JSON.parse(localStorage.getItem("token"));
+      console.log(jwtToken);
       let config = {
         headers: {
           Authorization: "Bearer " + jwtToken,
         },
       };
-      await axios.put("https://api.venturegames.pk/UpdateCart", {
+      let response = await axios.post("https://api.venturegames.pk/UpdateCart", {
         Quantity: 1,
         Product: DisplayedProduct._id
       }, config);
+      console.log(response);
     }
     else if(DisplayedProduct.Quantity <= 0) {
       alert('Product Not available');

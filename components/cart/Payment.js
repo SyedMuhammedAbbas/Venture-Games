@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import axios from 'axios';
 import Link from "next/link";
 // import {PaymentSessionInternal} from "https://testbankalfalah.gateway.mastercard.com/form/version/54/merchant/NIFT/session.js";
 import { handleClientScriptLoad } from "next/script";
@@ -19,25 +20,22 @@ export default function CheckOut() {
     "https://testbankalfalah.gateway.mastercard.com/form/version/54/merchant/NIFT/session.js";
   const MPGS_TIMEOUT = 5000;
 
+  async function getCart() {
+    let jwtToken = JSON.parse(localStorage.getItem("token"));
+    let config = {
+      headers: {
+        Authorization: "Bearer " + jwtToken
+      },
+    };
+    let response = await axios.get("https://api.venturegames.pk/GetCart", config);
+    setTotal_Items(response.data.cartItems.length);
+    setTotal_Amount(response.data.cartPrice);
+    setTotal_Weight(response.data.cartWeight);
+    console.log(response);
+  }
+
   useEffect(() => {
-    console.log("inside");
-    setTotal_Items(Object.values(cartItems).length);
-    setTotal_Amount(
-      Object.values(cartItems).reduce(
-        (acc, curr) => acc + Number(curr.Price) * curr.quantity,
-        0
-      )
-    );
-
-    setTotal_Weight(
-      Math.round(
-        Object.values(cartItems).reduce(
-          (acc, curr) => acc + Number(curr.Weight) * curr.quantity,
-          0
-        ) * 100
-      ) / 100
-    );
-
+    getCart();
     if (user.FullName) {
       setEmail(user.EmailAddress);
       const [first, last] = user.FullName.split(" ");
@@ -159,7 +157,7 @@ export default function CheckOut() {
                     <div>
                       <button className="uppercase text-white text-[25px] mobile:text-[20px] font-semibold tracking-wider w-[70%] mobile2:w-[90%] py-4 rounded-lg bg-[#68BA01]">
                         <Link href="/thankyou">
-                          <a>pay now - pkr 45,450</a>
+                          <a>pay now - pkr {total_amount + shipping_fee}</a>
                         </Link>
                       </button>
                     </div>
@@ -219,7 +217,7 @@ export default function CheckOut() {
                             {order_summary}
                           </td>
                           <td className="py-3 absolute pt-3 right-0 font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                            {order_summary_values[index] + " Rs"}
+                            {(order_summary_values[index] + shipping_fee) + " Rs"}
                           </td>
                         </tr>
                       );
