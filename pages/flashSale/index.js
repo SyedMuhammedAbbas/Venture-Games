@@ -1,5 +1,5 @@
 import ProfileBar from "../../components/common/ProfileBar";
-import ShopGiftCards from "../../components/shop/ShopGiftCards";
+import ShopFlashSaleProducts from "../../components/shop/ShopFlashSaleProducts";
 import { useState } from "react";
 import ShopCover from "../../components/shop/ShopCover";
 
@@ -27,7 +27,10 @@ export default function GiftCards() {
         <ShopCover />
       </div>
       <div className="snap-start">
-        <ShopGiftCards handleFilter={handleFilter} handleSort={handleSort} />
+        <ShopFlashSaleProducts
+          handleFilter={handleFilter}
+          handleSort={handleSort}
+        />
       </div>
     </>
   );

@@ -2,49 +2,50 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import { Allproductsdata } from "../../components/common/AllProductsData";
 // import { ProductsData } from "../../components/common/ProductsData";
 
-export const getAccessories = createAsyncThunk(
-  "accessories/getAccessories",
+export const getFlashSale = createAsyncThunk(
+  "flashsale/getFlashSale",
+
   async () => {
-    return fetch(
-      "https://api.venturegames.pk/Products?ProductCategory=Accessories"
-    ).then((res) => res.json());
+    return fetch("https://api.venturegames.pk/Products?Sale=true").then((res) =>
+      res.json()
+    );
   }
 );
 
 const initialState = {
-  allAccessories: [],
+  allFlashSale: [],
 };
 
-export const accessoriesSlice = createSlice({
-  name: "accessories",
+export const flashSaleSlice = createSlice({
+  name: "flashsale",
   initialState,
   extraReducers: {
-    [getAccessories.pending]: (state, action) => {
+    [getFlashSale.pending]: (state, action) => {
       state.loading = true;
     },
-    [getAccessories.fulfilled]: (state, action) => {
+    [getFlashSale.fulfilled]: (state, action) => {
       state.loading = false;
-      state.allAccessories = action.payload;
+      state.allFlashSale = action.payload;
     },
-    [getAccessories.rejected]: (state, action) => {
+    [getFlashSale.rejected]: (state, action) => {
       state.loading = false;
     },
   },
   reducers: {
     FilterByConsole(state, action) {
-      state.allAccessories = action.payload;
+      state.allFlashSale = action.payload;
     },
     FilterByGenre(state, action) {
-      state.allAccessories = action.payload;
+      state.allFlashSale = action.payload;
     },
     FilterByCategory(state, action) {
-      state.allAccessories = action.payload;
+      state.allFlashSale = action.payload;
     },
     SortLowToHigh(state, action) {
-      state.allAccessories = action.payload;
+      state.allFlashSale = action.payload;
     },
     SortHighToLow(state, action) {
-      state.allAccessories = action.payload;
+      state.allFlashSale = action.payload;
     },
   },
 });
@@ -56,6 +57,6 @@ export const {
   FilterByCategory,
   SortLowToHigh,
   SortHighToLow,
-} = accessoriesSlice.actions;
+} = flashSaleSlice.actions;
 
-export default accessoriesSlice.reducer;
+export default flashSaleSlice.reducer;

@@ -2,49 +2,49 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import { Allproductsdata } from "../../components/common/AllProductsData";
 // import { ProductsData } from "../../components/common/ProductsData";
 
-export const getAccessories = createAsyncThunk(
-  "accessories/getAccessories",
+export const getFeatured = createAsyncThunk(
+  "featured/getFeatured",
   async () => {
-    return fetch(
-      "https://api.venturegames.pk/Products?ProductCategory=Accessories"
-    ).then((res) => res.json());
+    return fetch("https://api.venturegames.pk/Products?Featured=true").then(
+      (res) => res.json()
+    );
   }
 );
 
 const initialState = {
-  allAccessories: [],
+  allFeatured: [],
 };
 
-export const accessoriesSlice = createSlice({
-  name: "accessories",
+export const featuredSlice = createSlice({
+  name: "featured",
   initialState,
   extraReducers: {
-    [getAccessories.pending]: (state, action) => {
+    [getFeatured.pending]: (state, action) => {
       state.loading = true;
     },
-    [getAccessories.fulfilled]: (state, action) => {
+    [getFeatured.fulfilled]: (state, action) => {
       state.loading = false;
-      state.allAccessories = action.payload;
+      state.allFeatured = action.payload;
     },
-    [getAccessories.rejected]: (state, action) => {
+    [getFeatured.rejected]: (state, action) => {
       state.loading = false;
     },
   },
   reducers: {
     FilterByConsole(state, action) {
-      state.allAccessories = action.payload;
+      state.allFeatured = action.payload;
     },
     FilterByGenre(state, action) {
-      state.allAccessories = action.payload;
+      state.allFeatured = action.payload;
     },
     FilterByCategory(state, action) {
-      state.allAccessories = action.payload;
+      state.allFeatured = action.payload;
     },
     SortLowToHigh(state, action) {
-      state.allAccessories = action.payload;
+      state.allFeatured = action.payload;
     },
     SortHighToLow(state, action) {
-      state.allAccessories = action.payload;
+      state.allFeatured = action.payload;
     },
   },
 });
@@ -56,6 +56,6 @@ export const {
   FilterByCategory,
   SortLowToHigh,
   SortHighToLow,
-} = accessoriesSlice.actions;
+} = featuredSlice.actions;
 
-export default accessoriesSlice.reducer;
+export default featuredSlice.reducer;

@@ -1,13 +1,13 @@
 import ProfileBar from "../../components/common/ProfileBar";
-import ShopGiftCards from "../../components/shop/ShopGiftCards";
+import ShopFeaturedProducts from "../../components/shop/ShopFeaturedProducts";
 import { useState } from "react";
 import ShopCover from "../../components/shop/ShopCover";
 
 export default function GiftCards() {
-  const [handleSignup, sethandleSignup] = useState(false);
-  const [handleLogin, sethandleLogin] = useState(false);
   const [handleFilter, sethandleFilter] = useState(false);
   const [handleSort, sethandleSort] = useState(false);
+  const [handleSignup, sethandleSignup] = useState(false);
+  const [handleLogin, sethandleLogin] = useState(false);
 
   return (
     <>
@@ -27,7 +27,10 @@ export default function GiftCards() {
         <ShopCover />
       </div>
       <div className="snap-start">
-        <ShopGiftCards handleFilter={handleFilter} handleSort={handleSort} />
+        <ShopFeaturedProducts
+          handleFilter={handleFilter}
+          handleSort={handleSort}
+        />
       </div>
     </>
   );

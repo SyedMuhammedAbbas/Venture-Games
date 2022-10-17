@@ -31,8 +31,8 @@
 html{
   font-family: 'SF Pro Display Light';
   /* scroll-snap-type: proximity; */
-  scroll-snap-type: y proximity;
-  scroll-padding-top: 150px;
+  /* scroll-snap-type: y proximity;
+  scroll-padding-top: 150px; */
   
 }
 
@@ -40,10 +40,10 @@ html{
   :root{
     zoom: 65%;  
   } 
-  html{
+  /* html{
     scroll-snap-type: y mandatory;
     
-  }
+  } */
   .topgamesCarousel{
     zoom: 110%;
   }
