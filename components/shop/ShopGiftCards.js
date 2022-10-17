@@ -13,7 +13,7 @@ import {
   FilterByCategory,
 } from "../../features/counter/giftcardsSlice";
 
-export default function ShopProducts({ handleFilter, handleSort }) {
+export default function ShopGiftCards({ handleFilter, handleSort }) {
   const Products = useSelector((state) => state.giftcards.allGiftCards);
   const [platforms, setPlatforms] = useState([]);
   const [genre, setGenre] = useState([]);

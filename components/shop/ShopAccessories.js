@@ -13,7 +13,7 @@ import {
   FilterByCategory,
 } from "../../features/counter/accessoriesSlice";
 
-export default function ShopProducts({ handleFilter, handleSort }) {
+export default function ShopAccessories({ handleFilter, handleSort }) {
   const Products = useSelector((state) => state.accessories.allAccessories);
   const [platforms, setPlatforms] = useState([]);
   const [genre, setGenre] = useState([]);

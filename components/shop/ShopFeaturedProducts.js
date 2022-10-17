@@ -13,7 +13,7 @@ import {
   FilterByCategory,
 } from "../../features/counter/featuredSlice";
 
-export default function ShopProducts({ handleFilter, handleSort }) {
+export default function ShopFeaturedProducts({ handleFilter, handleSort }) {
   const Products = useSelector((state) => state.featured.allFeatured);
   const [platforms, setPlatforms] = useState([]);
   const [genre, setGenre] = useState([]);

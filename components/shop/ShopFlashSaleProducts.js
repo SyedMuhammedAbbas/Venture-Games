@@ -13,7 +13,7 @@ import {
   FilterByCategory,
 } from "../../features/counter/flashSaleSlice";
 
-export default function ShopProducts({ handleFilter, handleSort }) {
+export default function ShopFlashSaleProducts({ handleFilter, handleSort }) {
   const Products = useSelector((state) => state.flashsale.allFlashSale);
   const [platforms, setPlatforms] = useState([]);
   const [genre, setGenre] = useState([]);
