@@ -3,6 +3,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import toggel1 from "../../styles/Toggel1.module.css";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import axios from "axios";
 
 export default function CheckOut() {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -33,24 +34,26 @@ export default function CheckOut() {
       Old ? setOld(false) & setNew(true) : setOld(true) & setNew(false);
     }
   }
+
+  async function getCart() {
+    let jwtToken = JSON.parse(localStorage.getItem("token"));
+    let config = {
+      headers: {
+        Authorization: "Bearer " + jwtToken,
+      },
+    };
+    let response = await axios.get(
+      "https://api.venturegames.pk/GetCart",
+      config
+    );
+    setTotal_Items(response.data.cartItems.length);
+    setTotal_Amount(response.data.cartPrice);
+    setTotal_Weight(response.data.cartWeight);
+    console.log(response);
+  }
+
   useEffect(() => {
-    setTotal_Items(Object.values(cartItems).length);
-    setTotal_Amount(
-      Object.values(cartItems).reduce(
-        (acc, curr) => acc + Number(curr.product_newprice) * curr.quantity,
-        0
-      )
-    );
-
-    setTotal_Weight(
-      Math.round(
-        Object.values(cartItems).reduce(
-          (acc, curr) => acc + Number(curr.product_weight) * curr.quantity,
-          0
-        ) * 100
-      ) / 100
-    );
-
+    getCart();
     if (user.FullName) {
       setEmail(user.EmailAddress);
       const [first, last] = user.FullName.split(" ");
@@ -254,7 +257,7 @@ export default function CheckOut() {
                             {order_summary}
                           </td>
                           <td className="py-0 absolute pt-3 right-0 font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                            {order_summary_values[index] + " Rs"}
+                            {order_summary_values[index] + shipping_fee + " Rs"}
                           </td>
                         </tr>
                       );
