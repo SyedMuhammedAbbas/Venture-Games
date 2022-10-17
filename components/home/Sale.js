@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Link from "next/link";
-import axios from 'axios';
+import axios from "axios";
 // import { SaleProducts } from "./SaleProducts";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -50,14 +50,14 @@ function SamplePrevArrow(props) {
 
 export default function Sale() {
   const [SaleProducts, setSaleProducts] = useState([]);
-  const dataFetchedRef = useRef(false)
+  const dataFetchedRef = useRef(false);
 
   async function fetchSaleProducts() {
     let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
-        Sale: true
-      }
-    })
+        Sale: true,
+      },
+    });
     console.log(response);
     setSaleProducts(response.data);
   }
@@ -130,18 +130,16 @@ export default function Sale() {
   };
 
   useEffect(() => {
-    if(dataFetchedRef.current) {
+    if (dataFetchedRef.current) {
       return;
-    }
-    else {
+    } else {
       dataFetchedRef.current = true;
-      fetchSaleProducts()
-      .catch((error) => {
+      fetchSaleProducts().catch((error) => {
         console.error(error);
-      })
-      console.log('i fire once');
+      });
+      console.log("i fire once");
     }
-  }, [])
+  }, []);
 
   return (
     <div className="grid bg-[#FFB636] min-h-[100vh] max-h-[100%]  px-[40px] w-[100%] overflow-x-hidden justify-center py-[10%] mobile:px-auto">
@@ -151,7 +149,7 @@ export default function Sale() {
             Flash Sale
           </div>
           <div className="flex absolute right-32 xxl:right-24 4xl:right-20 mobile:right-10  mt-4">
-            <Link href="/shop">
+            <Link href="/flashSale">
               <button className="flex text-black text-[30px] tablet2:text-[20px]">
                 View all
                 <div className="mt-0 text-[50px] tablet2:text-[35px]">
@@ -161,13 +159,21 @@ export default function Sale() {
             </Link>
           </div>
         </div>
-        <div className="w-[110vw] mobile1.1:w-[95%] h-auto mx-auto my-20">
-          <Slider {...settings}>
+        {SaleProducts.length < 4 ? (
+          <div className="w-[110vw] flex flex-wrap justify-center gap-10 mobile1.1:w-[95%] h-auto mx-auto my-20">
             {Object.values(SaleProducts).map((currentItem) => {
               return <SaleCard key={currentItem} product={currentItem} />;
             })}
-          </Slider>
-        </div>
+          </div>
+        ) : (
+          <div className="w-[110vw] mobile1.1:w-[95%] h-auto mx-auto my-20">
+            <Slider {...settings}>
+              {Object.values(SaleProducts).map((currentItem) => {
+                return <SaleCard key={currentItem} product={currentItem} />;
+              })}
+            </Slider>
+          </div>
+        )}
       </div>
     </div>
   );

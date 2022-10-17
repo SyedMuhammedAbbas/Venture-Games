@@ -7,9 +7,10 @@ export const getGiftCards = createAsyncThunk(
   async () => {
     let setgiftcards = "Gift Cards";
     return fetch(
-      `https://api.venturegames.pk/Products?ProductCategory=${encodeURIComponent(
-        setgiftcards
-      )}`
+      // `https://api.venturegames.pk/Products?ProductCategory=${encodeURIComponent(
+      //   setgiftcards
+      // )}`
+      "https://api.venturegames.pk/Products?ProductCategory=Gift%20Cards"
     ).then((res) => res.json());
   }
 );
@@ -27,7 +28,7 @@ export const giftcardsSlice = createSlice({
     },
     [getGiftCards.fulfilled]: (state, action) => {
       state.loading = false;
-      state.allProducts = action.payload;
+      state.allGiftCards = action.payload;
     },
     [getGiftCards.rejected]: (state, action) => {
       state.loading = false;
@@ -35,12 +36,20 @@ export const giftcardsSlice = createSlice({
   },
   reducers: {
     FilterByConsole(state, action) {
-      state.allGiftCards.filter((p) => p.id);
+      state.allGiftCards = action.payload;
     },
-    FilterByGenre(state, action) {},
-    FilterByCategory(state, action) {},
-    SortLowToHigh(state, action) {},
-    SortHighToLow(state, action) {},
+    FilterByGenre(state, action) {
+      state.allGiftCards = action.payload;
+    },
+    FilterByCategory(state, action) {
+      state.allGiftCards = action.payload;
+    },
+    SortLowToHigh(state, action) {
+      state.allGiftCards = action.payload;
+    },
+    SortHighToLow(state, action) {
+      state.allGiftCards = action.payload;
+    },
   },
 });
 

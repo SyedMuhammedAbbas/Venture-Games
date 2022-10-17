@@ -53,7 +53,7 @@ export default function Header() {
     "shop",
     "giftcards",
     "consoles",
-    "consoles",
+    "games",
     "accessories",
     "learnmore",
   ];
@@ -201,7 +201,7 @@ export default function Header() {
         </div> */}
         <ul className="flex gap-[15vw] uppercase text-white text-xl transition-all mb-[-10px] 4xl:text-lg xl:gap-[10vw] lg:mb-[-20px]">
           <li className={list}>
-            <Link href="/shop">
+            <Link href="/games">
               <a>games</a>
             </Link>
           </li>

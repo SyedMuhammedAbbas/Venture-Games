@@ -9,7 +9,10 @@ export default function SaleCard({ product }) {
     dispatch(AddToCart(product));
   };
   function sendProps() {
-    Router.push({ pathname: "/product", query: { id: product._id } });
+    Router.push({
+      pathname: "/product",
+      query: { id: product.ProductGroup._id },
+    });
   }
   return (
     <div className="w-[350px] mobile1.1:w-[370px]">
@@ -30,34 +33,34 @@ export default function SaleCard({ product }) {
                 </div>
               </div>
               <div className="flex gap-1 overflow-x-scroll desp-scroll w-[330px]">
-                {product.ProductGroup.AvailablePlatforms.map((product_platform, index) => (
-                  <button
-                    key={index}
-                    className="text-black font-bold py-[1px] uppercase bg-[#FFB636] px-3 rounded-md text-[14px]"
-                  >
-                    {product_platform.Title}
-                  </button>
-                ))}
+                {product.ProductGroup.AvailablePlatforms.map(
+                  (product_platform, index) => (
+                    <button
+                      key={index}
+                      className="text-black font-bold py-[1px] uppercase bg-[#FFB636] px-3 rounded-md text-[14px]"
+                    >
+                      {product_platform.Title}
+                    </button>
+                  )
+                )}
               </div>
             </div>
           </div>
         </div>
 
         <div className="grid gap-2  overflow-y-hidden">
-          <div className="grid overflow-y-scroll desp-scroll h-[35px]">
-            <div className="text-white text-[23px] mt-0">
-              {product.Title}
-            </div>
+          <div className="grid text-center overflow-y-scroll desp-scroll h-[35px]">
+            <div className="text-white text-[23px] mt-0">{product.Title}</div>
           </div>
-          <div className="flex pl-4 gap-2 mt-5 pb-5">
-            <button
+          <div className="flex justify-center pl-4 gap-2 mt-5 pb-5">
+            {/* <button
               onClick={() => handleAddtoCart(product)}
               className="text-white border-[1px] font-semibold border-white rounded-lg text-[14px] px-8 py-1 hover:bg-white hover:text-black hover:border-black"
             >
               <Link href="/cart">
                 <a>Buy Now</a>
               </Link>
-            </button>
+            </button> */}
             <button
               onClick={() => sendProps()}
               className="text-white border-[1px] font-semibold border-white rounded-lg text-[14px] px-4 py-1 hover:bg-white hover:text-black hover:border-black"

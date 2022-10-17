@@ -1,5 +1,5 @@
 import ProfileBar from "../../components/common/ProfileBar";
-import ShopProducts from "../../components/shop/ShopProducts";
+import ShopAccessories from "../../components/shop/ShopAccessories";
 import { useState } from "react";
 import ShopCover from "../../components/shop/ShopCover";
 
@@ -12,6 +12,11 @@ export default function Accessories() {
   return (
     <>
       <ProfileBar
+        filter="true"
+        sethandleFilter={sethandleFilter}
+        handleFilter={handleFilter}
+        sethandleSort={sethandleSort}
+        handleSort={handleSort}
         cartshow={true}
         handleLogin={handleLogin}
         sethandleLogin={sethandleLogin}
@@ -22,11 +27,7 @@ export default function Accessories() {
         <ShopCover />
       </div>
       <div className="snap-start">
-        <ShopProducts
-          handleFilter={handleFilter}
-          handleSort={handleSort}
-          Accessories={true}
-        />
+        <ShopAccessories handleFilter={handleFilter} handleSort={handleSort} />
       </div>
     </>
   );

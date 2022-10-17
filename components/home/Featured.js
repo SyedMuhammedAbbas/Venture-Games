@@ -79,28 +79,26 @@ export default function Featured({ products }) {
       },
     ],
   };
-  async function fetchFeaturedProducts () {
+  async function fetchFeaturedProducts() {
     let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
-        Sale: true
-      }
-    })
+        Featured: true,
+      },
+    });
     console.log(response);
     setProducts(response.data);
   }
 
   useEffect(() => {
-    if(dataFetchedRef.current) {
+    if (dataFetchedRef.current) {
       return;
-    }
-    else {
+    } else {
       dataFetchedRef.current = true;
-      fetchFeaturedProducts()
-      .catch((error) => {
+      fetchFeaturedProducts().catch((error) => {
         console.error(error);
-      })
+      });
     }
-  }, [])
+  }, []);
 
   return (
     <div className="grid relative justify-center bg-[#FFB636] min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] px-32 mobile:px-10 py-10  border-b-black border-b-8">
@@ -109,7 +107,7 @@ export default function Featured({ products }) {
           Featured Products
         </div>
         <div className="absolute right-[7%] mobile:mt-20 mt-14 lg:mb-5">
-          <Link href="/shop">
+          <Link href="/featured">
             <button className="flex pr-[0%] text-black text-[30px] lg:text-[20px] mobile:mt-0">
               <div>View all</div>
               <div className="mt-0 text-[50px] lg:text-[35px]">
@@ -119,15 +117,25 @@ export default function Featured({ products }) {
           </Link>
         </div>
       </div>
-      <div className="w-[110vw] featuredcards mx-auto my-auto h-auto mt-[40px] mb-10">
-        <Slider {...settings}>
+      {Products.length < 4 ? (
+        <div className="w-[110vw] flex flex-wrap justify-center gap-10 featuredcards mx-auto my-auto h-auto mt-[40px] mb-10">
           {Object.values(Products).map((currentItem) => (
             <div key={currentItem}>
               <FeaturedCard product={currentItem} />
             </div>
           ))}
-        </Slider>
-      </div>
+        </div>
+      ) : (
+        <div className="w-[110vw] featuredcards mx-auto my-auto h-auto mt-[40px] mb-10">
+          <Slider {...settings}>
+            {Object.values(Products).map((currentItem) => (
+              <div key={currentItem}>
+                <FeaturedCard product={currentItem} />
+              </div>
+            ))}
+          </Slider>
+        </div>
+      )}
     </div>
   );
 }

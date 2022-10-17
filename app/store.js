@@ -7,6 +7,10 @@ import userReducer from "../features/counter/UserSlice";
 import storage from "redux-persist/lib/storage";
 import accessoriesReducer from "../features/counter/accessoriesSlice";
 import girftcardsReducer from "../features/counter/giftcardsSlice";
+import flashSaleReducer from "../features/counter/flashSaleSlice";
+import featuredReducer from "../features/counter/featuredSlice";
+import gamesReducer from "../features/counter/gamesSlice";
+
 import { combineReducers } from "redux";
 import {
   persistReducer,
@@ -28,6 +32,9 @@ const reducers = combineReducers({
   accessories: accessoriesReducer,
   giftcards: girftcardsReducer,
   products: productReducer,
+  featured: featuredReducer,
+  flashsale: flashSaleReducer,
+  games: gamesReducer,
   carouselProducts: carouselProductReducer,
   user: userReducer,
 });

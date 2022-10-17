@@ -4,7 +4,7 @@ import xbox from "../../images/xbox-logo.png";
 import nintendo from "../../images/nintendo.png";
 import Link from "next/link";
 
-export default function PlatformsElement({ consoles }) {
+export default function PlatformsElement({ consoles, platforms }) {
   const platformLogos = [PS5, xbox, PS4, nintendo];
   const platformClass =
     "snap-center border-[1px] w-[340px] h-[450px] flex justify-center items-center rounded-[35px]  xl1:rounded-[30px] border-white mobile:rounded-[35px]";

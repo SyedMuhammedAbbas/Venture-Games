@@ -5,9 +5,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const getAccessories = createAsyncThunk(
   "accessories/getAccessories",
   async () => {
-    return fetch("https://api.venturegames.pk/Accessories").then((res) =>
-      res.json()
-    );
+    return fetch(
+      "https://api.venturegames.pk/Products?ProductCategory=Accessories"
+    ).then((res) => res.json());
   }
 );
 
@@ -24,7 +24,7 @@ export const accessoriesSlice = createSlice({
     },
     [getAccessories.fulfilled]: (state, action) => {
       state.loading = false;
-      state.allProducts = action.payload;
+      state.allAccessories = action.payload;
     },
     [getAccessories.rejected]: (state, action) => {
       state.loading = false;
@@ -32,12 +32,20 @@ export const accessoriesSlice = createSlice({
   },
   reducers: {
     FilterByConsole(state, action) {
-      state.allAccessories.filter((p) => p.id);
+      state.allAccessories = action.payload;
     },
-    FilterByGenre(state, action) {},
-    FilterByCategory(state, action) {},
-    SortLowToHigh(state, action) {},
-    SortHighToLow(state, action) {},
+    FilterByGenre(state, action) {
+      state.allAccessories = action.payload;
+    },
+    FilterByCategory(state, action) {
+      state.allAccessories = action.payload;
+    },
+    SortLowToHigh(state, action) {
+      state.allAccessories = action.payload;
+    },
+    SortHighToLow(state, action) {
+      state.allAccessories = action.payload;
+    },
   },
 });
 

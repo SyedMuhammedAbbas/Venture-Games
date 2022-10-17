@@ -21,18 +21,18 @@ export default function ShopProducts({ handleFilter, handleSort }) {
   const sortbyprice = ["Low to High", "High to Low"];
   const icons = "text-[35px] 2xl:text-[25px] lg:text-[21px] text-white";
   const buttons =
-    "text-white uppercase border-[1px] font-semibold border-white rounded-lg text-[25px] px-2 w-40 py-1 hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black";
+    "text-white uppercase border-[1px] font-semibold border-white rounded-lg text-[25px] px-2 w-48 py-1 hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black";
 
   // const platforms = ["PS5", "PS4", "XBOX"];
   // const genre = ["Action", "adventure", "thriller", "Driving/Racing"];
   // const category = ["online", "offline"];
 
-  async function setters () {
+  async function setters() {
     let plats = await axios.get("https://api.venturegames.pk/GetPlatforms");
     setPlatforms(plats.data);
     let gens = await axios.get("https://api.venturegames.pk/GetGenres");
     setGenre(gens.data);
-    let tag = await axios.get("https://api.venturegames.pk/GetTags")
+    let tag = await axios.get("https://api.venturegames.pk/GetTags");
     setTags(tag.data);
   }
 
@@ -184,9 +184,14 @@ export default function ShopProducts({ handleFilter, handleSort }) {
             <div className="border-b-[3px] border-blackOpac">
               <div className="grid items-start gap-4 mr-[120px] py-10">
                 {tags.map((category, ind) => (
-                  <button value={category} key={ind} className={buttons} onClick={() => {
-                    sortByTags(category);
-                  }}>
+                  <button
+                    value={category}
+                    key={ind}
+                    className={buttons}
+                    onClick={() => {
+                      sortByTags(category);
+                    }}
+                  >
                     {category.Title}
                   </button>
                 ))}
