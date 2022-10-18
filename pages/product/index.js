@@ -117,11 +117,13 @@ export default function Product() {
     if (token && DisplayedProduct.Quantity > 0) {
       dispatch(AddToCart(DisplayedProduct));
       const jwtToken = JSON.parse(localStorage.getItem("token"));
+      console.log(jwtToken);
       let config = {
         headers: {
           Authorization: "Bearer " + jwtToken,
         },
       };
+<<<<<<< HEAD
       await axios.put(
         "https://api.venturegames.pk/UpdateCart",
         {
@@ -134,6 +136,19 @@ export default function Product() {
       alert("Product Not available");
     } else {
       router.push("/login");
+=======
+      let response = await axios.post("https://api.venturegames.pk/UpdateCart", {
+        Quantity: 1,
+        ProductId: DisplayedProduct._id
+      }, config);
+      console.log(response);
+    }
+    else if(DisplayedProduct.Quantity <= 0) {
+      alert('Product Not available');
+    }
+    else {
+      router.push('/login');
+>>>>>>> 2fdfa8b29dbac662d6ca9458c2b149f864971a5f
     }
   };
 

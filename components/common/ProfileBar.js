@@ -68,12 +68,12 @@ export default function ProfileBar({
       }
     })
 
-    console.log(response.data);
+    // console.log(response.data);
     // console.log("Search")
   }
 
-  console.log(token);
-  console.log(user);
+  // console.log(token);
+  // console.log(user);
 
   return (
     <div className="flex items-center gap-9 2xl:gap-7 mobile:gap-5 fixed w-[100%] justify-end pr-28 2xl:pr-20 lg:pr-14 mobile:pr-7 tablet:hidden p-3  bg-black bg-opacity-30 backdrop-blur-xl z-[999]">
@@ -142,7 +142,7 @@ export default function ProfileBar({
         </form>
       </div> */}
 
-      {cartshow && (
+      {cartshow && token && (
         <div className={icons}>
           <Link
             href={{
