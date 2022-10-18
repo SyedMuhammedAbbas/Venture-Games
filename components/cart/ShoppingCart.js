@@ -18,15 +18,16 @@ export default function ShoppingCart() {
   const dispatch = useDispatch();
   const handleDeleteFromCart = async (currentItems) => {
     dispatch(DeleteFromCart(currentItems));
+    console.log(currentItems);
     const jwtToken = JSON.parse(localStorage.getItem("token"));
+    console.log(jwtToken);
     let config = {
       headers: {
-        Authorization: "Bearer " + jwtToken,
+        Authorization: "Bearer " + jwtToken
       },
     };
-    await axios.delete("https://api.venturegames.pk/RemoveProductCart", {
-      Product: currentItems
-    }, config)
+    let response = await axios.delete("https://api.venturegames.pk/RemoveProductCart?ProductId=" + currentItems, config)
+    console.log(response);
   };
   const handleQuantityCart = async (id, newQuantity) => {
     dispatch(SetProdQuantity({ _id: id, quantity: newQuantity }));
@@ -37,7 +38,7 @@ export default function ShoppingCart() {
       },
     };
     await axios.post("https://api.venturegames.pk/AddtoCart", {
-      Product: id,
+      ProductId: id,
       Quantity: newQuantity
     }, config);
   };

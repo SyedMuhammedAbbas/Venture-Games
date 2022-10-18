@@ -126,7 +126,7 @@ export default function Product() {
       };
       let response = await axios.post("https://api.venturegames.pk/UpdateCart", {
         Quantity: 1,
-        Product: DisplayedProduct._id
+        ProductId: DisplayedProduct._id
       }, config);
       console.log(response);
     }
