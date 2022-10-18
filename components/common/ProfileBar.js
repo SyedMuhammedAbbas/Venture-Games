@@ -142,7 +142,7 @@ export default function ProfileBar({
         </form>
       </div> */}
 
-      {cartshow && (
+      {cartshow && token && (
         <div className={icons}>
           <Link
             href={{

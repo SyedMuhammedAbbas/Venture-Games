@@ -42,10 +42,11 @@ export default function CheckOut() {
         Authorization: "Bearer " + jwtToken
       },
     };
-    let response = await axios.get("https://api.venturegames.pk/GetCart", config);
-    setTotal_Items(response.data.cartItems.length);
-    setTotal_Amount(response.data.cartPrice);
-    setTotal_Weight(response.data.cartWeight);
+    let response = await axios.get("https://api.venturegames.pk/GetCart?ShippingRegion=Karachi", config);
+    console.log(response);
+    setTotal_Items(response.data.CartItems.length);
+    setTotal_Amount(response.data.CartPrice);
+    setTotal_Weight(response.data.CartWeight);
     console.log(response);
   }
 
@@ -229,7 +230,7 @@ export default function CheckOut() {
                             {order_summary}
                           </td>
                           <td className="pt-5 absolute right-0 pb-0 text-right font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                            {order_summary_values[index] + " kg"}
+                            {order_summary_values[index] + " g"}
                           </td>
                         </tr>
                       );

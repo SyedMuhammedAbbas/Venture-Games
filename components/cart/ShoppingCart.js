@@ -226,7 +226,7 @@ export default function ShoppingCart() {
                               {order_summary}
                             </td>
                             <td className="pt-5 absolute right-0 pb-0 text-right font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                              {order_summary_values[index] + " kg"}
+                              {order_summary_values[index] + " g"}
                             </td>
                           </tr>
                         );
