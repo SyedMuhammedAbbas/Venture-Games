@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import ProfileBar from "../../components/common/ProfileBar";
 import { AddToCart } from "../../features/counter/cartSlice";
+import Link from "next/link";
 
 export default function Product() {
   const router = useRouter();
@@ -66,11 +67,10 @@ export default function Product() {
   function handleNew() {
     {
       New ? setNew(false) & setOld(true) : setNew(true) & setOld(false);
-      if(Products.length > 1) {
+      if (Products.length > 1) {
         setSelectedType("New");
         setParticularItem(true);
-      }
-      else {
+      } else {
         setParticularItem(false);
       }
     }
@@ -78,11 +78,10 @@ export default function Product() {
   function handleOld() {
     {
       Old ? setOld(false) & setNew(true) : setOld(true) & setNew(false);
-      if(Products.length > 1) {
+      if (Products.length > 1) {
         setSelectedType("Used");
         setParticularItem(true);
-      }
-      else {
+      } else {
         setParticularItem(false);
       }
     }
@@ -115,7 +114,7 @@ export default function Product() {
   const dispatch = useDispatch();
 
   const handleAddtoCart = async (DisplayedProduct) => {
-    if(token && DisplayedProduct.Quantity > 0) {
+    if (token && DisplayedProduct.Quantity > 0) {
       dispatch(AddToCart(DisplayedProduct));
       const jwtToken = JSON.parse(localStorage.getItem("token"));
       let config = {
@@ -123,16 +122,18 @@ export default function Product() {
           Authorization: "Bearer " + jwtToken,
         },
       };
-      await axios.put("https://api.venturegames.pk/UpdateCart", {
-        Quantity: 1,
-        Product: DisplayedProduct._id
-      }, config);
-    }
-    else if(DisplayedProduct.Quantity <= 0) {
-      alert('Product Not available');
-    }
-    else {
-      router.push('/login');
+      await axios.put(
+        "https://api.venturegames.pk/UpdateCart",
+        {
+          Quantity: 1,
+          Product: DisplayedProduct._id,
+        },
+        config
+      );
+    } else if (DisplayedProduct.Quantity <= 0) {
+      alert("Product Not available");
+    } else {
+      router.push("/login");
     }
   };
 
@@ -305,9 +306,14 @@ export default function Product() {
 
                 <div className="tablet:pb-[0px] tablet3:grid tablet3:gap-10">
                   <div className="flex gap-2">
-                    <button className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black cursor-pointer">
-                      Buy Now
-                    </button>
+                    <Link href="/cart">
+                      <button
+                        onClick={() => handleAddtoCart(DisplayedProduct)}
+                        className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black cursor-pointer"
+                      >
+                        Buy Now
+                      </button>
+                    </Link>
                     <button
                       onClick={() => handleAddtoCart(DisplayedProduct)}
                       className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black "

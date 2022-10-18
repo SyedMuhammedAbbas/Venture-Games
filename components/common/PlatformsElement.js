@@ -1,7 +1,7 @@
-import PS5 from "../../images/PS5.png";
-import PS4 from "../../images/ps4-logo.png";
-import xbox from "../../images/xbox-logo.png";
-import nintendo from "../../images/nintendo.png";
+import PS5 from "../../images/platforms/PS5.png";
+import PS4 from "../../images/platforms/PS4.png";
+import XBOX from "../../images/platforms/XBOX.png";
+import NINTENDO from "../../images/platforms/NINTENDO.png";
 import Link from "next/link";
 import axios from "axios";
 import { useSelect } from "@material-tailwind/react";
@@ -26,11 +26,12 @@ export default function PlatformsElement({ consoles }) {
 
   useEffect(() => {
     getPlatforms();
-  });
-  const platformLogos = [PS5, xbox, PS4, nintendo];
+  }, []);
+  // const platformLogos = [PS5, xbox, PS4, nintendo];
   const platformClass =
-    "snap-center border-[1px] w-[340px] h-[450px] flex justify-center items-center rounded-[35px]  xl1:rounded-[30px] border-white mobile:rounded-[35px]";
+    "snap-center border-[1px] w-[340px] h-[450px] flex justify-center items-center rounded-[35px] hover:cursor-pointer  xl1:rounded-[30px] border-white mobile:rounded-[35px]";
   const platformImgClass = " w-[290px]  justify-center";
+  console.log(platforms);
   return (
     <div className="platformElement bg-gradient-to-tr from-[#805712] via-black to-[#805712] p-20 5xl:px-20 px-64 5xl:px-auto 4xl:px-10 2xl:px-auto mobile:p-4 min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] flex justify-center mobile1:items-center">
       {platforms && (
@@ -38,21 +39,29 @@ export default function PlatformsElement({ consoles }) {
           <div className="text-[90px] 2xl:text-[70px] lg:text-[50px] tablet:text-[40px] mobile:text-[25px] text-center text-white font-hemi">
             Shop By Platform
           </div>
-          <div className="flex justify-center 2xl:justify-start gap-10 mobile:gap-5 w-[110vw] platformElementClass overflow-x-auto platform-items-scroll h-[500px] snap-x snap-mandatory">
+          <div className="flex justify-center  2xl:justify-start gap-10 mobile:gap-5 w-[110vw] platformElementClass overflow-x-auto platform-items-scroll h-[500px] snap-x snap-mandatory">
             {platforms.map((platformLogos, index) => (
               <div key={index}>
-                {/* <Link href="/shop"> */}
                 <a
                   onClick={() => {
                     handleClick(platformLogos);
                   }}
                 >
                   <div className={platformClass}>
-                    {/* <img className={platformImgClass} src={platformLogos.src} /> */}
-                    {platformLogos.Title}
+                    {platformLogos.Title === "PS4" ? (
+                      <img className={platformImgClass} src={PS4.src} />
+                    ) : platformLogos.Title === "PS5" ? (
+                      <img className={platformImgClass} src={PS5.src} />
+                    ) : platformLogos.Title === "XBOX" ? (
+                      <img className={platformImgClass} src={XBOX.src} />
+                    ) : (
+                      <></>
+                    )}
+
+                    {/* {platformLogos.Title} */}
                   </div>
                 </a>
-                {/* </Link> */}
+                0
               </div>
             ))}
           </div>
