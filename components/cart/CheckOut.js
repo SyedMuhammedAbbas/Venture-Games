@@ -3,7 +3,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import toggel1 from "../../styles/Toggel1.module.css";
 import { useSelector } from "react-redux";
 import Link from "next/link";
-import axios from 'axios';
+import axios from "axios";
 
 export default function CheckOut() {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -39,11 +39,13 @@ export default function CheckOut() {
     let jwtToken = JSON.parse(localStorage.getItem("token"));
     let config = {
       headers: {
-        Authorization: "Bearer " + jwtToken
+        Authorization: "Bearer " + jwtToken,
       },
     };
-    let response = await axios.get("https://api.venturegames.pk/GetCart?ShippingRegion=Karachi", config);
-    console.log(response);
+    let response = await axios.get(
+      "https://api.venturegames.pk/GetCart?ShippingRegion=Karachi",
+      config
+    );
     setTotal_Items(response.data.CartItems.length);
     setTotal_Amount(response.data.CartPrice);
     setTotal_Weight(response.data.CartWeight);
@@ -255,7 +257,7 @@ export default function CheckOut() {
                             {order_summary}
                           </td>
                           <td className="py-0 absolute pt-3 right-0 font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                            {(order_summary_values[index] + shipping_fee) + " Rs"}
+                            {order_summary_values[index] + shipping_fee + " Rs"}
                           </td>
                         </tr>
                       );
