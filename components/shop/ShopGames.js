@@ -15,7 +15,11 @@ import {
 
 export default function ShopGames({ handleFilter, handleSort }) {
   console.log("here");
-  const Products = useSelector((state) => state.games.allGames);
+  const ProductsFetched = useSelector((state) => state.games.allGames);
+  const Products = ProductsFetched.filter(
+    (v, i, a) =>
+      a.findIndex((t) => t.ProductGroup._id === v.ProductGroup._id) === i
+  );
   console.log(Products);
   const [platforms, setPlatforms] = useState([]);
   const [genre, setGenre] = useState([]);
@@ -23,7 +27,7 @@ export default function ShopGames({ handleFilter, handleSort }) {
   const sortbyprice = ["Low to High", "High to Low"];
   const icons = "text-[35px] 2xl:text-[25px] lg:text-[21px] text-white";
   const buttons =
-    "text-white uppercase border-[1px] font-semibold border-white rounded-lg text-[25px] px-2 w-48 py-1 hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black";
+    "text-white uppercase border-[1px] font-semibold border-white rounded-lg text-[20px] px-2 w-48 py-1 hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black";
 
   // const platforms = ["PS5", "PS4", "XBOX"];
   // const genre = ["Action", "adventure", "thriller", "Driving/Racing"];

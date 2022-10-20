@@ -55,9 +55,13 @@ export default function FeaturedCard({ product }) {
           {product.Title}
         </div>
         <div className="flex gap-5 justify-center">
-          <div className="text-red-600 line-through text-[25px] mobile:text-[19px]">
-            {product.Price}
-          </div>
+          {product.OldPrice === undefined ? (
+            ""
+          ) : (
+            <div className="text-red-600 line-through text-[25px] mobile:text-[19px]">
+              {product.OldPrice}
+            </div>
+          )}
           <div className="text-white text-[25px] mobile:text-[21px]">
             {product.Price} PKR
           </div>

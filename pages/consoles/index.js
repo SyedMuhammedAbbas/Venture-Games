@@ -1,4 +1,4 @@
-import PlatformsElement from "../../components/common/PlatformsElement";
+import ConsolesPlatform from "../../components/common/ConsolesPlatform";
 import ProfileBar from "../../components/common/ProfileBar";
 import { useState } from "react";
 
@@ -15,7 +15,7 @@ export default function Consoles() {
         sethandleSignup={sethandleSignup}
       />
       <div className="snap-start">
-        <PlatformsElement consoles={true} />
+        <ConsolesPlatform />
       </div>
     </>
   );

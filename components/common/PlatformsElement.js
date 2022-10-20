@@ -61,7 +61,6 @@ export default function PlatformsElement({ consoles }) {
                     {/* {platformLogos.Title} */}
                   </div>
                 </a>
-                0
               </div>
             ))}
           </div>

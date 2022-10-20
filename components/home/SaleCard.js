@@ -63,7 +63,7 @@ export default function SaleCard({ product }) {
             </button> */}
             <button
               onClick={() => sendProps()}
-              className="text-white border-[1px] font-semibold border-white rounded-lg text-[14px] px-4 py-1 hover:bg-white hover:text-black hover:border-black"
+              className="text-white border-[1px] font-semibold border-white rounded-lg text-[16px] tracking-wider px-2 py-1 hover:bg-white hover:text-black hover:border-black"
             >
               <a>Learn More</a>
             </button>
