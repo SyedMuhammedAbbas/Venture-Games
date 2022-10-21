@@ -23,7 +23,6 @@ export default function Product() {
   const [particularItem, setParticularItem] = useState(true);
 
   async function fetchData() {
-    console.log("here");
     let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
       params: {
         ProductGroup: productGroup,
@@ -41,6 +40,7 @@ export default function Product() {
     }
     // setDisplayedProduct(Products[0]);
   }
+  console.log(Products);
 
   useEffect(() => {
     console.log("hello");
@@ -66,11 +66,17 @@ export default function Product() {
   function handleNew() {
     {
       New ? setNew(false) & setOld(true) : setNew(true) & setOld(false);
-      if(Products.length > 1) {
-        setSelectedType("New");
-        setParticularItem(true);
-      }
-      else {
+      console.log("New");
+      if (Products.length > 1) {
+        let type = Products.find((prod) => {
+          return (prod.Type == 'New');
+        })
+        console.log(type);
+        if(type != undefined){
+          setSelectedType("New");
+          setParticularItem(true);
+        }
+      } else {
         setParticularItem(false);
       }
     }
@@ -78,9 +84,20 @@ export default function Product() {
   function handleOld() {
     {
       Old ? setOld(false) & setNew(true) : setOld(true) & setNew(false);
-      if(Products.length > 1) {
-        setSelectedType("Used");
-        setParticularItem(true);
+      console.log("Used");
+      if (Products.length > 1) {
+        let type = Products.find((prod) => {
+          return (prod.Type == 'Used');
+        })
+        console.log(type);
+        if(type !== undefined){
+          setSelectedType("Used");
+          setParticularItem(true);
+        }
+        else {
+          console.log("here");
+          setParticularItem(false);
+        } 
       }
       else {
         setParticularItem(false);
@@ -89,10 +106,12 @@ export default function Product() {
   }
   // console.log(3);
   // console.log(Products);
-  console.log(selectedType);
-  console.log(selectedColour);
-  console.log(selectedPlatform);
+  // console.log(selectedType);
+  // console.log(selectedColour);
+  // console.log(selectedPlatform);
   // console.log(4);
+  const [TypeFlag, setTypeFlag] = useState(false);
+
   let DisplayedProduct = Products.find((product) => {
     if (product.Type !== selectedType) {
       return false;
@@ -115,7 +134,7 @@ export default function Product() {
   const dispatch = useDispatch();
 
   const handleAddtoCart = async (DisplayedProduct) => {
-    if(token && DisplayedProduct.Quantity > 0) {
+    if (token && DisplayedProduct.Quantity > 0) {
       dispatch(AddToCart(DisplayedProduct));
       const jwtToken = JSON.parse(localStorage.getItem("token"));
       console.log(jwtToken);
@@ -124,17 +143,19 @@ export default function Product() {
           Authorization: "Bearer " + jwtToken,
         },
       };
-      let response = await axios.post("https://api.venturegames.pk/UpdateCart", {
-        Quantity: 1,
-        ProductId: DisplayedProduct._id
-      }, config);
+      let response = await axios.post(
+        "https://api.venturegames.pk/UpdateCart",
+        {
+          Quantity: 1,
+          ProductId: DisplayedProduct._id,
+        },
+        config
+      );
       console.log(response);
-    }
-    else if(DisplayedProduct.Quantity <= 0) {
-      alert('Product Not available');
-    }
-    else {
-      router.push('/login');
+    } else if (DisplayedProduct.Quantity <= 0) {
+      alert("Product Not available");
+    } else {
+      router.push("/login");
     }
   };
 
@@ -172,7 +193,7 @@ export default function Product() {
                             : "bg-transparent text-[#000]"
                         }`}
                         value="new"
-                        onClick={handleNew}
+                        onClick={() => {handleNew()}}
                       >
                         new
                       </button>
@@ -183,7 +204,7 @@ export default function Product() {
                             : "bg-transparent text-[#000]"
                         }`}
                         value="old"
-                        onClick={handleOld}
+                        onClick={() => {handleOld()}}
                       >
                         used
                       </button>
@@ -219,8 +240,8 @@ export default function Product() {
                                 }}
                                 className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
                                   selectedPlatformFlag
-                                    ? "bg-[#FFB636] text-black"
-                                    : "text-[#FFB636] bg-transparent"
+                                    ? "text-[#FFB636] bg-transparent"
+                                    : " bg-[#FFB636] text-black"
                                 }`}
                               >
                                 {index.Title}
@@ -273,32 +294,53 @@ export default function Product() {
                   <div className="grid">
                     <div className="grid gap-5 xl:gap-2 mobile1:gap-0">
                       <div className="flex">
-                        {/* {Object.values(ProductItems.Genre).map((i) => (
-                    <div
-                      key={i}
-                      className="text-gray-400 text-[25px] mobile1:text-[20px] capitalize"
-                    >
-                      {i.Title}{" "}
-                      <span className="text-[40px] mobile1:text-[20px]">
-                        .{" "}
-                      </span>
-                    </div>
-                  ))} */}
+                        {Object.values(DisplayedProduct.Genre).map((i) => (
+                          <div
+                            key={i}
+                            className="text-gray-400 text-[25px] mobile1:text-[20px] capitalize"
+                          >
+                            {i.Title}{" "}
+                            <span className="text-[40px] mobile1:text-[20px]">
+                              .{" "}
+                            </span>
+                          </div>
+                        ))}
                       </div>
                       <div className="border-b-[2px] border-gray-400 w-[250px]"></div>
                     </div>
                     <div className="text-gray-400 text-[25px] mobile1:text-[20px] mobile1:pt-[-20px]">
-                      Single Player <span className="text-[40px]">.</span> 2020
+                      {Object.values(DisplayedProduct.Tags).map((i) => {
+                        if (typeof i.Title === "string") {
+                          return i.Title;
+                        }
+                      })}{" "}
+                      {Object.values(DisplayedProduct.Tags).map((i) => {
+                        if (typeof i.Title === "string") {
+                          return <span className="text-[40px]">.</span>;
+                        } else {
+                          return " ";
+                        }
+                      })}
+                      {""}
+                      {Object.values(DisplayedProduct.Tags).map((i) => {
+                        if (typeof i.Title !== "string") {
+                          return i.Title;
+                        }
+                      })}{" "}
                     </div>
                   </div>
                   <div className="text-white pt-0 pb-5">
                     {DisplayedProduct.Description}
                   </div>
                 </div>
-                <div className="flex gap-5 border-y-2 border-gray-600 w-[250px] mobile1:w-[300px] pt-1 xl:mt-5 mb-5">
-                  <div className="text-red-600 line-through text-[23px] mobile1:text-[20px]">
-                    {DisplayedProduct.Price}
-                  </div>
+                <div className="flex gap-5 border-y-2 border-gray-600 w-[250px] mobile1:w-[300px] pt-1 mt-2 xl:mt-5 mb-5">
+                  {DisplayedProduct.OldPrice === undefined ? (
+                    ""
+                  ) : (
+                    <div className="text-red-600 line-through text-[23px] mobile1:text-[20px]">
+                      {DisplayedProduct.OldPrice}
+                    </div>
+                  )}
                   <div className="border-r-2 border-gray-600 h-5 mt-3"></div>
                   <div className="text-white text-[25px] mobile1:text-[20px]">
                     {DisplayedProduct.Price} PKR
@@ -306,17 +348,23 @@ export default function Product() {
                 </div>
 
                 <div className="tablet:pb-[0px] tablet3:grid tablet3:gap-10">
-                  <div className="flex gap-2">
-                    <button className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black cursor-pointer">
-                      Buy Now
-                    </button>
-                    <button
-                      onClick={() => handleAddtoCart(DisplayedProduct)}
-                      className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black "
-                    >
-                      Add to Cart
-                    </button>
-                  </div>
+                  {TypeFlag === true ? (
+                    <div className="text-[#7a7a7a] text-[25px] mobile:text-[20px]">
+                      Product Unavailable
+                    </div>
+                  ) : (
+                    <div className="flex gap-2">
+                      <button className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black cursor-pointer">
+                        Buy Now
+                      </button>
+                      <button
+                        onClick={() => handleAddtoCart(DisplayedProduct)}
+                        className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black "
+                      >
+                        Add to Cart
+                      </button>
+                    </div>
+                  )}
 
                   <div className="relative pl-[85%] mt-[-90px] bottom-[40px] tablet:bottom-[0px] tablet3:mt-0 tablet3:bottom-4 tablet3:pl-[75%]">
                     <img
