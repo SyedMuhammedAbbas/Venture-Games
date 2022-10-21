@@ -5,6 +5,7 @@ import ProfileBar from "../../components/common/ProfileBar";
 export default function Cart({ cart }) {
   const [handleSignup, sethandleSignup] = useState(false);
   const [handleLogin, sethandleLogin] = useState(false);
+  // const [back, setBack] = useState(true);
   return (
     <>
       <ProfileBar
@@ -13,6 +14,7 @@ export default function Cart({ cart }) {
         sethandleLogin={sethandleLogin}
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
+        back={true}
       />
       <div className="snap-start">
         <ShoppingCart />

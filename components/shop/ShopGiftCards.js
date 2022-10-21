@@ -132,7 +132,7 @@ export default function ShopGiftCards({ handleFilter, handleSort }) {
   }
   // console.log(Products);
   return (
-    <div className="bg-[#FFB636] ">
+    <div className="bg-[#1A1A1A] ">
       {Products && (
         <div className="bg-[url('../images/background.png')] bg-[length:1700px_1800px] bg-no-repeat bg-[left_15vw_top_0rem]">
           <div className="flex pt-[10%] pb-[5%]">
@@ -140,7 +140,7 @@ export default function ShopGiftCards({ handleFilter, handleSort }) {
             <div
               className={
                 handleFilter
-                  ? "bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] transition duration-300 ease-in-out opacity-100 px-[60px] mt-[0%] tablet:hidden h-[1300px] rounded-tr-[70px] rounded-br-[70px]"
+                  ? "bg-gradient-to-tr from-[#1A1A1A] via-black to-[#1A1A1A] transition duration-300 ease-in-out opacity-100 px-[60px] mt-[0%] tablet:hidden h-[1300px] rounded-tr-[70px] rounded-br-[70px]"
                   : "hidden"
               }
             >
@@ -208,7 +208,7 @@ export default function ShopGiftCards({ handleFilter, handleSort }) {
 
             {handleSort && (
               <div
-                className={` bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] transition duration-300 ease-in-out px-[60px] mt-[0%] tablet:hidden h-[1300px] rounded-tr-[70px] rounded-br-[70px]`}
+                className={` bg-gradient-to-tr from-[#1A1A1A] via-black to-[#1A1A1A] transition duration-300 ease-in-out px-[60px] mt-[0%] tablet:hidden h-[1300px] rounded-tr-[70px] rounded-br-[70px]`}
               >
                 <div className="flex gap-4 justify-center my-7">
                   <div className={icons}>

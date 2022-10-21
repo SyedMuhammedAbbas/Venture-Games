@@ -106,14 +106,14 @@ export default function Featured({ products }) {
   }, []);
 
   return (
-    <div className="grid relative justify-center bg-[#FFB636] min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] px-32 mobile:px-10 py-10  border-b-black border-b-8">
+    <div className="grid relative justify-center bg-[#1A1A1A] min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] px-32 mobile:px-10 py-10  border-b-blackOpac border-b-8">
       <div className="flex pb-10">
-        <div className="font-hemi pl-[10%] mobile:pl-0 text-black text-[80px] 2xl:text-[60px] lg:text-[40px] mobile:text-[40px] mobile1:text-[30px] lg:ml-5 mobile:ml-0 mobile:float-left">
+        <div className="font-hemi pl-[10%] mobile:pl-0 text-[#FFB636] text-[80px] 2xl:text-[60px] lg:text-[40px] mobile:text-[40px] mobile1:text-[30px] lg:ml-5 mobile:ml-0 mobile:float-left">
           Featured Products
         </div>
         <div className="absolute right-[7%] mobile:mt-20 mt-14 lg:mb-5">
           <Link href="/featured">
-            <button className="flex pr-[0%] text-black text-[30px] lg:text-[20px] mobile:mt-0">
+            <button className="flex pr-[0%] text-[#FFB636] text-[30px] lg:text-[20px] mobile:mt-0">
               <div>View all</div>
               <div className="mt-0 text-[50px] lg:text-[35px]">
                 <MdKeyboardArrowRight />

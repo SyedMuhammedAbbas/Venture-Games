@@ -9,13 +9,13 @@ export default function TopGamesSlide({ carouselProd }) {
           ></img>
         </div>
         <div className="block mt-16 tablet1:mt-10 mobile:text-left mobile:mx-10 tablet2:mt-10 tablet2:mx-[10px] w-[500px] tablet2:w-[450px] mobile:w-auto">
-          <div className="text-[50px] text-black font-sfpro font-[800] tracking-wide leading-[55px] pb-4 xl:text-[45px] xl:leading-[50px] tablet1:text-[35px] tablet1:leading-[40px] mobile:leading-[45px] ">
+          <div className="text-[50px] text-white font-sfpro font-[800] tracking-wide leading-[55px] pb-4 xl:text-[45px] xl:leading-[50px] tablet1:text-[35px] tablet1:leading-[40px] mobile:leading-[45px] ">
             {carouselProd.product_heading}
           </div>
-          <div className="text-[25px] tracking-wide text-black xl:text-[20px] font-[600] pb-4 ">
+          <div className="text-[25px] tracking-wide text-white xl:text-[20px] font-[600] pb-4 ">
             {carouselProd.product_subheading}{" "}
           </div>
-          <button className="border-[2px] border-black text-black border-slate-900 tracking-wide rounded px-2 py-2 text-[18px] mobile:text-[15px] font-bold">
+          <button className="border-[2px] border-white text-white border-slate-900 tracking-wide rounded px-2 py-2 text-[18px] mobile:text-[15px] font-bold">
             Learn More
           </button>
         </div>

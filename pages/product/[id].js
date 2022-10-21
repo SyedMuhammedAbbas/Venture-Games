@@ -11,8 +11,8 @@ import Link from "next/link";
 
 export default function Product() {
   const router = useRouter();
-  const id = router.query.id;
-  const productGroup = id;
+  const { id } = router.query;
+  // const productGroup = id;
   const token = useSelector((state) => state.user.token);
   // console.log(productGroup);
 
@@ -27,7 +27,7 @@ export default function Product() {
     console.log("here");
     let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
       params: {
-        ProductGroup: productGroup,
+        ProductGroup: id,
       },
     });
     console.log(response);
@@ -45,11 +45,12 @@ export default function Product() {
   console.log(Products);
 
   useEffect(() => {
+    if (!router.isReady) return;
     console.log("hello");
     fetchData().then(() => {
       setItems(true);
     });
-  }, []);
+  }, [router.query, router.isReady]);
 
   function getTitle(SelectedObject) {
     const selPlatform = SelectedObject.Title;

@@ -21,7 +21,7 @@ function SampleNextArrow(props) {
       style={{
         fontSize: "80px",
         opacity: "1",
-        color: "black",
+        color: "#FFB636",
       }}
     >
       <MdKeyboardArrowRight />
@@ -39,7 +39,7 @@ function SamplePrevArrow(props) {
         // ...style,
         fontSize: "80px",
         opacity: "1",
-        color: "black",
+        color: "#FFB636",
         transform: `translateX(${-295}%`,
       }}
     >
@@ -148,15 +148,15 @@ export default function Sale() {
   }, []);
 
   return (
-    <div className="grid bg-[#FFB636] min-h-[100vh] max-h-[100%]  px-[40px] w-[100%] overflow-x-hidden justify-center py-[10%] mobile:px-auto">
-      <div className="border-[5px] relative border-black rounded-[35px] pb-3  w-[125vw] sale">
+    <div className="grid bg-[#1A1A1A] min-h-[100vh] max-h-[100%]  px-[40px] w-[100%] overflow-x-hidden justify-center py-[10%] mobile:px-auto">
+      <div className="border-[5px] relative border-[#FFB636] rounded-[35px] pb-3  w-[125vw] sale">
         <div className="flex">
-          <div className="font-hemi text-black text-[80px] xl:text-[7vw] bg-[#FFB636] mt-[-60px] lg:mt-[-50px] mobile:mt-[-30px] mobile1:mt-[-20px] mobilesm:mt-[10px] ml-[7vw] px-[30px] ">
+          <div className="font-hemi text-[#FFB636] text-[80px] xl:text-[7vw] bg-[#1A1A1A] mt-[-60px] lg:mt-[-50px] mobile:mt-[-30px] mobile1:mt-[-20px] mobilesm:mt-[10px] ml-[7vw] px-[30px] ">
             Flash Sale
           </div>
           <div className="flex absolute right-32 xxl:right-24 4xl:right-20 mobile:right-10  mt-4">
             <Link href="/flashSale">
-              <button className="flex text-black text-[30px] tablet2:text-[20px]">
+              <button className="flex text-[#FFB636] text-[30px] tablet2:text-[20px]">
                 View all
                 <div className="mt-0 text-[50px] tablet2:text-[35px]">
                   <MdKeyboardArrowRight />

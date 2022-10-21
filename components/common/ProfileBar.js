@@ -15,6 +15,8 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
+import { IoIosArrowBack } from "react-icons/io";
 
 export default function ProfileBar({
   filter,
@@ -27,9 +29,11 @@ export default function ProfileBar({
   handleSignup,
   sethandleLogin,
   sethandleSignup,
+  back,
 }) {
   const [searchResult, setSearchResult] = useState();
   const token = useSelector((state) => state.user.token);
+  const router = useRouter();
   // useEffect(() => {
   //   // console.log(tok);
   //   setToken(tok);
@@ -64,9 +68,9 @@ export default function ProfileBar({
     e.preventDefault();
     let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
-        Title: "spi"
-      }
-    })
+        Title: "spi",
+      },
+    });
 
     // console.log(response.data);
     // console.log("Search")
@@ -102,6 +106,23 @@ export default function ProfileBar({
               Sort
             </button>
           </div>
+        </div>
+      )}
+      {back === true && (
+        <div className="flex gap-9 absolute left-20">
+          <button
+            onClick={() => router.back()}
+            className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3"
+          >
+            {/* <div className="flex gap-1 items-center justify-center "> */}
+            {/* <div className="text-white text-[25px] hover:text-black">
+                <IoIosArrowBack />
+              </div> */}
+            {/* <div className="text-white text-[25px] hover:text-black"> */}
+            Back
+            {/* </div> */}
+            {/* </div> */}
+          </button>{" "}
         </div>
       )}
       {/* <button
