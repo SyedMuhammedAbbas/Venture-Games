@@ -59,7 +59,7 @@ export default function ClientsView() {
           </div>
         </div>
 
-        <div className=" block w-[90vw]  mobile1.1:w-[100%] clientcards h-[550px] m-10 mx-auto">
+        <div className=" block w-[90vw] justify-center  mobile1.1:w-[100%] clientcards h-[550px] m-10 mx-auto">
           <Slider {...settings}>
             {Object.values(ClientsData).map((user) => (
               <div key={user._id}>

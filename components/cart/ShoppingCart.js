@@ -23,10 +23,13 @@ export default function ShoppingCart() {
     console.log(jwtToken);
     let config = {
       headers: {
-        Authorization: "Bearer " + jwtToken
+        Authorization: "Bearer " + jwtToken,
       },
     };
-    let response = await axios.delete("https://api.venturegames.pk/RemoveProductCart?ProductId=" + currentItems, config)
+    let response = await axios.delete(
+      "https://api.venturegames.pk/RemoveProductCart?ProductId=" + currentItems,
+      config
+    );
     console.log(response);
   };
   const handleQuantityCart = async (id, newQuantity) => {
@@ -37,10 +40,14 @@ export default function ShoppingCart() {
         Authorization: "Bearer " + jwtToken,
       },
     };
-    await axios.post("https://api.venturegames.pk/AddtoCart", {
-      ProductId: id,
-      Quantity: newQuantity
-    }, config);
+    await axios.post(
+      "https://api.venturegames.pk/AddtoCart",
+      {
+        ProductId: id,
+        Quantity: newQuantity,
+      },
+      config
+    );
   };
   useEffect(() => {
     setTotal_Items(Object.values(cartItems).length);
@@ -284,32 +291,39 @@ export default function ShoppingCart() {
                     }
                   })}
                 </table>
-                <div className="flex gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]">
-                  <div className="uppercase">
-                    <Link href="/checkout">
+                <Link href="/checkout">
+                  <div className="flex gap-2 cursor-pointer bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]">
+                    <div className="uppercase">
                       <a className="cursor-pointer">Next</a>
-                    </Link>
+                    </div>
+                    <div className="text-white text-[35px] mobile1.1:text-[30px] mt-[2px] mobile1.1:mt-[1px] cursor-pointer">
+                      <MdKeyboardArrowRight />
+                    </div>
                   </div>
-                  <div className="text-white text-[35px] mobile1.1:text-[30px] mt-[2px] mobile1.1:mt-[1px] cursor-pointer">
-                    <MdKeyboardArrowRight />
-                  </div>
-                </div>
+                </Link>
                 <div className="text-[1.5vw] tablet:text-[16px] pt-5 tablet1:ml-10 text-[#545454] font-semibold ">
-                  By Clicking NEXT I agree to Venture Game's terms of services
+                  By Clicking NEXT I agree to Venture Game's{" "}
+                  <Link href="/terms">
+                    <span className="underline cursor-pointer">
+                      terms of services
+                    </span>
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
         ) : (
-          <div className="flex mobile2:grid gap-7 mobile2:gap-1 text-center text-[45px] pr-10 text-[#868686] justify-center pt-[500px] h-[125vh]">
-            Cart is empty !
-            <div className="flex gap-1">
-              <Link href="/shop">
-                <a className=" text-white cursor-pointer">Shop Now</a>
-              </Link>
-              <div className="text-white font-normal mt-3 cursor-pointer">
-                <MdDoubleArrow />
-              </div>
+          <div className="h-[140vh] max-h-[100%] flex justify-center items-center">
+            <div className=" flex mobile:grid gap-7 mobile:gap-0 mobile:h-[80px] justify-center  text-[45px] mobile:text-[40px] text-[#868686] ">
+              <div>Cart is empty !</div>
+              <span className="flex gap-1 items-center justify-center mobile:mt-0 mobile:text-[35px]">
+                <Link href="/shop">
+                  <a className=" text-white cursor-pointer">Shop Now</a>
+                </Link>
+                <div className="text-white font-normal mt-3 cursor-pointer">
+                  <MdDoubleArrow />
+                </div>
+              </span>
             </div>
           </div>
         )}

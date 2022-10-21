@@ -16,10 +16,9 @@ export default function FeaturedCard({ product }) {
   // console.log(data);
 
   function sendProps() {
-    Router.push({
-      pathname: "/product",
-      query: { id: data },
-    });
+    Router.push(
+      "/product/?id="+data, undefined, { shallow: true }
+    );
   }
   const platforms = Object.values(product.ProductGroup.AvailablePlatforms).map(
     (index) => {
@@ -55,9 +54,13 @@ export default function FeaturedCard({ product }) {
           {product.Title}
         </div>
         <div className="flex gap-5 justify-center">
-          <div className="text-red-600 line-through text-[25px] mobile:text-[19px]">
-            {product.Price}
-          </div>
+          {product.OldPrice === undefined ? (
+            ""
+          ) : (
+            <div className="text-red-600 line-through text-[25px] mobile:text-[19px]">
+              {product.OldPrice}
+            </div>
+          )}
           <div className="text-white text-[25px] mobile:text-[21px]">
             {product.Price} PKR
           </div>

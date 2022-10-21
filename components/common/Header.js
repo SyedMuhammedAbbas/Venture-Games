@@ -124,7 +124,10 @@ export default function Header() {
               }`}
             >
               <Link href="/cart">
-                <button className="text-[#FFB636] capitalize font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-5 py-3 rounded-[15px] text-[20px] mobile:text-[15px]">
+                <button
+                  onClick={CloseMenu}
+                  className="text-[#FFB636] capitalize font-semibold bg-transparent border-[1px]  border-[#FFB636] hover:bg-[#FFB636] hover:text-black px-5 py-3 rounded-[15px] text-[20px] mobile:text-[15px]"
+                >
                   View Cart
                 </button>
               </Link>

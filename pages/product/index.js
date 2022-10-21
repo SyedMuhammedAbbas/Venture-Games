@@ -7,10 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import ProfileBar from "../../components/common/ProfileBar";
 import { AddToCart } from "../../features/counter/cartSlice";
+import Link from "next/link";
 
 export default function Product() {
+  console.log("Inside");
   const router = useRouter();
-  const id = router.query.id;
+  // const id = router.query.id;
+  const { id } = router.query;
+  console.log(id);
   const productGroup = id;
   const token = useSelector((state) => state.user.token);
   // console.log(productGroup);
@@ -23,12 +27,13 @@ export default function Product() {
   const [particularItem, setParticularItem] = useState(true);
 
   async function fetchData() {
+    console.log("Fetch");
+    console.log(productGroup)
     let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
       params: {
         ProductGroup: productGroup,
       },
     });
-    console.log(response);
     setProducts(response.data);
     setSelectedType(response.data[0].Type);
 
@@ -40,10 +45,8 @@ export default function Product() {
     }
     // setDisplayedProduct(Products[0]);
   }
-  console.log(Products);
 
   useEffect(() => {
-    console.log("hello");
     fetchData().then(() => {
       setItems(true);
     });
@@ -63,54 +66,13 @@ export default function Product() {
   const [Old, setOld] = useState(false);
   const [selectedPlatformFlag, setSelectedPlatformFlag] = useState(true);
 
-  function handleNew() {
-    {
-      New ? setNew(false) & setOld(true) : setNew(true) & setOld(false);
-      console.log("New");
-      if (Products.length > 1) {
-        let type = Products.find((prod) => {
-          return (prod.Type == 'New');
-        })
-        console.log(type);
-        if(type != undefined){
-          setSelectedType("New");
-          setParticularItem(true);
-        }
-      } else {
-        setParticularItem(false);
-      }
-    }
-  }
-  function handleOld() {
-    {
-      Old ? setOld(false) & setNew(true) : setOld(true) & setNew(false);
-      console.log("Used");
-      if (Products.length > 1) {
-        let type = Products.find((prod) => {
-          return (prod.Type == 'Used');
-        })
-        console.log(type);
-        if(type !== undefined){
-          setSelectedType("Used");
-          setParticularItem(true);
-        }
-        else {
-          console.log("here");
-          setParticularItem(false);
-        } 
-      }
-      else {
-        setParticularItem(false);
-      }
-    }
-  }
   // console.log(3);
   // console.log(Products);
   // console.log(selectedType);
   // console.log(selectedColour);
   // console.log(selectedPlatform);
   // console.log(4);
-  const [TypeFlag, setTypeFlag] = useState(false);
+  // const [TypeFlag, setTypeFlag] = useState(false);
 
   let DisplayedProduct = Products.find((product) => {
     if (product.Type !== selectedType) {
@@ -128,8 +90,46 @@ export default function Product() {
     }
     return true;
   });
-
-  console.log(DisplayedProduct);
+  function handleNew() {
+    {
+      New ? setNew(false) & setOld(true) : setNew(true) & setOld(false);
+      console.log("New");
+      if (Products.length > 1) {
+        let type = Products.find((prod) => {
+          return prod.Type === "New";
+        });
+        console.log(type);
+        if (type !== undefined) {
+          setSelectedType("New");
+          setParticularItem(true);
+        } else {
+          setParticularItem(false);
+        }
+      } else {
+        setParticularItem(false);
+      }
+    }
+  }
+  function handleOld() {
+    {
+      Old ? setOld(false) & setNew(true) : setOld(true) & setNew(false);
+      console.log("Used");
+      if (Products.length > 1) {
+        let type = Products.find((prod) => {
+          return prod.Type === "Used";
+        });
+        console.log(type);
+        if (type !== undefined) {
+          setSelectedType("Used");
+          setParticularItem(true);
+        } else {
+          setParticularItem(false);
+        }
+      } else {
+        setParticularItem(false);
+      }
+    }
+  }
 
   const dispatch = useDispatch();
 
@@ -137,7 +137,6 @@ export default function Product() {
     if (token && DisplayedProduct.Quantity > 0) {
       dispatch(AddToCart(DisplayedProduct));
       const jwtToken = JSON.parse(localStorage.getItem("token"));
-      console.log(jwtToken);
       let config = {
         headers: {
           Authorization: "Bearer " + jwtToken,
@@ -151,7 +150,6 @@ export default function Product() {
         },
         config
       );
-      console.log(response);
     } else if (DisplayedProduct.Quantity <= 0) {
       alert("Product Not available");
     } else {
@@ -159,13 +157,11 @@ export default function Product() {
     }
   };
 
-  // console.log(0);
-  // console.log(DisplayedProduct);
-  // console.log(1);
+
   return (
     <>
       <ProfileBar cartshow={true} />
-      {!items ? (
+      {!items && particularItem ? (
         !items && (
           <div className="bg-[#FFB636] snap-center pt-[20%] w-[100%] min-h-[140vh] flex justify-center text-white text-[35px]">
             <div className="text-white text-[35px] mt-[8px] mr-4">
@@ -193,7 +189,9 @@ export default function Product() {
                             : "bg-transparent text-[#000]"
                         }`}
                         value="new"
-                        onClick={() => {handleNew()}}
+                        onClick={() => {
+                          handleNew();
+                        }}
                       >
                         new
                       </button>
@@ -204,7 +202,9 @@ export default function Product() {
                             : "bg-transparent text-[#000]"
                         }`}
                         value="old"
-                        onClick={() => {handleOld()}}
+                        onClick={() => {
+                          handleOld();
+                        }}
                       >
                         used
                       </button>
@@ -256,33 +256,51 @@ export default function Product() {
                         (index) => {
                           if (selectedColour === index.Title) {
                             return (
-                              <button
-                                onClick={() => {
-                                  getColour(index);
-                                }}
-                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-                                  selectedPlatformFlag
-                                    ? "bg-[#FFB636] text-black"
-                                    : "text-[#FFB636] bg-transparent"
-                                }`}
-                              >
-                                {index.Title}
-                              </button>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => {
+                                    getColour(index);
+                                  }}
+                                  className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                    selectedPlatformFlag
+                                      ? "bg-[#FFB636] text-black"
+                                      : "text-[#FFB636] bg-transparent"
+                                  }`}
+                                >
+                                  {index.Title}
+                                </button>
+                                <button
+                                  className={`rounded-full w-5 border border-black 
+                                    bg-[#${index.Code.replace(/['"]+/g, "")}]
+                                  `}
+                                >
+                                  {" "}
+                                </button>
+                              </div>
                             );
                           } else {
                             return (
-                              <button
-                                onClick={() => {
-                                  getColour(index);
-                                }}
-                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-                                  selectedPlatformFlag
-                                    ? "bg-[#FFB636] text-black"
-                                    : "text-[#FFB636] bg-transparent"
-                                }`}
-                              >
-                                {index.Title}
-                              </button>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => {
+                                    getColour(index);
+                                  }}
+                                  className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                    selectedPlatformFlag
+                                      ? "text-[#FFB636] bg-transparent"
+                                      : " bg-[#FFB636] text-black"
+                                  }`}
+                                >
+                                  {index.Title}
+                                </button>
+                                <button
+                                  className={`rounded-full w-5 border border-black 
+                                bg-[#${index.Code.replace(/['"]+/g, "")}]
+                              `}
+                                >
+                                  {" "}
+                                </button>
+                              </div>
                             );
                           }
                         }
@@ -292,7 +310,7 @@ export default function Product() {
                 </div>
                 <div className="overflow-y-scroll desp-scroll h-[150px] w-[350px] mt-4 xl:h-[80px] tablet:h-[120px] tablet3:w-[300px] mobile1:pt-2">
                   <div className="grid">
-                    <div className="grid gap-5 xl:gap-2 mobile1:gap-0">
+                    <div className="grid gap-[1px] mobile1:gap-0">
                       <div className="flex">
                         {Object.values(DisplayedProduct.Genre).map((i) => (
                           <div
@@ -329,7 +347,7 @@ export default function Product() {
                       })}{" "}
                     </div>
                   </div>
-                  <div className="text-white pt-0 pb-5">
+                  <div className="text-white pt-2 pb-5 text-[20px]">
                     {DisplayedProduct.Description}
                   </div>
                 </div>
@@ -337,26 +355,34 @@ export default function Product() {
                   {DisplayedProduct.OldPrice === undefined ? (
                     ""
                   ) : (
-                    <div className="text-red-600 line-through text-[23px] mobile1:text-[20px]">
-                      {DisplayedProduct.OldPrice}
+                    <div className="flex gap-4">
+                      <div className="text-red-600 line-through text-[23px] mobile1:text-[20px]">
+                        {DisplayedProduct.OldPrice}
+                      </div>
+                      <div className="border-r-2 border-gray-600 h-5 mt-2"></div>
                     </div>
                   )}
-                  <div className="border-r-2 border-gray-600 h-5 mt-3"></div>
+
                   <div className="text-white text-[25px] mobile1:text-[20px]">
                     {DisplayedProduct.Price} PKR
                   </div>
                 </div>
 
                 <div className="tablet:pb-[0px] tablet3:grid tablet3:gap-10">
-                  {TypeFlag === true ? (
+                  {particularItem === false ? (
                     <div className="text-[#7a7a7a] text-[25px] mobile:text-[20px]">
                       Product Unavailable
                     </div>
                   ) : (
                     <div className="flex gap-2">
-                      <button className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black cursor-pointer">
-                        Buy Now
-                      </button>
+                      <Link href="/cart">
+                        <button
+                          onClick={() => handleAddtoCart(DisplayedProduct)}
+                          className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black cursor-pointer"
+                        >
+                          Buy Now
+                        </button>
+                      </Link>
                       <button
                         onClick={() => handleAddtoCart(DisplayedProduct)}
                         className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black "

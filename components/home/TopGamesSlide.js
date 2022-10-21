@@ -15,7 +15,7 @@ export default function TopGamesSlide({ carouselProd }) {
           <div className="text-[25px] tracking-wide text-black xl:text-[20px] font-[600] pb-4 ">
             {carouselProd.product_subheading}{" "}
           </div>
-          <button className="border-[2px] border-black text-black border-slate-900 rounded px-2 py-2 text-[14px] font-bold">
+          <button className="border-[2px] border-black text-black border-slate-900 tracking-wide rounded px-2 py-2 text-[18px] mobile:text-[15px] font-bold">
             Learn More
           </button>
         </div>

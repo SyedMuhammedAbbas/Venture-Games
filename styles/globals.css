@@ -269,6 +269,18 @@ html{
   /* margin-top: 50px; */
   overflow: hidden;
 }
+.toast-message{
+  width: 450px;
+  height: 80px;
+  font-size: 23px;
+}
+@media screen and (max-width: 600px) {
+  .toast-message{
+    width: 300px;
+    height: 80px;
+    font-size: 20px;
+  } 
+}
 @supports (-webkit-touch-callout: none) {
 
  

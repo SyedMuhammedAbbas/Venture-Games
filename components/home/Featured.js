@@ -86,7 +86,12 @@ export default function Featured({ products }) {
       },
     });
     console.log(response);
-    setProducts(response.data);
+    setProducts(
+      response.data.filter(
+        (v, i, a) =>
+          a.findIndex((t) => t.ProductGroup._id === v.ProductGroup._id) === i
+      )
+    );
   }
 
   useEffect(() => {
@@ -128,11 +133,13 @@ export default function Featured({ products }) {
       ) : (
         <div className="w-[110vw] featuredcards mx-auto my-auto h-auto mt-[40px] mb-10">
           <Slider {...settings}>
-            {Object.values(Products).map((currentItem) => (
-              <div key={currentItem}>
-                <FeaturedCard product={currentItem} />
-              </div>
-            ))}
+            {Object.values(Products)
+              .slice(0, 7)
+              .map((currentItem) => (
+                <div key={currentItem}>
+                  <FeaturedCard product={currentItem} />
+                </div>
+              ))}
           </Slider>
         </div>
       )}

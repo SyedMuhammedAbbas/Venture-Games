@@ -96,19 +96,19 @@ export default function CheckOut() {
                   <div className="grid gap-8">
                     <div>
                       <input
-                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Email Address"
                         value={email}
                       ></input>
                     </div>
                     <div className="flex gap-[2%] mobile2:grid mobile2:gap-8">
                       <input
-                        className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                        className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="First Name"
                         value={firstName}
                       ></input>
                       <input
-                        className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                        className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Last Name"
                         value={lastName}
                       ></input>
@@ -151,15 +151,15 @@ export default function CheckOut() {
 
                     <div className="grid gap-8">
                       <input
-                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Address Line 1"
                       ></input>
                       <input
-                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Address Line 2"
                       ></input>
                       <input
-                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Contact Number"
                       ></input>
                     </div>
@@ -176,7 +176,7 @@ export default function CheckOut() {
                         </div>
                         <label
                           for="remember"
-                          class="ml-2 text-[16px] font-medium text-white "
+                          class="ml-2 text-[20px] mobile:text-[16px] font-medium text-white "
                         >
                           My Shipping Address & Billing Address are same
                         </label>
@@ -193,7 +193,7 @@ export default function CheckOut() {
                         </div>
                         <label
                           for="remember"
-                          class="ml-2 text-[16px] font-medium text-white "
+                          class="ml-2 text-[20px] mobile:text-[16px] font-medium text-white "
                         >
                           By Proceeding you accept our Terms of use & Privacy
                           policy.
@@ -290,16 +290,16 @@ export default function CheckOut() {
                   }
                 })}
               </table>
-              <div className="flex gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]">
-                <div className="uppercase">
-                  <Link href="/payment">
+              <Link href="/payment">
+                <div className="flex cursor-pointer gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]">
+                  <div className="uppercase">
                     <a className="cursor-pointer">continue to payment</a>
-                  </Link>
+                  </div>
+                  <div className="text-white text-[35px] mobile1.1:text-[30px] mt-[2px] mobile1.1:mt-[1px] cursor-pointer">
+                    <MdKeyboardArrowRight />
+                  </div>
                 </div>
-                <div className="text-white text-[35px] mobile1.1:text-[30px] mt-[2px] mobile1.1:mt-[1px] cursor-pointer">
-                  <MdKeyboardArrowRight />
-                </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>

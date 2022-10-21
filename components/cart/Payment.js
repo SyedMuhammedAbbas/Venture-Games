@@ -60,12 +60,28 @@ export default function CheckOut() {
     shipping_fee,
     total_amount,
   ];
-  const [getVal, setVal] = useState(false);
+  const [getDebitValue, setDebitValue] = useState(false);
+  const [getCODvalue, setCODvalue] = useState(true);
+
   function handleDebitCard() {
-    setVal(true);
+    if (getCODvalue) {
+      setCODvalue(false);
+      if (!getDebitValue) {
+        setDebitValue(true);
+      }
+    } else {
+      setDebitValue(true);
+    }
   }
   function handleCOD() {
-    setVal(false);
+    if (getDebitValue) {
+      setDebitValue(false);
+      if (!getCODvalue) {
+        setCODvalue(true);
+      }
+    } else {
+      setCODvalue(true);
+    }
   }
 
   console.log(user);
@@ -87,19 +103,19 @@ export default function CheckOut() {
                   <div className="grid gap-8">
                     <div>
                       <input
-                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                        className="w-[70%] mobile2:w-[90%] placeholder:text-white text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Email Address"
                         value={email}
                       ></input>
                     </div>
                     <div className="flex gap-[2%] mobile2:grid mobile2:gap-8">
                       <input
-                        className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                        className="w-[34%] mobile2:w-[90%] placeholder:text-white text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="First Name"
                         value={firstName}
                       ></input>
                       <input
-                        className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                        className="w-[34%] mobile2:w-[90%] placeholder:text-white text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Last Name"
                         value={lastName}
                       ></input>
@@ -115,41 +131,49 @@ export default function CheckOut() {
                     <div className="flex gap-[4%] mobile2:grid mobile2:gap-7">
                       <button
                         onClick={handleCOD}
-                        className="w-[33%] mobile2:w-[90%] py-10 text-white text-[20px] rounded-xl bg-transparent border border-white border-opacity-70 focus:bg-black focus:bg-opacity-70 focus:border-[4px] focus:border-opacity-100"
+                        className={`w-[33%] mobile2:w-[90%] py-10 text-white border-white text-[20px] rounded-xl    ${
+                          getCODvalue === true
+                            ? " bg-black bg-opacity-70 border-[4px] border-opacity-100"
+                            : "bg-transparent border  border-opacity-70"
+                        }`}
                       >
                         Cash On Delivery
                       </button>
                       <button
                         onClick={handleDebitCard}
-                        className="w-[33%] mobile2:w-[90%] py-10 text-white text-[20px] rounded-xl bg-transparent border border-white border-opacity-70 focus:bg-black focus:bg-opacity-70 focus:border-[4px] focus:border-opacity-100"
+                        className={`w-[33%] mobile2:w-[90%] py-10 text-white border-white text-[20px] rounded-xl    ${
+                          getDebitValue === true
+                            ? " bg-black bg-opacity-70 border-[4px] border-opacity-100"
+                            : "bg-transparent border  border-opacity-70"
+                        }`}
                       >
                         Debit/Credit Card
                       </button>
                     </div>
-                    {getVal ? (
+                    {getDebitValue ? (
                       <div
                         id="PGWHPCCARDContainer2"
                         className="grid gap-7 transition-all"
                       >
                         <div>
                           <input
-                            className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                            className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                             placeholder="Name On Card"
                           ></input>
                         </div>
                         <div>
                           <input
-                            className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                            className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                             placeholder="Card Number"
                           ></input>
                         </div>
                         <div className="flex gap-[2%] mobile2:grid mobile2:gap-7">
                           <input
-                            className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                            className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                             placeholder="Expiry Date"
                           ></input>
                           <input
-                            className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
+                            className="w-[34%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                             placeholder="CVV"
                           ></input>
                         </div>

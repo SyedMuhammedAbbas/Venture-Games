@@ -59,7 +59,13 @@ export default function Sale() {
       },
     });
     console.log(response);
-    setSaleProducts(response.data);
+    setSaleProducts(
+      response.data.filter(
+        (v, i, a) =>
+          a.findIndex((t) => t.ProductGroup._id === v.ProductGroup._id) === i
+      )
+    );
+    // setSaleProducts(response.data);
   }
 
   var settings = {
@@ -166,11 +172,13 @@ export default function Sale() {
             })}
           </div>
         ) : (
-          <div className="w-[110vw] mobile1.1:w-[95%] h-auto mx-auto my-20">
+          <div className="w-[110vw] block justify-center mobile1:w-[90vw] h-auto mx-auto my-20">
             <Slider {...settings}>
-              {Object.values(SaleProducts).map((currentItem) => {
-                return <SaleCard key={currentItem} product={currentItem} />;
-              })}
+              {Object.values(SaleProducts)
+                .slice(0, 7)
+                .map((currentItem) => {
+                  return <SaleCard key={currentItem} product={currentItem} />;
+                })}
             </Slider>
           </div>
         )}

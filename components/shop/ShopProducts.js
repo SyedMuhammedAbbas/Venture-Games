@@ -14,14 +14,21 @@ import {
 } from "../../features/counter/productsSlice";
 
 export default function ShopProducts({ handleFilter, handleSort }) {
-  const Products = useSelector((state) => state.products.allProducts);
+  const ProductsFetched = useSelector((state) => state.products.allProducts);
+  const Products = ProductsFetched.filter(
+    (v, i, a) =>
+      a.findIndex((t) => t.ProductGroup._id === v.ProductGroup._id) === i
+  );
   const [platforms, setPlatforms] = useState([]);
   const [genre, setGenre] = useState([]);
   const [tags, setTags] = useState([]);
+  const [consoles, setConsoles] = useState();
+  const [heading, setHeading] = useState();
+  const [cat, setCat] = useState();
   const sortbyprice = ["Low to High", "High to Low"];
   const icons = "text-[35px] 2xl:text-[25px] lg:text-[21px] text-white";
   const buttons =
-    "text-white uppercase border-[1px] font-semibold border-white rounded-lg text-[25px] px-2 w-48 py-1 hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black";
+    "text-white uppercase border-[1px] font-semibold border-white rounded-lg text-[20px] px-2 w-48 py-1 hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black";
 
   // const platforms = ["PS5", "PS4", "XBOX"];
   // const genre = ["Action", "adventure", "thriller", "Driving/Racing"];
@@ -42,26 +49,55 @@ export default function ShopProducts({ handleFilter, handleSort }) {
     setters();
   }, []);
 
-  const item = Products.map((index) => {
-    return index.ProductGroup;
-  });
+  // const item = Products.map((index) => {
+  //   return index.ProductGroup;
+  // });
   // console.log(item);
-  function FilterConsole(Products) {
-    dispatch(FilterByConsole(Products));
-  }
-  function FilterGenre(Products) {
-    dispatch(FilterByGenre(Products));
-  }
+  // function FilterConsole(Products) {
+  //   dispatch(FilterByConsole(Products));
+  // }
+  // function FilterGenre(Products) {
+  //   dispatch(FilterByGenre(Products));
+  // }
 
   async function sortByPlatform(type) {
+    setConsoles(type._id);
     let selectedPlat = platforms.find((index) => {
       return index.Title == type.Title;
     });
-    let response = await axios.get("https://api.venturegames.pk/Products", {
+    let response;
+    if(heading == undefined && cat == undefined) {
+      response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
         Platform: selectedPlat._id,
       },
-    });
+      });
+    }
+    else if(heading != undefined && cat == undefined) {
+      response = await axios.get("https://api.venturegames.pk/Products", {
+      params: {
+        Platform: selectedPlat._id,
+        Genre: heading
+      },
+      });
+    }
+    else if(heading == undefined && cat != undefined) {
+      response = await axios.get("https://api.venturegames.pk/Products", {
+      params: {
+        Platform: selectedPlat._id,
+        Tag: cat
+      },
+      });
+    }
+    else {
+      response = await axios.get("https://api.venturegames.pk/Products", {
+      params: {
+        Platform: selectedPlat._id,
+        Tag: cat,
+        Genre: heading
+      },
+      });
+    }
     console.log(response.data);
     if (response.data.length > 0) {
       dispatch(FilterByGenre(response.data));
@@ -71,14 +107,43 @@ export default function ShopProducts({ handleFilter, handleSort }) {
   }
 
   async function sortByTags(tag) {
+    setCat(tag._id);
     let selectedTag = tags.find((index) => {
       return index.Title == tag.Title;
     });
-    let response = await axios.get("https://api.venturegames.pk/Products", {
+    let response;
+    if(heading == undefined && consoles == undefined) {
+      response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
         Tag: selectedTag._id,
       },
     });
+    }
+    else if(heading != undefined && consoles == undefined) {
+      response = await axios.get("https://api.venturegames.pk/Products", {
+      params: {
+        Tag: selectedTag._id,
+        Genre: heading
+      },
+      });
+    }
+    else if(heading == undefined && consoles != undefined) {
+      response = await axios.get("https://api.venturegames.pk/Products", {
+      params: {
+        Tag: selectedTag._id,
+        Platform: consoles
+      },
+      });
+    }
+    else {
+      response = await axios.get("https://api.venturegames.pk/Products", {
+      params: {
+        Tag: selectedTag._id,
+        Platform: consoles,
+        Genre: heading
+      },
+      });
+    }
     console.log(response.data);
     if (response.data.length > 0) {
       dispatch(FilterByCategory(response.data));
@@ -88,14 +153,43 @@ export default function ShopProducts({ handleFilter, handleSort }) {
   }
 
   async function sortByGenre(gen) {
+    setHeading(gen._id);
     let selectedGen = genre.find((index) => {
       return index.Title == gen.Title;
     });
-    let response = await axios.get("https://api.venturegames.pk/Products", {
+    let response;
+    if(heading == undefined && consoles == undefined) {
+      response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
         Genre: selectedGen._id,
       },
     });
+    }
+    else if(cat != undefined && consoles == undefined) {
+      response = await axios.get("https://api.venturegames.pk/Products", {
+      params: {
+        Genre: selectedGen._id,
+        Tag: cat,
+      },
+      });
+    }
+    else if(cat == undefined && consoles != undefined) {
+      response = await axios.get("https://api.venturegames.pk/Products", {
+      params: {
+        Genre: selectedGen._id,
+        Platform: consoles
+      },
+      });
+    }
+    else {
+      response = await axios.get("https://api.venturegames.pk/Products", {
+      params: {
+        Genre: selectedGen._id,
+        Platform: consoles,
+        Tag: cat
+      },
+      });
+    }
     console.log(response.data);
     if (response.data.length > 0) {
       dispatch(FilterByConsole(response.data));
