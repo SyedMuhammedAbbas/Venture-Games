@@ -313,15 +313,17 @@ export default function ShoppingCart() {
             </div>
           </div>
         ) : (
-          <div className="flex mobile2:grid gap-7 mobile2:gap-1 text-center text-[45px] pr-10 text-[#868686] justify-center pt-[500px] h-[125vh]">
-            Cart is empty !
-            <div className="flex gap-1">
-              <Link href="/shop">
-                <a className=" text-white cursor-pointer">Shop Now</a>
-              </Link>
-              <div className="text-white font-normal mt-3 cursor-pointer">
-                <MdDoubleArrow />
-              </div>
+          <div className="h-[140vh] max-h-[100%] flex justify-center items-center">
+            <div className=" flex mobile:grid gap-7 mobile:gap-0 mobile:h-[80px] justify-center  text-[45px] mobile:text-[40px] text-[#868686] ">
+              <div>Cart is empty !</div>
+              <span className="flex gap-1 items-center justify-center mobile:mt-0 mobile:text-[35px]">
+                <Link href="/shop">
+                  <a className=" text-white cursor-pointer">Shop Now</a>
+                </Link>
+                <div className="text-white font-normal mt-3 cursor-pointer">
+                  <MdDoubleArrow />
+                </div>
+              </span>
             </div>
           </div>
         )}
