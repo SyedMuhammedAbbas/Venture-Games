@@ -54,8 +54,8 @@ export default function ClientsView() {
             s Say
           </div>
           <div className="text-white px-10 text-[30px] mobile:text-[20px] tablet:pb-10 tablet:pt-10 text-center">
-            We At Venture Games hjfsfnsjk fdkjsfns jkkfhsi jhsifjs nfjsk djadd
-            ndja dnajkda djkad dabkjdbaw dnajk dnajkda
+            Our works speaks for it self. Here is what our customers say about
+            us.
           </div>
         </div>
 

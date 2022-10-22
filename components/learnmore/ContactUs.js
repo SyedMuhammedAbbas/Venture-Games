@@ -30,13 +30,13 @@ export default function ContactUs() {
                 <div className="text-white text-center text-[20px] mobile1.1:text-[15px]">
                   Enter your email to hear from us regularly
                 </div>
-                <div className="mobile:w-[450px] mobile2.1:w-[350px] mobile1.1:w-auto flex justify-center">
-                  <form className="bg-transparent border-[1px] border-white rounded-[40px]  text-white">
+                <div className="mobile:w-[450px] mobile2.1:w-[350px] mobile1.1:w-auto flex justify-center items-center">
+                  <form className="bg-transparent border-[1px] border-white rounded-[40px]  text-white items-center">
                     <input
-                      placeholder="sarah@venturegames.com"
-                      className="bg-transparent mx-8 mobile:mx-3 w-[350px] mobile2.1:w-[270px] mobile1.1:w-[240px] h-[45px] outline-none"
+                      placeholder="youremail@gmail.com"
+                      className="bg-transparent placeholder:text-white placeholder:text-[20px] text-[25px] mx-8 mobile:mx-3 w-[350px] mobile2.1:w-[270px] mobile1.1:w-[240px] h-[45px] outline-none"
                     ></input>
-                    <button className="text-white text-[35px] align-middle">
+                    <button className="text-white text-[35px] pt-2 pr-2">
                       <BiRightArrowCircle />
                     </button>
                   </form>
@@ -65,9 +65,9 @@ export default function ContactUs() {
                   Follow Us:
                 </div>
                 <div className="flex gap-5 justify-center border-[1px] border-white rounded-[30px] p-10 mobile1.1:p-auto py-5">
-                  <div className="text-white text-[50px] mobile:text-[35px] border-r-[2px] pr-4">
+                  {/* <div className="text-white text-[50px] mobile:text-[35px] border-r-[2px] pr-4">
                     <BsWhatsapp />
-                  </div>
+                  </div> */}
                   <div className="text-white text-[50px] mobile:text-[35px] border-r-[2px] pr-4">
                     <BsFacebook />
                   </div>

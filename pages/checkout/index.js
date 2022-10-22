@@ -14,6 +14,7 @@ export default function CheckOutPage() {
           sethandleLogin={sethandleLogin}
           handleSignup={handleSignup}
           sethandleSignup={sethandleSignup}
+          back={true}
         />
         <div className="snap-start">
           <CheckOut />

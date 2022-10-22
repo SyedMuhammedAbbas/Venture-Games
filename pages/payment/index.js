@@ -13,6 +13,7 @@ export default function PaymentPage() {
         sethandleLogin={sethandleLogin}
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
+        back={true}
       />
       <div className="snap-start">
         <Payment />

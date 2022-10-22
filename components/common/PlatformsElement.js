@@ -33,7 +33,7 @@ export default function PlatformsElement({ consoles }) {
   const platformImgClass = " w-[290px]  justify-center";
   console.log(platforms);
   return (
-    <div className="platformElement bg-gradient-to-tr from-[#805712] via-black to-[#805712] p-20 5xl:px-20 px-64 5xl:px-auto 4xl:px-10 2xl:px-auto mobile:p-4 min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] flex justify-center mobile1:items-center">
+    <div className="platformElement bg-gradient-to-tr from-[#805712] via-black to-[#805712] p-20 border-b-blackOpac border-b-8 5xl:px-20 px-64 5xl:px-auto 4xl:px-10 2xl:px-auto mobile:p-4 min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] flex justify-center mobile1:items-center">
       {platforms && (
         <div className="grid gap-10 justify-center w-[125vw] platformElementMainClass border-[1px] mobile1:h-auto  border-white rounded-[40px]  p-10 tablet2:p-5 pt-0 my-[30px]">
           <div className="text-[90px] 2xl:text-[70px] lg:text-[50px] tablet:text-[40px] mobile:text-[25px] text-center text-white font-hemi">
