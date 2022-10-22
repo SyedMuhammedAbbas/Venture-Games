@@ -26,7 +26,7 @@
   zoom: 75%;  
 }
 .topgamesCarousel{
-  zoom: 110%;
+  zoom: 120%;
 }
 html{
   font-family: 'SF Pro Display Light';
@@ -45,7 +45,7 @@ html{
     
   } */
   .topgamesCarousel{
-    zoom: 110%;
+    zoom: 125%;
   }
   .platformElement{
     zoom: 100%;

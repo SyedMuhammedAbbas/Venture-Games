@@ -17,8 +17,8 @@ export default function FeaturedCard({ product }) {
 
   function sendProps() {
     Router.push({
-      pathname: "/product",
-      query: { id: data },
+      pathname: "/product?" + data,
+      // query: { id: data },
     });
   }
   const platforms = Object.values(product.ProductGroup.AvailablePlatforms).map(

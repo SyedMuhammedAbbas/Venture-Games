@@ -10,9 +10,11 @@ import { AddToCart } from "../../features/counter/cartSlice";
 import Link from "next/link";
 
 export default function Product() {
+  console.log("productPage");
   const router = useRouter();
-  const { id } = router.query;
+  const id = router.query;
   // const productGroup = id;
+  console.log(router.pathname);
   const token = useSelector((state) => state.user.token);
   // console.log(productGroup);
 
