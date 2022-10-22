@@ -1,19 +1,52 @@
-import React from 'react'
-import Script from 'next/script';
-import { useEffect } from 'react';
-import {Helmet} from "react-helmet";
-import Head from 'next/head';
+<!DOCTYPE html>
+<html>
+    <head>
+        <style id="antiClickjack">
+            body {
+                display: none !important;
+            }
+        </style>
+    </head>
 
-function index() {
+    <body>
+        <div id="PGWHPCCARDContainer2"></div>    
+    </body>
 
-  // async function LoadLibraries() {
-  //   await AddLibrary("https://test-bankalfalah.gateway.mastercard.com/form/version/54/merchant/TESTNIFT/session.js");
-  //   await AddLibrary("https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js")
-  //   await AddLibrary("https://uat-merchants.niftepay.pk/HPS/PGWHPCPlugin.js");
-  // }
+    <!-- INCLUDE SESSION.JS JAVASCRIPT LIBRARY -->
+    <script type="text/javascript" src="https://test-bankalfalah.gateway.mastercard.com/form/version/54/merchant/TESTNIFT/session.js"></script>
+    <!-- PGW HPC CARD PLUGIN -->	
+    <script type="text/javascript" src="https://uat-merchants.niftepay.pk/HPS/PGWHPCPlugin.js"></script>
+    <!-- CrytoJS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <!-- INITIALIZE PLUGIN -->
+    <script type="text/javascript">
 
+        const SALT = 'Rv+Rp1MkJTc=';
 
-  function parameters() {
+        function changeDateFormat() {
+            Date.prototype.yyyymmdd = function () {
+                function pad2(n) {
+                    return (n < 10 ? "0" : "") + n;
+                }
+
+                return [this.getFullYear(),
+                pad2(this.getMonth() + 1),
+                pad2(this.getDate()),
+                pad2(this.getHours()),
+                pad2(this.getMinutes()),
+                pad2(this.getSeconds())].join("");
+            };
+        }
+
+        changeDateFormat();
+
+        let date = new Date();
+        let expDate = new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000).yyyymmdd();
+		console.log("DateTime: " + date.yyyymmdd());
+		console.log("Expiry DateTime: " + expDate);
+        let txnRefNo = ["T", date.yyyymmdd()].join("");
+
+        //Update transaction parameters
         PGWHPCTransactionParameters.__00amt__ = "1000"; //pp_Amount
         PGWHPCTransactionParameters.__01brn__ = new Date().getTime().toString(); //pp_BillReference
         PGWHPCTransactionParameters.__02des__ = "SF-123"; //pp_Description
@@ -21,7 +54,7 @@ function index() {
         PGWHPCTransactionParameters.__04mid__ = "NV0001"; //pp_MerchantID
         PGWHPCTransactionParameters.__05pwd__ = "Vd+UE9WAMy8="; //pp_Password
         PGWHPCTransactionParameters.__06url__ = "https://venturegames.emergen.io/thankyou/"; //pp_ReturnURL
-		    PGWHPCTransactionParameters.__07smid__= ""; //pp_SubMerchantID
+		PGWHPCTransactionParameters.__07smid__= ""; //pp_SubMerchantID
         PGWHPCTransactionParameters.__08seh__ = SALT; //pp_SecureHash
         PGWHPCTransactionParameters.__09cur__ = "PKR"; //pp_TxnCurrency
         PGWHPCTransactionParameters.__10tdt__ = date.yyyymmdd(); //pp_TxnDateTime
@@ -125,85 +158,6 @@ function index() {
             console.log(msg);
             //Your code to handle this error
         }
-  }
 
-  function AddLibrary(urlOfTheLibrary) {
-    const script = document.createElement('script');
-    script.src = urlOfTheLibrary;
-    script.async = false;
-    script.type = "text/javascript";
-    document.body.appendChild(script);
-    return script;
-
-    script.addEventListener("load", () => {
-      console.log("File loaded")
-    });
-     // error event
-    script.addEventListener("error", (ev) => {
-      console.log("Error on loading file", ev);
-    });
-  }
-
-  const SALT = 'Rv+Rp1MkJTc=';
-
-  function changeDateFormat() {
-      Date.prototype.yyyymmdd = function () {
-          function pad2(n) {
-              return (n < 10 ? "0" : "") + n;
-          }
-
-          return [this.getFullYear(),
-          pad2(this.getMonth() + 1),
-          pad2(this.getDate()),
-          pad2(this.getHours()),
-          pad2(this.getMinutes()),
-          pad2(this.getSeconds())].join("");
-      };
-  }
-
-  changeDateFormat();
-
-  let date = new Date();
-  let expDate = new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000).yyyymmdd();
-  console.log("DateTime: " + date.yyyymmdd());
-  console.log("Expiry DateTime: " + expDate);
-  let txnRefNo = ["T", date.yyyymmdd()].join("");
-
-
-
-  useEffect(() => {
-    console.log("UseEffect");
-    // PGWHPCTransactionParameters.__00amt__ = "1000"; //pp_Amount
-    
-    setTimeout(() => {
-      PGWHPCTransactionParameters.__00amt__ = "1000"; //pp_Amount
-    }, 3000)
-  }, [])
-
-  return (
-    <>
-    {console.log("here")}
-    <div>
-      <Head>
-        <Script src="https://test-bankalfalah.gateway.mastercard.com/form/version/54/merchant/TESTNIFT/session.js" strategy='beforeInteractive' />
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" strategy='beforeInteractive' />
-        <Script src="https://uat-merchants.niftepay.pk/HPS/PGWHPCPlugin.js" onReady={() => {parameters()}} />  
-      </Head>
-      <h1>Hello World</h1>
-        <style
-          id="antiClickjack"
-          dangerouslySetInnerHTML={{
-            __html:
-              "\n body {\n display: none !important;\n}\n"
-          }}
-        />
-        <div id="PGWHPCCARDContainer2" />
-        
- 
-     </div>
-     </>
-    );
-}
-
-
-export default index
+    </script>
+</html>

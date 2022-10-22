@@ -28,6 +28,7 @@
     "daisyui": "^2.27.0",
     "dangerously-set-html-content": "^1.0.9",
     "firebase": "^9.10.0",
+    "fs": "0.0.1-security",
     "google-map-react": "^2.2.0",
     "next": "12.2.5",
     "next-birthday": "^1.0.0",

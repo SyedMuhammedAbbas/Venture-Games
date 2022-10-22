@@ -16,10 +16,7 @@ export default function FeaturedCard({ product }) {
   // console.log(data);
 
   function sendProps() {
-    Router.push({
-      pathname: "/product?" + data,
-      // query: { id: data },
-    });
+    Router.push("/product/" + data, "/product/" + data, { shallow: true });
   }
   const platforms = Object.values(product.ProductGroup.AvailablePlatforms).map(
     (index) => {
@@ -67,12 +64,14 @@ export default function FeaturedCard({ product }) {
           </div>
         </div>
         <div className="flex justify-center gap-2 mt-[-7px] mb-5">
-          <button
-            onClick={() => sendProps()}
-            className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-8 py-1 hover:bg-white hover:text-black hover:border-black"
-          >
-            <a>View</a>
-          </button>
+          <Link href={`/product/${data}`}>
+            <button
+              // onClick={() => sendProps()}
+              className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-8 py-1 hover:bg-white hover:text-black hover:border-black"
+            >
+              <a>View</a>
+            </button>
+          </Link>
         </div>
       </div>
     </div>

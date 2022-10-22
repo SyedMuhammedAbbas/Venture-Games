@@ -15,6 +15,8 @@ export default function Product() {
   const id = router.query;
   // const productGroup = id;
   console.log(router.pathname);
+  console.log(id);
+  //   const productGroup = id;
   const token = useSelector((state) => state.user.token);
   // console.log(productGroup);
 
@@ -26,13 +28,13 @@ export default function Product() {
   const [particularItem, setParticularItem] = useState(true);
 
   async function fetchData() {
-    console.log("here");
+    console.log("Fetch");
+    console.log(productGroup);
     let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
       params: {
         ProductGroup: id,
       },
     });
-    console.log(response);
     setProducts(response.data);
     setSelectedType(response.data[0].Type);
 
@@ -44,7 +46,6 @@ export default function Product() {
     }
     // setDisplayedProduct(Products[0]);
   }
-  console.log(Products);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -132,7 +133,6 @@ export default function Product() {
       }
     }
   }
-  console.log(DisplayedProduct);
 
   const dispatch = useDispatch();
 
@@ -140,7 +140,6 @@ export default function Product() {
     if (token && DisplayedProduct.Quantity > 0) {
       dispatch(AddToCart(DisplayedProduct));
       const jwtToken = JSON.parse(localStorage.getItem("token"));
-      console.log(jwtToken);
       let config = {
         headers: {
           Authorization: "Bearer " + jwtToken,
@@ -154,17 +153,12 @@ export default function Product() {
         },
         config
       );
-      console.log(response);
     } else if (DisplayedProduct.Quantity <= 0) {
       alert("Product Not available");
     } else {
       router.push("/login");
     }
   };
-
-  console.log(0);
-  console.log(particularItem);
-  console.log(1);
 
   return (
     <>
