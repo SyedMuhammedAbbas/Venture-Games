@@ -12,7 +12,7 @@ import Link from "next/link";
 export default function Product() {
   console.log("productPage");
   const router = useRouter();
-  const id = router.query;
+  const id = router.query.id;
   // const productGroup = id;
   console.log(router.pathname);
   console.log(id);
