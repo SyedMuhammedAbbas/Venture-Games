@@ -87,7 +87,7 @@ html{
           position: fixed;
           width: 60px;
           height: 60px;
-          bottom: 40px;
+          bottom: 100px;
           right: 40px;
           /* background-image: url('../images/whattsapp_logo.png'); */
           /* background-color: #25d366; */
@@ -113,7 +113,7 @@ html{
           .whatsapp_float {
               width: 40px;
               height: 40px;
-              bottom: 20px;
+              bottom: 30px;
               right: 20px;
               font-size: 22px;
           }

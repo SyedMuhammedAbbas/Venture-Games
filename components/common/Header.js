@@ -47,7 +47,7 @@ export default function Header() {
     "consoles",
     "games",
     "accessories",
-    "learn more",
+    "Merchandise",
   ];
   const pages_heading_links = [
     "shop",
@@ -55,7 +55,7 @@ export default function Header() {
     "consoles",
     "games",
     "accessories",
-    "learnmore",
+    "shop",
   ];
 
   const footer_links = ["policies", "terms", "help"];
@@ -95,16 +95,18 @@ export default function Header() {
       <div className="flex p-10 mx-auto h-[120px] justify-center bg-gradient-to-t from-black to-[#2c2c2c] fixed tablet:h-[45px] w-[100%] z-[999]">
         <ul className="flex gap-[15vw] uppercase text-white text-xl transition-all mb-[-10px] 4xl:text-lg xl:gap-[10vw] lg:mb-[-20px] ">
           <li className={list}>
-            <Link href="/shop" as="/shop">
-              <a>shop</a>
+            <Link href="/games">
+              <a>games</a>
             </Link>
-          </li>
-          <li className={list}>
-            <Link href="/giftcards">gift cards</Link>
           </li>
           <li className={list}>
             <Link href="/consoles">
               <a>consoles</a>
+            </Link>
+          </li>
+          <li className={list}>
+            <Link href="/accessories">
+              <a>accessories</a>
             </Link>
           </li>
         </ul>
@@ -204,18 +206,16 @@ export default function Header() {
         </div> */}
         <ul className="flex gap-[15vw] uppercase text-white text-xl transition-all mb-[-10px] 4xl:text-lg xl:gap-[10vw] lg:mb-[-20px]">
           <li className={list}>
-            <Link href="/games">
-              <a>games</a>
+            <Link href="/giftcards">gift cards</Link>
+          </li>
+          <li className={list}>
+            <Link href="/shop" as="/shop">
+              <a>shop</a>
             </Link>
           </li>
           <li className={list}>
-            <Link href="/accessories">
-              <a>accessories</a>
-            </Link>
-          </li>
-          <li className={list}>
-            <Link href="/learnmore">
-              <a>learn more</a>
+            <Link href="/shop">
+              <a>Merchandise</a>
             </Link>
           </li>
         </ul>

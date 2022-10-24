@@ -172,7 +172,7 @@ export default function Sale() {
             })}
           </div>
         ) : (
-          <div className="w-[110vw] block justify-center mobile1:w-[90vw] h-auto mx-auto my-20">
+          <div className="w-[110vw] block justify-center mobile1:w-auto h-auto mx-auto my-20">
             <Slider {...settings}>
               {Object.values(SaleProducts)
                 .slice(0, 7)

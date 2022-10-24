@@ -29,7 +29,7 @@ export default function Product() {
 
   async function fetchData() {
     console.log("Fetch");
-    console.log(productGroup);
+    // console.log(productGroup);
     let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
       params: {
         ProductGroup: id,

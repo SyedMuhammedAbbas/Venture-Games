@@ -6,23 +6,33 @@ import Router from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function FeaturedCard({ product }) {
-  const dispatch = useDispatch();
-  const handleAddtoCart = (product) => {
-    dispatch(AddToCart(product));
-  };
+  // const dispatch = useDispatch();
+  // const handleAddtoCart = (product) => {
+  //   dispatch(AddToCart(product));
+  // };
 
   const data = product.ProductGroup._id;
 
   // console.log(data);
 
+  // function sendProps() {
+  //   // Router.push("/product" + data, "/product" + data, { shallow: true });
+  //   Router.push({
+  //     pathname: "/product",
+  //     query: { id: product.ProductGroup._id },
+  //   });
+  // }
   function sendProps() {
-    Router.push("/product/" + data, "/product/" + data, { shallow: true });
+    Router.push({
+      pathname: "/product",
+      query: { id: data },
+    });
   }
-  const platforms = Object.values(product.ProductGroup.AvailablePlatforms).map(
-    (index) => {
-      return index.Title;
-    }
-  );
+  // const platforms = Object.values(product.ProductGroup.AvailablePlatforms).map(
+  //   (index) => {
+  //     return index.Title;
+  //   }
+  // );
 
   // console.log(platforms);
   return (
@@ -64,14 +74,14 @@ export default function FeaturedCard({ product }) {
           </div>
         </div>
         <div className="flex justify-center gap-2 mt-[-7px] mb-5">
-          <Link href={`/product/${data}`}>
-            <button
-              // onClick={() => sendProps()}
-              className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-8 py-1 hover:bg-white hover:text-black hover:border-black"
-            >
-              <a>View</a>
-            </button>
-          </Link>
+          {/* <Link href={`/product/${data}`}> */}
+          <button
+            onClick={() => sendProps()}
+            className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-8 py-1 hover:bg-white hover:text-black hover:border-black"
+          >
+            <a>View</a>
+          </button>
+          {/* </Link> */}
         </div>
       </div>
     </div>

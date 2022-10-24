@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import Router from "next/router";
 
 export default function SaleCard({ product }) {
-  const dispatch = useDispatch();
-  const handleAddtoCart = (product) => {
-    dispatch(AddToCart(product));
-  };
+  // const dispatch = useDispatch();
+  // const handleAddtoCart = (product) => {
+  //   dispatch(AddToCart(product));
+  // };
   function sendProps() {
     Router.push({
       pathname: "/product",
@@ -19,7 +19,7 @@ export default function SaleCard({ product }) {
       <div className="h-auto p-2 m-auto rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile1:w-auto tablet1:mx-1">
         <div className="relative text-center h-[400px]">
           <img
-            className="rounded-3xl h-[380px] object-cover w-[350px] mobile1:w-auto"
+            className="rounded-3xl h-[380px] object-cover w-[350px]"
             src={product.Images[0]}
           />
           <div className="absolute left-2 bottom-6">
