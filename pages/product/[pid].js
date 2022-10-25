@@ -103,7 +103,7 @@ export default function Product() {
     {
       New ? setNew(true) & setOld(false) : setNew(true) & setOld(false);
       console.log("New");
-      if (Products.length > 1) {
+      if (Products.length >= 1) {
         let type = Products.find((prod) => {
           return prod.Type === "New";
         });
@@ -123,7 +123,7 @@ export default function Product() {
     {
       Old ? setOld(true) & setNew(false) : setOld(true) & setNew(false);
       console.log("Used");
-      if (Products.length > 1) {
+      if (Products.length >= 1) {
         let type = Products.find((prod) => {
           return prod.Type === "Used";
         });

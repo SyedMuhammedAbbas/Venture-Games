@@ -2,6 +2,7 @@ import ProfileBar from "../../components/common/ProfileBar";
 import { useState } from "react";
 import ShopGames from "../../components/shop/ShopGames";
 import ShopCover from "../../components/shop/ShopCover";
+import ProfileBarMobile from "../../components/common/ProfileBarMobile";
 
 export default function Games() {
   const [handleSignup, sethandleSignup] = useState(false);
@@ -22,6 +23,7 @@ export default function Games() {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
+      <ProfileBarMobile />
       <div className="snap-center">
         <ShopCover />
       </div>

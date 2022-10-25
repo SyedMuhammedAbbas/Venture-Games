@@ -2,6 +2,7 @@ import ProfileBar from "../../components/common/ProfileBar";
 import ShopAccessories from "../../components/shop/ShopAccessories";
 import { useState } from "react";
 import ShopCover from "../../components/shop/ShopCover";
+import ProfileBarMobile from "../../components/common/ProfileBarMobile";
 
 export default function Accessories() {
   const [handleSignup, sethandleSignup] = useState(false);
@@ -23,6 +24,7 @@ export default function Accessories() {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
+      <ProfileBarMobile />
       <div className="snap-center">
         <ShopCover />
       </div>

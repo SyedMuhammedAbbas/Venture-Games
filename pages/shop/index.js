@@ -2,6 +2,7 @@ import ProfileBar from "../../components/common/ProfileBar";
 import ShopProducts from "../../components/shop/ShopProducts";
 import { useState } from "react";
 import ShopCover from "../../components/shop/ShopCover";
+import ProfileBarMobile from "../../components/common/ProfileBarMobile";
 
 export default function Shop() {
   const [handleFilter, sethandleFilter] = useState(false);
@@ -24,6 +25,9 @@ export default function Shop() {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
+      <div className="hidden tablet:block">
+        <ProfileBarMobile />
+      </div>
       <div className="snap-center">
         <ShopCover />
       </div>

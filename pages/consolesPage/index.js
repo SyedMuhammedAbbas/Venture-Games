@@ -3,6 +3,7 @@ import ShopConsoles from "../../components/shop/ShopConsoles";
 import { useState } from "react";
 import ShopCover from "../../components/shop/ShopCover";
 import { useRouter } from "next/router";
+import ProfileBarMobile from "../../components/common/ProfileBarMobile";
 
 export default function ShopPlatformsPage(platforms) {
   const [handleFilter, sethandleFilter] = useState(false);
@@ -28,6 +29,7 @@ export default function ShopPlatformsPage(platforms) {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
+      <ProfileBarMobile />
       <div className="snap-center">
         <ShopCover />
       </div>
