@@ -9,13 +9,19 @@ import ProfileBar from "../../components/common/ProfileBar";
 import { AddToCart } from "../../features/counter/cartSlice";
 import Link from "next/link";
 
+export async function getServerSideProps(context) {
+  return {
+    props: {},
+  };
+}
+
 export default function Product() {
   console.log("productPage");
   const router = useRouter();
-  const id = router.query.id;
+  const { pid } = router.query;
+  console.log(pid);
   // const productGroup = id;
   console.log(router.pathname);
-  console.log(id);
   //   const productGroup = id;
   const token = useSelector((state) => state.user.token);
   // console.log(productGroup);
@@ -32,7 +38,7 @@ export default function Product() {
     // console.log(productGroup);
     let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
       params: {
-        ProductGroup: id,
+        ProductGroup: pid,
       },
     });
     setProducts(response.data);
@@ -173,7 +179,7 @@ export default function Product() {
           </div>
         )
       ) : (
-        <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
+        <div className="bg-[#FFB636] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
           <div className="flex justify-center product">
             <img
               className="w-[550px] h-[550px] bg-[#606060] object-contain z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"
@@ -183,7 +189,7 @@ export default function Product() {
               <div className="tablet:pl-[90px] mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
                 <div className="relative  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
                   <div className=" absolute right-8 top-[18px] xl:top-6">
-                    <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-full  items-center">
+                    <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[217px]">
                       <button
                         className={`capitalize text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
                           New

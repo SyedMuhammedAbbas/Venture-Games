@@ -50,6 +50,9 @@ html{
   .platformElement{
     zoom: 100%;
   }
+  .product{
+    zoom: 120%;
+  }
 }
 
 
@@ -83,6 +86,7 @@ html{
     z-index: -1 !important;
 
   }
+
 .whatsapp_float {
           position: fixed;
           width: 60px;

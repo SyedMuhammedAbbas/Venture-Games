@@ -22,12 +22,11 @@ export default function FeaturedCard({ product }) {
   //     query: { id: product.ProductGroup._id },
   //   });
   // }
-  function sendProps() {
-    Router.push({
-      pathname: "/product",
-      query: { id: data },
-    });
-  }
+  // function sendProps() {
+  //   Router.push({
+  //     pathname: `/product/${data}`,
+  //   });
+  // }
   // const platforms = Object.values(product.ProductGroup.AvailablePlatforms).map(
   //   (index) => {
   //     return index.Title;
@@ -74,14 +73,11 @@ export default function FeaturedCard({ product }) {
           </div>
         </div>
         <div className="flex justify-center gap-2 mt-[-7px] mb-5">
-          {/* <Link href={`/product/${data}`}> */}
-          <button
-            onClick={() => sendProps()}
-            className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-8 py-1 hover:bg-white hover:text-black hover:border-black"
-          >
-            <a>View</a>
-          </button>
-          {/* </Link> */}
+          <Link href={`/product/${data}`}>
+            <button className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-8 py-1 hover:bg-white hover:text-black hover:border-black">
+              <a>View</a>
+            </button>
+          </Link>
         </div>
       </div>
     </div>
