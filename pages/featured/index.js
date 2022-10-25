@@ -24,7 +24,7 @@ export default function GiftCards() {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
-      <ProfileBarMobile />
+      <ProfileBarMobile category="Featured" />
       <div className="snap-center">
         <ShopCover />
       </div>

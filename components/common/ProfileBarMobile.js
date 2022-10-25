@@ -3,7 +3,7 @@ import { BsSliders } from "react-icons/bs";
 import { BsSortDown } from "react-icons/bs";
 import DropDownFilterSort from "./DropDownFilterSort";
 
-export default function ProfileBarMobile() {
+export default function ProfileBarMobile({ category }) {
   const [Filter, setFilter] = useState(false);
   const [Sort, setSort] = useState(false);
   function onClickFilter() {
@@ -57,9 +57,13 @@ export default function ProfileBarMobile() {
         </div>
         {/* <DropDownFilterSort handleFilter={handleFilter} /> */}
         {Filter ? (
-          <DropDownFilterSort Filter={Filter} Sort={false} />
+          <DropDownFilterSort
+            Filter={Filter}
+            Sort={false}
+            category={category}
+          />
         ) : Sort ? (
-          <DropDownFilterSort Filter={false} Sort={Sort} />
+          <DropDownFilterSort Filter={false} Sort={Sort} category={category} />
         ) : (
           ""
         )}

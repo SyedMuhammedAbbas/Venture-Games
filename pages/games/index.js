@@ -23,7 +23,7 @@ export default function Games() {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
-      <ProfileBarMobile />
+      <ProfileBarMobile category="Games" />
       <div className="snap-center">
         <ShopCover />
       </div>

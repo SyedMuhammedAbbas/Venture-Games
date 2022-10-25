@@ -12,7 +12,7 @@ import {
   FilterByCategory,
 } from "../../features/counter/productsSlice";
 
-export default function DropDownFilterSort({ Filter, Sort }) {
+export default function DropDownFilterSort({ Filter, Sort, category }) {
   console.log("helloWorld");
   const [platforms, setPlatforms] = useState([]);
   const [genre, setGenre] = useState([]);
@@ -168,13 +168,62 @@ export default function DropDownFilterSort({ Filter, Sort }) {
 
   async function sortLowHigh() {
     // e.preventDefault();
-    let response = await axios.get("https://api.venturegames.pk/Products", {
-      params: {
-        Sort: "PriceDesc",
-      },
-    });
-    console.log(response.data);
-    dispatch(SortLowToHigh(response.data));
+    if (category === "Featured") {
+      let response = await axios.get("https://api.venturegames.pk/Products", {
+        params: {
+          Sort: "PriceDesc",
+          Featured: true,
+        },
+      });
+      dispatch(SortLowToHigh(response.data));
+    } else if (category === "FlashSale") {
+      let response = await axios.get("https://api.venturegames.pk/Products", {
+        params: {
+          Sort: "PriceDesc",
+          Sale: true,
+        },
+      });
+      dispatch(SortLowToHigh(response.data));
+    } else if (category === "Accessories") {
+      let response = await axios.get("https://api.venturegames.pk/Products", {
+        params: {
+          Sort: "PriceDesc",
+          ProductCategory: "Accessories",
+        },
+      });
+      dispatch(SortLowToHigh(response.data));
+    } else if (category === "GiftCards") {
+      let response = await axios.get("https://api.venturegames.pk/Products", {
+        params: {
+          Sort: "PriceDesc",
+          ProductCategory: "Gift Cards",
+        },
+      });
+      dispatch(SortLowToHigh(response.data));
+    } else if (category === "Games") {
+      let response = await axios.get("https://api.venturegames.pk/Products", {
+        params: {
+          Sort: "PriceDesc",
+          ProductCategory: "Games",
+        },
+      });
+      dispatch(SortLowToHigh(response.data));
+    } else {
+      let response = await axios.get("https://api.venturegames.pk/Products", {
+        params: {
+          Sort: "PriceDesc",
+        },
+      });
+      dispatch(SortLowToHigh(response.data));
+    }
+
+    // let response = await axios.get("https://api.venturegames.pk/Products", {
+    //   params: {
+    //     Sort: "PriceDesc",
+    //   },
+    // });
+    // console.log(response.data);
+    // dispatch(SortLowToHigh(response.data));
   }
 
   async function sortHighLow() {

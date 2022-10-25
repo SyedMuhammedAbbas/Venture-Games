@@ -82,6 +82,7 @@ export default function ShopGiftCards({ handleFilter, handleSort }) {
     let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
         Tag: selectedTag._id,
+        ProductCategory: "Gift Cards",
       },
     });
     console.log(response.data);
@@ -99,6 +100,7 @@ export default function ShopGiftCards({ handleFilter, handleSort }) {
     let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
         Genre: selectedGen._id,
+        ProductCategory: "Gift Cards",
       },
     });
     console.log(response.data);
@@ -114,6 +116,7 @@ export default function ShopGiftCards({ handleFilter, handleSort }) {
     let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
         Sort: "PriceDesc",
+        ProductCategory: "Gift Cards",
       },
     });
     console.log(response.data);
@@ -125,6 +128,7 @@ export default function ShopGiftCards({ handleFilter, handleSort }) {
     let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
         Sort: "PriceAsc",
+        ProductCategory: "Gift Cards",
       },
     });
     console.log(response.data);

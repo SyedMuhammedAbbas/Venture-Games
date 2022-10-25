@@ -24,7 +24,7 @@ export default function Accessories() {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
-      <ProfileBarMobile />
+      <ProfileBarMobile category="Accessories" />
       <div className="snap-center">
         <ShopCover />
       </div>
