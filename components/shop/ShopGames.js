@@ -64,7 +64,12 @@ export default function ShopGames({ handleFilter, handleSort }) {
   }
 
   async function sortByPlatform(type) {
-    setConsoles(type._id);
+    if(consoles == type._id) {
+      setConsoles(undefined);
+    }
+    else {
+      setConsoles(type._id);
+    }
     let selectedPlat = platforms.find((index) => {
       return index.Title == type.Title;
     });
@@ -111,7 +116,12 @@ export default function ShopGames({ handleFilter, handleSort }) {
   }
 
   async function sortByTags(tag) {
-    setCat(tag._id);
+    if(cat == tag._id) {
+      setCat(undefined);
+    }
+    else {
+      setCat(tag._id);
+    }
     let selectedTag = tags.find((index) => {
       return index.Title == tag.Title;
     });
@@ -158,7 +168,12 @@ export default function ShopGames({ handleFilter, handleSort }) {
   }
 
   async function sortByGenre(gen) {
-    setHeading(gen._id);
+    if(heading == gen._id) {
+      setHeading(undefined);
+    }
+    else {
+      setHeading(gen._id);
+    } 
     let selectedGen = genre.find((index) => {
       return index.Title == gen.Title;
     });
