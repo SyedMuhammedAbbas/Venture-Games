@@ -4,6 +4,7 @@ import { useState } from "react";
 import ShopCover from "../../components/shop/ShopCover";
 import ShopPlatforms from "../../components/shop/ShopPlatforms";
 import { useRouter } from "next/router";
+import ProfileBarMobile from "../../components/common/ProfileBarMobile";
 
 export default function ShopPlatformsPage(platforms) {
   const [handleFilter, sethandleFilter] = useState(false);
@@ -14,7 +15,8 @@ export default function ShopPlatformsPage(platforms) {
   const selectedPlatform = router.query.selectedPlatform;
   console.log(selectedPlatform);
   // const [Cart, setCart] = useState([]);
-
+  const [handleFilterMobile, sethandleFilterMobile] = useState(false);
+  const [handleSortMobile, sethandleSortMobile] = useState(false);
   return (
     <>
       <ProfileBar
@@ -29,6 +31,12 @@ export default function ShopPlatformsPage(platforms) {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
+      <ProfileBarMobile
+        handleFilterMobile={handleFilterMobile}
+        sethandleFilterMobile={sethandleFilterMobile}
+        handleSortMobile={handleSortMobile}
+        sethandleSortMobile={sethandleSortMobile}
+      />
       <div className="snap-center">
         <ShopCover />
       </div>
@@ -37,6 +45,8 @@ export default function ShopPlatformsPage(platforms) {
           handleFilter={handleFilter}
           handleSort={handleSort}
           selectedPlatforms={selectedPlatform}
+          handleFilterMobile={handleFilterMobile}
+          handleSortMobile={handleSortMobile}
         />
       </div>
     </>

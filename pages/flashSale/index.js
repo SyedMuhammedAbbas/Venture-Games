@@ -10,6 +10,9 @@ export default function GiftCards() {
   const [handleFilter, sethandleFilter] = useState(false);
   const [handleSort, sethandleSort] = useState(false);
 
+  const [handleFilterMobile, sethandleFilterMobile] = useState(false);
+  const [handleSortMobile, sethandleSortMobile] = useState(false);
+
   return (
     <>
       <ProfileBar
@@ -24,7 +27,12 @@ export default function GiftCards() {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
-      <ProfileBarMobile category="FlashSale" />
+      <ProfileBarMobile
+        handleFilterMobile={handleFilterMobile}
+        sethandleFilterMobile={sethandleFilterMobile}
+        handleSortMobile={handleSortMobile}
+        sethandleSortMobile={sethandleSortMobile}
+      />
       <div className="snap-center">
         <ShopCover />
       </div>
@@ -32,6 +40,8 @@ export default function GiftCards() {
         <ShopFlashSaleProducts
           handleFilter={handleFilter}
           handleSort={handleSort}
+          handleFilterMobile={handleFilterMobile}
+          handleSortMobile={handleSortMobile}
         />
       </div>
     </>

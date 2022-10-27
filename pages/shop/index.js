@@ -11,6 +11,8 @@ export default function Shop() {
   const [handleLogin, sethandleLogin] = useState(false);
   // const [Cart, setCart] = useState([]);
 
+  const [handleFilterMobile, sethandleFilterMobile] = useState(false);
+  const [handleSortMobile, sethandleSortMobile] = useState(false);
   return (
     <>
       <ProfileBar
@@ -26,13 +28,23 @@ export default function Shop() {
         sethandleSignup={sethandleSignup}
       />
       <div className="hidden tablet:block">
-        <ProfileBarMobile />
+        <ProfileBarMobile
+          handleFilterMobile={handleFilterMobile}
+          sethandleFilterMobile={sethandleFilterMobile}
+          handleSortMobile={handleSortMobile}
+          sethandleSortMobile={sethandleSortMobile}
+        />
       </div>
       <div className="snap-center">
         <ShopCover />
       </div>
       <div className="snap-start">
-        <ShopProducts handleFilter={handleFilter} handleSort={handleSort} />
+        <ShopProducts
+          handleFilter={handleFilter}
+          handleSort={handleSort}
+          handleFilterMobile={handleFilterMobile}
+          handleSortMobile={handleSortMobile}
+        />
       </div>
     </>
   );

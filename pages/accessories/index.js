@@ -9,6 +9,8 @@ export default function Accessories() {
   const [handleLogin, sethandleLogin] = useState(false);
   const [handleFilter, sethandleFilter] = useState(false);
   const [handleSort, sethandleSort] = useState(false);
+  const [handleFilterMobile, sethandleFilterMobile] = useState(false);
+  const [handleSortMobile, sethandleSortMobile] = useState(false);
 
   return (
     <>
@@ -24,12 +26,22 @@ export default function Accessories() {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
-      <ProfileBarMobile category="Accessories" />
+      <ProfileBarMobile
+        handleFilterMobile={handleFilterMobile}
+        sethandleFilterMobile={sethandleFilterMobile}
+        handleSortMobile={handleSortMobile}
+        sethandleSortMobile={sethandleSortMobile}
+      />
       <div className="snap-center">
         <ShopCover />
       </div>
       <div className="snap-start">
-        <ShopAccessories handleFilter={handleFilter} handleSort={handleSort} />
+        <ShopAccessories
+          handleFilter={handleFilter}
+          handleSort={handleSort}
+          handleFilterMobile={handleFilterMobile}
+          handleSortMobile={handleSortMobile}
+        />
       </div>
     </>
   );

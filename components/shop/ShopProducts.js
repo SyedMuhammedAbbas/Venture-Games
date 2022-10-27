@@ -13,7 +13,12 @@ import {
   FilterByCategory,
 } from "../../features/counter/productsSlice";
 
-export default function ShopProducts({ handleFilter, handleSort }) {
+export default function ShopProducts({
+  handleFilter,
+  handleSort,
+  handleFilterMobile,
+  handleSortMobile,
+}) {
   const ProductsFetched = useSelector((state) => state.products.allProducts);
   const Products = ProductsFetched.filter(
     (v, i, a) =>
@@ -61,45 +66,67 @@ export default function ShopProducts({ handleFilter, handleSort }) {
   // }
 
   async function sortByPlatform(type) {
-    if(consoles == type._id) {
-      setConsoles(undefined);
-    }
-    else {
-      setConsoles(type._id);
-    }
-    let selectedPlat = platforms.find((index) => {
-      return index.Title == type.Title;
-    });
     let response;
-    if (heading == undefined && cat == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Platform: selectedPlat._id,
-        },
-      });
-    } else if (heading != undefined && cat == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Platform: selectedPlat._id,
-          Genre: heading,
-        },
-      });
-    } else if (heading == undefined && cat != undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Platform: selectedPlat._id,
-          Tag: cat,
-        },
-      });
+    if (consoles == type._id) {
+      setConsoles(undefined);
+      if (heading == undefined && cat == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products");
+      } else if (heading != undefined && cat == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: heading,
+          },
+        });
+      } else if (heading == undefined && cat != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: cat,
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: cat,
+            Genre: heading,
+          },
+        });
+      }
     } else {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Platform: selectedPlat._id,
-          Tag: cat,
-          Genre: heading,
-        },
+      setConsoles(type._id);
+      let selectedPlat = platforms.find((index) => {
+        return index.Title == type.Title;
       });
+      if (heading == undefined && cat == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: selectedPlat._id,
+          },
+        });
+      } else if (heading != undefined && cat == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: selectedPlat._id,
+            Genre: heading,
+          },
+        });
+      } else if (heading == undefined && cat != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: selectedPlat._id,
+            Tag: cat,
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: selectedPlat._id,
+            Tag: cat,
+            Genre: heading,
+          },
+        });
+      }
     }
+
     console.log(response.data);
     if (response.data.length > 0) {
       dispatch(FilterByGenre(response.data));
@@ -109,45 +136,67 @@ export default function ShopProducts({ handleFilter, handleSort }) {
   }
 
   async function sortByTags(tag) {
-    if(cat == tag._id) {
-      setCat(undefined);
-    }
-    else {
-      setCat(tag._id);
-    }
-    let selectedTag = tags.find((index) => {
-      return index.Title == tag.Title;
-    });
     let response;
-    if (heading == undefined && consoles == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Tag: selectedTag._id,
-        },
-      });
-    } else if (heading != undefined && consoles == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Tag: selectedTag._id,
-          Genre: heading,
-        },
-      });
-    } else if (heading == undefined && consoles != undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Tag: selectedTag._id,
-          Platform: consoles,
-        },
-      });
+    if (cat == tag._id) {
+      setCat(undefined);
+      if (heading == undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products");
+      } else if (heading != undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: heading,
+          },
+        });
+      } else if (heading == undefined && consoles != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: consoles,
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: consoles,
+            Genre: heading,
+          },
+        });
+      }
     } else {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Tag: selectedTag._id,
-          Platform: consoles,
-          Genre: heading,
-        },
+      let selectedTag = tags.find((index) => {
+        return index.Title == tag.Title;
       });
+      setCat(tag._id);
+      if (heading == undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: selectedTag._id,
+          },
+        });
+      } else if (heading != undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: selectedTag._id,
+            Genre: heading,
+          },
+        });
+      } else if (heading == undefined && consoles != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: selectedTag._id,
+            Platform: consoles,
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: selectedTag._id,
+            Platform: consoles,
+            Genre: heading,
+          },
+        });
+      }
     }
+
     console.log(response.data);
     if (response.data.length > 0) {
       dispatch(FilterByCategory(response.data));
@@ -157,44 +206,65 @@ export default function ShopProducts({ handleFilter, handleSort }) {
   }
 
   async function sortByGenre(gen) {
-    if(heading == gen._id) {
-      setHeading(undefined);
-    }
-    else {
-      setHeading(gen._id);
-    } 
-    let selectedGen = genre.find((index) => {
-      return index.Title == gen.Title;
-    });
     let response;
-    if (heading == undefined && consoles == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Genre: selectedGen._id,
-        },
-      });
-    } else if (cat != undefined && consoles == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Genre: selectedGen._id,
-          Tag: cat,
-        },
-      });
-    } else if (cat == undefined && consoles != undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Genre: selectedGen._id,
-          Platform: consoles,
-        },
-      });
+    if (heading == gen._id) {
+      setHeading(undefined);
+      if (cat == undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products");
+      } else if (cat != undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: cat,
+          },
+        });
+      } else if (cat == undefined && consoles != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: consoles,
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: consoles,
+            Tag: cat,
+          },
+        });
+      }
     } else {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Genre: selectedGen._id,
-          Platform: consoles,
-          Tag: cat,
-        },
+      let selectedGen = genre.find((index) => {
+        return index.Title == gen.Title;
       });
+      setHeading(gen._id);
+      if (cat == undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: selectedGen._id,
+          },
+        });
+      } else if (cat != undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: selectedGen._id,
+            Tag: cat,
+          },
+        });
+      } else if (cat == undefined && consoles != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: selectedGen._id,
+            Platform: consoles,
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: selectedGen._id,
+            Platform: consoles,
+            Tag: cat,
+          },
+        });
+      }
     }
     console.log(response.data);
     if (response.data.length > 0) {
@@ -230,79 +300,91 @@ export default function ShopProducts({ handleFilter, handleSort }) {
     <div className="bg-[#1A1A1A] ">
       <div className="bg-[url('../images/background.png')] bg-[length:1700px_1800px] bg-no-repeat bg-[left_15vw_top_0rem]">
         <div className="flex pt-[10%] pb-[5%]">
-          {/* {handleFilter && ( */}
-          <div
-            className={
-              handleFilter
-                ? "bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] transition duration-300 ease-in-out opacity-100 px-[60px] mt-[0%] tablet:hidden h-[1300px] rounded-tr-[70px] rounded-br-[70px]"
-                : "hidden"
-            }
-          >
-            <div className="flex gap-4 justify-center my-7">
-              <div className={icons}>
-                <BsSliders />
+          {handleFilter && (
+            <div
+              className={
+                handleFilter
+                  ? "bg-gradient-to-tr from-[#1A1A1A] via-black to-[#1A1A1A] transition duration-300 ease-in-out opacity-100 px-[60px] mt-[0%] tablet:hidden h-[1300px] rounded-tr-[70px] rounded-br-[70px]"
+                  : "hidden"
+              }
+            >
+              <div className="flex gap-4 justify-center my-7">
+                <div className={icons}>
+                  <BsSliders />
+                </div>
+                <div className="text-[35px] text-white mt-[-7px] lg:mt-[-5px]">
+                  Filter
+                </div>
               </div>
-              <div className="text-[35px] text-white mt-[-7px] lg:mt-[-5px]">
-                Filter
-              </div>
-            </div>
 
-            <div className="border-t-[3px] border-blackOpac">
-              <div className="grid items-start gap-4 mr-[120px] py-10">
-                {platforms.map((type, index) => (
-                  <button
-                    value={type}
-                    key={index}
-                    className={buttons}
-                    onClick={() => {
-                      sortByPlatform(type);
-                    }}
-                  >
-                    {type.Title}
-                  </button>
-                ))}
+              <div className="border-t-[3px] border-blackOpac">
+                <div className="grid items-start gap-4 mr-[120px] py-10">
+                  {platforms.map((type, index) => (
+                    <button
+                      value={type}
+                      key={index}
+                      className={` uppercase border-[1px] font-semibold rounded-lg text-[20px] px-2 w-48 py-1   ${
+                        consoles !== type._id
+                          ? " text-white border-white bg-transparent"
+                          : "bg-white text-black border-black"
+                      }`}
+                      onClick={() => {
+                        sortByPlatform(type);
+                      }}
+                    >
+                      {type.Title}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            <div className="border-y-[3px] border-blackOpac">
-              <div className="grid items-start gap-4 mr-[120px] py-10">
-                {genre.map((genre, i) => (
-                  <button
-                    value={genre}
-                    key={i}
-                    className={buttons}
-                    onClick={() => {
-                      sortByGenre(genre);
-                    }}
-                  >
-                    {genre.Title}
-                  </button>
-                ))}
+              <div className="border-y-[3px] border-blackOpac">
+                <div className="grid items-start gap-4 mr-[120px] py-10">
+                  {genre.map((genre, i) => (
+                    <button
+                      value={genre}
+                      key={i}
+                      className={` uppercase border-[1px] font-semibold rounded-lg text-[20px] px-2 w-48 py-1   ${
+                        heading !== genre._id
+                          ? " text-white border-white bg-transparent"
+                          : "bg-white text-black border-black"
+                      }`}
+                      onClick={() => {
+                        sortByGenre(genre);
+                      }}
+                    >
+                      {genre.Title}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            <div className="border-b-[3px] border-blackOpac">
-              <div className="grid items-start gap-4 mr-[120px] py-10">
-                {tags.map((category, ind) => (
-                  <button
-                    value={category}
-                    key={ind}
-                    className={buttons}
-                    onClick={() => {
-                      sortByTags(category);
-                    }}
-                  >
-                    {category.Title}
-                  </button>
-                ))}
+              <div className="border-b-[3px] border-blackOpac">
+                <div className="grid items-start gap-4 mr-[120px] py-10">
+                  {tags.map((category, ind) => (
+                    <button
+                      value={category}
+                      key={ind}
+                      className={` uppercase border-[1px] font-semibold rounded-lg text-[20px] px-2 w-48 py-1   ${
+                        cat !== category._id
+                          ? " text-white border-white bg-transparent"
+                          : "bg-white text-black border-black"
+                      }`}
+                      onClick={() => {
+                        sortByTags(category);
+                      }}
+                    >
+                      {category.Title}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-          {/* )} */}
+          )}
 
           {handleSort && (
             <div
-              className={` bg-gradient-to-tr from-[#b68228] via-black to-[#c28d33] transition duration-300 ease-in-out px-[60px] mt-[0%] tablet:hidden h-[1300px] rounded-tr-[70px] rounded-br-[70px]`}
+              className={` bg-gradient-to-tr from-[#1A1A1A] via-black to-[#1A1A1A] transition duration-300 ease-in-out px-[60px] mt-[0%] tablet:hidden h-[1300px] rounded-tr-[70px] rounded-br-[70px]`}
             >
               <div className="flex gap-4 justify-center my-7">
                 <div className={icons}>
@@ -315,6 +397,84 @@ export default function ShopProducts({ handleFilter, handleSort }) {
 
               <div className="border-t-[3px] border-blackOpac">
                 <div className="grid items-start gap-4 mr-[120px] py-10">
+                  {sortbyprice.map((sortbyprice, index) => (
+                    <button
+                      value={sortbyprice}
+                      key={index}
+                      className={buttons}
+                      onClick={() => {
+                        if (sortbyprice == "Low to High") {
+                          sortHighLow();
+                        } else {
+                          sortLowHigh();
+                        }
+                      }}
+                    >
+                      {sortbyprice}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+          {handleFilterMobile && (
+            <div className="grid w-60  top-[120px] right-12 bg-[#1A1A1A] opacity-95 fixed backdrop-blur-[20px] rounded-2xl p-[0rem] overflow-y-auto h-72">
+              <div className="">
+                <div className="grid items-start gap-4 justify-center py-10">
+                  {platforms.map((type, index) => (
+                    <button
+                      value={type}
+                      key={index}
+                      className={buttons}
+                      onClick={() => {
+                        sortByPlatform(type);
+                      }}
+                    >
+                      {type.Title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="border-y-[3px] border-blackOpac">
+                <div className="grid items-start gap-4 justify-center py-10">
+                  {genre.map((genre, i) => (
+                    <button
+                      value={genre}
+                      key={i}
+                      className={buttons}
+                      onClick={() => {
+                        sortByGenre(genre);
+                      }}
+                    >
+                      {genre.Title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="">
+                <div className="grid items-start gap-4 justify-center py-10">
+                  {tags.map((category, ind) => (
+                    <button
+                      value={category}
+                      key={ind}
+                      className={buttons}
+                      onClick={() => {
+                        sortByTags(category);
+                      }}
+                    >
+                      {category.Title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+          {handleSortMobile && (
+            <div className="grid w-60 top-[120px] right-12 bg-[#1A1A1A] opacity-95 fixed backdrop-blur-[20px] rounded-2xl p-[0rem] overflow-y-auto h-72">
+              <div className="">
+                <div className="grid items-start gap-4 justify-center py-10">
                   {sortbyprice.map((sortbyprice, index) => (
                     <button
                       value={sortbyprice}

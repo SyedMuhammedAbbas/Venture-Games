@@ -9,6 +9,8 @@ export default function GiftCards() {
   const [handleLogin, sethandleLogin] = useState(false);
   const [handleFilter, sethandleFilter] = useState(false);
   const [handleSort, sethandleSort] = useState(false);
+  const [handleFilterMobile, sethandleFilterMobile] = useState(false);
+  const [handleSortMobile, sethandleSortMobile] = useState(false);
 
   return (
     <>
@@ -24,12 +26,22 @@ export default function GiftCards() {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
-      <ProfileBarMobile category="GiftCards" />
+      <ProfileBarMobile
+        handleFilterMobile={handleFilterMobile}
+        sethandleFilterMobile={sethandleFilterMobile}
+        handleSortMobile={handleSortMobile}
+        sethandleSortMobile={sethandleSortMobile}
+      />
       <div className="snap-center">
         <ShopCover />
       </div>
       <div className="snap-start">
-        <ShopGiftCards handleFilter={handleFilter} handleSort={handleSort} />
+        <ShopGiftCards
+          handleFilter={handleFilter}
+          handleSort={handleSort}
+          handleFilterMobile={handleFilterMobile}
+          handleSortMobile={handleSortMobile}
+        />
       </div>
     </>
   );
