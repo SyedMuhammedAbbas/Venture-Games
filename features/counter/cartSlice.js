@@ -5,6 +5,7 @@ const initialState = {
   cartItems: [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
+  region: ""
 };
 
 export const cartSlice = createSlice({
@@ -65,10 +66,13 @@ export const cartSlice = createSlice({
         }
       }
     },
+    setRegion(state, action) {
+      state.region = action.payload;
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { AddToCart, DeleteFromCart, SetProdQuantity } = cartSlice.actions;
+export const { AddToCart, DeleteFromCart, SetProdQuantity, setRegion } = cartSlice.actions;
 
 export default cartSlice.reducer;

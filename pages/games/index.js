@@ -9,6 +9,8 @@ export default function Games() {
   const [handleLogin, sethandleLogin] = useState(false);
   const [handleFilter, sethandleFilter] = useState(false);
   const [handleSort, sethandleSort] = useState(false);
+  const [handleFilterMobile, sethandleFilterMobile] = useState(false);
+  const [handleSortMobile, sethandleSortMobile] = useState(false);
   return (
     <>
       <ProfileBar
@@ -23,12 +25,23 @@ export default function Games() {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
-      <ProfileBarMobile category="Games" />
+
+      <ProfileBarMobile
+        handleFilterMobile={handleFilterMobile}
+        sethandleFilterMobile={sethandleFilterMobile}
+        handleSortMobile={handleSortMobile}
+        sethandleSortMobile={sethandleSortMobile}
+      />
       <div className="snap-center">
         <ShopCover />
       </div>
       <div className="snap-start">
-        <ShopGames handleFilter={handleFilter} handleSort={handleSort} />
+        <ShopGames
+          handleFilter={handleFilter}
+          handleSort={handleSort}
+          handleFilterMobile={handleFilterMobile}
+          handleSortMobile={handleSortMobile}
+        />
       </div>
     </>
   );

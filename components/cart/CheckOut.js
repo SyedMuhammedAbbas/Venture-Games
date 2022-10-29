@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import toggel1 from "../../styles/Toggel1.module.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
 import axios from "axios";
+import { setRegion } from "../../features/counter/cartSlice";
 
 export default function CheckOut() {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -13,7 +14,9 @@ export default function CheckOut() {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const shipping_fee = 450;
+  const [ContactNumber, setContactNumber] = useState();
+  const [place, setPlace] = useState("Karachi");
+  const [shippingFee, setShippingFee] = useState();
   const user = useSelector((state) => state.user.userDetails);
   function coupon() {
     return (
@@ -24,31 +27,41 @@ export default function CheckOut() {
   }
   const [New, setNew] = useState(true);
   const [Old, setOld] = useState(false);
+  const dispatch = useDispatch();
   function handleNew() {
     {
       New ? setNew(false) & setOld(true) : setNew(true) & setOld(false);
+      setPlace("Karachi");
+      dispatch(setRegion("Karachi"));
     }
   }
   function handleOld() {
     {
       Old ? setOld(false) & setNew(true) : setOld(true) & setNew(false);
+      setPlace("Other");
+      dispatch(setRegion("Other"));
     }
   }
 
   async function getCart() {
+    // console.log("Inside cart");
     let jwtToken = JSON.parse(localStorage.getItem("token"));
+    console.log(jwtToken);
     let config = {
       headers: {
         Authorization: "Bearer " + jwtToken,
       },
     };
     let response = await axios.get(
-      "https://api.venturegames.pk/GetCart?ShippingRegion=Karachi",
+      "https://api.venturegames.pk/GetCart?ShippingRegion="+place,
       config
     );
+    // console.log("Here");
+    console.log(response.data);
     setTotal_Items(response.data.CartItems.length);
     setTotal_Amount(response.data.CartPrice);
     setTotal_Weight(response.data.CartWeight);
+    setShippingFee(response.data.ShippingCharges);
     console.log(response);
   }
 
@@ -59,6 +72,7 @@ export default function CheckOut() {
       const [first, last] = user.FullName.split(" ");
       setFirstName(first);
       setLastName(last);
+      setContactNumber(user.ContactNumber);
     }
   }, [Object.values(cartItems)]);
   const order_summary = [
@@ -73,7 +87,7 @@ export default function CheckOut() {
     total_items,
     total_amount,
     total_weight,
-    shipping_fee,
+    shippingFee,
     total_amount,
     coupon(),
   ];
@@ -161,6 +175,7 @@ export default function CheckOut() {
                       <input
                         className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                         placeholder="Contact Number"
+                        value={ContactNumber}
                       ></input>
                     </div>
                     <div>
@@ -257,7 +272,7 @@ export default function CheckOut() {
                             {order_summary}
                           </td>
                           <td className="py-0 absolute pt-3 right-0 font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                            {order_summary_values[index] + shipping_fee + " Rs"}
+                            {order_summary_values[index] + shippingFee + " Rs"}
                           </td>
                         </tr>
                       );

@@ -50,22 +50,43 @@ export default function ShoppingCart() {
     );
   };
   useEffect(() => {
-    setTotal_Items(Object.values(cartItems).length);
-    setTotal_Amount(
-      Object.values(cartItems).reduce(
-        (acc, curr) => acc + Number(curr.Price) * curr.quantity,
-        0
-      )
-    );
+    console.log("Hi");
+    async function getCart() {
+      let jwtToken = JSON.parse(localStorage.getItem("token"));
+      console.log(jwtToken);
+      let config = {
+        headers: {
+          Authorization: "Bearer " + jwtToken,
+        },
+      };
+      let response = await axios.get(
+        "https://api.venturegames.pk/GetCart",
+        config
+      );
+      // console.log("Here");
+      console.log(response.data);
+      setTotal_Items(response.data.CartItems.length);
+      setTotal_Amount(response.data.CartPrice);
+      setTotal_Weight(response.data.CartWeight);
+      console.log(response);
+    }
+    getCart();
+    // setTotal_Items(Object.values(cartItems).length);
+    // setTotal_Amount(
+    //   Object.values(cartItems).reduce(
+    //     (acc, curr) => acc + Number(curr.Price) * curr.quantity,
+    //     0
+    //   )
+    // );
 
-    setTotal_Weight(
-      Math.round(
-        Object.values(cartItems).reduce(
-          (acc, curr) => acc + Number(curr.Weight) * curr.quantity,
-          0
-        ) * 100
-      ) / 100
-    );
+    // setTotal_Weight(
+    //   Math.round(
+    //     Object.values(cartItems).reduce(
+    //       (acc, curr) => acc + Number(curr.Weight) * curr.quantity,
+    //       0
+    //     ) * 100
+    //   ) / 100
+    // );
   }, [Object.values(cartItems)]);
 
   const shipping_fee = "calculated at next step";

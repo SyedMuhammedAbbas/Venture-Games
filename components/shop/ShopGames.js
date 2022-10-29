@@ -13,7 +13,12 @@ import {
   FilterByCategory,
 } from "../../features/counter/gamesSlice";
 
-export default function ShopGames({ handleFilter, handleSort }) {
+export default function ShopGames({
+  handleFilter,
+  handleSort,
+  handleFilterMobile,
+  handleSortMobile,
+}) {
   console.log("here");
   const ProductsFetched = useSelector((state) => state.games.allGames);
   const Products = ProductsFetched.filter(
@@ -64,49 +69,74 @@ export default function ShopGames({ handleFilter, handleSort }) {
   }
 
   async function sortByPlatform(type) {
-    if(consoles == type._id) {
-      setConsoles(undefined);
-    }
-    else {
-      setConsoles(type._id);
-    }
-    let selectedPlat = platforms.find((index) => {
-      return index.Title == type.Title;
-    });
     let response;
-    if (heading == undefined && cat == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Platform: selectedPlat._id,
-          ProductCategory: "Games",
-        },
-      });
-    } else if (heading != undefined && cat == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Platform: selectedPlat._id,
-          Genre: heading,
-          ProductCategory: "Games",
-        },
-      });
-    } else if (heading == undefined && cat != undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Platform: selectedPlat._id,
-          Tag: cat,
-          ProductCategory: "Games",
-        },
-      });
+    if (consoles == type._id) {
+      setConsoles(undefined);
+      if (heading == undefined && cat == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products");
+      } else if (heading != undefined && cat == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: heading,
+            ProductCategory: "Games",
+          },
+        });
+      } else if (heading == undefined && cat != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: cat,
+            ProductCategory: "Games",
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: cat,
+            Genre: heading,
+            ProductCategory: "Games",
+          },
+        });
+      }
     } else {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Platform: selectedPlat._id,
-          Tag: cat,
-          Genre: heading,
-          ProductCategory: "Games",
-        },
+      setConsoles(type._id);
+      let selectedPlat = platforms.find((index) => {
+        return index.Title == type.Title;
       });
+      if (heading == undefined && cat == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: selectedPlat._id,
+            ProductCategory: "Games",
+          },
+        });
+      } else if (heading != undefined && cat == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: selectedPlat._id,
+            Genre: heading,
+            ProductCategory: "Games",
+          },
+        });
+      } else if (heading == undefined && cat != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: selectedPlat._id,
+            Tag: cat,
+            ProductCategory: "Games",
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: selectedPlat._id,
+            Tag: cat,
+            Genre: heading,
+            ProductCategory: "Games",
+          },
+        });
+      }
     }
+
     console.log(response.data);
     if (response.data.length > 0) {
       dispatch(FilterByGenre(response.data));
@@ -116,49 +146,74 @@ export default function ShopGames({ handleFilter, handleSort }) {
   }
 
   async function sortByTags(tag) {
-    if(cat == tag._id) {
-      setCat(undefined);
-    }
-    else {
-      setCat(tag._id);
-    }
-    let selectedTag = tags.find((index) => {
-      return index.Title == tag.Title;
-    });
     let response;
-    if (heading == undefined && consoles == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Tag: selectedTag._id,
-          ProductCategory: "Games",
-        },
-      });
-    } else if (heading != undefined && consoles == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Tag: selectedTag._id,
-          Genre: heading,
-          ProductCategory: "Games",
-        },
-      });
-    } else if (heading == undefined && consoles != undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Tag: selectedTag._id,
-          Platform: consoles,
-          ProductCategory: "Games",
-        },
-      });
+    if (cat == tag._id) {
+      setCat(undefined);
+      if (heading == undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products");
+      } else if (heading != undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: heading,
+            ProductCategory: "Games",
+          },
+        });
+      } else if (heading == undefined && consoles != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: consoles,
+            ProductCategory: "Games",
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: consoles,
+            Genre: heading,
+            ProductCategory: "Games",
+          },
+        });
+      }
     } else {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Tag: selectedTag._id,
-          Platform: consoles,
-          Genre: heading,
-          ProductCategory: "Games",
-        },
+      let selectedTag = tags.find((index) => {
+        return index.Title == tag.Title;
       });
+      setCat(tag._id);
+      if (heading == undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: selectedTag._id,
+            ProductCategory: "Games",
+          },
+        });
+      } else if (heading != undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: selectedTag._id,
+            Genre: heading,
+            ProductCategory: "Games",
+          },
+        });
+      } else if (heading == undefined && consoles != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: selectedTag._id,
+            Platform: consoles,
+            ProductCategory: "Games",
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: selectedTag._id,
+            Platform: consoles,
+            Genre: heading,
+            ProductCategory: "Games",
+          },
+        });
+      }
     }
+
     console.log(response.data);
     if (response.data.length > 0) {
       dispatch(FilterByCategory(response.data));
@@ -168,48 +223,72 @@ export default function ShopGames({ handleFilter, handleSort }) {
   }
 
   async function sortByGenre(gen) {
-    if(heading == gen._id) {
-      setHeading(undefined);
-    }
-    else {
-      setHeading(gen._id);
-    } 
-    let selectedGen = genre.find((index) => {
-      return index.Title == gen.Title;
-    });
     let response;
-    if (heading == undefined && consoles == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Genre: selectedGen._id,
-          ProductCategory: "Games",
-        },
-      });
-    } else if (cat != undefined && consoles == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Genre: selectedGen._id,
-          Tag: cat,
-          ProductCategory: "Games",
-        },
-      });
-    } else if (cat == undefined && consoles != undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Genre: selectedGen._id,
-          Platform: consoles,
-          ProductCategory: "Games",
-        },
-      });
+    if (heading == gen._id) {
+      setHeading(undefined);
+      if (cat == undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products");
+      } else if (cat != undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: cat,
+            ProductCategory: "Games",
+          },
+        });
+      } else if (cat == undefined && consoles != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: consoles,
+            ProductCategory: "Games",
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: consoles,
+            Tag: cat,
+            ProductCategory: "Games",
+          },
+        });
+      }
     } else {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Genre: selectedGen._id,
-          Platform: consoles,
-          Tag: cat,
-          ProductCategory: "Games",
-        },
+      let selectedGen = genre.find((index) => {
+        return index.Title == gen.Title;
       });
+      setHeading(gen._id);
+      if (cat == undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: selectedGen._id,
+            ProductCategory: "Games",
+          },
+        });
+      } else if (cat != undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: selectedGen._id,
+            Tag: cat,
+            ProductCategory: "Games",
+          },
+        });
+      } else if (cat == undefined && consoles != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: selectedGen._id,
+            Platform: consoles,
+            ProductCategory: "Games",
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: selectedGen._id,
+            Platform: consoles,
+            Tag: cat,
+            ProductCategory: "Games",
+          },
+        });
+      }
     }
     console.log(response.data);
     if (response.data.length > 0) {
@@ -271,7 +350,11 @@ export default function ShopGames({ handleFilter, handleSort }) {
                     <button
                       value={type}
                       key={index}
-                      className={buttons}
+                      className={` uppercase border-[1px] font-semibold rounded-lg text-[20px] px-2 w-48 py-1   ${
+                        consoles !== type._id
+                          ? " text-white border-white bg-transparent"
+                          : "bg-white text-black border-black"
+                      }`}
                       onClick={() => {
                         sortByPlatform(type);
                       }}
@@ -288,7 +371,11 @@ export default function ShopGames({ handleFilter, handleSort }) {
                     <button
                       value={genre}
                       key={i}
-                      className={buttons}
+                      className={` uppercase border-[1px] font-semibold rounded-lg text-[20px] px-2 w-48 py-1   ${
+                        heading !== genre._id
+                          ? " text-white border-white bg-transparent"
+                          : "bg-white text-black border-black"
+                      }`}
                       onClick={() => {
                         sortByGenre(genre);
                       }}
@@ -305,7 +392,11 @@ export default function ShopGames({ handleFilter, handleSort }) {
                     <button
                       value={category}
                       key={ind}
-                      className={buttons}
+                      className={` uppercase border-[1px] font-semibold rounded-lg text-[20px] px-2 w-48 py-1   ${
+                        cat !== category._id
+                          ? " text-white border-white bg-transparent"
+                          : "bg-white text-black border-black"
+                      }`}
                       onClick={() => {
                         sortByTags(category);
                       }}
@@ -353,6 +444,85 @@ export default function ShopGames({ handleFilter, handleSort }) {
                 </div>
               </div>
             )}
+            {handleFilterMobile && (
+              <div className="grid w-60  top-[120px] right-12 bg-[#1A1A1A] opacity-95 fixed backdrop-blur-[20px] rounded-2xl p-[0rem] overflow-y-auto h-72">
+                <div className="">
+                  <div className="grid items-start gap-4 justify-center py-10">
+                    {platforms.map((type, index) => (
+                      <button
+                        value={type}
+                        key={index}
+                        className={buttons}
+                        onClick={() => {
+                          sortByPlatform(type);
+                        }}
+                      >
+                        {type.Title}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-y-[3px] border-blackOpac">
+                  <div className="grid items-start gap-4 justify-center py-10">
+                    {genre.map((genre, i) => (
+                      <button
+                        value={genre}
+                        key={i}
+                        className={buttons}
+                        onClick={() => {
+                          sortByGenre(genre);
+                        }}
+                      >
+                        {genre.Title}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="">
+                  <div className="grid items-start gap-4 justify-center py-10">
+                    {tags.map((category, ind) => (
+                      <button
+                        value={category}
+                        key={ind}
+                        className={buttons}
+                        onClick={() => {
+                          sortByTags(category);
+                        }}
+                      >
+                        {category.Title}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+            {handleSortMobile && (
+              <div className="grid w-60 top-[120px] right-12 bg-[#1A1A1A] opacity-95 fixed backdrop-blur-[20px] rounded-2xl p-[0rem] overflow-y-auto h-72">
+                <div className="">
+                  <div className="grid items-start gap-4 justify-center py-10">
+                    {sortbyprice.map((sortbyprice, index) => (
+                      <button
+                        value={sortbyprice}
+                        key={index}
+                        className={buttons}
+                        onClick={() => {
+                          if (sortbyprice == "Low to High") {
+                            sortHighLow();
+                          } else {
+                            sortLowHigh();
+                          }
+                        }}
+                      >
+                        {sortbyprice}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div className="flex flex-wrap justify-center mx-auto gap-5 text-center mb-[5%]">
               {Object.values(Products).map((currentItem) => (
                 <FeaturedCard key={currentItem} product={currentItem} />

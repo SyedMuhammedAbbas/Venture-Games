@@ -14,6 +14,8 @@ export default function ShopPlatformsPage(platforms) {
   const selectedPlatform = router.query.selectedPlatform;
   console.log(selectedPlatform);
   // const [Cart, setCart] = useState([]);
+  const [handleFilterMobile, sethandleFilterMobile] = useState(false);
+  const [handleSortMobile, sethandleSortMobile] = useState(false);
 
   return (
     <>
@@ -29,7 +31,12 @@ export default function ShopPlatformsPage(platforms) {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
-      <ProfileBarMobile />
+      <ProfileBarMobile
+        handleFilterMobile={handleFilterMobile}
+        sethandleFilterMobile={sethandleFilterMobile}
+        handleSortMobile={handleSortMobile}
+        sethandleSortMobile={sethandleSortMobile}
+      />
       <div className="snap-center">
         <ShopCover />
       </div>
@@ -38,6 +45,8 @@ export default function ShopPlatformsPage(platforms) {
           handleFilter={handleFilter}
           handleSort={handleSort}
           selectedPlatforms={selectedPlatform}
+          handleFilterMobile={handleFilterMobile}
+          handleSortMobile={handleSortMobile}
         />
       </div>
     </>

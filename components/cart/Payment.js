@@ -13,13 +13,10 @@ export default function CheckOut() {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const shipping_fee = 450;
+  const [shipping_fee, setShippingFee] = useState();
   const user = useSelector((state) => state.user.userDetails);
-
-  const MASTER_CARD_SESSION_JS_SRC =
-    "https://testbankalfalah.gateway.mastercard.com/form/version/54/merchant/NIFT/session.js";
-  const MPGS_TIMEOUT = 5000;
-
+  const region = useSelector((state) => state.cart.region);
+  console.log(region);
   async function getCart() {
     let jwtToken = JSON.parse(localStorage.getItem("token"));
     let config = {
@@ -28,12 +25,13 @@ export default function CheckOut() {
       },
     };
     let response = await axios.get(
-      "https://api.venturegames.pk/GetCart?ShippingRegion=Karachi",
+      "https://api.venturegames.pk/GetCart?ShippingRegion="+region,
       config
     );
     setTotal_Items(response.data.CartItems.length);
     setTotal_Amount(response.data.CartPrice);
     setTotal_Weight(response.data.CartWeight);
+    setShippingFee(response.data.ShippingCharges);
     console.log(response);
   }
 
