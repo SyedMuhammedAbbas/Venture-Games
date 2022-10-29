@@ -31,7 +31,7 @@ export default function ProfileBar({
   sethandleSignup,
   back,
 }) {
-  const [searchResult, setSearchResult] = useState();
+  // const [searchResult, setSearchResult] = useState();
   const token = useSelector((state) => state.user.token);
   const router = useRouter();
   // useEffect(() => {
@@ -132,19 +132,22 @@ export default function ProfileBar({
       >
         Click Me
       </button> */}
-      {/* <div className={search.wrap}>
+      <div className={search.wrap}>
         <form action="" autoComplete="on">
           <input
             className={search.search}
             name="search"
             type="text"
             placeholder="What're we looking for ?"
-            value={searchResult}
-            onChange={(e) => {
-              setSearchResult(e.target.value);
-            }}
+            // value={searchResult}
+            // onChange={(e) => {
+            //   setSearchResult(e.target.value);
+            // }}
           ></input>
-          {!searchResult ? (
+          <button className={`${icons} ${search.search_submit}`} type="submit">
+            <BsSearch />
+          </button>
+          {/* {!searchResult ? (
             <button
               className={`${icons} ${search.search_submit}`}
               type="submit"
@@ -159,9 +162,9 @@ export default function ProfileBar({
                 }}
               />
             </button>
-          )}
+          )} */}
         </form>
-      </div> */}
+      </div>
 
       {cartshow && token && (
         <div className={icons}>

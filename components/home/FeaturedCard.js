@@ -11,7 +11,7 @@ export default function FeaturedCard({ product }) {
   //   dispatch(AddToCart(product));
   // };
 
-  const data = product.ProductGroup._id;
+  const data = product._id;
 
   // console.log(data);
 

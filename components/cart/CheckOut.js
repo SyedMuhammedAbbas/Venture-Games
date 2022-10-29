@@ -36,7 +36,9 @@ export default function CheckOut() {
   }
 
   async function getCart() {
+    // console.log("Inside cart");
     let jwtToken = JSON.parse(localStorage.getItem("token"));
+    console.log(jwtToken);
     let config = {
       headers: {
         Authorization: "Bearer " + jwtToken,
@@ -46,6 +48,8 @@ export default function CheckOut() {
       "https://api.venturegames.pk/GetCart?ShippingRegion=Karachi",
       config
     );
+    // console.log("Here");
+    console.log(response.data);
     setTotal_Items(response.data.CartItems.length);
     setTotal_Amount(response.data.CartPrice);
     setTotal_Weight(response.data.CartWeight);

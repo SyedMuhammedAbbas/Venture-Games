@@ -14,7 +14,7 @@ export default function SaleCard({ product }) {
   //     query: { id: product.ProductGroup._id },
   //   });
   // }
-  const data = product.ProductGroup._id;
+  const data = product._id;
   return (
     <div className="w-[350px] mobile1.1:w-[370px]">
       <div className="h-auto p-2 m-auto rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile1:w-auto tablet1:mx-1">

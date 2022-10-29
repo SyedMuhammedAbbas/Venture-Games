@@ -1,6 +1,5 @@
 import Teen from "../../images/teenesbr.png";
-import { useState, useEffect } from "react";
-import toggel from "../../styles/Toggel.module.css";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useRouter } from "next/router";
 import { BiError } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +7,7 @@ import axios from "axios";
 import ProfileBar from "../../components/common/ProfileBar";
 import { AddToCart } from "../../features/counter/cartSlice";
 import Link from "next/link";
+import UnavailabeProduct from "../../images/unavailable.jpg";
 
 export async function getServerSideProps(context) {
   return {
@@ -27,37 +27,63 @@ export default function Product() {
   // console.log(productGroup);
 
   const [Products, setProducts] = useState([]);
-  const [items, setItems] = useState(false);
+  const [AvailablePlatforms, setAvailablePlatforms] = useState([]);
+  const [AvailableColours, setAvailableColours] = useState([]);
+  const [initialized, setInitialized] = useState(false);
   const [selectedPlatform, setSelectedPlatform] = useState();
   const [selectedType, setSelectedType] = useState();
   const [selectedColour, setSelectedColour] = useState();
   const [particularItem, setParticularItem] = useState(true);
+
+  const [New, setNew] = useState(true);
+  const [Old, setOld] = useState(false);
+  const [selectedPlatformFlag, setSelectedPlatformFlag] = useState(true);
 
   async function fetchData() {
     console.log("Fetch");
     // console.log(productGroup);
     let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
       params: {
-        ProductGroup: pid,
+        Product: pid,
       },
     });
     setProducts(response.data);
-    setSelectedType(response.data[0].Type);
+    const initialProduct = response.data.find((item) => item._id === pid);
+    setSelectedType(initialProduct.Type);
+    setOld(initialProduct.Type === "Used");
+    setNew(initialProduct.Type === "New");
+    setSelectedPlatform(initialProduct.Platform.Title);
+    if (initialProduct.Colour) {
+      setSelectedColour(initialProduct.Colour.Title);
+    }
 
-    if (response.data[0].Platform) {
-      setSelectedPlatform(response.data[0].Platform.Title);
-    }
-    if (response.data[0].Colour) {
-      setSelectedColour(response.data[0].Colour.Title);
-    }
+    setAvailablePlatforms(initialProduct.ProductGroup.AvailablePlatforms);
+    setAvailableColours(initialProduct.ProductGroup.AvailableColours);
+    // setSelectedType(response.data[0].Type);
+    // if (response.data[0].Type === "Used") {
+    //   setOld(true);
+    //   setNew(false);
+    // } else {
+    //   setOld(false);
+    //   setNew(true);
+    // }
+
+    // if (response.data[0].Platform) {
+    //   setSelectedPlatform(response.data[0].Platform.Title);
+    // }
+    // if (response.data[0].Colour) {
+    //   setSelectedColour(response.data[0].Colour.Title);
+    // }
     // setDisplayedProduct(Products[0]);
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!router.isReady) return;
     console.log("hello");
     fetchData().then(() => {
-      setItems(true);
+      setInitialized(true);
+
+      // setItems(true);
     });
   }, [router.query, router.isReady]);
 
@@ -70,10 +96,6 @@ export default function Product() {
     const colours = selectedObject.Title;
     setSelectedColour(colours);
   }
-
-  const [New, setNew] = useState(true);
-  const [Old, setOld] = useState(false);
-  const [selectedPlatformFlag, setSelectedPlatformFlag] = useState(true);
 
   // console.log(3);
   // console.log(Products);
@@ -99,6 +121,11 @@ export default function Product() {
     }
     return true;
   });
+  // if (DisplayedProduct !== undefined) {
+  //   setItems(true);
+  // } else {
+  //   setItems(false);
+  // }
   function handleNew() {
     {
       New ? setNew(true) & setOld(false) : setNew(true) & setOld(false);
@@ -166,18 +193,155 @@ export default function Product() {
     }
   };
 
+  console.log("Initialized: " + initialized);
+
   return (
     <>
       <ProfileBar cartshow={true} />
-      {!items && particularItem ? (
-        !items && (
-          <div className="bg-[#FFB636] snap-center pt-[20%] w-[100%] min-h-[140vh] flex justify-center text-white text-[35px]">
-            <div className="text-white text-[35px] mt-[8px] mr-4">
-              <BiError />
+      {!initialized ? (
+        <div>Loader</div>
+      ) : !DisplayedProduct ? (
+        <div className="bg-[#FFB636] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
+          <div className="flex justify-center product">
+            <img
+              className="w-[550px] h-[550px] bg-[#606060] object-contain z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"
+              src={UnavailabeProduct.src}
+            ></img>
+            <div className="grid gap-0 h-[500px] xl:h-[400px] tablet:h-[500px] tablet3:h-[100%] mobile2:h-[650px] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[1.5%] tablet:mt-[10%] mobile2:mt-[34%] mobile1:pt-[30%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-br-[45px] tablet:rounded-bl-[45px]">
+              <div className="tablet:pl-[90px] mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
+                <div className="relative  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
+                  <div className=" absolute right-8 top-[18px] xl:top-6">
+                    <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[217px]">
+                      <button
+                        className={`capitalize text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
+                          New
+                            ? "bg-[#000] text-[#FFB636] rounded-[40px]"
+                            : "bg-transparent text-[#000]"
+                        }`}
+                        value="new"
+                        onClick={() => {
+                          handleNew();
+                        }}
+                      >
+                        new
+                      </button>
+                      <button
+                        className={`capitalize ml-[-20px] text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
+                          Old
+                            ? "bg-[#000] text-[#FFB636] rounded-[40px]"
+                            : "bg-transparent text-[#000]"
+                        }`}
+                        value="old"
+                        onClick={() => {
+                          handleOld();
+                        }}
+                      >
+                        used
+                      </button>
+                    </div>
+                  </div>
+                  <div className="grid gap-2 w-[300px] overflow-y-scroll desp-scroll">
+                    <div className="text-white text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px] tablet:w-[250px] mobile1:w-[300px] font-semibold ">
+                      {}
+                    </div>
+                    <div className="flex gap-1">
+                      {AvailablePlatforms.map((index) => {
+                        if (selectedPlatform === index.Title) {
+                          return (
+                            <button
+                              onClick={() => {
+                                getTitle(index);
+                              }}
+                              className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                selectedPlatformFlag
+                                  ? "bg-[#FFB636] text-black"
+                                  : "text-[#FFB636] bg-transparent"
+                              }`}
+                            >
+                              {index.Title}
+                            </button>
+                          );
+                        } else {
+                          return (
+                            <button
+                              onClick={() => {
+                                getTitle(index);
+                              }}
+                              className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                selectedPlatformFlag
+                                  ? "text-[#FFB636] bg-transparent"
+                                  : " bg-[#FFB636] text-black"
+                              }`}
+                            >
+                              {index.Title}
+                            </button>
+                          );
+                        }
+                      })}
+                    </div>
+                    <div className="flex gap-1">
+                      {AvailableColours.map((index) => {
+                        if (selectedColour === index.Title) {
+                          return (
+                            <div className="flex gap-1">
+                              <button
+                                onClick={() => {
+                                  getColour(index);
+                                }}
+                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                  selectedPlatformFlag
+                                    ? "bg-[#FFB636] text-black"
+                                    : "text-[#FFB636] bg-transparent"
+                                }`}
+                              >
+                                {index.Title}
+                              </button>
+                              <button
+                                className={`rounded-full w-5 border border-black 
+                                    bg-[#${index.Code.replace(/['"]+/g, "")}]
+                                  `}
+                              >
+                                {" "}
+                              </button>
+                            </div>
+                          );
+                        } else {
+                          return (
+                            <div className="flex gap-1">
+                              <button
+                                onClick={() => {
+                                  getColour(index);
+                                }}
+                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                  selectedPlatformFlag
+                                    ? "text-[#FFB636] bg-transparent"
+                                    : " bg-[#FFB636] text-black"
+                                }`}
+                              >
+                                {index.Title}
+                              </button>
+                              <button
+                                className={`rounded-full w-5 border border-black 
+                                bg-[#${index.Code.replace(/['"]+/g, "")}]
+                              `}
+                              >
+                                {" "}
+                              </button>
+                            </div>
+                          );
+                        }
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="  text-blackOpac mt-2 pb-5 text-[5vw] flex justify-center items-center">
+                  Product Unavailable
+                </div>
+              </div>
             </div>
-            Product Not Found
           </div>
-        )
+        </div>
       ) : (
         <div className="bg-[#FFB636] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
           <div className="flex justify-center product">
@@ -223,13 +387,48 @@ export default function Product() {
                       {DisplayedProduct.Title}
                     </div>
                     <div className="flex gap-1">
-                      {DisplayedProduct.ProductGroup.AvailablePlatforms.map(
-                        (index) => {
-                          if (selectedPlatform === index.Title) {
-                            return (
+                      {AvailablePlatforms.map((index) => {
+                        if (selectedPlatform === index.Title) {
+                          return (
+                            <button
+                              onClick={() => {
+                                getTitle(index);
+                              }}
+                              className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                selectedPlatformFlag
+                                  ? "bg-[#FFB636] text-black"
+                                  : "text-[#FFB636] bg-transparent"
+                              }`}
+                            >
+                              {index.Title}
+                            </button>
+                          );
+                        } else {
+                          return (
+                            <button
+                              onClick={() => {
+                                getTitle(index);
+                              }}
+                              className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                selectedPlatformFlag
+                                  ? "text-[#FFB636] bg-transparent"
+                                  : " bg-[#FFB636] text-black"
+                              }`}
+                            >
+                              {index.Title}
+                            </button>
+                          );
+                        }
+                      })}
+                    </div>
+                    <div className="flex gap-1">
+                      {AvailableColours.map((index) => {
+                        if (selectedColour === index.Title) {
+                          return (
+                            <div className="flex gap-1">
                               <button
                                 onClick={() => {
-                                  getTitle(index);
+                                  getColour(index);
                                 }}
                                 className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
                                   selectedPlatformFlag
@@ -239,12 +438,21 @@ export default function Product() {
                               >
                                 {index.Title}
                               </button>
-                            );
-                          } else {
-                            return (
+                              <button
+                                className={`rounded-full w-5 border border-black 
+                                    bg-[#${index.Code.replace(/['"]+/g, "")}]
+                                  `}
+                              >
+                                {" "}
+                              </button>
+                            </div>
+                          );
+                        } else {
+                          return (
+                            <div className="flex gap-1">
                               <button
                                 onClick={() => {
-                                  getTitle(index);
+                                  getColour(index);
                                 }}
                                 className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
                                   selectedPlatformFlag
@@ -254,65 +462,17 @@ export default function Product() {
                               >
                                 {index.Title}
                               </button>
-                            );
-                          }
-                        }
-                      )}
-                    </div>
-                    <div className="flex gap-1">
-                      {DisplayedProduct.ProductGroup.AvailableColours.map(
-                        (index) => {
-                          if (selectedColour === index.Title) {
-                            return (
-                              <div className="flex gap-1">
-                                <button
-                                  onClick={() => {
-                                    getColour(index);
-                                  }}
-                                  className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-                                    selectedPlatformFlag
-                                      ? "bg-[#FFB636] text-black"
-                                      : "text-[#FFB636] bg-transparent"
-                                  }`}
-                                >
-                                  {index.Title}
-                                </button>
-                                <button
-                                  className={`rounded-full w-5 border border-black 
-                                    bg-[#${index.Code.replace(/['"]+/g, "")}]
-                                  `}
-                                >
-                                  {" "}
-                                </button>
-                              </div>
-                            );
-                          } else {
-                            return (
-                              <div className="flex gap-1">
-                                <button
-                                  onClick={() => {
-                                    getColour(index);
-                                  }}
-                                  className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-                                    selectedPlatformFlag
-                                      ? "text-[#FFB636] bg-transparent"
-                                      : " bg-[#FFB636] text-black"
-                                  }`}
-                                >
-                                  {index.Title}
-                                </button>
-                                <button
-                                  className={`rounded-full w-5 border border-black 
+                              <button
+                                className={`rounded-full w-5 border border-black 
                                 bg-[#${index.Code.replace(/['"]+/g, "")}]
                               `}
-                                >
-                                  {" "}
-                                </button>
-                              </div>
-                            );
-                          }
+                              >
+                                {" "}
+                              </button>
+                            </div>
+                          );
                         }
-                      )}
+                      })}
                     </div>
                   </div>
                 </div>
@@ -334,6 +494,7 @@ export default function Product() {
                       </div>
                       <div className="border-b-[2px] border-gray-400 w-[250px]"></div>
                     </div>
+
                     <div className="text-gray-400 text-[25px] mobile1:text-[20px] mobile1:pt-[-20px]">
                       {Object.values(DisplayedProduct.Tags).map((i) => {
                         if (typeof i.Title === "string") {
@@ -384,14 +545,23 @@ export default function Product() {
                     </div>
                   ) : (
                     <div className="flex gap-2">
-                      <Link href="/cart">
+                      {token ? (
+                        <Link href="/cart">
+                          <button
+                            onClick={() => handleAddtoCart(DisplayedProduct)}
+                            className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black cursor-pointer"
+                          >
+                            Buy Now
+                          </button>
+                        </Link>
+                      ) : (
                         <button
                           onClick={() => handleAddtoCart(DisplayedProduct)}
                           className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black cursor-pointer"
                         >
                           Buy Now
                         </button>
-                      </Link>
+                      )}
                       <button
                         onClick={() => handleAddtoCart(DisplayedProduct)}
                         className="text-[#FFB636] font-semibold bg-transparent border-[1px] border-[#FFB636] px-3 h-7 mobile1:h-8 rounded-md text-[17px] hover:bg-[#FFB636] hover:text-black "
