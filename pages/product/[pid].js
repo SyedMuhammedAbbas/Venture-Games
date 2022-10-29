@@ -9,11 +9,27 @@ import { AddToCart } from "../../features/counter/cartSlice";
 import Link from "next/link";
 import UnavailabeProduct from "../../images/unavailable.jpg";
 
-export async function getServerSideProps(context) {
-  return {
-    props: {},
-  };
-}
+// const router = useRouter();
+// const { pid } = router.query;
+// export async function getStaticPaths() {
+//   return {
+//     paths: [{ params: { id: {  } } }],
+//     fallback: false, // can also be true or 'blocking'
+//   };
+// }
+
+// // `getStaticPaths` requires using `getStaticProps`
+// export async function getStaticProps(context) {
+//   return {
+//     // Passed to the page component as props
+//     props: { product: {} },
+//   };
+// }
+// export async function getServerSideProps(context) {
+//   return {
+//     props: {},
+//   };
+// }
 
 export default function Product() {
   console.log("productPage");
