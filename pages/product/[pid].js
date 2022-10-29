@@ -32,6 +32,9 @@ export default function Product() {
   const [selectedType, setSelectedType] = useState();
   const [selectedColour, setSelectedColour] = useState();
   const [particularItem, setParticularItem] = useState(true);
+  const [colours, setColours] = useStare([]);
+  const [platforms, setPlatforms] = useStare([]);
+  const [prevState, setPrevState] = useStare([]);
 
   async function fetchData() {
     console.log("Fetch");
@@ -82,23 +85,33 @@ export default function Product() {
   // console.log(selectedPlatform);
   // console.log(4);
   // const [TypeFlag, setTypeFlag] = useState(false);
+  console.log(Products);
+  console.log(selectedType);
+  console.log(selectedPlatform);
+  console.log(selectedColour);
 
   let DisplayedProduct = Products.find((product) => {
     if (product.Type !== selectedType) {
       return false;
+      // return Products[0];
     }
     if (selectedPlatform) {
       if (!product.Platform || product.Platform.Title !== selectedPlatform) {
         return false;
+        // return Products[0];
       }
     }
     if (selectedColour) {
       if (!product.Colour || product.Colour.Title !== selectedColour) {
         return false;
+        // return Products[0];
       }
     }
     return true;
   });
+
+  console.log(DisplayedProduct);
+
   function handleNew() {
     {
       New ? setNew(true) & setOld(false) : setNew(true) & setOld(false);
@@ -129,6 +142,7 @@ export default function Product() {
         });
         console.log(type);
         if (type !== undefined) {
+          console.log("Inside");
           setSelectedType("Used");
           setParticularItem(true);
         } else {
@@ -169,16 +183,14 @@ export default function Product() {
   return (
     <>
       <ProfileBar cartshow={true} />
-      {!items && particularItem ? (
-        !items && (
+      {/* {DisplayedProduct == undefined ? (
           <div className="bg-[#FFB636] snap-center pt-[20%] w-[100%] min-h-[140vh] flex justify-center text-white text-[35px]">
             <div className="text-white text-[35px] mt-[8px] mr-4">
               <BiError />
             </div>
             Product Not Found
           </div>
-        )
-      ) : (
+      ) : ( */}
         <div className="bg-[#FFB636] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
           <div className="flex justify-center product">
             <img
@@ -378,7 +390,7 @@ export default function Product() {
                 </div>
 
                 <div className="tablet:pb-[0px] tablet3:grid tablet3:gap-10">
-                  {particularItem === false ? (
+                  {DisplayedProduct == undefined || particularItem === false ? (
                     <div className="text-[#7a7a7a] text-[25px] mobile:text-[20px]">
                       Product Unavailable
                     </div>
@@ -412,7 +424,7 @@ export default function Product() {
             </div>
           </div>
         </div>
-      )}
+      {/* )} */}
     </>
   );
 }

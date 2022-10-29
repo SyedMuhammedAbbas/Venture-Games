@@ -61,45 +61,68 @@ export default function ShopProducts({ handleFilter, handleSort }) {
   // }
 
   async function sortByPlatform(type) {
+    let response;
     if(consoles == type._id) {
       setConsoles(undefined);
+      if (heading == undefined && cat == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products");
+      } else if (heading != undefined && cat == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: heading,
+          },
+        });
+      } else if (heading == undefined && cat != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: cat,
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: cat,
+            Genre: heading,
+          },
+        });
+      }
     }
     else {
       setConsoles(type._id);
+      let selectedPlat = platforms.find((index) => {
+        return index.Title == type.Title;
+      });
+      if (heading == undefined && cat == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: selectedPlat._id,
+          },
+        });
+      } else if (heading != undefined && cat == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: selectedPlat._id,
+            Genre: heading,
+          },
+        });
+      } else if (heading == undefined && cat != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: selectedPlat._id,
+            Tag: cat,
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: selectedPlat._id,
+            Tag: cat,
+            Genre: heading,
+          },
+        });
+      }
     }
-    let selectedPlat = platforms.find((index) => {
-      return index.Title == type.Title;
-    });
-    let response;
-    if (heading == undefined && cat == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Platform: selectedPlat._id,
-        },
-      });
-    } else if (heading != undefined && cat == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Platform: selectedPlat._id,
-          Genre: heading,
-        },
-      });
-    } else if (heading == undefined && cat != undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Platform: selectedPlat._id,
-          Tag: cat,
-        },
-      });
-    } else {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Platform: selectedPlat._id,
-          Tag: cat,
-          Genre: heading,
-        },
-      });
-    }
+    
     console.log(response.data);
     if (response.data.length > 0) {
       dispatch(FilterByGenre(response.data));
@@ -109,45 +132,68 @@ export default function ShopProducts({ handleFilter, handleSort }) {
   }
 
   async function sortByTags(tag) {
+    let response;
     if(cat == tag._id) {
       setCat(undefined);
+      if (heading == undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products");
+      } else if (heading != undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: heading,
+          },
+        });
+      } else if (heading == undefined && consoles != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: consoles,
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: consoles,
+            Genre: heading,
+          },
+        });
+      }
     }
     else {
+      let selectedTag = tags.find((index) => {
+        return index.Title == tag.Title;
+      });
       setCat(tag._id);
+      if (heading == undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: selectedTag._id,
+          },
+        });
+      } else if (heading != undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: selectedTag._id,
+            Genre: heading,
+          },
+        });
+      } else if (heading == undefined && consoles != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: selectedTag._id,
+            Platform: consoles,
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: selectedTag._id,
+            Platform: consoles,
+            Genre: heading,
+          },
+        });
+      }
     }
-    let selectedTag = tags.find((index) => {
-      return index.Title == tag.Title;
-    });
-    let response;
-    if (heading == undefined && consoles == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Tag: selectedTag._id,
-        },
-      });
-    } else if (heading != undefined && consoles == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Tag: selectedTag._id,
-          Genre: heading,
-        },
-      });
-    } else if (heading == undefined && consoles != undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Tag: selectedTag._id,
-          Platform: consoles,
-        },
-      });
-    } else {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Tag: selectedTag._id,
-          Platform: consoles,
-          Genre: heading,
-        },
-      });
-    }
+    
     console.log(response.data);
     if (response.data.length > 0) {
       dispatch(FilterByCategory(response.data));
@@ -157,45 +203,67 @@ export default function ShopProducts({ handleFilter, handleSort }) {
   }
 
   async function sortByGenre(gen) {
+    let response;
     if(heading == gen._id) {
       setHeading(undefined);
+      if (cat == undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products");
+      } else if (cat != undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Tag: cat,
+          },
+        });
+      } else if (cat == undefined && consoles != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: consoles,
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Platform: consoles,
+            Tag: cat,
+          },
+        });
+      }
     }
     else {
+      let selectedGen = genre.find((index) => {
+        return index.Title == gen.Title;
+      });
       setHeading(gen._id);
+      if (cat == undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: selectedGen._id,
+          },
+        });
+      } else if (cat != undefined && consoles == undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: selectedGen._id,
+            Tag: cat,
+          },
+        });
+      } else if (cat == undefined && consoles != undefined) {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: selectedGen._id,
+            Platform: consoles,
+          },
+        });
+      } else {
+        response = await axios.get("https://api.venturegames.pk/Products", {
+          params: {
+            Genre: selectedGen._id,
+            Platform: consoles,
+            Tag: cat,
+          },
+        });
+      }
     } 
-    let selectedGen = genre.find((index) => {
-      return index.Title == gen.Title;
-    });
-    let response;
-    if (heading == undefined && consoles == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Genre: selectedGen._id,
-        },
-      });
-    } else if (cat != undefined && consoles == undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Genre: selectedGen._id,
-          Tag: cat,
-        },
-      });
-    } else if (cat == undefined && consoles != undefined) {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Genre: selectedGen._id,
-          Platform: consoles,
-        },
-      });
-    } else {
-      response = await axios.get("https://api.venturegames.pk/Products", {
-        params: {
-          Genre: selectedGen._id,
-          Platform: consoles,
-          Tag: cat,
-        },
-      });
-    }
     console.log(response.data);
     if (response.data.length > 0) {
       dispatch(FilterByConsole(response.data));
