@@ -8,13 +8,13 @@ export default function SaleCard({ product }) {
   // const handleAddtoCart = (product) => {
   //   dispatch(AddToCart(product));
   // };
-  // function sendProps() {
-  //   Router.push({
-  //     pathname: "/product",
-  //     query: { id: product.ProductGroup._id },
-  //   });
-  // }
+
   const data = product._id;
+  function sendProps() {
+    Router.push({
+      pathname: `/product/${data}`,
+    });
+  }
   return (
     <div className="w-[350px] mobile1.1:w-[370px]">
       <div className="h-auto p-2 m-auto rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile1:w-auto tablet1:mx-1">
@@ -62,14 +62,14 @@ export default function SaleCard({ product }) {
                 <a>Buy Now</a>
               </Link>
             </button> */}
-            <Link href={`/product/${data}`}>
-              <button
-                // onClick={() => sendProps()}
-                className="text-white border-[1px] font-semibold border-white rounded-lg text-[16px] tracking-wider px-2 py-1 hover:bg-white hover:text-black hover:border-black"
-              >
-                <a>Learn More</a>
-              </button>
-            </Link>
+            {/* <Link href={`/product/${data}`}> */}
+            <button
+              onClick={() => sendProps()}
+              className="text-white border-[1px] font-semibold border-white rounded-lg text-[16px] tracking-wider px-2 py-1 hover:bg-white hover:text-black hover:border-black"
+            >
+              <a>Learn More</a>
+            </button>
+            {/* </Link> */}
           </div>
         </div>
       </div>

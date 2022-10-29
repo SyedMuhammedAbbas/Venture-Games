@@ -151,21 +151,25 @@ export default function CheckOut() {
                     </button>
                   </div>
                   <div className="grid gap-10">
-                    <h1 className="text-white text-[30px]">Shipping Address</h1>
+                    <div className="grid gap-10 py-10">
+                      <h1 className="text-white text-[30px]">
+                        Shipping Address
+                      </h1>
 
-                    <div className="grid gap-8">
-                      <input
-                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
-                        placeholder="Address Line 1"
-                      ></input>
-                      <input
-                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
-                        placeholder="Address Line 2"
-                      ></input>
-                      <input
-                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
-                        placeholder="Contact Number"
-                      ></input>
+                      <div className="grid gap-8">
+                        <input
+                          className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
+                          placeholder="Address Line 1"
+                        ></input>
+                        <input
+                          className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
+                          placeholder="Address Line 2"
+                        ></input>
+                        <input
+                          className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
+                          placeholder="Contact Number"
+                        ></input>
+                      </div>
                     </div>
                     <div>
                       <div class="flex items-start mb-6">
@@ -184,6 +188,25 @@ export default function CheckOut() {
                         >
                           My Shipping Address & Billing Address are same
                         </label>
+                      </div>
+                      <div className="grid gap-10 py-10">
+                        <h1 className="text-white text-[30px]">
+                          Billing Address
+                        </h1>
+                        <div className="grid gap-8">
+                          <input
+                            className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
+                            placeholder="Address Line 1"
+                          ></input>
+                          <input
+                            className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
+                            placeholder="Address Line 2"
+                          ></input>
+                          <input
+                            className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
+                            placeholder="Contact Number"
+                          ></input>
+                        </div>
                       </div>
                       <div class="flex items-start mb-6">
                         <div class="flex items-center h-5">
