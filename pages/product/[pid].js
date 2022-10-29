@@ -217,7 +217,7 @@ export default function Product() {
       {!initialized ? (
         <div>Loader</div>
       ) : !DisplayedProduct ? (
-        <div className="bg-[#FFB636] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
+        <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
           <div className="flex justify-center product">
             <img
               className="w-[550px] h-[550px] bg-[#606060] object-contain z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"
@@ -359,7 +359,7 @@ export default function Product() {
           </div>
         </div>
       ) : (
-        <div className="bg-[#FFB636] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
+        <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
           <div className="flex justify-center product">
             <img
               className="w-[550px] h-[550px] bg-[#606060] object-contain z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"

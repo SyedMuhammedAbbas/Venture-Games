@@ -16,7 +16,7 @@ export default function CheckOut() {
   const [lastName, setLastName] = useState("");
   const [ContactNumber, setContactNumber] = useState();
   const [place, setPlace] = useState("Karachi");
-  const [shippingFee, setShippingFee] = useState();
+  const [shipping_fee, setShippingFee] = useState();
   const user = useSelector((state) => state.user.userDetails);
   function coupon() {
     return (
@@ -87,12 +87,12 @@ export default function CheckOut() {
     total_items,
     total_amount,
     total_weight,
-    shippingFee,
+    shipping_fee,
     total_amount,
     coupon(),
   ];
 
-  return (
+  return(
     <>
       <div className="bg-[#FFB636] pb-20 h-[100%]">
         <div className="flex xl3:grid w-[100%]">
@@ -161,22 +161,26 @@ export default function CheckOut() {
                     </button>
                   </div>
                   <div className="grid gap-10">
-                    <h1 className="text-white text-[30px]">Shipping Address</h1>
+                    <div className="grid gap-10 py-10">
+                      <h1 className="text-white text-[30px]">
+                        Shipping Address
+                      </h1>
 
-                    <div className="grid gap-8">
-                      <input
-                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
-                        placeholder="Address Line 1"
-                      ></input>
-                      <input
-                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
-                        placeholder="Address Line 2"
-                      ></input>
-                      <input
-                        className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
-                        placeholder="Contact Number"
-                        value={ContactNumber}
-                      ></input>
+                      <div className="grid gap-8">
+                        <input
+                          className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
+                          placeholder="Address Line 1"
+                        ></input>
+                        <input
+                          className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
+                          placeholder="Address Line 2"
+                        ></input>
+                        <input
+                          className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
+                          placeholder="Contact Number"
+                          value={ContactNumber}
+                        ></input>
+                      </div>
                     </div>
                     <div>
                       <div class="flex items-start mb-6">
@@ -195,6 +199,25 @@ export default function CheckOut() {
                         >
                           My Shipping Address & Billing Address are same
                         </label>
+                      </div>
+                      <div className="grid gap-10 py-10">
+                        <h1 className="text-white text-[30px]">
+                          Billing Address
+                        </h1>
+                        <div className="grid gap-8">
+                          <input
+                            className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
+                            placeholder="Address Line 1"
+                          ></input>
+                          <input
+                            className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
+                            placeholder="Address Line 2"
+                          ></input>
+                          <input
+                            className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
+                            placeholder="Contact Number"
+                          ></input>
+                        </div>
                       </div>
                       <div class="flex items-start mb-6">
                         <div class="flex items-center h-5">
@@ -272,7 +295,7 @@ export default function CheckOut() {
                             {order_summary}
                           </td>
                           <td className="py-0 absolute pt-3 right-0 font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                            {order_summary_values[index] + shippingFee + " Rs"}
+                            {order_summary_values[index] + shipping_fee + " Rs"}
                           </td>
                         </tr>
                       );
