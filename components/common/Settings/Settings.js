@@ -129,6 +129,7 @@ export default function Settings() {
                     className="w-[500px] text-white text-[23px] placeholder:text-blackOpac mobile2:w-[90%] placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                     placeholder="Current Password"
                     value={password}
+                    type="password"
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
@@ -140,6 +141,7 @@ export default function Settings() {
                     className="w-[500px] text-white text-[23px] placeholder:text-blackOpac mobile2:w-[90%] placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
                     placeholder="New Password"
                     value={newPassword}
+                    type="password"
                     onChange={(e) => {
                       setNewPassword(e.target.value);
                     }}

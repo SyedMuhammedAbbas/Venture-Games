@@ -8,6 +8,7 @@ import ProfileBar from "../../components/common/ProfileBar";
 import { AddToCart } from "../../features/counter/cartSlice";
 import Link from "next/link";
 import UnavailabeProduct from "../../images/unavailable.jpg";
+import Logo from "../../images/logo.svg";
 
 // const router = useRouter();
 // const { pid } = router.query;
@@ -215,7 +216,9 @@ export default function Product() {
     <>
       <ProfileBar cartshow={true} />
       {!initialized ? (
-        <div>Loader</div>
+        <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
+          <img src={Logo.src} className="w-20 h-20" />
+        </div>
       ) : !DisplayedProduct ? (
         <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
           <div className="flex justify-center product">
@@ -365,8 +368,8 @@ export default function Product() {
               className="w-[550px] h-[550px] bg-[#606060] object-contain z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"
               src={DisplayedProduct.Images}
             ></img>
-            <div className="grid gap-0 h-[500px] xl:h-[400px] tablet:h-[500px] tablet3:h-[100%] mobile2:h-[650px] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[1.5%] tablet:mt-[10%] mobile2:mt-[34%] mobile1:pt-[30%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-br-[45px] tablet:rounded-bl-[45px]">
-              <div className="tablet:pl-[90px] mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
+            <div className="grid gap-0 min-h-full h-[500px] xl:h-[400px] tablet:h-[500px] tablet3:h-[100%] mobile2:h-[650px] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[1.5%] tablet:mt-[10%] mobile2:mt-[34%] mobile1:pt-[30%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-br-[45px] tablet:rounded-bl-[45px]">
+              <div className="tablet:pl-[90px] relative mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
                 <div className="relative  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
                   <div className=" absolute right-8 top-[18px] xl:top-6">
                     <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[217px]">
@@ -533,7 +536,7 @@ export default function Product() {
                     </div>
                   </div>
                 </div>
-                <div className="overflow-y-scroll desp-scroll h-[90px] w-[350px] text-white mt-2 pb-5 text-[20px]">
+                <div className="overflow-y-scroll desp-scroll min-h-auto h-[90px] w-[350px] text-white mt-2 pb-5 text-[20px]">
                   {DisplayedProduct.Description}
                 </div>
 
@@ -545,7 +548,11 @@ export default function Product() {
                       <div className="text-red-600 line-through text-[23px] mobile1:text-[20px]">
                         {DisplayedProduct.OldPrice}
                       </div>
-                      <div className="border-r-2 border-gray-600 h-5 mt-2"></div>
+                      {DisplayedProduct.OldPrice === undefined ? (
+                        ""
+                      ) : (
+                        <div className="border-r-2 border-gray-600 h-5 mt-2"></div>
+                      )}
                     </div>
                   )}
 
@@ -554,7 +561,7 @@ export default function Product() {
                   </div>
                 </div>
 
-                <div className="tablet:pb-[0px] tablet3:grid tablet3:gap-10">
+                <div className="tablet:pb-20 h-32 tablet3:grid tablet3:gap-10 ">
                   {particularItem === false ? (
                     <div className="text-[#7a7a7a] text-[25px] mobile:text-[20px]">
                       Product Unavailable
@@ -586,13 +593,12 @@ export default function Product() {
                       </button>
                     </div>
                   )}
-
-                  <div className="relative pl-[85%] mt-[-90px] bottom-[40px] tablet:bottom-[0px] tablet3:mt-0 tablet3:bottom-4 tablet3:pl-[75%]">
-                    <img
-                      className="w-[70px] tablet3:w-[50px]"
-                      src={Teen.src}
-                    ></img>
-                  </div>
+                </div>
+                <div className="absolute bottom-10 right-10">
+                  <img
+                    className="w-[70px] tablet3:w-[50px]"
+                    src={Teen.src}
+                  ></img>
                 </div>
               </div>
             </div>
