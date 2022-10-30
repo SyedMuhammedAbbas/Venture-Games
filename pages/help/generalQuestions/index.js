@@ -7,11 +7,13 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 export default function GeneralQuestions() {
   const [handleSignup, sethandleSignup] = useState(false);
   const [handleLogin, sethandleLogin] = useState(false);
-  const [FAQ, setFAQ] = useState(false);
+  const [FAQ, setFAQ] = useState();
 
-  function handleFAQ() {
-    {
-      setFAQ(FAQ !== true);
+  function handleFAQ(id) {
+    if (FAQ !== undefined) {
+      setFAQ();
+    } else {
+      setFAQ(id);
     }
   }
 
@@ -130,13 +132,13 @@ export default function GeneralQuestions() {
               <div
                 className="grid gap-5  w-[100%] py-5"
                 key={index.id}
-                onClick={() => handleFAQ()}
+                onClick={() => handleFAQ(index.id)}
               >
                 <div className="flex items-center bg-[#282828] relative h-[80px] px-[3%] rounded-[25px] shadow-2xl">
                   <div className="text-white text-[30px] ">
                     {index.question}
                   </div>
-                  {FAQ ? (
+                  {FAQ === index.id ? (
                     <button className="absolute right-20 text-[25px] text-white">
                       <MdKeyboardArrowDown />
                     </button>
@@ -146,7 +148,7 @@ export default function GeneralQuestions() {
                     </button>
                   )}
                 </div>
-                {FAQ ? (
+                {FAQ === index.id ? (
                   <div
                     key={index.id}
                     className="flex gap-10 text-center justify-center items-center text-white bg-[#3a3a3a] relative px-[3%] py-[4%] rounded-[25px] shadow-2xl"

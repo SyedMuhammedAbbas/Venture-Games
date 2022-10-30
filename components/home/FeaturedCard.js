@@ -22,11 +22,11 @@ export default function FeaturedCard({ product }) {
   //     query: { id: product.ProductGroup._id },
   //   });
   // }
-  function sendProps() {
-    Router.push({
-      pathname: `/product/${data}`,
-    });
-  }
+  // function sendProps() {
+  //   Router.push({
+  //     pathname: `/product/${data}`,
+  //   });
+  // }
   // const platforms = Object.values(product.ProductGroup.AvailablePlatforms).map(
   //   (index) => {
   //     return index.Title;
