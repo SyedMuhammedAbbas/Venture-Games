@@ -62,14 +62,14 @@ export default function SaleCard({ product }) {
                 <a>Buy Now</a>
               </Link>
             </button> */}
-            {/* <Link href={`/product/${data}`}> */}
-            <button
-              onClick={() => sendProps()}
-              className="text-white border-[1px] font-semibold border-white rounded-lg text-[16px] tracking-wider px-2 py-1 hover:bg-white hover:text-black hover:border-black"
-            >
-              <a>Learn More</a>
-            </button>
-            {/* </Link> */}
+            <Link href={`/product/${data}`}>
+              <button
+                // onClick={() => sendProps()}
+                className="text-white border-[1px] font-semibold border-white rounded-lg text-[16px] tracking-wider px-2 py-1 hover:bg-white hover:text-black hover:border-black"
+              >
+                <a>Learn More</a>
+              </button>
+            </Link>
           </div>
         </div>
       </div>
