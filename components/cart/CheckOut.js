@@ -17,6 +17,11 @@ export default function CheckOut() {
   const [ContactNumber, setContactNumber] = useState();
   const [place, setPlace] = useState("Karachi");
   const [shipping_fee, setShippingFee] = useState();
+  const [address1, setAddress1] = useState();
+  const [address2, setAddress2] = useState();
+  const [address3, setAddress3] = useState();
+  const [address4, setAddress4] = useState();
+  const [checkFlag, setCheckFlag] = useState(false);
   const user = useSelector((state) => state.user.userDetails);
   function coupon() {
     return (
@@ -63,6 +68,19 @@ export default function CheckOut() {
     setTotal_Weight(response.data.CartWeight);
     setShippingFee(response.data.ShippingCharges);
     console.log(response);
+  }
+
+  async function handleCheckChange() {
+    if(!checkFlag) {
+      setAddress3(address1);
+      setAddress4(address2);
+      setCheckFlag(true);
+    }
+    else {
+      setAddress3("");
+      setAddress4("");
+      setCheckFlag(false);
+    }
   }
 
   useEffect(() => {
@@ -170,10 +188,14 @@ export default function CheckOut() {
                         <input
                           className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                           placeholder="Address Line 1"
+                          value={address1}
+                          onChange={(e) => {setAddress1(e.target.value)}}
                         ></input>
                         <input
                           className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                           placeholder="Address Line 2"
+                          value={address2}
+                          onChange={(e) => {setAddress2(e.target.value)}}
                         ></input>
                         <input
                           className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
@@ -188,7 +210,9 @@ export default function CheckOut() {
                           <input
                             id="remember"
                             type="checkbox"
+                            defaultChecked={checkFlag}
                             value=""
+                            onChange={() => {handleCheckChange()}}
                             className="w-6 h-6 bg-gray-50  border rounded-[100%] border-gray-300 focus:bg-gray-700 focus:ring-gray-700"
                             required
                           />
@@ -208,14 +232,19 @@ export default function CheckOut() {
                           <input
                             className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                             placeholder="Address Line 1"
+                            value={address3}
+                            onChange={(e) => {setAddress3(e.target.value)}}
                           ></input>
                           <input
                             className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                             placeholder="Address Line 2"
+                            value={address4}
+                            onChange={(e) => {setAddress4(e.target.value)}}
                           ></input>
                           <input
                             className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                             placeholder="Contact Number"
+                            value={ContactNumber}
                           ></input>
                         </div>
                       </div>
