@@ -58,7 +58,7 @@ export default function CheckOut() {
       },
     };
     let response = await axios.get(
-      "https://api.venturegames.pk/GetCart?ShippingRegion="+place,
+      "https://api.venturegames.pk/GetCart?ShippingRegion=" + place,
       config
     );
     // console.log("Here");
@@ -71,12 +71,11 @@ export default function CheckOut() {
   }
 
   async function handleCheckChange() {
-    if(!checkFlag) {
+    if (!checkFlag) {
       setAddress3(address1);
       setAddress4(address2);
       setCheckFlag(true);
-    }
-    else {
+    } else {
       setAddress3("");
       setAddress4("");
       setCheckFlag(false);
@@ -99,7 +98,7 @@ export default function CheckOut() {
     "total weight:",
     "shipping fee:",
     "total",
-    "coupon",
+    // "coupon",
   ];
   const order_summary_values = [
     total_items,
@@ -107,10 +106,10 @@ export default function CheckOut() {
     total_weight,
     shipping_fee,
     total_amount,
-    coupon(),
+    // coupon(),
   ];
 
-  return(
+  return (
     <>
       <div className="bg-[#FFB636] pb-20 h-[100%]">
         <div className="flex xl3:grid w-[100%]">
@@ -189,13 +188,17 @@ export default function CheckOut() {
                           className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                           placeholder="Address Line 1"
                           value={address1}
-                          onChange={(e) => {setAddress1(e.target.value)}}
+                          onChange={(e) => {
+                            setAddress1(e.target.value);
+                          }}
                         ></input>
                         <input
                           className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                           placeholder="Address Line 2"
                           value={address2}
-                          onChange={(e) => {setAddress2(e.target.value)}}
+                          onChange={(e) => {
+                            setAddress2(e.target.value);
+                          }}
                         ></input>
                         <input
                           className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
@@ -212,7 +215,9 @@ export default function CheckOut() {
                             type="checkbox"
                             defaultChecked={checkFlag}
                             value=""
-                            onChange={() => {handleCheckChange()}}
+                            onChange={() => {
+                              handleCheckChange();
+                            }}
                             className="w-6 h-6 bg-gray-50  border rounded-[100%] border-gray-300 focus:bg-gray-700 focus:ring-gray-700"
                             required
                           />
@@ -233,13 +238,17 @@ export default function CheckOut() {
                             className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                             placeholder="Address Line 1"
                             value={address3}
-                            onChange={(e) => {setAddress3(e.target.value)}}
+                            onChange={(e) => {
+                              setAddress3(e.target.value);
+                            }}
                           ></input>
                           <input
                             className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                             placeholder="Address Line 2"
                             value={address4}
-                            onChange={(e) => {setAddress4(e.target.value)}}
+                            onChange={(e) => {
+                              setAddress4(e.target.value);
+                            }}
                           ></input>
                           <input
                             className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"

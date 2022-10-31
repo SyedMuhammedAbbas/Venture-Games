@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { IoIosArrowBack } from "react-icons/io";
+import SearchDropDown from "./SearchDropDown";
 
 export default function ProfileBar({
   filter,
@@ -165,6 +166,7 @@ export default function ProfileBar({
           )} */}
         </form>
       </div>
+      <SearchDropDown />
 
       {cartshow && token && (
         <div className={icons}>

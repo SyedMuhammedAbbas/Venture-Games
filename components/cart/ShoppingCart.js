@@ -103,7 +103,7 @@ export default function ShoppingCart() {
     "total weight:",
     "shipping fee:",
     "total",
-    "coupon",
+    // "coupon",
   ];
   const order_summary_values = [
     total_items,
@@ -111,7 +111,7 @@ export default function ShoppingCart() {
     total_weight,
     shipping_fee,
     total_amount,
-    coupon(),
+    // coupon(),
   ];
   return (
     <>
