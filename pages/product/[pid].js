@@ -26,11 +26,11 @@ import Logo from "../../images/logo.svg";
 //     props: { product: {} },
 //   };
 // }
-// export async function getServerSideProps(context) {
-//   return {
-//     props: {},
-//   };
-// }
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
 
 export default function Product() {
   // console.log("productPage");
@@ -230,7 +230,7 @@ export default function Product() {
               <div className="tablet:pl-[90px] mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
                 <div className="relative  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
                   <div className=" absolute right-8 top-[18px] xl:top-6">
-                    <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[217px]">
+                    <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[191px]">
                       <button
                         className={`capitalize text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
                           New
@@ -372,7 +372,7 @@ export default function Product() {
               <div className="tablet:pl-[90px] relative mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
                 <div className="relative  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
                   <div className=" absolute right-8 top-[18px] xl:top-6">
-                    <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[217px]">
+                    <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[191px]">
                       <button
                         className={`capitalize text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
                           New

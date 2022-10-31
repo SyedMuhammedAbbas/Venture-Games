@@ -31,12 +31,12 @@ export default function ContactUs() {
                   Enter your email to hear from us regularly
                 </div>
                 <div className="mobile:w-[450px] mobile2.1:w-[350px] mobile1.1:w-auto flex justify-center items-center">
-                  <form className="bg-transparent border-[1px] border-white rounded-[40px]  text-white items-center">
+                  <form className="bg-transparent border-[1px] border-white rounded-[40px]  text-white flex items-center">
                     <input
                       placeholder="youremail@gmail.com"
-                      className="bg-transparent placeholder:text-white placeholder:text-[20px] text-[25px] mx-8 mobile:mx-3 w-[350px] mobile2.1:w-[270px] mobile1.1:w-[240px] h-[45px] outline-none"
+                      className="bg-transparent placeholder:text-white placeholder:text-[25px] text-[25px] mx-8 mobile:mx-3 w-[350px] mobile2.1:w-[270px] mobile1.1:w-[240px] h-[45px] outline-none"
                     ></input>
-                    <button className="text-white text-[35px] pt-2 pr-2">
+                    <button className="text-white text-[35px] pr-2">
                       <BiRightArrowCircle />
                     </button>
                   </form>

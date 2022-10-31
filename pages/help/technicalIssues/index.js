@@ -19,12 +19,12 @@ export default function TechnicalIssues() {
       <div className="bg-[#FFB636] text-[25px] mobile:text-[20px] snap-start text-black pt-[10%] px-20 pb-20 min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] tablet:pt-[20%] tablet:px-5">
         <ul className="flex flex-wrap justify-center gap-10">
           {/* <Link href="/help/technicalIssues"> */}
-          <li className="border border-black text-[#FFB636] bg-black rounded-[10px] text-[25px] px-5 py-3 cursor-pointer">
+          <li className="border border-black text-[#FFB636] bg-black rounded-[10px] text-[30px] px-5 py-3 cursor-pointer">
             <span>Technical Issues </span>
           </li>
           {/* </Link> */}
           <Link href="/help/generalQuestions">
-            <li className="border border-black text-[#000] rounded-[10px] text-[25px] px-5 py-3 cursor-pointer">
+            <li className="border border-black text-[#000] rounded-[10px] text-[30px] px-5 py-3 cursor-pointer">
               <span>General Questions</span>
             </li>
           </Link>

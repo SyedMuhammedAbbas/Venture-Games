@@ -87,6 +87,10 @@ html{
 
   }
 
+  /* FAQ */
+.faq-style-wrapper .faq-body  {
+    padding-left: 20px;
+}
 .whatsapp_float {
           position: fixed;
           width: 60px;

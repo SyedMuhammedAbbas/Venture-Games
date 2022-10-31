@@ -26,11 +26,11 @@ import Logo from "../../images/logo.svg";
 //     props: { product: {} },
 //   };
 // }
-// export async function getServerSideProps(context) {
-//   return {
-//     props: {},
-//   };
-// }
+export async function getServerSideProps(context) {
+  return {
+    props: {},
+  };
+}
 
 export default function Product() {
   // console.log("productPage");
@@ -73,6 +73,7 @@ export default function Product() {
     if (initialProduct.Colour) {
       setSelectedColour(initialProduct.Colour.Title);
     }
+    w;
 
     setAvailablePlatforms(initialProduct.ProductGroup.AvailablePlatforms);
     setAvailableColours(initialProduct.ProductGroup.AvailableColours);
