@@ -94,7 +94,7 @@ export default function GeneralQuestions() {
     ],
   };
   const styles = {
-    bgColor: "#414141",
+    bgColor: "#1A1A1A",
     rowTitleColor: "#FFB636",
     rowTitleTextSize: "25px",
     PaddingLeft: "20px",

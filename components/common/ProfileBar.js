@@ -166,7 +166,7 @@ export default function ProfileBar({
           )} */}
         </form>
       </div>
-      <SearchDropDown />
+      {/* <SearchDropDown /> */}
 
       {cartshow && token && (
         <div className={icons}>
