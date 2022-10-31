@@ -16,9 +16,9 @@ export default function LearnMore() {
   const ClientSayheading1 = "what we do?";
   const ClientSayheading2 = "who we are?";
   const CeoName = "Mr Sufyan";
-  const CeoHeading = "Vision and Vision";
+  const CeoHeading = "Mission and Vision";
   const CeoDescription =
-    " we at venture games cjnbcdojb sjvsbvoisvofv sjnvso vsfo nvsfn oisnv ois v shdods vds sanv isn v sivd ndsap nv d ndsap nv we at venture games cjnbcdojb sjvsbv oisvofv sjnvso vsfo nv sfn oisnv ois v shdods vds sanvisn v sivd ndsap nv d ndsap we at venture games cjnbcdojb sjvs";
+    "Our Vision is to build a platform where gamers find anything. Our mission is to build people trust";
   return (
     <>
       <ProfileBar

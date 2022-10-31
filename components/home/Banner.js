@@ -7,13 +7,13 @@ export default function Banner() {
   return (
     <div className="grid justify-center items-center min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] gap-20 pb-20 relative px-[5%] lg:px-auto border-b-blackOpac border-b-8 pt-20 bg-gradient-to-r from-[#000000] via-[#2d2d2d] to-[#000000] ">
       <div className="flex lg:grid lg:justify-center lg:gap-10">
-        <div className="text-white w-[550px] absolute left-20 lg:w-auto text-[100px] mobile:text-[80px] mobilesm:text-auto font-hemi leading-[90px] mobile:leading-[80px]  pl-20 lg:pl-0">
+        <div className="text-white w-[550px] absolute left-20 lg:w-auto text-[100px] lg:relative lg:left-0 lg:justify-center mobile:text-[80px] mobilesm:text-auto font-hemi leading-[90px] mobile:leading-[80px]  pl-20 lg:pl-0">
           Find your <span className="text-[#FFB636]">gaming</span> thirst.
           quenched
         </div>
         <div className="flex justify-center">
           <img
-            className="w-[500px] lg:flex lg:justify-center lg:w-[350px] mobilesm:w-auto rounded-full absolute lg:relative right-[10%] items-center lg:right-0"
+            className="w-[500px] lg:flex lg:justify-center lg:w-[350px] mobilesm:w-auto rounded-full absolute lg:relative right-[10%] items-center lg:right-0 lg:mb-0"
             src={Controller.src}
           />
         </div>

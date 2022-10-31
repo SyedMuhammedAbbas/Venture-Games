@@ -106,7 +106,7 @@ export default function Featured({ products }) {
   }, []);
 
   return (
-    <div className="grid relative justify-center bg-[#1A1A1A] min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] px-32 mobile:px-10 py-10  border-b-blackOpac border-b-8">
+    <div className="grid relative justify-center bg-gradient-to-tr from-[#33250c] via-[#1A1A1A] to-[#33250c] min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] px-32 mobile:px-10 py-10  border-b-blackOpac border-b-8">
       <div className="flex pb-10">
         <div className="font-hemi pl-[10%] mobile:pl-0 text-[#FFB636] text-[80px] 2xl:text-[60px] lg:text-[40px] mobile:text-[40px] mobile1:text-[30px] lg:ml-5 mobile:ml-0 mobile:float-left">
           Featured Products
