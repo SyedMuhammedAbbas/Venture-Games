@@ -156,7 +156,11 @@ html{
   height: 7px;
 }
 
-
+/* Search Mobile */
+.searchMob{
+  overflow: hidden;
+  position: fixed;
+}
 /* Track */
 .platform-items-scroll::-webkit-scrollbar-track {
   background: #535353;

@@ -96,7 +96,7 @@ export default function Product() {
 
   useLayoutEffect(() => {
     if (!router.isReady) return;
-    // console.log("hello");s
+    // console.log("hello");
     fetchData().then(() => {
       setInitialized(true);
 
@@ -210,7 +210,12 @@ export default function Product() {
     }
   };
 
-  console.log("Initialized: " + initialized);
+  // console.log("Initialized: " + initialized);
+  console.log(
+    AvailableColours.map((i) => {
+      return i.Code;
+    })
+  );
 
   return (
     <>
@@ -316,9 +321,12 @@ export default function Product() {
                                 {index.Title}
                               </button>
                               <button
-                                className={`rounded-full w-5 border border-black 
-                                    bg-[#${index.Code.replace(/['"]+/g, "")}]
-                                  `}
+                                className={
+                                  `rounded-full w-5 border 
+                                bg-[#` +
+                                  index.Code +
+                                  `] border-black `
+                                }
                               >
                                 {" "}
                               </button>

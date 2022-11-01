@@ -16,9 +16,9 @@ export default function LearnMore() {
   const ClientSayheading1 = "what we do?";
   const ClientSayheading2 = "who we are?";
   const CeoName = "Mr Sufyan";
-  const CeoHeading = "Mission and Vision";
+  const CeoHeading = "Our Goal";
   const CeoDescription =
-    "Our Vision is to build a platform where gamers find anything. Our mission is to build people trust";
+    "Venture Games envisions to support the gaming community by providing an automated first hand system. Here the customers can order or exchange their favorite products with peace of mind making us the first choice when it comes to gaming.";
   return (
     <>
       <ProfileBar

@@ -5,6 +5,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { SignOut } from "../../features/counter/userSlice";
+import SearchMobile from "./SearchMobile";
 
 export default function Header() {
   const router = useRouter();
@@ -89,6 +90,10 @@ export default function Header() {
     localStorage.clear();
     //router.push('/');
     console.log(user);
+  }
+  const [OpenSearch, setOpenSearch] = useState(false);
+  function handleSearch() {
+    setOpenSearch(OpenSearch !== true);
   }
   return (
     <>
@@ -192,7 +197,7 @@ export default function Header() {
 
         <Link href="/">
           <a onClick={CloseMenu}>
-            <div className="tablet:flex tablet:absolute tablet:right-3">
+            <div className="tablet:flex">
               <img
                 className="w-28 mx-[10vw] header-img mt-[-25px] 5.1xl:w-24 lg:w-[45px] lg:h-[75px] tablet:w-[50px] tablet:h-[40px] tablet:mt-[-28px] "
                 src={logo.src}
@@ -201,9 +206,12 @@ export default function Header() {
           </a>
         </Link>
 
-        {/* <div className=" hidden tablet:text-[30px] headsearch tablet:text-white tablet:flex tablet:absolute tablet:right-10 tablet:mt-[-20px]">
+        <div
+          onClick={() => handleSearch()}
+          className=" hidden tablet:text-[30px] headsearch tablet:text-white tablet:flex tablet:absolute tablet:right-10 tablet:mt-[-20px]"
+        >
           <AiOutlineSearch />
-        </div> */}
+        </div>
         <ul className="flex gap-[15vw] uppercase text-white text-xl transition-all mb-[-10px] 4xl:text-lg xl:gap-[10vw] lg:mb-[-20px]">
           <li className={list}>
             <Link href="/giftcards">gift cards</Link>
@@ -220,6 +228,7 @@ export default function Header() {
           </li>
         </ul>
       </div>
+      {OpenSearch ? <SearchMobile setOpenSearch={setOpenSearch} /> : ""}
     </>
   );
 }
