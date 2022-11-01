@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
 import axios from "axios";
 import { setRegion } from "../../features/counter/cartSlice";
+import { setInformation } from "../../features/counter/checkoutSlice";
+import { useRouter } from "next/router";
 
 export default function CheckOut() {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -14,15 +16,18 @@ export default function CheckOut() {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [ContactNumber, setContactNumber] = useState();
+  const [ContactNumber1, setContactNumber1] = useState("");
+  const [ContactNumber2, setContactNumber2] = useState("");
   const [place, setPlace] = useState("Karachi");
   const [shipping_fee, setShippingFee] = useState();
-  const [address1, setAddress1] = useState();
-  const [address2, setAddress2] = useState();
-  const [address3, setAddress3] = useState();
-  const [address4, setAddress4] = useState();
+  const [address1, setAddress1] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [address3, setAddress3] = useState("");
+  const [address4, setAddress4] = useState("");
   const [checkFlag, setCheckFlag] = useState(false);
   const user = useSelector((state) => state.user.userDetails);
+  const dispatch = useDispatch();
+  const router = useRouter();
   function coupon() {
     return (
       <button className="border-[1px] border-white rounded-lg px-4 bg-transparent uppercase hover:text-black hover:border-black hover:bg-white">
@@ -32,7 +37,6 @@ export default function CheckOut() {
   }
   const [New, setNew] = useState(true);
   const [Old, setOld] = useState(false);
-  const dispatch = useDispatch();
   function handleNew() {
     {
       New ? setNew(false) & setOld(true) : setNew(true) & setOld(false);
@@ -51,7 +55,6 @@ export default function CheckOut() {
   async function getCart() {
     // console.log("Inside cart");
     let jwtToken = JSON.parse(localStorage.getItem("token"));
-    console.log(jwtToken);
     let config = {
       headers: {
         Authorization: "Bearer " + jwtToken,
@@ -62,22 +65,22 @@ export default function CheckOut() {
       config
     );
     // console.log("Here");
-    console.log(response.data);
     setTotal_Items(response.data.CartItems.length);
     setTotal_Amount(response.data.CartPrice);
     setTotal_Weight(response.data.CartWeight);
     setShippingFee(response.data.ShippingCharges);
-    console.log(response);
   }
 
   async function handleCheckChange() {
     if (!checkFlag) {
       setAddress3(address1);
       setAddress4(address2);
+      setContactNumber2(ContactNumber1);
       setCheckFlag(true);
     } else {
       setAddress3("");
       setAddress4("");
+      setContactNumber2("");
       setCheckFlag(false);
     }
   }
@@ -89,7 +92,7 @@ export default function CheckOut() {
       const [first, last] = user.FullName.split(" ");
       setFirstName(first);
       setLastName(last);
-      setContactNumber(user.ContactNumber);
+      setContactNumber1(user.ContactNumber);
     }
   }, [Object.values(cartItems)]);
   const order_summary = [
@@ -108,6 +111,29 @@ export default function CheckOut() {
     total_amount,
     // coupon(),
   ];
+
+  function checkCond() {
+    if(address1.length > 0 && address2.length > 0 && address3.length > 0 && address4.length > 0 && place.length > 0 && ContactNumber1.length > 0 && ContactNumber2.length > 0) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  function handleRender() {
+    dispatch(setInformation({
+      "BillingAddress1": address3,
+      "BillingAddress2": address4,
+      "ShippingAddress1": address1,
+      "ShippingAddress2": address2,
+      "ShippingRegion": place,
+      "PaymentMethod": "COD",
+      "ShippingPhone": ContactNumber1,
+      "BillingPhone": ContactNumber2
+    }))
+    router.push('/payment');
+  }
 
   return (
     <>
@@ -203,7 +229,8 @@ export default function CheckOut() {
                         <input
                           className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                           placeholder="Contact Number"
-                          value={ContactNumber}
+                          value={ContactNumber1}
+                          onChange={(e) => {setContactNumber1(e.target.value)}}
                         ></input>
                       </div>
                     </div>
@@ -253,7 +280,8 @@ export default function CheckOut() {
                           <input
                             className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                             placeholder="Contact Number"
-                            value={ContactNumber}
+                            value={ContactNumber2}
+                            onChange={(e) => {setContactNumber2(e.target.value)}}
                           ></input>
                         </div>
                       </div>
@@ -366,16 +394,24 @@ export default function CheckOut() {
                   }
                 })}
               </table>
-              <Link href="/payment">
-                <div className="flex cursor-pointer gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]">
+              {checkCond() ? (
+                <div className="flex cursor-pointer gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]"
+                  onClick={(() => {handleRender()})}>
                   <div className="uppercase">
                     <a className="cursor-pointer">continue to payment</a>
                   </div>
                   <div className="text-white text-[35px] mobile1.1:text-[30px] mt-[2px] mobile1.1:mt-[1px] cursor-pointer">
                     <MdKeyboardArrowRight />
                   </div>
-                </div>
-              </Link>
+                </div>) :(
+              <div className="flex cursor-pointer gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]">
+                  <div className="uppercase">
+                    <a className="cursor-pointer">continue to payment</a>
+                  </div>
+                  <div className="text-white text-[35px] mobile1.1:text-[30px] mt-[2px] mobile1.1:mt-[1px] cursor-pointer">
+                    <MdKeyboardArrowRight />
+                  </div>
+              </div>)}
             </div>
           </div>
         </div>

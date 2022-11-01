@@ -16,7 +16,8 @@ export default function CheckOut() {
   const [shipping_fee, setShippingFee] = useState();
   const user = useSelector((state) => state.user.userDetails);
   const region = useSelector((state) => state.cart.region);
-  console.log(region);
+  const information = useSelector((state) => state.checkout.billingInfo);
+  console.log(information);
   async function getCart() {
     let jwtToken = JSON.parse(localStorage.getItem("token"));
     let config = {
@@ -32,7 +33,6 @@ export default function CheckOut() {
     setTotal_Amount(response.data.CartPrice);
     setTotal_Weight(response.data.CartWeight);
     setShippingFee(response.data.ShippingCharges);
-    console.log(response);
   }
 
   useEffect(() => {
@@ -71,7 +71,27 @@ export default function CheckOut() {
       setDebitValue(true);
     }
   }
-  function handleCOD() {
+  async function handleCOD() {
+    let jwtToken = JSON.parse(localStorage.getItem("token"));
+    let config = {
+      headers: {
+        Authorization: "Bearer " + jwtToken,
+      },
+    };
+    let data = JSON.stringify({
+      BillingAddress1: information.BillingAddress1,
+      BillingAddress2: information.BillingAddress2,
+      ShippingAddress1: information.ShippingAddress1,
+      ShippingAddress2: information.ShippingAddress2,
+      ShippingRegion: information.region,
+      PaymentMethod: information.PaymentMethod,
+      ShippingPhone: information.ShippingPhone,
+      BillingPhone: information.BillingPhone
+    });
+    let response = await axios.post("https://api.venturegames.pk/Order/Checkout", 
+      data, config);
+
+    console.log(response);
     if (getDebitValue) {
       setDebitValue(false);
       if (!getCODvalue) {
@@ -82,7 +102,6 @@ export default function CheckOut() {
     }
   }
 
-  console.log(user);
   return (
     <>
       <div className="bg-[#FFB636] pb-20 h-[100%]">
