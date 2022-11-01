@@ -10,6 +10,7 @@ import girftcardsReducer from "../features/counter/giftcardsSlice";
 import flashSaleReducer from "../features/counter/flashSaleSlice";
 import featuredReducer from "../features/counter/featuredSlice";
 import gamesReducer from "../features/counter/gamesSlice";
+import checkoutReducer from "../features/counter/checkoutSlice"
 
 import { combineReducers } from "redux";
 import {
@@ -37,6 +38,7 @@ const reducers = combineReducers({
   games: gamesReducer,
   carouselProducts: carouselProductReducer,
   user: userReducer,
+  checkout: checkoutReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

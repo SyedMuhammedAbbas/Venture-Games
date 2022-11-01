@@ -32,19 +32,13 @@ export default function ProfileBar({
   sethandleSignup,
   back,
 }) {
-  // const [searchResult, setSearchResult] = useState();
+  const [searchResult, setSearchResult] = useState();
+  const [results, setResults] = useState();
   const token = useSelector((state) => state.user.token);
   const router = useRouter();
-  // useEffect(() => {
-  //   // console.log(tok);
-  //   setToken(tok);
-  // }, [])
   const cartItem = useSelector((state) => state.cart.cartItems);
   const totalCartItems = useSelector((state) => state.cart.cartTotalQuantity);
   const user = useSelector((state) => state.user.userDetails);
-  // const userToken = useSelector((state) => state.user.token);
-  // console.log(token);
-  // console.log(user);
   const icons =
     "text-[30px] 2xl:text-[25px] lg:text-[21px] text-white cursor-pointer";
 
@@ -65,20 +59,24 @@ export default function ProfileBar({
     }
   };
 
-  async function getProducts(e) {
-    e.preventDefault();
+  async function getProducts() {
     let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
-        Title: "spi",
+        Title: searchResult,
       },
     });
-
     // console.log(response.data);
-    // console.log("Search")
+    setResults(response.data);
   }
 
-  // console.log(token);
-  // console.log(user);
+  useEffect(() => {
+    try {
+      getProducts();
+    }
+    catch (e){
+      console.error(e);
+    }
+  }, [searchResult])
 
   return (
     <div className="flex items-center gap-9 2xl:gap-7 mobile:gap-5 fixed w-[100%] justify-end pr-28 2xl:pr-20 lg:pr-14 mobile:pr-7 tablet:hidden p-3  bg-black bg-opacity-30 backdrop-blur-xl z-[999]">
@@ -140,6 +138,8 @@ export default function ProfileBar({
             name="search"
             type="text"
             placeholder="What're we looking for ?"
+            value={searchResult}
+            onChange={(e) => {setSearchResult(e.target.value)}}
             // value={searchResult}
             // onChange={(e) => {
             //   setSearchResult(e.target.value);
@@ -166,7 +166,7 @@ export default function ProfileBar({
           )} */}
         </form>
       </div>
-      {/* <SearchDropDown /> */}
+      {searchResult && <SearchDropDown searchResults={results} />}
 
       {cartshow && token && (
         <div className={icons}>
