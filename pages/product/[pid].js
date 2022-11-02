@@ -211,12 +211,12 @@ export default function Product() {
   };
 
   // console.log("Initialized: " + initialized);
-  console.log(
-    AvailableColours.map((i) => {
-      return i.Code;
-    })
-  );
-
+  // console.log(
+  //   AvailableColours.map((i) => {
+  //     return i.Code;
+  //   })
+  // );
+  const [colour, setcolour] = useState();
   return (
     <>
       <ProfileBar cartshow={true} />
@@ -265,9 +265,7 @@ export default function Product() {
                     </div>
                   </div>
                   <div className="grid gap-2 w-[300px] overflow-y-scroll desp-scroll">
-                    <div className="text-white text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px] tablet:w-[250px] mobile1:w-[300px] font-semibold ">
-                      {}
-                    </div>
+                    <div className="text-white h-[150px] text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px] tablet:w-[250px] mobile1:w-[300px] font-semibold "></div>
                     <div className="flex gap-1">
                       {AvailablePlatforms.map((index) => {
                         if (selectedPlatform === index.Title) {
@@ -303,7 +301,7 @@ export default function Product() {
                         }
                       })}
                     </div>
-                    <div className="flex gap-1">
+                    <div className="flex gap-1 min-w-[300px] tablet:mr-10 max-w-[600px] overflow-x-auto desp-scroll">
                       {AvailableColours.map((index) => {
                         if (selectedColour === index.Title) {
                           return (
@@ -371,12 +369,12 @@ export default function Product() {
         </div>
       ) : (
         <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
-          <div className="flex justify-center product">
+          <div className="flex justify-center product py-[4%]">
             <img
               className="w-[550px] h-[550px] bg-[#606060] object-contain z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"
               src={DisplayedProduct.Images}
             ></img>
-            <div className="grid gap-0 min-h-full h-[500px] xl:h-[400px] tablet:h-[500px] tablet3:h-[100%] mobile2:h-[650px] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[1.5%] tablet:mt-[10%] mobile2:mt-[34%] mobile1:pt-[30%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-br-[45px] tablet:rounded-bl-[45px]">
+            <div className="grid gap-0 min-h-[500px] max-h-[100%] relative xl:min-h-[400px] xl:max-h-[100%] tablet:min-h-[500px] tablet:max-h-[100%] tablet3:h-[100%] mobile2:min-h-[650px] mobile2:max-h-[100%] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[0.5%] xl:mt-[5%] tablet:mt-[10%] mobile2:mt-[34%] mobile1:pt-[30%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-br-[45px] xl:rounded-bl-[45px] tablet:rounded-bl-[45px]">
               <div className="tablet:pl-[90px] relative mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
                 <div className="relative  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
                   <div className=" absolute right-8 top-[18px] xl:top-6">
@@ -409,8 +407,8 @@ export default function Product() {
                       </button>
                     </div>
                   </div>
-                  <div className="grid gap-2 w-[300px] overflow-y-scroll desp-scroll">
-                    <div className="text-white text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px] tablet:w-[250px] mobile1:w-[300px] font-semibold ">
+                  <div className="grid gap-2 ">
+                    <div className="text-white h-[100px] overflow-auto productTitle w-[300px] text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px] tablet:w-[250px] tablet:h-[100px] mobile1:w-[300px] font-semibold ">
                       {DisplayedProduct.Title}
                     </div>
                     <div className="flex gap-1">
@@ -448,9 +446,14 @@ export default function Product() {
                         }
                       })}
                     </div>
-                    <div className="flex gap-1">
+                    <div className="flex gap-1 min-w-[300px] tablet:mr-10 max-w-[600px] overflow-x-scroll productTitle">
                       {AvailableColours.map((index) => {
                         if (selectedColour === index.Title) {
+                          // setcolour(
+                          //   `bg-[#${index.Code.replace(/['"]+/g, "")}]`
+                          // );
+                          let mycolor = `bg-[#fffff]`;
+
                           return (
                             <div className="flex gap-1">
                               <button
@@ -467,7 +470,7 @@ export default function Product() {
                               </button>
                               <button
                                 className={`rounded-full w-5 border border-black 
-                                    bg-[#${index.Code.replace(/['"]+/g, "")}]
+                                    ${mycolor}
                                   `}
                               >
                                 {" "}
@@ -475,6 +478,14 @@ export default function Product() {
                             </div>
                           );
                         } else {
+                          console.log(index.Code);
+                          // setcolour(
+                          //   `bg-[#${index.Code.replace(/['"]+/g, "")}]`
+                          // );
+                          let mycolor = `bg-[#${index.Code.replace(
+                            /['"]+/g,
+                            ""
+                          )}]`;
                           return (
                             <div className="flex gap-1">
                               <button
@@ -490,9 +501,7 @@ export default function Product() {
                                 {index.Title}
                               </button>
                               <button
-                                className={`rounded-full w-5 border border-black 
-                                bg-[#${index.Code.replace(/['"]+/g, "")}]
-                              `}
+                                className={`rounded-full w-5 border border-black ${mycolor}`}
                               >
                                 {" "}
                               </button>
@@ -503,50 +512,61 @@ export default function Product() {
                     </div>
                   </div>
                 </div>
-                <div className="overflow-y-scroll desp-scroll h-[50px] w-[350px] mt-1 xl:h-[80px] tablet:h-[120px] tablet3:w-[300px] mobile1:pt-2">
-                  <div className="grid">
-                    <div className="grid gap-[1px] mobile1:gap-0">
-                      <div className="flex">
-                        {Object.values(DisplayedProduct.Genre).map((i) => (
-                          <div
-                            key={i}
-                            className="text-gray-400 text-[25px] mobile1:text-[20px] capitalize"
-                          >
-                            {i.Title}{" "}
-                            <span className="text-[40px] mobile1:text-[20px]">
-                              .{" "}
-                            </span>
+                {DisplayedProduct.Genre === [] &&
+                DisplayedProduct.Tags === [] ? (
+                  <div className="overflow-y-scroll desp-scroll h-[50px] w-[350px] mt-1 xl:h-[80px] tablet:h-[120px] tablet3:w-[300px] mobile1:pt-2">
+                    <div className="grid">
+                      {DisplayedProduct.Genre && (
+                        <div className="grid gap-[1px] mobile1:gap-0">
+                          <div className="flex">
+                            {Object.values(DisplayedProduct.Genre).map((i) => (
+                              <div
+                                key={i}
+                                className="text-gray-400 text-[25px] mobile1:text-[20px] capitalize"
+                              >
+                                {i.Title}{" "}
+                                <span className="text-[40px] mobile1:text-[20px]">
+                                  .{" "}
+                                </span>
+                              </div>
+                            ))}
                           </div>
-                        ))}
-                      </div>
-                      <div className="border-b-[2px] border-gray-400 w-[250px]"></div>
-                    </div>
+                          <div className="border-b-[2px] border-gray-400 w-[250px]"></div>
+                        </div>
+                      )}
 
-                    <div className="text-gray-400 text-[25px] mobile1:text-[20px] mobile1:pt-[-20px]">
-                      {Object.values(DisplayedProduct.Tags).map((i) => {
-                        if (typeof i.Title === "string") {
-                          return i.Title;
-                        }
-                      })}{" "}
-                      {Object.values(DisplayedProduct.Tags).map((i) => {
-                        if (typeof i.Title === "string") {
-                          return <span className="text-[40px]">.</span>;
-                        } else {
-                          return " ";
-                        }
-                      })}
-                      {""}
-                      {Object.values(DisplayedProduct.Tags).map((i) => {
-                        if (typeof i.Title !== "string") {
-                          return i.Title;
-                        }
-                      })}{" "}
+                      {DisplayedProduct.Tags && (
+                        <div className="text-gray-400 text-[25px] mobile1:text-[20px] mobile1:pt-[-20px]">
+                          {Object.values(DisplayedProduct.Tags).map((i) => {
+                            if (typeof i.Title === "string") {
+                              return i.Title;
+                            }
+                          })}{" "}
+                          {Object.values(DisplayedProduct.Tags).map((i) => {
+                            if (typeof i.Title === "string") {
+                              return <span className="text-[40px]">.</span>;
+                            } else {
+                              return " ";
+                            }
+                          })}
+                          {""}
+                          {Object.values(DisplayedProduct.Tags).map((i) => {
+                            if (typeof i.Title !== "string") {
+                              return i.Title;
+                            }
+                          })}{" "}
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
-                <div className="overflow-y-scroll desp-scroll min-h-auto h-[90px] w-[350px] text-white mt-2 pb-5 text-[20px]">
-                  {DisplayedProduct.Description}
-                </div>
+                ) : (
+                  <div className="h-0"></div>
+                )}
+                {DisplayedProduct.Description && (
+                  <div className="overflow-y-scroll desp-scroll min-h-auto h-[90px] w-[350px] text-white mt-2 pb-5 text-[20px]">
+                    {DisplayedProduct.Description}
+                  </div>
+                )}
 
                 <div className="flex gap-5 border-y-2 border-gray-600 w-[250px] mobile1:w-[300px] pt-1 mt-2 xl:mt-5 mb-5">
                   {DisplayedProduct.OldPrice === undefined ? (

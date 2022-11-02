@@ -178,6 +178,27 @@ html{
   background: rgb(36, 36, 36);
 }
 
+/* ProductPage Scrollbar */
+.productTitle::-webkit-scrollbar{
+  width: 7px;
+  height: 7px;
+}
+.productTitle::-webkit-scrollbar-track {
+  background: #535353;
+  border-radius: 10px;
+}
+
+/* Handle */
+.productTitle::-webkit-scrollbar-thumb {
+  background: rgb(36, 36, 36);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.productTitle::-webkit-scrollbar-thumb:hover {
+  background: rgb(36, 36, 36);
+}
+
 /* menu */
 .menu{
   transition: 0.5s;
