@@ -48,17 +48,10 @@ export default function PlatformsElement() {
                   }}
                 >
                   <div className={platformClass}>
-                    {platformLogos.Title === "PS4" ? (
-                      <img className={platformImgClass} src={PS4.src} />
-                    ) : platformLogos.Title === "PS5" ? (
-                      <img className={platformImgClass} src={PS5.src} />
-                    ) : platformLogos.Title === "XBOX" ? (
-                      <img className={platformImgClass} src={XBOX.src} />
-                    ) : (
-                      <></>
-                    )}
-
-                    {/* {platformLogos.Title} */}
+                    <img
+                      className={platformImgClass}
+                      src={platformLogos.Image}
+                    />
                   </div>
                 </a>
               </div>

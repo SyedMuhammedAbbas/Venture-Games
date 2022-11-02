@@ -73,7 +73,7 @@ export default function FeaturedCard({ product }) {
           </div>
         </div>
         <div className="flex justify-center gap-2 mt-[-7px] mb-5">
-          <Link href={`/product/${data}`}>
+          <Link href="/product/[pid]" as={`/product/${data}`}>
             <button
               // onClick={() => sendProps()}
               className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-8 py-1 hover:bg-white hover:text-black hover:border-black"

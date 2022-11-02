@@ -1,4 +1,5 @@
 import Spiderman from "../../images/image 4.png";
+import Link from "next/link";
 
 export default function SearchDropDown({ searchResults }) {
   // const searchResult = [
@@ -12,10 +13,12 @@ export default function SearchDropDown({ searchResults }) {
           .slice(0, 5)
           .map((i) => {
             return (
-              <div className="flex gap-5 bg-transparent border-b-[1px] p-5 border-blackOpac items-center ">
-                <img className="w-20 h-20 bg-contain" src={i.Images[0]}></img>
-                <div className="text-white text-[25px]">{i.Title}</div>
-              </div>
+              <Link href="/product/[pid]" as={`/product/${i._id}`}>
+                <div className="flex gap-5 bg-transparent border-b-[1px] p-5 border-blackOpac items-center ">
+                  <img className="w-20 h-20 bg-contain" src={i.Images[0]}></img>
+                  <div className="text-white text-[25px]">{i.Title}</div>
+                </div>
+              </Link>
             );
           })}
         <button className="text-white text-[25px] p-2 hover:text-[#FFB636] text-center">
