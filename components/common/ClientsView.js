@@ -3,8 +3,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { ClientsData } from "./ClientsData";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function ClientsView() {
+  const [Reviews, setReviews] = useState();
   const n = 7;
 
   var settings = {
@@ -41,7 +44,16 @@ export default function ClientsView() {
       },
     ],
   };
-  console.log(ClientsData);
+  // console.log(ClientsData);
+  async function getReviews() {
+    let response = await axios.get("https://api.venturegames.pk/ViewReview");
+    setReviews(response.data);
+  }
+  useEffect(() => {
+    getReviews();
+  }, []);
+  console.log(Reviews);
+  // console.log(Object.values(Reviews));
   return (
     <div className="bg-gradient-to-tr from-[#805712] via-black to-[#805712] min-h-[140vh] max-h-[100%] p-32 tablet:pt-20 4xl:px-20 3xl:px-14 2xl:px-10 xl:px-5 mobile1.1:px-2">
       <div className="bg-gradient-to-b from-[#141414] via-stone-700 to-[#2a2a2a] pt-10 shadow-lg shadow-gray-800">
@@ -59,15 +71,15 @@ export default function ClientsView() {
           </div>
         </div>
 
-        <div className=" block w-[90vw] justify-center  mobile1.1:w-[100%] clientcards h-[550px] m-10 mx-auto">
+        {Reviews && <div className=" block w-[90vw] justify-center  mobile1.1:w-[100%] clientcards h-[550px] m-10 mx-auto">
           <Slider {...settings}>
-            {Object.values(ClientsData).map((user) => (
+            {Reviews.map((user) => (
               <div key={user._id}>
                 <ClientsViewCard client={user} />
               </div>
             ))}
           </Slider>
-        </div>
+        </div>}
       </div>
     </div>
   );
