@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function ClientsView() {
-  const [Reviews, setReviews] = useState();
   const n = 7;
 
   var settings = {
@@ -45,6 +44,7 @@ export default function ClientsView() {
     ],
   };
   // console.log(ClientsData);
+  const [Reviews, setReviews] = useState();
   async function getReviews() {
     let response = await axios.get("https://api.venturegames.pk/ViewReview");
     setReviews(response.data);
