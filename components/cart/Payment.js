@@ -88,6 +88,7 @@ export default function CheckOut() {
       ShippingPhone: information.ShippingPhone,
       BillingPhone: information.BillingPhone
     });
+    console.log(data);
     let response = await axios.post("https://api.venturegames.pk/Order/Checkout", 
       data, config);
 
