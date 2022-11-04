@@ -14,7 +14,7 @@ export default function ShoppingCart() {
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
   const [total_amount, setTotal_Amount] = useState(0);
-
+  console.log(cartItems);
   const dispatch = useDispatch();
   const handleDeleteFromCart = async (currentItems) => {
     dispatch(DeleteFromCart(currentItems));

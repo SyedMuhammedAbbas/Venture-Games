@@ -50,6 +50,7 @@ export const cartSlice = createSlice({
     setCartItem(state, action) {
       for(let i = 0; i < action.payload.length; i++) {
         state.cartItems[i] = action.payload[i].Product;
+        state.cartItems[i].quantity = action.payload[i].Quantity;
       }
       state.cartTotalQuantity = action.payload.length;
     },
@@ -73,6 +74,13 @@ export const cartSlice = createSlice({
         }
       }
     },
+
+    clearCart(state, action) {
+      state.cartItems = [];
+      state.cartTotalQuantity = 0;
+      state.cartTotalAmount = 0;
+    },
+
     setRegion(state, action) {
       state.region = action.payload;
     },
@@ -86,6 +94,7 @@ export const {
   SetProdQuantity,
   setRegion,
   setCartItem,
+  clearCart
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

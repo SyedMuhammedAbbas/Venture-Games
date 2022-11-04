@@ -10,7 +10,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     Login(state, action) { 
-        console.log("In Here");
+        console.log(action.payload);
         state.userDetails = action.payload;
         state.token = true;
     },

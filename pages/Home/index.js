@@ -25,7 +25,7 @@ export default function Home() {
         Authorization: "Bearer " + jwtToken,
       },
     };
-    if (jwtToken) {
+    if (jwtToken != null) {
       let response = await axios.get(
         "https://api.venturegames.pk/GetCart",
         config

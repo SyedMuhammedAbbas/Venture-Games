@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { SignOut } from "../../features/counter/userSlice";
 import { useRouter } from "next/router";
+import { clearInformation } from "../../features/counter/checkoutSlice";
+import { clearCart } from "../../features/counter/cartSlice";
 
 export default function DropDown({ setOp }) {
   const dispatch = useDispatch();
@@ -15,6 +17,8 @@ export default function DropDown({ setOp }) {
   function flush() {
     console.log("flush");
     dispatch(SignOut({}));
+    dispatch(clearInformation());
+    dispatch(clearCart());
     localStorage.clear();
     setOp(false);
     //router.push('/');
