@@ -48,13 +48,10 @@ export const cartSlice = createSlice({
     },
 
     setCartItem(state, action) {
-      console.log(action.payload);
       for(let i = 0; i < action.payload.length; i++) {
         state.cartItems[i] = action.payload[i].Product;
       }
-      console.log(state.cartItems[0]);
       state.cartTotalQuantity = action.payload.length;
-      console.log(state.cartTotalQuantity);
     },
 
     DeleteFromCart(state, action) {

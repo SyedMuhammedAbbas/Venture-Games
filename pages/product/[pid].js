@@ -217,17 +217,6 @@ export default function Product({ data }) {
     }
   };
 
-  // console.log("Initialized: " + initialized);
-  // console.log(
-  //   AvailableColours.map((i) => {
-  //     return i.Code;
-  //   })
-  // );
-  const [colour, setcolour] = useState();
-  function checkColour(mycolour) {
-    console.log(mycolor);
-    return true;
-  }
   return (
     <>
       <ProfileBar cartshow={true} />

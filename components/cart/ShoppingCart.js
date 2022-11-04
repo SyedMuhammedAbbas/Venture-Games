@@ -11,7 +11,6 @@ import axios from "axios";
 
 export default function ShoppingCart() {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  console.log(cartItems);
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
   const [total_amount, setTotal_Amount] = useState(0);
@@ -19,7 +18,6 @@ export default function ShoppingCart() {
   const dispatch = useDispatch();
   const handleDeleteFromCart = async (currentItems) => {
     dispatch(DeleteFromCart(currentItems));
-    console.log(currentItems);
     const jwtToken = JSON.parse(localStorage.getItem("token"));
     console.log(jwtToken);
     let config = {
