@@ -14,7 +14,7 @@ export default function SearchDropDown({ searchResults }) {
           .map((i) => {
             return (
               <Link href="/product/[pid]" as={`/product/${i._id}`}>
-                <div className="flex gap-5 bg-transparent border-b-[1px] p-5 border-blackOpac items-center ">
+                <div className="flex gap-5 bg-transparent hover:cursor-pointer border-b-[1px] p-5 border-blackOpac items-center ">
                   <img className="w-20 h-20 bg-contain" src={i.Images[0]}></img>
                   <div className="text-white text-[25px]">{i.Title}</div>
                 </div>
