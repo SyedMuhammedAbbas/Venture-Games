@@ -137,7 +137,7 @@ export default function ShopProducts({
   async function sortByTags(tag) {
     let response;
     if (cat == tag._id) {
-     setCat(undefined);
+      setCat(undefined);
       if (heading == undefined && consoles == undefined) {
         response = await axios.get("https://api.venturegames.pk/Products");
       } else if (heading != undefined && consoles == undefined) {
@@ -161,7 +161,7 @@ export default function ShopProducts({
         });
       }
     } else {
-     let selectedTag = tags.find((index) => {
+      let selectedTag = tags.find((index) => {
         return index.Title == tag.Title;
       });
       setCat(tag._id);
@@ -203,7 +203,8 @@ export default function ShopProducts({
       alert("No Product");
     }
   }
-
+  let jwtToken = JSON.parse(localStorage.getItem("token"));
+  console.log(jwtToken);
   async function sortByGenre(gen) {
     let response;
     if (heading == gen._id) {
