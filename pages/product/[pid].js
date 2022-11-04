@@ -26,13 +26,19 @@ import Logo from "../../images/logo.svg";
 //     props: { product: {} },
 //   };
 // }
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const { pid } = context.params;
+  let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
+    params: {
+      Product: pid,
+    },
+  });
   return {
-    props: {},
+    props: { data: response.data },
   };
 }
 
-export default function Product() {
+export default function Product({ data }) {
   // console.log("productPage");
   const router = useRouter();
   const { pid } = router.query;
@@ -57,15 +63,15 @@ export default function Product() {
   const [colorFlag, setColorFlag] = useState(true);
 
   async function fetchData() {
-    console.log("Fetch");
+    // console.log("Fetch");
     // console.log(productGroup);
-    let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
-      params: {
-        Product: pid,
-      },
-    });
-    setProducts(response.data);
-    const initialProduct = response.data.find((item) => item._id === pid);
+    // let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
+    //   params: {
+    //     Product: pid,
+    //   },
+    // });
+    setProducts(data);
+    const initialProduct = data.find((item) => item._id === pid);
     setSelectedType(initialProduct.Type);
     setOld(initialProduct.Type === "Used");
     setNew(initialProduct.Type === "New");
@@ -238,7 +244,7 @@ export default function Product() {
             ></img>
             <div className="grid gap-0 h-[500px] xl:h-[400px] tablet:h-[500px] tablet3:h-[100%] mobile2:h-[650px] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[1.5%] tablet:mt-[10%] mobile2:mt-[34%] mobile1:pt-[30%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-br-[45px] tablet:rounded-bl-[45px]">
               <div className="tablet:pl-[90px] mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
-                <div className="relative  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
+                <div className="relative grid justify-center  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
                   <div className=" absolute right-8 top-[18px] xl:top-6">
                     <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[191px]">
                       <button
@@ -269,7 +275,7 @@ export default function Product() {
                       </button>
                     </div>
                   </div>
-                  <div className="grid gap-2 w-[300px] overflow-y-scroll desp-scroll">
+                  <div className="grid gap-2 overflow-y-scroll desp-scroll">
                     <div className="text-white h-[150px] text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px] tablet:w-[250px] mobile1:w-[300px] font-semibold "></div>
                     <div className="flex gap-1">
                       {AvailablePlatforms.map((index) => {
@@ -306,60 +312,31 @@ export default function Product() {
                         }
                       })}
                     </div>
-                    <div className="flex gap-1 min-w-[300px] tablet:mr-10 max-w-[600px] overflow-x-auto desp-scroll">
+                    <div className="flex gap-1 min-w-[300px] max-w-[600px] tablet:mr-10 overflow-x-scroll pb-2 productTitle">
                       {AvailableColours.map((index) => {
-                        if (selectedColour === index.Title) {
-                          return (
-                            <div className="flex gap-1">
-                              <button
-                                onClick={() => {
-                                  getColour(index);
-                                }}
-                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-                                  selectedPlatformFlag
-                                    ? "bg-[#FFB636] text-black"
-                                    : "text-[#FFB636] bg-transparent"
-                                }`}
-                              >
-                                {index.Title}
-                              </button>
-                              <button
-                                className={
-                                  `rounded-full w-5 border 
-                                bg-[#` +
-                                  index.Code +
-                                  `] border-black `
-                                }
-                              >
-                                {" "}
-                              </button>
-                            </div>
-                          );
-                        } else {
-                          return (
-                            <div className="flex gap-1">
-                              <button
-                                onClick={() => {
-                                  getColour(index);
-                                }}
-                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-                                  selectedPlatformFlag
-                                    ? "text-[#FFB636] bg-transparent"
-                                    : " bg-[#FFB636] text-black"
-                                }`}
-                              >
-                                {index.Title}
-                              </button>
-                              <button
-                                className={`rounded-full w-5 border border-black 
+                        return (
+                          <div className="flex gap-1">
+                            <button
+                              onClick={() => {
+                                getColour(index);
+                              }}
+                              className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                selectedColour !== index.Title
+                                  ? "text-[#FFB636] bg-transparent"
+                                  : " bg-[#FFB636] text-black"
+                              }`}
+                            >
+                              {index.Title}
+                            </button>
+                            <button
+                              className={`rounded-full w-5 border border-black 
                                 bg-[#${index.Code.replace(/['"]+/g, "")}]
                               `}
-                              >
-                                {" "}
-                              </button>
-                            </div>
-                          );
-                        }
+                            >
+                              {" "}
+                            </button>
+                          </div>
+                        );
                       })}
                     </div>
                   </div>
@@ -451,69 +428,33 @@ export default function Product() {
                         }
                       })}
                     </div>
-                    <div className="flex gap-1 min-w-[300px] tablet:mr-10 max-w-[600px] overflow-x-scroll productTitle">
+                    <div className="flex gap-1 min-w-[300px] tablet:mr-10 max-w-[600px] pb-2 overflow-x-scroll productTitle">
                       {AvailableColours.map((index) => {
-                        // if (selectedColour === index.Title) {
-                        //   // setcolour(
-                        //   //   `bg-[#${index.Code.replace(/['"]+/g, "")}]`
-                        //   // );
-                        //   let mycolor = `bg-[#fffff]`;
-
-                        //   return (
-                        //     <div className="flex gap-1">
-                        //       <button
-                        //         onClick={() => {
-                        //           getColour(index);
-                        //         }}
-                        //         className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-                        //           selectedPlatformFlag
-                        //             ? "bg-[#FFB636] text-black"
-                        //             : "text-[#FFB636] bg-transparent"
-                        //         }`}
-                        //       >
-                        //         {index.Title}
-                        //       </button>
-                        //       <button
-                        //         className={`rounded-full w-5 border border-black 
-                        //             ${mycolor}
-                        //           `}
-                        //       >
-                        //         {" "}
-                        //       </button>
-                        //     </div>
-                        //   );
-                        // } else {
-                          // console.log(index.Code);
-                          // setcolour(
-                          //   `bg-[#${index.Code.replace(/['"]+/g, "")}]`
-                          // );
-                          let mycolor = `bg-[#${index.Code.replace(
-                            /['"]+/g,
-                            ""
-                          )}]`;
-                          // {console.log(mycolor)}
-                          return (
-                            <div className="flex gap-1">
-                              <button
-                                onClick={() => {
-                                  getColour(index);
-                                }}
-                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-                                  selectedPlatformFlag
-                                    ? "text-[#FFB636] bg-transparent"
-                                    : " bg-[#FFB636] text-black"
-                                }`}
-                              >
-                                {index.Title}
-                                {/* {console.log(mycolor)} */}
-                              </button>
-                              <button
-                                className={`rounded-full w-5 border border-black bg-[#${index.Code}]`}
-                              >
-                                {" "}
-                              </button>
-                            </div>
-                          );
+                        let mycolor = `bg-[#${index.Code.replace(
+                          /['"]+/g,
+                          ""
+                        )}]`;
+                        return (
+                          <div className="flex gap-1">
+                            <button
+                              onClick={() => {
+                                getColour(index);
+                              }}
+                              className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                selectedColour !== index.Title
+                                  ? "text-[#FFB636] bg-transparent"
+                                  : " bg-[#FFB636] text-black"
+                              }`}
+                            >
+                              {index.Title}
+                            </button>
+                            <button
+                              className={`rounded-full w-5 border border-black bg-[#${index.Code}]`}
+                            >
+                              {console.log(index.Code)}{" "}
+                            </button>
+                          </div>
+                        );
                         // }\
                       })}
                     </div>
@@ -570,12 +511,12 @@ export default function Product() {
                   <div className="h-0"></div>
                 )}
                 {DisplayedProduct.Description && (
-                  <div className="overflow-y-scroll desp-scroll min-h-auto h-[90px] w-[350px] text-white mt-2 pb-5 text-[20px]">
+                  <div className="overflow-y-scroll productTitle min-h-auto h-[90px] w-[350px] text-white mt-2 pb-5 text-[20px]">
                     {DisplayedProduct.Description}
                   </div>
                 )}
 
-                <div className="flex gap-5 border-y-2 border-gray-600 w-[250px] mobile1:w-[300px] pt-1 mt-2 xl:mt-5 mb-5">
+                <div className="flex justify-center gap-5 border-y-2 border-gray-600 w-[250px] mobile1:w-[300px] pt-1 mt-2 xl:mt-5 mb-5">
                   {DisplayedProduct.OldPrice === undefined ? (
                     ""
                   ) : (
