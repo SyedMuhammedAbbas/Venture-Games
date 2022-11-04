@@ -5,11 +5,42 @@ import PlatformsElement from "../../components/common/PlatformsElement";
 import Sale from "../../components/home/Sale";
 import TopGames from "../../components/home/TopGames";
 import ProfileBar from "../../components/common/ProfileBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from 'axios';
+import { setCartItem } from "../../features/counter/cartSlice";
+import { useDispatch } from "react-redux";
 
 export default function Home() {
   const [handleSignup, sethandleSignup] = useState(false);
   const [handleLogin, sethandleLogin] = useState(false);
+  const dispatch = useDispatch();
+
+  async function getCart() {
+    let jwtToken = JSON.parse(localStorage.getItem("token"));
+    console.log(jwtToken);
+    let config = {
+      headers: {
+        Authorization: "Bearer " + jwtToken,
+      },
+    };
+    if(jwtToken) {
+      let response = await axios.get(
+        "https://api.venturegames.pk/GetCart",
+        config
+      );
+      console.log(response.data.CartItems);
+      dispatch(setCartItem(response.data.CartItems));
+    }
+  }
+
+  useEffect(() => {
+    try {
+      getCart();
+    }
+    catch (e) {
+      console.error(e);
+    }
+  })
 
   return (
     <>

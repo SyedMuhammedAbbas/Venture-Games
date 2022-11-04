@@ -11,6 +11,7 @@ import axios from "axios";
 
 export default function ShoppingCart() {
   const cartItems = useSelector((state) => state.cart.cartItems);
+  console.log(cartItems);
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
   const [total_amount, setTotal_Amount] = useState(0);
@@ -71,22 +72,6 @@ export default function ShoppingCart() {
       console.log(response);
     }
     getCart();
-    // setTotal_Items(Object.values(cartItems).length);
-    // setTotal_Amount(
-    //   Object.values(cartItems).reduce(
-    //     (acc, curr) => acc + Number(curr.Price) * curr.quantity,
-    //     0
-    //   )
-    // );
-
-    // setTotal_Weight(
-    //   Math.round(
-    //     Object.values(cartItems).reduce(
-    //       (acc, curr) => acc + Number(curr.Weight) * curr.quantity,
-    //       0
-    //     ) * 100
-    //   ) / 100
-    // );
   }, [Object.values(cartItems)]);
 
   const shipping_fee = "calculated at next step";

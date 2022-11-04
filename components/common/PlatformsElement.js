@@ -17,7 +17,6 @@ export default function PlatformsElement({ consoles }) {
   }
 
   async function handleClick(selectedPlatform) {
-    console.log(selectedPlatform._id);
     router.push({
       pathname: "/platforms",
       query: { selectedPlatform: selectedPlatform._id },
@@ -31,7 +30,6 @@ export default function PlatformsElement({ consoles }) {
   const platformClass =
     "snap-center border-[1px] w-[340px] h-[450px] flex justify-center items-center rounded-[35px] hover:cursor-pointer  xl1:rounded-[30px] border-white mobile:rounded-[35px]";
   const platformImgClass = " w-[290px]  justify-center";
-  console.log(platforms);
   return (
     <div className="platformElement bg-gradient-to-tr from-[#805712] via-black to-[#805712] p-20 border-b-blackOpac border-b-2 5xl:px-20 px-64 5xl:px-auto 4xl:px-10 2xl:px-auto mobile:p-4 min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] flex justify-center mobile1:items-center">
       {platforms && (

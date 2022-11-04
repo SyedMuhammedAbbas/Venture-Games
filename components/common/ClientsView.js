@@ -43,7 +43,6 @@ export default function ClientsView() {
       },
     ],
   };
-  // console.log(ClientsData);
   const [Reviews, setReviews] = useState();
   async function getReviews() {
     let response = await axios.get("https://api.venturegames.pk/ViewReview");
@@ -52,8 +51,7 @@ export default function ClientsView() {
   useEffect(() => {
     getReviews();
   }, []);
-  console.log(Reviews);
-  // console.log(Object.values(Reviews));
+
   return (
     <div className="bg-gradient-to-tr from-[#805712] via-black to-[#805712] min-h-[140vh] max-h-[100%] p-32 tablet:pt-20 4xl:px-20 3xl:px-14 2xl:px-10 xl:px-5 mobile1.1:px-2">
       <div className="bg-gradient-to-b from-[#141414] via-stone-700 to-[#2a2a2a] pt-10 shadow-lg shadow-gray-800">

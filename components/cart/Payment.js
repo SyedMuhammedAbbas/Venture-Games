@@ -75,22 +75,31 @@ export default function CheckOut() {
     let jwtToken = JSON.parse(localStorage.getItem("token"));
     let config = {
       headers: {
+        "Content-Type": "text/json",
         Authorization: "Bearer " + jwtToken,
       },
     };
     let data = JSON.stringify({
-      BillingAddress1: information.BillingAddress1,
-      BillingAddress2: information.BillingAddress2,
-      ShippingAddress1: information.ShippingAddress1,
-      ShippingAddress2: information.ShippingAddress2,
-      ShippingRegion: information.region,
-      PaymentMethod: information.PaymentMethod,
+      BillingAddress1:information.BillingAddress1,
+      BillingAddress2:information.BillingAddress2,
+      ShippingAddress1:information.ShippingAddress1,
+      ShippingAddress2:information.ShippingAddress2,
+      ShippingRegion:information.region,
+      PaymentMethod:"COD",
       ShippingPhone: information.ShippingPhone,
       BillingPhone: information.BillingPhone
     });
     console.log(data);
-    let response = await axios.post("https://api.venturegames.pk/Order/Checkout", 
-      data, config);
+    let response = await axios.post("https://api.venturegames.pk/Order/Checkout", {
+      BillingAddress1:"Block 1",
+      BillingAddress2:"asd",
+      ShippingAddress1:"Block 2",
+      ShippingAddress2:"asd",
+      ShippingRegion:"Karachi",
+      PaymentMethod: "COD",
+      ShippingPhone:"+923323518516",
+      BillingPhone:"+923323518516"
+    }, config);
 
     console.log(response);
     if (getDebitValue) {

@@ -51,10 +51,10 @@ export default function Product() {
   const [selectedType, setSelectedType] = useState();
   const [selectedColour, setSelectedColour] = useState();
   const [particularItem, setParticularItem] = useState(true);
-
   const [New, setNew] = useState(true);
   const [Old, setOld] = useState(false);
   const [selectedPlatformFlag, setSelectedPlatformFlag] = useState(true);
+  const [colorFlag, setColorFlag] = useState(true);
 
   async function fetchData() {
     console.log("Fetch");
@@ -203,6 +203,7 @@ export default function Product() {
         },
         config
       );
+      console.log(response);
     } else if (DisplayedProduct.Quantity <= 0) {
       alert("Product Not available");
     } else {
@@ -217,6 +218,10 @@ export default function Product() {
   //   })
   // );
   const [colour, setcolour] = useState();
+  function checkColour(mycolour) {
+    console.log(mycolor);
+    return true;
+  }
   return (
     <>
       <ProfileBar cartshow={true} />
@@ -448,37 +453,37 @@ export default function Product() {
                     </div>
                     <div className="flex gap-1 min-w-[300px] tablet:mr-10 max-w-[600px] overflow-x-scroll productTitle">
                       {AvailableColours.map((index) => {
-                        if (selectedColour === index.Title) {
-                          // setcolour(
-                          //   `bg-[#${index.Code.replace(/['"]+/g, "")}]`
-                          // );
-                          let mycolor = `bg-[#fffff]`;
+                        // if (selectedColour === index.Title) {
+                        //   // setcolour(
+                        //   //   `bg-[#${index.Code.replace(/['"]+/g, "")}]`
+                        //   // );
+                        //   let mycolor = `bg-[#fffff]`;
 
-                          return (
-                            <div className="flex gap-1">
-                              <button
-                                onClick={() => {
-                                  getColour(index);
-                                }}
-                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-                                  selectedPlatformFlag
-                                    ? "bg-[#FFB636] text-black"
-                                    : "text-[#FFB636] bg-transparent"
-                                }`}
-                              >
-                                {index.Title}
-                              </button>
-                              <button
-                                className={`rounded-full w-5 border border-black 
-                                    ${mycolor}
-                                  `}
-                              >
-                                {" "}
-                              </button>
-                            </div>
-                          );
-                        } else {
-                          console.log(index.Code);
+                        //   return (
+                        //     <div className="flex gap-1">
+                        //       <button
+                        //         onClick={() => {
+                        //           getColour(index);
+                        //         }}
+                        //         className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                        //           selectedPlatformFlag
+                        //             ? "bg-[#FFB636] text-black"
+                        //             : "text-[#FFB636] bg-transparent"
+                        //         }`}
+                        //       >
+                        //         {index.Title}
+                        //       </button>
+                        //       <button
+                        //         className={`rounded-full w-5 border border-black 
+                        //             ${mycolor}
+                        //           `}
+                        //       >
+                        //         {" "}
+                        //       </button>
+                        //     </div>
+                        //   );
+                        // } else {
+                          // console.log(index.Code);
                           // setcolour(
                           //   `bg-[#${index.Code.replace(/['"]+/g, "")}]`
                           // );
@@ -486,6 +491,7 @@ export default function Product() {
                             /['"]+/g,
                             ""
                           )}]`;
+                          // {console.log(mycolor)}
                           return (
                             <div className="flex gap-1">
                               <button
@@ -499,15 +505,16 @@ export default function Product() {
                                 }`}
                               >
                                 {index.Title}
+                                {/* {console.log(mycolor)} */}
                               </button>
                               <button
-                                className={`rounded-full w-5 border border-black ${mycolor}`}
+                                className={`rounded-full w-5 border border-black bg-[#${index.Code}]`}
                               >
                                 {" "}
                               </button>
                             </div>
                           );
-                        }
+                        // }\
                       })}
                     </div>
                   </div>
