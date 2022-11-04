@@ -5,7 +5,7 @@ const initialState = {
   cartItems: [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
-  region: ""
+  region: "",
 };
 
 export const cartSlice = createSlice({
@@ -48,13 +48,10 @@ export const cartSlice = createSlice({
     },
 
     setCartItem(state, action) {
-      console.log(action.payload);
-      for(let i = 0; i < action.payload.length; i++) {
+      for (let i = 0; i < action.payload.length; i++) {
         state.cartItems[i] = action.payload[i].Product;
       }
-      console.log(state.cartItems[0]);
       state.cartTotalQuantity = action.payload.length;
-      console.log(state.cartTotalQuantity);
     },
 
     DeleteFromCart(state, action) {
@@ -78,11 +75,17 @@ export const cartSlice = createSlice({
     },
     setRegion(state, action) {
       state.region = action.payload;
-    }
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { AddToCart, DeleteFromCart, SetProdQuantity, setRegion, setCartItem } = cartSlice.actions;
+export const {
+  AddToCart,
+  DeleteFromCart,
+  SetProdQuantity,
+  setRegion,
+  setCartItem,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
