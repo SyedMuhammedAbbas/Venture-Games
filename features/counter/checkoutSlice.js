@@ -11,11 +11,16 @@ export const checkoutSlice = createSlice({
     setInformation(state, action) {
       console.log(action.payload);  
       state.billingInfo = action.payload;
+    },
+
+    clearInformation(state) {
+      state.billingInfo = {};
     }
+
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setInformation } = checkoutSlice.actions;
+export const { setInformation,clearInformation } = checkoutSlice.actions;
 
 export default checkoutSlice.reducer;

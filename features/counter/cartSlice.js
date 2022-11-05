@@ -5,6 +5,7 @@ const initialState = {
   cartItems: [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
+  cartTotalWeight: 0,
   region: "",
 };
 
@@ -48,10 +49,13 @@ export const cartSlice = createSlice({
     },
 
     setCartItem(state, action) {
-      for(let i = 0; i < action.payload.length; i++) {
-        state.cartItems[i] = action.payload[i].Product;
+      for(let i = 0; i < action.payload.CartItems.length; i++) {
+        state.cartItems[i] = action.payload.CartItems[i].Product;
+        state.cartItems[i].quantity = action.payload.CartItems[i].Quantity;
       }
-      state.cartTotalQuantity = action.payload.length;
+      state.cartTotalQuantity = action.payload.CartItems.length;
+      state.cartTotalAmount = action.payload.CartPrice;
+      state.cartTotalWeight = action.payload.CartWeight;
     },
 
     DeleteFromCart(state, action) {
@@ -67,12 +71,21 @@ export const cartSlice = createSlice({
       state.cartTotalQuantity -= 1;
     },
     SetProdQuantity(state, action) {
+      console.log("Inside");
       for (let i = 0; i < state.cartItems.length; i++) {
         if (state.cartItems[i]._id === action.payload._id) {
           state.cartItems[i].quantity = action.payload.quantity;
         }
       }
     },
+
+    clearCart(state, action) {
+      state.cartItems = [];
+      state.cartTotalQuantity = 0;
+      state.cartTotalAmount = 0;
+      state.cartTotalWeight = 0;
+    },
+
     setRegion(state, action) {
       state.region = action.payload;
     },
@@ -86,6 +99,7 @@ export const {
   SetProdQuantity,
   setRegion,
   setCartItem,
+  clearCart
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

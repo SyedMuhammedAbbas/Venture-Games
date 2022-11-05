@@ -25,14 +25,14 @@ export default function Home() {
         Authorization: "Bearer " + jwtToken,
       },
     };
-    if (jwtToken) {
+    if (jwtToken != null) {
       let response = await axios.get(
         "https://api.venturegames.pk/GetCart",
         config
       );
-      console.log(response.data.CartItems);
+      console.log(response.data);
       if (response.data.CartItems.length > 0) {
-        dispatch(setCartItem(response.data.CartItems));
+        dispatch(setCartItem(response.data));
       }
     }
   }
