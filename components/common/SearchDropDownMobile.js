@@ -8,7 +8,7 @@ export default function SearchDropDown({ searchResults }) {
   // ];
   return (
     <>
-      <div className="bg-black fixed rounded-xl z-[99999] grid gap-2 w-[500px] mobile:w-[100%]">
+      <div className="bg-black fixed rounded-xl z-[99999] grid gap-2 w-[500px] mobile:w-[400px] mobile1:w-auto mobile:px-auto mobile:pr-[4%] mobile:justify-center">
         {Object.values(searchResults)
           .slice(0, 5)
           .map((i) => {

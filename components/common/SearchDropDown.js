@@ -8,7 +8,7 @@ export default function SearchDropDown({ searchResults }) {
   // ];
   return (
     <>
-      <div className="bg-black absolute right-[16%] top-[100%] rounded-xl z-[9999] grid gap-2 w-[500px]">
+      <div className="bg-black absolute right-[0%] top-14 rounded-xl z-[9999] grid gap-2 w-[500px]">
         {searchResults.slice(0, 5).map((result) => {
           return (
             <Link href="/product/[pid]" as={`/product/${result._id}`}>

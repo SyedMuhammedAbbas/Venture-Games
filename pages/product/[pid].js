@@ -26,19 +26,25 @@ import Logo from "../../images/logo.svg";
 //     props: { product: {} },
 //   };
 // }
+// export async function getServerSideProps(context) {
+//   const { pid } = context.params;
+//   let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
+//     params: {
+//       Product: pid,
+//     },
+//   });
+//   return {
+//     props: { data: response.data },
+//   };
+// }
+
 export async function getServerSideProps(context) {
-  const { pid } = context.params;
-  let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
-    params: {
-      Product: pid,
-    },
-  });
   return {
-    props: { data: response.data },
+    props: {},
   };
 }
 
-export default function Product({ data }) {
+export default function Product() {
   // console.log("productPage");
   const router = useRouter();
   const { pid } = router.query;
@@ -65,13 +71,13 @@ export default function Product({ data }) {
   async function fetchData() {
     // console.log("Fetch");
     // console.log(productGroup);
-    // let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
-    //   params: {
-    //     Product: pid,
-    //   },
-    // });
-    setProducts(data);
-    const initialProduct = data.find((item) => item._id === pid);
+    let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
+      params: {
+        Product: pid,
+      },
+    });
+    setProducts(response.data);
+    const initialProduct = response.data.find((item) => item._id === pid);
     setSelectedType(initialProduct.Type);
     setOld(initialProduct.Type === "Used");
     setNew(initialProduct.Type === "New");
@@ -301,29 +307,29 @@ export default function Product({ data }) {
                         }
                       })}
                     </div>
-                    <div className="flex gap-1 min-w-[300px] max-w-[600px] tablet:mr-10 overflow-x-scroll pb-2 productTitle">
+                    <div className="flex gap-2 flex-wrap">
                       {AvailableColours.map((index) => {
                         return (
-                          <div className="flex gap-1">
-                            <button
-                              onClick={() => {
-                                getColour(index);
-                              }}
-                              className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-                                selectedColour !== index.Title
-                                  ? "text-[#FFB636] bg-transparent"
-                                  : " bg-[#FFB636] text-black"
-                              }`}
-                            >
-                              {index.Title}
-                            </button>
-                            <button
-                              className={`rounded-full w-5 border border-black 
-                                bg-[#${index.Code.replace(/['"]+/g, "")}]
-                              `}
-                            >
-                              {" "}
-                            </button>
+                          <div className="flex flex-wrap gap-2">
+                            <div className="flex">
+                              <button
+                                onClick={() => {
+                                  getColour(index);
+                                }}
+                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 w-auto mobile1:h-6 rounded-md text-[12px]  ${
+                                  selectedColour !== index.Title
+                                    ? "text-[#FFB636] bg-transparent"
+                                    : " bg-[#FFB636] text-black"
+                                }`}
+                              >
+                                {index.Title}
+                              </button>
+                              {/* <button
+                                className={`rounded-full w-5 h-5 border border-black bg-[#${index.Code}]`}
+                              >
+                                {console.log(index.Code)}{" "}
+                              </button> */}
+                            </div>
                           </div>
                         );
                       })}
@@ -378,11 +384,11 @@ export default function Product({ data }) {
                       </button>
                     </div>
                   </div>
-                  <div className="grid gap-2 ">
-                    <div className="text-white h-[100px] overflow-auto productTitle w-[300px] text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px] tablet:w-[250px] tablet:h-[100px] mobile1:w-[300px] font-semibold ">
+                  <div className="grid gap-2 w-[450px] tablet:w-[400px] tablet3:w-[350px] mobile:w-auto h-[170px] overflow-x-hidden overflow-y-auto productTitle">
+                    <div className="text-white  text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px]  font-semibold ">
                       {DisplayedProduct.Title}
                     </div>
-                    <div className="flex gap-1">
+                    <div className="flex flex-wrap gap-1">
                       {AvailablePlatforms.map((index) => {
                         if (selectedPlatform === index.Title) {
                           return (
@@ -417,31 +423,33 @@ export default function Product({ data }) {
                         }
                       })}
                     </div>
-                    <div className="flex gap-1 min-w-[300px] tablet:mr-10 max-w-[600px] pb-2 overflow-x-scroll productTitle">
+                    <div className="flex gap-2 pb-2 mobile:w-[300px]">
                       {AvailableColours.map((index) => {
                         let mycolor = `bg-[#${index.Code.replace(
                           /['"]+/g,
                           ""
                         )}]`;
                         return (
-                          <div className="flex gap-1">
-                            <button
-                              onClick={() => {
-                                getColour(index);
-                              }}
-                              className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-                                selectedColour !== index.Title
-                                  ? "text-[#FFB636] bg-transparent"
-                                  : " bg-[#FFB636] text-black"
-                              }`}
-                            >
-                              {index.Title}
-                            </button>
-                            <button
-                              className={`rounded-full w-5 border border-black bg-[#${index.Code}]`}
-                            >
-                              {console.log(index.Code)}{" "}
-                            </button>
+                          <div className="flex flex-wrap gap-4">
+                            <div className="flex">
+                              <button
+                                onClick={() => {
+                                  getColour(index);
+                                }}
+                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 w-auto mobile1:h-6 rounded-md text-[12px]  ${
+                                  selectedColour !== index.Title
+                                    ? "text-[#FFB636] bg-transparent"
+                                    : " bg-[#FFB636] text-black"
+                                }`}
+                              >
+                                {index.Title}
+                              </button>
+                              {/* <button
+                                className={`rounded-full w-5 h-5 border border-black bg-[#${index.Code}]`}
+                              >
+                                {console.log(index.Code)}{" "}
+                              </button> */}
+                            </div>
                           </div>
                         );
                         // }\
@@ -505,26 +513,30 @@ export default function Product({ data }) {
                   </div>
                 )}
 
-                <div className="flex justify-center gap-5 border-y-2 border-gray-600 w-[250px] mobile1:w-[300px] pt-1 mt-2 xl:mt-5 mb-5">
-                  {DisplayedProduct.OldPrice === undefined ? (
-                    ""
-                  ) : (
-                    <div className="flex gap-4">
-                      <div className="text-red-600 line-through text-[23px] mobile1:text-[20px]">
-                        {DisplayedProduct.OldPrice}
+                {particularItem === false ? (
+                  <div className="h-16"></div>
+                ) : (
+                  <div className="flex justify-center gap-5 border-y-2 border-gray-600 w-[250px] mobile1:w-[300px] pt-1 mt-2 xl:mt-5 mb-5">
+                    {DisplayedProduct.OldPrice === undefined ? (
+                      ""
+                    ) : (
+                      <div className="flex gap-4">
+                        <div className="text-red-600 line-through text-[23px] mobile1:text-[20px]">
+                          {DisplayedProduct.OldPrice}
+                        </div>
+                        {DisplayedProduct.OldPrice === undefined ? (
+                          ""
+                        ) : (
+                          <div className="border-r-2 border-gray-600 h-5 mt-2"></div>
+                        )}
                       </div>
-                      {DisplayedProduct.OldPrice === undefined ? (
-                        ""
-                      ) : (
-                        <div className="border-r-2 border-gray-600 h-5 mt-2"></div>
-                      )}
-                    </div>
-                  )}
+                    )}
 
-                  <div className="text-white text-[25px] mobile1:text-[20px]">
-                    {DisplayedProduct.Price} PKR
+                    <div className="text-white text-[25px] mobile1:text-[20px]">
+                      {DisplayedProduct.Price} PKR
+                    </div>
                   </div>
-                </div>
+                )}
 
                 <div className="tablet:pb-20 h-32 tablet3:grid tablet3:gap-10 ">
                   {particularItem === false ? (

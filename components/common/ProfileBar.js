@@ -18,6 +18,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { IoIosArrowBack } from "react-icons/io";
 import SearchDropDown from "./SearchDropDown";
+import Search from "./SearchBox/search";
 
 export default function ProfileBar({
   filter,
@@ -72,11 +73,10 @@ export default function ProfileBar({
   useEffect(() => {
     try {
       getProducts();
-    }
-    catch (e){
+    } catch (e) {
       console.error(e);
     }
-  }, [searchResult])
+  }, [searchResult]);
 
   return (
     <div className="flex items-center gap-9 2xl:gap-7 mobile:gap-5 fixed w-[100%] justify-end pr-28 2xl:pr-20 lg:pr-14 mobile:pr-7 tablet:hidden p-3  bg-black bg-opacity-30 backdrop-blur-xl z-[999]">
@@ -131,15 +131,18 @@ export default function ProfileBar({
       >
         Click Me
       </button> */}
-      <div className={search.wrap}>
-        <form action="" autoComplete="on">
+      {/* <div className={`${search.wrap} relative`}> */}
+      <div className="relative">
+        {/* <form action="" autoComplete="on">
           <input
             className={search.search}
             name="search"
             type="text"
             placeholder="What're we looking for ?"
             value={searchResult}
-            onChange={(e) => {setSearchResult(e.target.value)}}
+            onChange={(e) => {
+              setSearchResult(e.target.value);
+            }}
             // value={searchResult}
             // onChange={(e) => {
             //   setSearchResult(e.target.value);
@@ -148,25 +151,10 @@ export default function ProfileBar({
           <button className={`${icons} ${search.search_submit}`} type="submit">
             <BsSearch />
           </button>
-          {/* {!searchResult ? (
-            <button
-              className={`${icons} ${search.search_submit}`}
-              type="submit"
-            >
-              <BsSearch />
-            </button>
-          ) : (
-            <button>
-              <MdKeyboardArrowDown
-                onClick={(e) => {
-                  getProducts(e);
-                }}
-              />
-            </button>
-          )} */}
-        </form>
+        </form> */}
+        <Search searchResult={searchResult} setSearchResult={setSearchResult} />
+        {searchResult && <SearchDropDown searchResults={results} />}
       </div>
-      {searchResult && <SearchDropDown searchResults={results} />}
 
       {cartshow && token && (
         <div className={icons}>

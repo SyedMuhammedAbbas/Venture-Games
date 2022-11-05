@@ -7,12 +7,11 @@ export const Container = styled.div`
   width: 50px;
   height: 50px;
   box-sizing: border-box;
-  border-radius: 50px;
-  border: 3px solid brown;
+  border-radius: 0px;
+  border: 0px solid #000000;
   padding: 5px;
-  background: #ffffff;
+  background: transparent;
   transition: all 0.5s;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,10 +20,8 @@ export const Container = styled.div`
   ${({ hover }) =>
     hover &&
     css`
-      width: 300px;
-      -webkit-box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.5);
-      box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.5);
-      border: 3px solid brown;
+      width: 500px;
+      border-bottom: 3px solid #ffffff;
     `}
 `;
 
@@ -33,17 +30,19 @@ export const SearchInput = styled.input`
   top: 2;
   left: 0;
   width: 90%;
-  height: 40px;
+  height: 50px;
   line-height: auto;
   outline: 0;
   border: 0;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   border-radius: 20px;
+  color: white;
   padding: 0 20px;
   margin: 0;
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
+  background: transparent;
 
   display: ${(props) => (props.showSearchInput ? "block" : "none")};
 `;
@@ -60,8 +59,8 @@ const fadeIn = keyframes`
 `;
 
 const IconCommonCss = css`
-  height: 1.25rem;
-  width: 1.25rem;
+  height: 1.5rem;
+  width: 1.5rem;
   fill: black;
   z-index: 10;
   animation: ${fadeIn} 1s linear;
@@ -69,6 +68,7 @@ const IconCommonCss = css`
 
 export const IconMagnifyingGlass = styled(SearchIcon)`
   ${IconCommonCss}
+  color:#ffffff;
 `;
 
 export const IconRightArrow = styled(ArrowRightIcon)`
@@ -76,6 +76,6 @@ export const IconRightArrow = styled(ArrowRightIcon)`
   align-self: flex-end;
   cursor: pointer;
   &:hover {
-    fill: brown;
+    fill: black;
   }
 `;
