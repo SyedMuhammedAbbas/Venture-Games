@@ -21,8 +21,7 @@ export default function DropDown({ setOp }) {
     dispatch(clearCart());
     localStorage.clear();
     setOp(false);
-    //router.push('/');
-    console.log(user);
+    router.push('/');
   }
 
   return (

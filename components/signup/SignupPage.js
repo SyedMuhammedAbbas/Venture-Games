@@ -27,12 +27,16 @@ export default function SignupPage({ data }) {
 
       console.log(response.data.user);
       console.log(response);
-
-      dispatch(Login(response.data.user));
-      localStorage.setItem("token", JSON.stringify(response.data.Token));
-
-      router.push("/");
-      console.log(user);
+      if(response.data.user.isVerified == false) {
+        localStorage.setItem("token", JSON.stringify(response.data.Token));
+        router.push("/verify");
+      }
+      else {
+        dispatch(Login(response.data.user));
+        localStorage.setItem("token", JSON.stringify(response.data.Token));
+        router.push("/");
+        console.log(user); 
+      }
     } catch (error) {
       console.error(error);
     }

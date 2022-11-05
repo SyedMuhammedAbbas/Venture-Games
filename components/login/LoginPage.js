@@ -69,11 +69,15 @@ export default function LoginPage() {
 
       console.log(response.data.output);
       console.log(response);
-
-      dispatch(Login(response.data.output));
-      localStorage.setItem("token", JSON.stringify(response.data.Token));
-
-      router.push("/");
+      if(response.data.output.isVerified == false) {
+        localStorage.setItem("token", JSON.stringify(response.data.Token));
+        router.push("/verify"); 
+      }
+      else {
+        dispatch(Login(response.data.output));
+        localStorage.setItem("token", JSON.stringify(response.data.Token));
+        router.push("/");
+      }
     } catch (err) {
       alert("Invalid Credentials");
       console.log(err);
