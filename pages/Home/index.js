@@ -30,9 +30,9 @@ export default function Home() {
         "https://api.venturegames.pk/GetCart",
         config
       );
-      console.log(response.data.CartItems);
+      console.log(response.data);
       if (response.data.CartItems.length > 0) {
-        dispatch(setCartItem(response.data.CartItems));
+        dispatch(setCartItem(response.data));
       }
     }
   }

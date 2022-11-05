@@ -9,6 +9,7 @@ import { AddToCart } from "../../features/counter/cartSlice";
 import Link from "next/link";
 import UnavailabeProduct from "../../images/unavailable.jpg";
 import Logo from "../../images/logo.svg";
+import { setCartItem } from "../../features/counter/cartSlice";
 
 // const router = useRouter();
 // const { pid } = router.query;
@@ -60,7 +61,6 @@ export default function Product({ data }) {
   const [New, setNew] = useState(true);
   const [Old, setOld] = useState(false);
   const [selectedPlatformFlag, setSelectedPlatformFlag] = useState(true);
-  const [colorFlag, setColorFlag] = useState(true);
 
   async function fetchData() {
     // console.log("Fetch");
@@ -192,6 +192,22 @@ export default function Product({ data }) {
 
   const dispatch = useDispatch();
 
+  async function getCart() {
+    let jwtToken = JSON.parse(localStorage.getItem("token"));
+    console.log(jwtToken);
+    let config = {
+      headers: {
+        Authorization: "Bearer " + jwtToken,
+      },
+    };
+    let response = await axios.get(
+      "https://api.venturegames.pk/GetCart",
+      config
+    );
+    // console.log("Here");
+    dispatch(setCartItem(response.data));
+  }
+
   const handleAddtoCart = async (DisplayedProduct) => {
     if (token && DisplayedProduct.Quantity > 0) {
       dispatch(AddToCart(DisplayedProduct));
@@ -209,6 +225,9 @@ export default function Product({ data }) {
         },
         config
       );
+
+      getCart();  
+
       console.log(response);
     } else if (DisplayedProduct.Quantity <= 0) {
       alert("Product Not available");

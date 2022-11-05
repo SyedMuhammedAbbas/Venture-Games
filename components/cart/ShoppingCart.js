@@ -7,10 +7,12 @@ import { useSelector } from "react-redux";
 import { DeleteFromCart } from "../../features/counter/cartSlice";
 import { SetProdQuantity } from "../../features/counter/cartSlice";
 import { useDispatch } from "react-redux";
+import { setCartItem } from "../../features/counter/cartSlice";
 import axios from "axios";
 
 export default function ShoppingCart() {
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const cartInfo = useSelector((state) => state.cart);
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
   const [total_amount, setTotal_Amount] = useState(0);
@@ -30,7 +32,9 @@ export default function ShoppingCart() {
       config
     );
     console.log(response);
+    getCart();
   };
+
   const handleQuantityCart = async (id, newQuantity) => {
     dispatch(SetProdQuantity({ _id: id, quantity: newQuantity }));
     const jwtToken = JSON.parse(localStorage.getItem("token"));
@@ -47,30 +51,35 @@ export default function ShoppingCart() {
       },
       config
     );
-  };
-  useEffect(() => {
-    console.log("Hi");
-    async function getCart() {
-      let jwtToken = JSON.parse(localStorage.getItem("token"));
-      console.log(jwtToken);
-      let config = {
-        headers: {
-          Authorization: "Bearer " + jwtToken,
-        },
-      };
-      let response = await axios.get(
-        "https://api.venturegames.pk/GetCart",
-        config
-      );
-      // console.log("Here");
-      console.log(response.data);
-      setTotal_Items(response.data.CartItems.length);
-      setTotal_Amount(response.data.CartPrice);
-      setTotal_Weight(response.data.CartWeight);
-      console.log(response);
-    }
+    
     getCart();
-  }, [Object.values(cartItems)]);
+
+  };
+
+  async function getCart() {
+    let jwtToken = JSON.parse(localStorage.getItem("token"));
+    console.log(jwtToken);
+    let config = {
+      headers: {
+        Authorization: "Bearer " + jwtToken,
+      },
+    };
+    let response = await axios.get(
+      "https://api.venturegames.pk/GetCart",
+      config
+    );
+    // console.log("Here");
+    console.log(response.data);
+    setTotal_Items(response.data.CartItems.length);
+    setTotal_Amount(response.data.CartPrice);
+    setTotal_Weight(response.data.CartWeight);
+    console.log(response);
+    dispatch(setCartItem(response.data));
+  }
+
+  useEffect(() => {
+    getCart();
+  }, []);
 
   const shipping_fee = "calculated at next step";
   function coupon() {
@@ -226,7 +235,7 @@ export default function ShoppingCart() {
                               {order_summary}
                             </td>
                             <td className="pt-10 absolute right-0 uppercase font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                              {order_summary_values[index]}
+                              {cartInfo.cartTotalQuantity}
                             </td>
                           </tr>
                         );
@@ -237,7 +246,7 @@ export default function ShoppingCart() {
                               {order_summary}
                             </td>
                             <td className="pt-5 absolute right-0 pb-0 text-right font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                              {order_summary_values[index] + " g"}
+                              {cartInfo.cartTotalWeight + " g"}
                             </td>
                           </tr>
                         );
@@ -262,7 +271,7 @@ export default function ShoppingCart() {
                               {order_summary}
                             </td>
                             <td className="py-0 absolute pt-3 right-0 font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                              {order_summary_values[index] + " Rs"}
+                              {cartInfo.cartTotalAmount + " Rs"}
                             </td>
                           </tr>
                         );

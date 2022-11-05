@@ -2,9 +2,11 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-// import {PaymentSessionInternal} from "https://testbankalfalah.gateway.mastercard.com/form/version/54/merchant/NIFT/session.js";
+import { clearCart } from '../../features/counter/cartSlice';
+import { useDispatch } from 'react-redux';
 
 export default function CheckOut() {
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
@@ -95,17 +97,10 @@ export default function CheckOut() {
       data,
       config
     );
-
-    // let response = await axios.post("https://api.venturegames.pk/Order/Checkout", JSON.stringify({
-    //   BillingAddress1: "Block 1",
-    //   BillingAddress2: "Block 2",
-    //   ShippingAddress1: "Block 1",
-    //   ShippingAddress2: "Block 2",
-    //   ShippingRegion: "Karachi",
-    //   PaymentMethod: "COD",
-    //   ShippingPhone: "+923323518617",
-    //   BillingPhone: "+923323518617",
-    // }), config);
+    if(response.data = 'Success') {
+      alert("Order Successful");
+      dispatch(clearCart());
+    }
 
     console.log(response);
     if (getDebitValue) {
