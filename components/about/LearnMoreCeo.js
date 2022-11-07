@@ -1,4 +1,4 @@
-import Ceo from "../../images/ceo.png";
+import Ceo from "../../images/logo.png";
 
 export default function LearnMoreCeo({ heading, description, name }) {
   return (
@@ -18,7 +18,7 @@ export default function LearnMoreCeo({ heading, description, name }) {
         </div>
 
         <div className="p-20 ml-10 mobile:ml-0 mobile:justify-center xl1:flex xl1:justify-end">
-          <img className="w-[300px] rounded-full" src={Ceo.src}></img>
+          <img className="w-[300px]" src={Ceo.src}></img>
         </div>
       </div>
     </>

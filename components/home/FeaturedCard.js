@@ -65,11 +65,14 @@ export default function FeaturedCard({ product }) {
             ""
           ) : (
             <div className="text-red-600 line-through text-[25px] mobile:text-[19px]">
-              {product.OldPrice}
+              {product.OldPrice.toString().replace(
+                /\B(?=(\d{3})+(?!\d))/g,
+                ","
+              )}
             </div>
           )}
           <div className="text-white text-[25px] mobile:text-[21px]">
-            {product.Price} PKR
+            {product.Price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} PKR
           </div>
         </div>
         <div className="flex justify-center gap-2 mt-[-7px] mb-5">

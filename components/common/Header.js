@@ -59,7 +59,7 @@ export default function Header() {
     "shop",
   ];
 
-  const footer_links = ["policies", "terms", "help"];
+  const footer_links = ["about", "policies", "terms", "help"];
   const updateMenu = () => {
     if (!isMenuClicked) {
       setBurgerClass("burger-bar clicked");

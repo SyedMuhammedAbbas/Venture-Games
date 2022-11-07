@@ -232,7 +232,7 @@ export default function Product() {
         config
       );
 
-      getCart();  
+      getCart();
 
       console.log(response);
     } else if (DisplayedProduct.Quantity <= 0) {
@@ -541,7 +541,10 @@ export default function Product() {
                     ) : (
                       <div className="flex gap-4">
                         <div className="text-red-600 line-through text-[23px] mobile1:text-[20px]">
-                          {DisplayedProduct.OldPrice}
+                          {DisplayedProduct.OldPrice.toString().replace(
+                            /\B(?=(\d{3})+(?!\d))/g,
+                            ","
+                          )}
                         </div>
                         {DisplayedProduct.OldPrice === undefined ? (
                           ""
@@ -552,7 +555,11 @@ export default function Product() {
                     )}
 
                     <div className="text-white text-[25px] mobile1:text-[20px]">
-                      {DisplayedProduct.Price} PKR
+                      {DisplayedProduct.Price.toString().replace(
+                        /\B(?=(\d{3})+(?!\d))/g,
+                        ","
+                      )}{" "}
+                      PKR
                     </div>
                   </div>
                 )}

@@ -2,6 +2,7 @@ import { BsWhatsapp } from "react-icons/bs";
 import { BsFacebook } from "react-icons/bs";
 import { BsInstagram } from "react-icons/bs";
 import { BiRightArrowCircle } from "react-icons/bi";
+import Link from "next/dist/client/link";
 
 export default function ContactUs() {
   const address =
@@ -34,7 +35,7 @@ export default function ContactUs() {
                   <form className="bg-transparent border-[1px] border-white rounded-[40px]  text-white flex items-center">
                     <input
                       placeholder="youremail@gmail.com"
-                      className="bg-transparent placeholder:text-white placeholder:text-[25px] text-[25px] mx-8 mobile:mx-3 w-[350px] mobile2.1:w-[270px] mobile1.1:w-[240px] h-[45px] outline-none"
+                      className="bg-transparent placeholder:text-blackOpac placeholder:text-[25px] text-[25px] mx-8 mobile:mx-3 w-[350px] mobile2.1:w-[270px] mobile1.1:w-[240px] h-[45px] outline-none"
                     ></input>
                     <button className="text-white text-[35px] pr-2">
                       <BiRightArrowCircle />
@@ -68,12 +69,22 @@ export default function ContactUs() {
                   {/* <div className="text-white text-[50px] mobile:text-[35px] border-r-[2px] pr-4">
                     <BsWhatsapp />
                   </div> */}
-                  <div className="text-white text-[50px] mobile:text-[35px] border-r-[2px] pr-4">
-                    <BsFacebook />
-                  </div>
-                  <div className="text-white text-[50px] mobile:text-[35px]">
-                    <BsInstagram />
-                  </div>
+                  <a
+                    target="_blank"
+                    href="https://www.facebook.com/venturegamespk/"
+                  >
+                    <div className="text-white cursor-pointer text-[50px] mobile:text-[35px] border-r-[2px] pr-4">
+                      <BsFacebook />
+                    </div>
+                  </a>
+                  <a
+                    target="_blank"
+                    href="https://www.instagram.com/venturegamespk/"
+                  >
+                    <div className="text-white text-[50px] mobile:text-[35px]">
+                      <BsInstagram />
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>

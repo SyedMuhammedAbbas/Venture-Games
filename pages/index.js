@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Home from "./Home";
-import LearnMore from "./learnmore";
+// import LearnMore from "./learnmore";
 
 export default function Index() {
   return (
