@@ -48,7 +48,7 @@ export default function Header() {
     "consoles",
     "games",
     "accessories",
-    "Merchandise",
+    "merchandise",
   ];
   const pages_heading_links = [
     "shop",
@@ -56,7 +56,7 @@ export default function Header() {
     "consoles",
     "games",
     "accessories",
-    "shop",
+    "merchandise",
   ];
 
   const footer_links = ["about", "policies", "terms", "help"];
@@ -222,7 +222,7 @@ export default function Header() {
             </Link>
           </li>
           <li className={list}>
-            <Link href="/shop">
+            <Link href="/merchandise">
               <a>Merchandise</a>
             </Link>
           </li>

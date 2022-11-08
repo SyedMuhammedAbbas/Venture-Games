@@ -27,25 +27,25 @@ import { setCartItem } from "../../features/counter/cartSlice";
 //     props: { product: {} },
 //   };
 // }
-// export async function getServerSideProps(context) {
-//   const { pid } = context.params;
-//   let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
-//     params: {
-//       Product: pid,
-//     },
-//   });
-//   return {
-//     props: { data: response.data },
-//   };
-// }
-
 export async function getServerSideProps(context) {
+  const { pid } = context.params;
+  let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
+    params: {
+      Product: pid,
+    },
+  });
   return {
-    props: {},
+    props: { data: response.data },
   };
 }
 
-export default function Product() {
+// export async function getServerSideProps(context) {
+//   return {
+//     props: {},
+//   };
+// }
+
+export default function Product({ data }) {
   // console.log("productPage");
   const router = useRouter();
   const { pid } = router.query;
@@ -76,8 +76,8 @@ export default function Product() {
         Product: pid,
       },
     });
-    setProducts(response.data);
-    const initialProduct = response.data.find((item) => item._id === pid);
+    setProducts(data);
+    const initialProduct = data.find((item) => item._id === pid);
     setSelectedType(initialProduct.Type);
     setOld(initialProduct.Type === "Used");
     setNew(initialProduct.Type === "New");

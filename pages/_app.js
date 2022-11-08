@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps }) {
               theme="dark"
             />
             <a
-              href="https://wa.me/2348100000000"
+              href="https://wa.me/+923358243343"
               className="whatsapp_float"
               target="_blank"
               rel="noopener noreferrer"

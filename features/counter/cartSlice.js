@@ -49,7 +49,7 @@ export const cartSlice = createSlice({
     },
 
     setCartItem(state, action) {
-      for(let i = 0; i < action.payload.CartItems.length; i++) {
+      for (let i = 0; i < action.payload.CartItems.length; i++) {
         state.cartItems[i] = action.payload.CartItems[i].Product;
         state.cartItems[i].quantity = action.payload.CartItems[i].Quantity;
       }
@@ -99,7 +99,7 @@ export const {
   SetProdQuantity,
   setRegion,
   setCartItem,
-  clearCart
+  clearCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
