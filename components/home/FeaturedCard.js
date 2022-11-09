@@ -1,29 +1,18 @@
 import Link from "next/link";
-//import { useRouter } from 'next/router'
-
 // import { useDispatch } from "react-redux";
 import { AddToCart } from "../../features/counter/cartSlice";
 import Router from "next/router";
 // import { keyframes } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-function saveData(data) {
-  //console.log(data);
-  data = '{"pid" :"'+data+'"}';
-  console.log(data)
-  console.log(JSON.parse(data));
-  window.localStorage.setItem("pid",data);
-}
+
 export default function FeaturedCard({ product }) {
   // const dispatch = useDispatch();
   // const handleAddtoCart = (product) => {
   //   dispatch(AddToCart(product));
   // };
-  //const router = useRouter()
-
 
   const data = product._id;
-  //window.localStorage.setItem("pid",data);
- // console.log(data);
+
   // console.log(data);
 
   // function sendProps() {
@@ -76,23 +65,25 @@ export default function FeaturedCard({ product }) {
             ""
           ) : (
             <div className="text-red-600 line-through text-[25px] mobile:text-[19px]">
-              {product.OldPrice}
+              {product.OldPrice.toString().replace(
+                /\B(?=(\d{3})+(?!\d))/g,
+                ","
+              )}
             </div>
           )}
           <div className="text-white text-[25px] mobile:text-[21px]">
-            {product.Price} PKR
+            {product.Price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} PKR
           </div>
         </div>
         <div className="flex justify-center gap-2 mt-[-7px] mb-5">
           <Link href="/product/[pid]" as={`/product/${data}`}>
-          
             <button
-              //onClick={() => router.reload(window.location.pathname)}
+              // onClick={() => sendProps()}
               className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-8 py-1 hover:bg-white hover:text-black hover:border-black"
-            onClick={()=>saveData(data)}>
+            >
               <a>View</a>
             </button>
-            </Link>
+          </Link>
         </div>
       </div>
     </div>
