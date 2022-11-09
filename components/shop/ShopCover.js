@@ -9,7 +9,7 @@ export default function ShopCover() {
           src={ShopBack.src}
         ></img>
         <div className="text-white shopcoverClassHeading text-[3vw] tablet3:text-[5vw] text-center relative flex justify-center bottom-10 mobile:bottom-0 font-hemi">
-          All Your Gamming Needs
+          All Your Gaming Needs
         </div>
       </div>
     </div>

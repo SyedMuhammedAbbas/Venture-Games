@@ -1,18 +1,24 @@
 import Spiderman from "../../images/image 4.png";
 import Link from "next/link";
 
-export default function SearchDropDown({ searchResults }) {
+export default function SearchDropDown({ searchResults, setSearchResult }) {
   // const searchResult = [
   //   { images: Spiderman.src, title: "Spiderman-MilesMorales" },
   //   { images: Spiderman.src, title: "Spiderman-MilesMorales" },
   // ];
+  function handleClose() {
+    setSearchResult("");
+  }
   return (
     <>
       <div className="bg-black absolute right-[0%] top-14 rounded-xl z-[9999] grid gap-2 w-[500px]">
         {searchResults.slice(0, 5).map((result) => {
           return (
             <Link href="/product/[pid]" as={`/product/${result._id}`}>
-              <div className="flex gap-5 bg-transparent hover:cursor-pointer border-b-[1px] p-5 border-blackOpac items-center ">
+              <div
+                onClick={() => handleClose()}
+                className="flex gap-5 bg-transparent hover:cursor-pointer border-b-[1px] p-5 border-blackOpac items-center "
+              >
                 <img
                   className="w-20 h-20 bg-contain"
                   src={result.Images[0]}
