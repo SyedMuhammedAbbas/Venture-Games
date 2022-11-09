@@ -92,9 +92,11 @@ export default function CheckOut() {
       const [first, last] = user.FullName.split(" ");
       setFirstName(first);
       setLastName(last);
-      setContactNumber1(user.ContactNumber);
+      if(user.ContactNumber) {
+        setContactNumber1(user.ContactNumber);
+      }
     }
-  }, [Object.values(cartItems)]);
+  }, []);
   const order_summary = [
     "total items:",
     "total amount:",
