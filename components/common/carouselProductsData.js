@@ -1,5 +1,5 @@
 import Spiderman from "../../images/image 4.png";
-import PS5Controller from "../../images/ps5Controller.png";
+// import PS5Controller from "../../images/ps5Controller.png";
 import ps5DiscEdition from "../../images/products/ps5_Disc_Edition.jpg";
 import ps4controller2 from "../../images/products/ps4 controller 2.jpg";
 
