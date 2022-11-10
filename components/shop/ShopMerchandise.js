@@ -13,13 +13,13 @@ import {
   FilterByCategory,
 } from "../../features/counter/merchandiseSlice";
 
-export default function ShopGames({
+export default function ShopMerchandise({
   handleFilter,
   handleSort,
   handleFilterMobile,
   handleSortMobile,
 }) {
-  console.log("here");
+  // console.log("here");
   const ProductsFetched = useSelector(
     (state) => state.merchandise.allMerchandise
   );

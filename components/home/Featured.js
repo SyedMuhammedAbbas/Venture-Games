@@ -1,13 +1,13 @@
 import { MdKeyboardArrowRight } from "react-icons/md";
 import FeaturedCard from "./FeaturedCard";
-import Spiderman from "../../images/image 4.png";
+// import Spiderman from "../../images/image 4.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
-import { FeaturedProducts } from "./FeaturedProducts";
+// import { FeaturedProducts } from "./FeaturedProducts";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useRef } from "react";
 // import { getProducts } from "../../features/counter/productsSlice";
