@@ -1,6 +1,14 @@
 import Spiderman from "../../images/image 4.png";
 import Link from "next/link";
 
+function saveData(data) {
+  //console.log(data);
+  data = '{"pid" :"' + data + '"}';
+  console.log(data);
+  console.log(JSON.parse(data));
+  window.localStorage.setItem("pid", data);
+}
+
 export default function SearchDropDown({ searchResults, setSearchResult }) {
   // const searchResult = [
   //   { images: Spiderman.src, title: "Spiderman-MilesMorales" },
@@ -16,7 +24,7 @@ export default function SearchDropDown({ searchResults, setSearchResult }) {
           return (
             <Link href="/product/[pid]" as={`/product/${result._id}`}>
               <div
-                onClick={() => handleClose()}
+                onClick={() => handleClose() & saveData(result._id)}
                 className="flex gap-5 bg-transparent hover:cursor-pointer border-b-[1px] p-5 border-blackOpac items-center "
               >
                 <img

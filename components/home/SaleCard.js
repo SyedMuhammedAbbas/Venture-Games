@@ -3,6 +3,14 @@ import { AddToCart } from "../../features/counter/cartSlice";
 import { useDispatch } from "react-redux";
 import Router from "next/router";
 
+function saveData(data) {
+  //console.log(data);
+  data = '{"pid" :"' + data + '"}';
+  console.log(data);
+  console.log(JSON.parse(data));
+  window.localStorage.setItem("pid", data);
+}
+
 export default function SaleCard({ product }) {
   // const dispatch = useDispatch();
   // const handleAddtoCart = (product) => {
@@ -72,6 +80,7 @@ export default function SaleCard({ product }) {
               <button
                 // onClick={() => sendProps()}
                 className="text-white border-[1px] font-semibold border-white rounded-lg text-[16px] tracking-wider px-2 py-1 hover:bg-white hover:text-black hover:border-black"
+                onClick={() => saveData(data)}
               >
                 <a>Learn More</a>
               </button>

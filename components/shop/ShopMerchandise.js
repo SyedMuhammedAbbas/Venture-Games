@@ -40,6 +40,8 @@ export default function ShopGames({
   const buttons =
     "text-white uppercase border-[1px] font-semibold border-white rounded-lg text-[20px] px-2 w-48 py-1 hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black";
 
+  const mobileButtons =
+    "text-white uppercase border-[1px] font-semibold border-white rounded-lg text-[13px] px-2 w-48 py-1 hover:bg-white hover:text-black hover:border-black focus:bg-white focus:text-black focus:border-black";
   // const platforms = ["PS5", "PS4", "XBOX"];
   // const genre = ["Action", "adventure", "thriller", "Driving/Racing"];
   // const category = ["online", "offline"];
@@ -454,7 +456,7 @@ export default function ShopGames({
                       <button
                         value={type}
                         key={index}
-                        className={buttons}
+                        className={mobileButtons}
                         onClick={() => {
                           sortByPlatform(type);
                         }}
@@ -471,7 +473,7 @@ export default function ShopGames({
                       <button
                         value={genre}
                         key={i}
-                        className={buttons}
+                        className={mobileButtons}
                         onClick={() => {
                           sortByGenre(genre);
                         }}
@@ -488,7 +490,7 @@ export default function ShopGames({
                       <button
                         value={category}
                         key={ind}
-                        className={buttons}
+                        className={mobileButtons}
                         onClick={() => {
                           sortByTags(category);
                         }}
@@ -508,7 +510,7 @@ export default function ShopGames({
                       <button
                         value={sortbyprice}
                         key={index}
-                        className={buttons}
+                        className={mobileButtons}
                         onClick={() => {
                           if (sortbyprice == "Low to High") {
                             sortHighLow();

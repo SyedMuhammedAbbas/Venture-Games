@@ -51,9 +51,8 @@ export default function ShoppingCart() {
       },
       config
     );
-    
-    getCart();
 
+    getCart();
   };
 
   async function getCart() {
@@ -326,7 +325,7 @@ export default function ShoppingCart() {
             </div>
           </div>
         ) : (
-          <div className="h-[140vh] max-h-[100%] flex justify-center items-center">
+          <div className="min-h-[140vh] max-h-[100%] mobile:min-h-screen flex justify-center items-center">
             <div className=" flex mobile:grid gap-7 mobile:gap-0 mobile:h-[80px] justify-center  text-[45px] mobile:text-[40px] text-[#868686] ">
               <div>Cart is empty !</div>
               <span className="flex gap-1 items-center justify-center mobile:mt-0 mobile:text-[35px]">

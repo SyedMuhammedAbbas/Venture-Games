@@ -314,8 +314,12 @@ export default function CheckOut() {
                           for="remember"
                           class="ml-2 text-[20px] mobile:text-[16px] font-medium text-white "
                         >
-                          By Proceeding you accept our Terms of use & Privacy
-                          policy.
+                          By Proceeding you accept our{" "}
+                          <Link href="/terms">
+                            <span className="underline cursor-pointer">
+                              Terms of use & Privacy policy.
+                            </span>
+                          </Link>
                         </label>
                       </div>
                     </div>
