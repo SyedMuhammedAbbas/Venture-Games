@@ -3,7 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "../features/counter/cartSlice";
 import productReducer from "../features/counter/productsSlice";
 import carouselProductReducer from "../features/counter/carouselSlice";
-import userReducer from "../features/counter/UserSlice";
+import userReducer from "../features/counter/userSlice";
 import storage from "redux-persist/lib/storage";
 import accessoriesReducer from "../features/counter/accessoriesSlice";
 import girftcardsReducer from "../features/counter/giftcardsSlice";
