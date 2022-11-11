@@ -54,16 +54,14 @@ import { data } from "autoprefixer";
 
 export async function getServerSideProps(context) {
   const { pid } = context.params;
-  if (pid) {
-    let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
-      params: {
-        Product: pid,
-      },
-    });
-    return {
-      props: { data: response.data },
-    };
-  }
+  let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
+    params: {
+      Product: pid,
+    },
+  });
+  return {
+    props: { data: response.data },
+  };
 }
 
 export default function Product({ data }) {

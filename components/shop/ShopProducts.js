@@ -12,6 +12,7 @@ import {
   SortHighToLow,
   FilterByCategory,
 } from "../../features/counter/productsSlice";
+import { toast } from "react-toastify";
 
 export default function ShopProducts({
   handleFilter,
@@ -131,7 +132,9 @@ export default function ShopProducts({
     if (response.data.length > 0) {
       dispatch(FilterByGenre(response.data));
     } else {
-      alert("No Product");
+      toast("No Product", {
+        className: "toast-message",
+      });
     }
   }
 
@@ -201,7 +204,9 @@ export default function ShopProducts({
     if (response.data.length > 0) {
       dispatch(FilterByCategory(response.data));
     } else {
-      alert("No Product");
+      toast("No Product", {
+        className: "toast-message",
+      });
     }
   }
   let jwtToken = JSON.parse(localStorage.getItem("token"));
@@ -271,7 +276,9 @@ export default function ShopProducts({
     if (response.data.length > 0) {
       dispatch(FilterByConsole(response.data));
     } else {
-      alert("No Product");
+      toast("No Product", {
+        className: "toast-message",
+      });
     }
   }
 

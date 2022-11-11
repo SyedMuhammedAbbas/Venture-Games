@@ -9,6 +9,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { parseCookies } from "../../helpers/";
 import { Router, useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 export default function LoginPage() {
   const provider = new GoogleAuthProvider();
@@ -69,17 +70,18 @@ export default function LoginPage() {
 
       console.log(response.data.output);
       console.log(response);
-      if(response.data.output.isVerified == false) {
+      if (response.data.output.isVerified == false) {
         localStorage.setItem("token", JSON.stringify(response.data.Token));
-        router.push("/verify"); 
-      }
-      else {
+        router.push("/verify");
+      } else {
         dispatch(Login(response.data.output));
         localStorage.setItem("token", JSON.stringify(response.data.Token));
         router.push("/");
       }
     } catch (err) {
-      alert("Invalid Credentials");
+      toast.error("Incorrect Credentials", {
+        className: "toast-message",
+      });
       console.log(err);
     }
 
