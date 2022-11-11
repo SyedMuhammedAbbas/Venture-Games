@@ -16,6 +16,10 @@ import Script from "next/script";
 function MyApp({ Component, pageProps }) {
   let persistor = persistStore(store);
   initMyFirebase();
+  // const jwtToken = JSON.stringify(window.localStorage.getItem("token"));
+
+  // if (!jwtToken) {
+  // }
   return (
     <>
       <Script

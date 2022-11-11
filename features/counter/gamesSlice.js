@@ -11,7 +11,7 @@ const initialState = {
 };
 
 export const gamesSlice = createSlice({
-  name: "games",
+  name: "consoles",
   initialState,
   extraReducers: {
     [getGames.pending]: (state, action) => {

@@ -67,6 +67,8 @@ export async function getServerSideProps(context) {
 }
 
 export default function Product({ data }) {
+  const [handleSignup, sethandleSignup] = useState(false);
+  const [handleLogin, sethandleLogin] = useState(false);
   // console.log("productPage");
   const router = useRouter();
   const { pid } = router.query;
@@ -265,7 +267,13 @@ export default function Product({ data }) {
 
   return (
     <>
-      <ProfileBar cartshow={true} />
+      <ProfileBar
+        cartshow={true}
+        handleLogin={handleLogin}
+        sethandleLogin={sethandleLogin}
+        handleSignup={handleSignup}
+        sethandleSignup={sethandleSignup}
+      />
       {!initialized ? (
         <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
           <img src={Logo.src} className="w-20 h-20" />

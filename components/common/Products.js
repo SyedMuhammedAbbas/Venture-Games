@@ -1,16 +1,16 @@
 import Teen from "../../images/teenesbr.png";
 import { useState, useEffect, useLayoutEffect } from "react";
 import { useRouter } from "next/router";
-import { BiError } from "react-icons/bi";
+// import { BiError } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import ProfileBar from "../../components/common/ProfileBar";
+// import ProfileBar from "../../components/common/ProfileBar";
 import { AddToCart } from "../../features/counter/cartSlice";
 import Link from "next/link";
 import UnavailabeProduct from "../../images/unavailable.jpg";
 import Logo from "../../images/logo.svg";
 import { setCartItem } from "../../features/counter/cartSlice";
-import { data } from "autoprefixer";
+// import { data } from "autoprefixer";
 
 // const router = useRouter();
 // const { pid } = router.query;
@@ -52,23 +52,26 @@ import { data } from "autoprefixer";
 //   };
 // }
 
-export async function getServerSideProps(context) {
-  const { pid } = context.params;
-  let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
-    params: {
-      Product: pid,
-    },
-  });
-  return {
-    props: { data: response.data },
-  };
-}
+// export async function getServerSideProps(context) {
+//   const { pid } = context.params;
+//   if (pid) {
+//     let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
+//       params: {
+//         Product: pid,
+//       },
+//     });
+//     return {
+//       props: { data: response.data },
+//     };
+//   }
+// }
 
-export default function Product({ data }) {
+export default function Product({ pid }) {
   // console.log("productPage");
-  const router = useRouter();
-  const { pid } = router.query;
-  // console.log(pid);
+  //   const router = useRouter();
+  //   const { pid } = router.query;
+  //   console.log(id);
+  //   const pid = id;
   // const productGroup = id;
   // console.log(router.pathname);
   //   const productGroup = id;
@@ -95,8 +98,8 @@ export default function Product({ data }) {
         Product: pid,
       },
     });
-    setProducts(data);
-    const initialProduct = data.find((item) => item._id === pid);
+    setProducts(response.data);
+    const initialProduct = response.data.find((item) => item._id === pid);
     setSelectedType(initialProduct.Type);
     setOld(initialProduct.Type === "Used");
     setNew(initialProduct.Type === "New");
@@ -126,14 +129,12 @@ export default function Product({ data }) {
   }
 
   useLayoutEffect(() => {
-    if (!router.isReady) return;
-    // console.log("hello");
     fetchData().then(() => {
       setInitialized(true);
 
       // setItems(true);
     });
-  }, [router.query, router.isReady]);
+  }, []);
 
   function getTitle(SelectedObject) {
     const selPlatform = SelectedObject.Title;
@@ -263,7 +264,6 @@ export default function Product({ data }) {
 
   return (
     <>
-      <ProfileBar cartshow={true} />
       {!initialized ? (
         <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
           <img src={Logo.src} className="w-20 h-20" />

@@ -11,6 +11,7 @@ import flashSaleReducer from "../features/counter/flashSaleSlice";
 import featuredReducer from "../features/counter/featuredSlice";
 import gamesReducer from "../features/counter/gamesSlice";
 import checkoutReducer from "../features/counter/checkoutSlice";
+import consolesReducer from "../features/counter/consolesSlice";
 
 import { combineReducers } from "redux";
 import {
@@ -41,6 +42,7 @@ const reducers = combineReducers({
   user: userReducer,
   checkout: checkoutReducer,
   merchandise: merchandiseReducer,
+  consoles: consolesReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
