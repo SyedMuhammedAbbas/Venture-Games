@@ -17,6 +17,7 @@ function MyApp({ Component, pageProps }) {
   initMyFirebase();
   return (
     <>
+
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <Head>
