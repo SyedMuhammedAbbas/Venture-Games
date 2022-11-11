@@ -18,6 +18,7 @@ export default function Index() {
           rel="stylesheet"
           href="https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css"
         />
+        <link rel="icon" href="/logo.png" />
       </Head>
 
       <Home />

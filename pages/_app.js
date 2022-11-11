@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <Head>
-            <link rel="shortcut icon" href="/images/logo.png" />
+            <link rel="shortcut icon" href="/logo.png" />
           </Head>
           <Header />
           <div className="h-[120px] tablet:h-[70px]">&nbsp;</div>
