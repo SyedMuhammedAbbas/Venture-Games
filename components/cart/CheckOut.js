@@ -92,7 +92,7 @@ export default function CheckOut() {
       const [first, last] = user.FullName.split(" ");
       setFirstName(first);
       setLastName(last);
-      if(user.ContactNumber) {
+      if (user.ContactNumber) {
         setContactNumber1(user.ContactNumber);
       }
     }
@@ -115,26 +115,35 @@ export default function CheckOut() {
   ];
 
   function checkCond() {
-    if(address1.length > 0 && address2.length > 0 && address3.length > 0 && address4.length > 0 && place.length > 0 && ContactNumber1.length > 0 && ContactNumber2.length > 0) {
+    if (
+      address1.length > 0 &&
+      address2.length > 0 &&
+      address3.length > 0 &&
+      address4.length > 0 &&
+      place.length > 0 &&
+      ContactNumber1.length > 0 &&
+      ContactNumber2.length > 0
+    ) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
 
   function handleRender() {
-    dispatch(setInformation({
-      "BillingAddress1": address3,
-      "BillingAddress2": address4,
-      "ShippingAddress1": address1,
-      "ShippingAddress2": address2,
-      "ShippingRegion": place,
-      "PaymentMethod": "COD",
-      "ShippingPhone": ContactNumber1,
-      "BillingPhone": ContactNumber2
-    }))
-    router.push('/payment');
+    dispatch(
+      setInformation({
+        BillingAddress1: address3,
+        BillingAddress2: address4,
+        ShippingAddress1: address1,
+        ShippingAddress2: address2,
+        ShippingRegion: place,
+        PaymentMethod: "COD",
+        ShippingPhone: ContactNumber1,
+        BillingPhone: ContactNumber2,
+      })
+    );
+    router.push("/payment");
   }
 
   return (
@@ -232,7 +241,9 @@ export default function CheckOut() {
                           className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                           placeholder="Contact Number"
                           value={ContactNumber1}
-                          onChange={(e) => {setContactNumber1(e.target.value)}}
+                          onChange={(e) => {
+                            setContactNumber1(e.target.value);
+                          }}
                         ></input>
                       </div>
                     </div>
@@ -283,7 +294,9 @@ export default function CheckOut() {
                             className="w-[70%] mobile2:w-[90%] placeholder:text-white placeholder:text-[20px] text-[23px] text-white p-2 border-[1px] bg-transparent border-white rounded-lg"
                             placeholder="Contact Number"
                             value={ContactNumber2}
-                            onChange={(e) => {setContactNumber2(e.target.value)}}
+                            onChange={(e) => {
+                              setContactNumber2(e.target.value);
+                            }}
                           ></input>
                         </div>
                       </div>
@@ -301,8 +314,12 @@ export default function CheckOut() {
                           for="remember"
                           class="ml-2 text-[20px] mobile:text-[16px] font-medium text-white "
                         >
-                          By Proceeding you accept our Terms of use & Privacy
-                          policy.
+                          By Proceeding you accept our{" "}
+                          <Link href="/terms">
+                            <span className="underline cursor-pointer">
+                              Terms of use & Privacy policy.
+                            </span>
+                          </Link>
                         </label>
                       </div>
                     </div>
@@ -397,23 +414,29 @@ export default function CheckOut() {
                 })}
               </table>
               {checkCond() ? (
-                <div className="flex cursor-pointer gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]"
-                  onClick={(() => {handleRender()})}>
+                <div
+                  className="flex cursor-pointer gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]"
+                  onClick={() => {
+                    handleRender();
+                  }}
+                >
                   <div className="uppercase">
                     <a className="cursor-pointer">continue to payment</a>
                   </div>
                   <div className="text-white text-[35px] mobile1.1:text-[30px] mt-[2px] mobile1.1:mt-[1px] cursor-pointer">
                     <MdKeyboardArrowRight />
                   </div>
-                </div>) :(
-              <div className="flex cursor-pointer gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]">
+                </div>
+              ) : (
+                <div className="flex cursor-pointer gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]">
                   <div className="uppercase">
                     <a className="cursor-pointer">continue to payment</a>
                   </div>
                   <div className="text-white text-[35px] mobile1.1:text-[30px] mt-[2px] mobile1.1:mt-[1px] cursor-pointer">
                     <MdKeyboardArrowRight />
                   </div>
-              </div>)}
+                </div>
+              )}
             </div>
           </div>
         </div>

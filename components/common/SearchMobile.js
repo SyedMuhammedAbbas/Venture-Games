@@ -6,6 +6,7 @@ import axios from "axios";
 export default function SearchMobile({ setOpenSearch }) {
   const [searchResult, setSearchResult] = useState();
   const [results, setResults] = useState();
+
   function handleCloseSearch() {
     setOpenSearch(false);
   }
@@ -23,11 +24,10 @@ export default function SearchMobile({ setOpenSearch }) {
   useEffect(() => {
     try {
       getProducts();
-    }
-    catch (e){
+    } catch (e) {
       console.error(e);
     }
-  }, [searchResult])
+  }, [searchResult]);
 
   return (
     <>
@@ -43,10 +43,16 @@ export default function SearchMobile({ setOpenSearch }) {
             className="h-[60px] w-[500px] pl-2 placeholder:text-[20px] placeholder:text-[#a57a2f] placeholder:font-bold mobile:w-[100%] border-[4px] border-[#805712] rounded-lg bg-blackOpac opacity-100 z-[9999]"
             placeholder="Search Venturegames"
             value={searchResult}
-            onChange={(e) => {setSearchResult(e.target.value)}}
-          >
-          </input>
-          {searchResult && <SearchDropDownMobile searchResults={results} />}
+            onChange={(e) => {
+              setSearchResult(e.target.value);
+            }}
+          ></input>
+          {searchResult && (
+            <SearchDropDownMobile
+              setOpenSearch={setOpenSearch}
+              searchResults={results}
+            />
+          )}
         </form>
       </div>
     </>

@@ -11,17 +11,28 @@ import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Script from 'next/script';
 
 function MyApp({ Component, pageProps }) {
   let persistor = persistStore(store);
   initMyFirebase();
   return (
     <>
-
+      <Script strategy="lazyOnload" src={"https://www.googletagmanager.com/ns.html?id=GTM-57973S3"} />
+      <Script strategy="lazyOnload">
+      {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'GTM-57973S3', {
+          page_path: window.location.pathname,
+          });
+      `}
+      </Script>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <Head>
-            <link rel="shortcut icon" href="/images/logo.png" />
+            <link rel="shortcut icon" href="/logo.png" />
           </Head>
           <Header />
           <div className="h-[120px] tablet:h-[70px]">&nbsp;</div>
@@ -40,7 +51,7 @@ function MyApp({ Component, pageProps }) {
               theme="dark"
             />
             <a
-              href="https://wa.me/2348100000000"
+              href="https://wa.me/+923358243343"
               className="whatsapp_float"
               target="_blank"
               rel="noopener noreferrer"

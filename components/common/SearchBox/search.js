@@ -50,6 +50,7 @@ export default function Search({ searchResult, setSearchResult }) {
         value={searchResult}
         onChange={(e) => setSearchResult(e.target.value)}
         ref={targetRef}
+        placeholder="What're you looking for?"
         showSearchInput={showSearchInput}
       />
       {!showSearchInput && <IconMagnifyingGlass onClick="none" />}

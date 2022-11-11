@@ -3,6 +3,14 @@ import { AddToCart } from "../../features/counter/cartSlice";
 import { useDispatch } from "react-redux";
 import Router from "next/router";
 
+function saveData(data) {
+  //console.log(data);
+  data = '{"pid" :"' + data + '"}';
+  console.log(data);
+  console.log(JSON.parse(data));
+  window.localStorage.setItem("pid", data);
+}
+
 export default function SaleCard({ product }) {
   // const dispatch = useDispatch();
   // const handleAddtoCart = (product) => {
@@ -27,10 +35,16 @@ export default function SaleCard({ product }) {
             <div className="grid w-[350px]">
               <div className="absolute right-10 bottom-7 bg-black bg-opacity-60 rounded-md px-2 grid gap-0 ">
                 <div className="text-red-600 font-bold line-through text-[20px]">
-                  {product.OldPrice}
+                  {product.OldPrice.toString().replace(
+                    /\B(?=(\d{3})+(?!\d))/g,
+                    ","
+                  )}
                 </div>
                 <div className="text-white font-bold  text-[27px]">
-                  {product.Price}
+                  {product.Price.toString().replace(
+                    /\B(?=(\d{3})+(?!\d))/g,
+                    ","
+                  )}
                 </div>
               </div>
               <div className="flex gap-1 overflow-x-scroll desp-scroll w-[330px]">
@@ -66,6 +80,7 @@ export default function SaleCard({ product }) {
               <button
                 // onClick={() => sendProps()}
                 className="text-white border-[1px] font-semibold border-white rounded-lg text-[16px] tracking-wider px-2 py-1 hover:bg-white hover:text-black hover:border-black"
+                onClick={() => saveData(data)}
               >
                 <a>Learn More</a>
               </button>

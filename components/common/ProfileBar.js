@@ -113,47 +113,18 @@ export default function ProfileBar({
             onClick={() => router.back()}
             className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3"
           >
-            {/* <div className="flex gap-1 items-center justify-center "> */}
-            {/* <div className="text-white text-[25px] hover:text-black">
-                <IoIosArrowBack />
-              </div> */}
-            {/* <div className="text-white text-[25px] hover:text-black"> */}
             Back
-            {/* </div> */}
-            {/* </div> */}
           </button>{" "}
         </div>
       )}
-      {/* <button
-        onClick={(e) => {
-          getProducts(e);
-        }}
-      >
-        Click Me
-      </button> */}
-      {/* <div className={`${search.wrap} relative`}> */}
       <div className="relative">
-        {/* <form action="" autoComplete="on">
-          <input
-            className={search.search}
-            name="search"
-            type="text"
-            placeholder="What're we looking for ?"
-            value={searchResult}
-            onChange={(e) => {
-              setSearchResult(e.target.value);
-            }}
-            // value={searchResult}
-            // onChange={(e) => {
-            //   setSearchResult(e.target.value);
-            // }}
-          ></input>
-          <button className={`${icons} ${search.search_submit}`} type="submit">
-            <BsSearch />
-          </button>
-        </form> */}
         <Search searchResult={searchResult} setSearchResult={setSearchResult} />
-        {searchResult && <SearchDropDown searchResults={results} />}
+        {searchResult && (
+          <SearchDropDown
+            searchResults={results}
+            setSearchResult={setSearchResult}
+          />
+        )}
       </div>
 
       {cartshow && token && (

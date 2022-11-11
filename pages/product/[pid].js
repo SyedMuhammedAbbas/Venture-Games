@@ -1,7 +1,7 @@
 import Teen from "../../images/teenesbr.png";
 import { useState, useEffect, useLayoutEffect } from "react";
 import { useRouter } from "next/router";
-import { BiError } from "react-icons/bi";
+// import { BiError } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import ProfileBar from "../../components/common/ProfileBar";
@@ -10,6 +10,7 @@ import Link from "next/link";
 import UnavailabeProduct from "../../images/unavailable.jpg";
 import Logo from "../../images/logo.svg";
 import { setCartItem } from "../../features/counter/cartSlice";
+// import { useCookies } from "react-cookie";
 
 // const router = useRouter();
 // const { pid } = router.query;
@@ -48,7 +49,9 @@ export async function getServerSideProps(context) {
 export default function Product() {
   // console.log("productPage");
   const router = useRouter();
-  const { pid } = router.query;
+  // const { pid } = router.query;
+  console.log(JSON.parse(window.localStorage.getItem("pid")));
+  const { pid } = JSON.parse(window.localStorage.getItem("pid"));
   // console.log(pid);
   // const productGroup = id;
   // console.log(router.pathname);
@@ -66,6 +69,7 @@ export default function Product() {
   const [particularItem, setParticularItem] = useState(true);
   const [New, setNew] = useState(true);
   const [Old, setOld] = useState(false);
+  const [Digital, setDigital] = useState(false);
   const [selectedPlatformFlag, setSelectedPlatformFlag] = useState(true);
 
   async function fetchData() {
@@ -81,6 +85,7 @@ export default function Product() {
     setSelectedType(initialProduct.Type);
     setOld(initialProduct.Type === "Used");
     setNew(initialProduct.Type === "New");
+    setDigital(initialProduct.Type === "Digital");
     setSelectedPlatform(initialProduct.Platform.Title);
     if (initialProduct.Colour) {
       setSelectedColour(initialProduct.Colour.Title);
@@ -232,7 +237,7 @@ export default function Product() {
         config
       );
 
-      getCart();  
+      getCart();
 
       console.log(response);
     } else if (DisplayedProduct.Quantity <= 0) {
@@ -260,34 +265,40 @@ export default function Product() {
               <div className="tablet:pl-[90px] mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
                 <div className="relative grid justify-center  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
                   <div className=" absolute right-8 top-[18px] xl:top-6">
-                    <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[191px]">
-                      <button
-                        className={`capitalize text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
-                          New
-                            ? "bg-[#000] text-[#FFB636] rounded-[40px]"
-                            : "bg-transparent text-[#000]"
-                        }`}
-                        value="new"
-                        onClick={() => {
-                          handleNew();
-                        }}
-                      >
-                        new
-                      </button>
-                      <button
-                        className={`capitalize ml-[-20px] text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
-                          Old
-                            ? "bg-[#000] text-[#FFB636] rounded-[40px]"
-                            : "bg-transparent text-[#000]"
-                        }`}
-                        value="old"
-                        onClick={() => {
-                          handleOld();
-                        }}
-                      >
-                        used
-                      </button>
-                    </div>
+                    {!Digital ? (
+                      <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[191px]">
+                        <button
+                          className={`capitalize text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
+                            New
+                              ? "bg-[#000] text-[#FFB636] rounded-[40px]"
+                              : "bg-transparent text-[#000]"
+                          }`}
+                          value="new"
+                          onClick={() => {
+                            handleNew();
+                          }}
+                        >
+                          new
+                        </button>
+                        <button
+                          className={`capitalize ml-[-20px] text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
+                            Old
+                              ? "bg-[#000] text-[#FFB636] rounded-[40px]"
+                              : "bg-transparent text-[#000]"
+                          }`}
+                          value="old"
+                          onClick={() => {
+                            handleOld();
+                          }}
+                        >
+                          used
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="bg-[#000] text-[#FFB636] rounded-[40px]">
+                        Digital
+                      </div>
+                    )}
                   </div>
                   <div className="grid gap-2 overflow-y-scroll desp-scroll">
                     <div className="text-white h-[150px] text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px] tablet:w-[250px] mobile1:w-[300px] font-semibold "></div>
@@ -370,11 +381,11 @@ export default function Product() {
               className="w-[550px] h-[550px] bg-[#606060] object-contain z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"
               src={DisplayedProduct.Images}
             ></img>
-            <div className="grid gap-0 min-h-[500px] max-h-[100%] relative xl:min-h-[400px] xl:max-h-[100%] tablet:min-h-[500px] tablet:max-h-[100%] tablet3:h-[100%] mobile2:min-h-[650px] mobile2:max-h-[100%] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[0.5%] xl:mt-[5%] tablet:mt-[10%] mobile2:mt-[34%] mobile1:pt-[30%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-br-[45px] xl:rounded-bl-[45px] tablet:rounded-bl-[45px]">
+            <div className="grid gap-0 min-h-[500px] max-h-[100%] relative xl:min-h-[400px] xl:max-h-[100%] tablet:min-h-[500px] tablet:max-h-[100%] tablet3:h-[100%] mobile2:min-h-[650px] mobile2:max-h-[100%] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[0.5%] xl:mt-[5%] tablet:mt-[10%] mobile2:mt-[34%] mobile1:pt-[30%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] mobile1:pl-[20px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-br-[45px] xl:rounded-bl-[45px] tablet:rounded-bl-[45px]">
               <div className="tablet:pl-[90px] relative mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
                 <div className="relative  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
-                  <div className=" absolute right-8 top-[18px] xl:top-6">
-                    <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[191px]">
+                  <div className=" absolute right-8 mobile1:right-10 top-[18px] xl:top-6 iosNewUsedProduct">
+                    <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[191px] mobile1:w-auto">
                       <button
                         className={`capitalize text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
                           New
@@ -403,8 +414,12 @@ export default function Product() {
                       </button>
                     </div>
                   </div>
-                  <div className="grid gap-2 w-[450px] tablet:w-[400px] tablet3:w-[350px] mobile:w-auto h-[170px] overflow-x-hidden overflow-y-auto productTitle">
-                    <div className="text-white  text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px]  font-semibold ">
+                  <div
+                    className={`grid gap-2 w-[450px] tablet:w-[400px] tablet3:w-[350px] mobile:w-auto  ${
+                      AvailableColours.length === 0 ? "h-[120px]" : "h-[170px]"
+                    }  overflow-x-hidden overflow-y-auto productTitle`}
+                  >
+                    <div className="text-white  text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px]  font-semibold iosTitleProduct">
                       {DisplayedProduct.Title}
                     </div>
                     <div className="flex flex-wrap gap-1">
@@ -442,7 +457,8 @@ export default function Product() {
                         }
                       })}
                     </div>
-                    <div className="flex gap-2 pb-2 mobile:w-[300px]">
+
+                    <div className="flex flex-wrap gap-2 pb-2 mobile:w-[300px]">
                       {AvailableColours.map((index) => {
                         let mycolor = `bg-[#${index.Code.replace(
                           /['"]+/g,
@@ -476,27 +492,25 @@ export default function Product() {
                     </div>
                   </div>
                 </div>
-                {DisplayedProduct.Genre === [] &&
-                DisplayedProduct.Tags === [] ? (
-                  <div className="overflow-y-scroll desp-scroll h-[50px] w-[350px] mt-1 xl:h-[80px] tablet:h-[120px] tablet3:w-[300px] mobile1:pt-2">
-                    <div className="grid">
-                      {DisplayedProduct.Genre && (
-                        <div className="grid gap-[1px] mobile1:gap-0">
+                {DisplayedProduct.Tags.length !== 0 ? (
+                  <div className="overflow-y-auto productTitle h-[50px] w-[350px] mt-1 xl:h-[80px] tablet:h-[120px] tablet3:w-[300px] mobile1:pt-2">
+                    <div className="">
+                      {DisplayedProduct.Genre.length !== 0 ? (
+                        <div className="grid mobile1:gap-0">
                           <div className="flex">
                             {Object.values(DisplayedProduct.Genre).map((i) => (
                               <div
                                 key={i}
                                 className="text-gray-400 text-[25px] mobile1:text-[20px] capitalize"
                               >
-                                {i.Title}{" "}
-                                <span className="text-[40px] mobile1:text-[20px]">
-                                  .{" "}
-                                </span>
+                                {i.Title} <span className="">.</span>
                               </div>
                             ))}
                           </div>
                           <div className="border-b-[2px] border-gray-400 w-[250px]"></div>
                         </div>
+                      ) : (
+                        ""
                       )}
 
                       {DisplayedProduct.Tags && (
@@ -508,7 +522,7 @@ export default function Product() {
                           })}{" "}
                           {Object.values(DisplayedProduct.Tags).map((i) => {
                             if (typeof i.Title === "string") {
-                              return <span className="text-[40px]">.</span>;
+                              return <span className="">.</span>;
                             } else {
                               return " ";
                             }
@@ -524,10 +538,10 @@ export default function Product() {
                     </div>
                   </div>
                 ) : (
-                  <div className="h-0"></div>
+                  ""
                 )}
                 {DisplayedProduct.Description && (
-                  <div className="overflow-y-scroll productTitle min-h-auto h-[90px] w-[350px] text-white mt-2 pb-5 text-[20px]">
+                  <div className="overflow-y-scroll productTitle min-h-auto h-[90px] mobile:h-[120px] w-[350px] text-white mt-2 pb-5 text-[20px]">
                     {DisplayedProduct.Description}
                   </div>
                 )}
@@ -541,7 +555,10 @@ export default function Product() {
                     ) : (
                       <div className="flex gap-4">
                         <div className="text-red-600 line-through text-[23px] mobile1:text-[20px]">
-                          {DisplayedProduct.OldPrice}
+                          {DisplayedProduct.OldPrice.toString().replace(
+                            /\B(?=(\d{3})+(?!\d))/g,
+                            ","
+                          )}
                         </div>
                         {DisplayedProduct.OldPrice === undefined ? (
                           ""
@@ -552,7 +569,11 @@ export default function Product() {
                     )}
 
                     <div className="text-white text-[25px] mobile1:text-[20px]">
-                      {DisplayedProduct.Price} PKR
+                      {DisplayedProduct.Price.toString().replace(
+                        /\B(?=(\d{3})+(?!\d))/g,
+                        ","
+                      )}{" "}
+                      PKR
                     </div>
                   </div>
                 )}

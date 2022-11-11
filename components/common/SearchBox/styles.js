@@ -8,7 +8,6 @@ export const Container = styled.div`
   height: 50px;
   box-sizing: border-box;
   border-radius: 0px;
-  border: 0px solid #000000;
   padding: 5px;
   background: transparent;
   transition: all 0.5s;
@@ -29,7 +28,7 @@ export const SearchInput = styled.input`
   position: absolute;
   top: 2;
   left: 0;
-  width: 90%;
+  width: 100%;
   height: 50px;
   line-height: auto;
   outline: 0;
@@ -61,14 +60,13 @@ const fadeIn = keyframes`
 const IconCommonCss = css`
   height: 1.5rem;
   width: 1.5rem;
-  fill: black;
+  fill: white;
   z-index: 10;
-  animation: ${fadeIn} 1s linear;
+  animation: ${fadeIn} 0.5s linear;
 `;
 
 export const IconMagnifyingGlass = styled(SearchIcon)`
   ${IconCommonCss}
-  color:#ffffff;
 `;
 
 export const IconRightArrow = styled(ArrowRightIcon)`
@@ -76,6 +74,6 @@ export const IconRightArrow = styled(ArrowRightIcon)`
   align-self: flex-end;
   cursor: pointer;
   &:hover {
-    fill: black;
+    fill: white;
   }
 `;

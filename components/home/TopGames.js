@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import SpidermanCover from "../../images/sliderCover/spidermanCover.jpg";
 import Cover from "../../images/sliderCover/Cover.jpg";
 

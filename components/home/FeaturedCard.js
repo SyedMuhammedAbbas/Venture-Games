@@ -5,6 +5,14 @@ import Router from "next/router";
 // import { keyframes } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 
+function saveData(data) {
+  //console.log(data);
+  data = '{"pid" :"' + data + '"}';
+  console.log(data);
+  console.log(JSON.parse(data));
+  window.localStorage.setItem("pid", data);
+}
+
 export default function FeaturedCard({ product }) {
   // const dispatch = useDispatch();
   // const handleAddtoCart = (product) => {
@@ -65,11 +73,14 @@ export default function FeaturedCard({ product }) {
             ""
           ) : (
             <div className="text-red-600 line-through text-[25px] mobile:text-[19px]">
-              {product.OldPrice}
+              {product.OldPrice.toString().replace(
+                /\B(?=(\d{3})+(?!\d))/g,
+                ","
+              )}
             </div>
           )}
           <div className="text-white text-[25px] mobile:text-[21px]">
-            {product.Price} PKR
+            {product.Price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} PKR
           </div>
         </div>
         <div className="flex justify-center gap-2 mt-[-7px] mb-5">
@@ -77,6 +88,7 @@ export default function FeaturedCard({ product }) {
             <button
               // onClick={() => sendProps()}
               className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-8 py-1 hover:bg-white hover:text-black hover:border-black"
+              onClick={() => saveData(data)}
             >
               <a>View</a>
             </button>

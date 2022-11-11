@@ -3,6 +3,7 @@ import { useState } from "react";
 import ShopGames from "../../components/shop/ShopGames";
 import ShopCover from "../../components/shop/ShopCover";
 import ProfileBarMobile from "../../components/common/ProfileBarMobile";
+import GamesCover from "../../components/shop/GamesCover";
 
 export default function Games() {
   const [handleSignup, sethandleSignup] = useState(false);
@@ -33,7 +34,7 @@ export default function Games() {
         sethandleSortMobile={sethandleSortMobile}
       />
       <div className="snap-center">
-        <ShopCover />
+        <GamesCover />
       </div>
       <div className="snap-start">
         <ShopGames

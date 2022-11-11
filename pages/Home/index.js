@@ -23,6 +23,7 @@ export default function Home() {
     let config = {
       headers: {
         Authorization: "Bearer " + jwtToken,
+        "Content-Type": "application/json",
       },
     };
     if (jwtToken != null) {
