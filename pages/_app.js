@@ -11,12 +11,24 @@ import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Script from 'next/script';
 
 function MyApp({ Component, pageProps }) {
   let persistor = persistStore(store);
   initMyFirebase();
   return (
     <>
+      <Script strategy="lazyOnload" src={"https://www.googletagmanager.com/ns.html?id=GTM-57973S3"} />
+      <Script strategy="lazyOnload">
+      {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'GTM-57973S3', {
+          page_path: window.location.pathname,
+          });
+      `}
+      </Script>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <Head>
