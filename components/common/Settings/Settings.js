@@ -3,6 +3,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { useEffect } from "react";
 
 export default function Settings() {
   const user = useSelector((state) => state.user.userDetails);
@@ -51,6 +52,22 @@ export default function Settings() {
     );
     console.log(response);
   }
+
+  async function getOrders () {
+    const jwtToken = JSON.parse(localStorage.getItem("token"));
+    const config = {
+      headers: {
+        Authorization: "Bearer " + jwtToken
+      }
+    }
+    let response = await axios.get("https://api.venturegames.pk/Order/GetUserOrder", config);
+    console.log(response);
+  }
+
+  useEffect(() => {
+    getOrders();
+  }, []);
+
   return (
     <>
       <div className="min-h-[140vh] max-h-[100%] bg-[#FFB636] py-[5%] px-[10%] mobile:px-[5%]">

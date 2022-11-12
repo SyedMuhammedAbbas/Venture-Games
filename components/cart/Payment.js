@@ -4,9 +4,12 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { clearCart } from '../../features/counter/cartSlice';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 export default function CheckOut() {
   const dispatch = useDispatch();
+  const router = useRouter();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [total_items, setTotal_Items] = useState(0);
   const [total_weight, setTotal_Weight] = useState(0);
@@ -72,37 +75,45 @@ export default function CheckOut() {
       setDebitValue(true);
     }
   }
-  async function handleCOD() {
-    let jwtToken = JSON.parse(localStorage.getItem('token'));
-    let config = {
-      headers: {
-        Authorization: 'Bearer ' + jwtToken,
-        'Content-Type': 'application/json',
-      },
-    };
-    console.log(information);
-    let data = JSON.stringify({
-      BillingAddress1: information.BillingAddress1,
-      BillingAddress2: information.BillingAddress2,
-      ShippingAddress1: information.ShippingAddress1,
-      ShippingAddress2: information.ShippingAddress2,
-      ShippingRegion: information.ShippingRegion,
-      PaymentMethod: 'COD',
-      ShippingPhone: information.ShippingPhone,
-      BillingPhone: information.BillingPhone,
-    });
-    // console.log(data);
-    let response = await axios.post(
-      'https://api.venturegames.pk/Order/Checkout',
-      data,
-      config
-    );
-    if(response.data = 'Success') {
-      alert("Order Successful");
-      dispatch(clearCart());
-    }
 
-    console.log(response);
+  async function submitDelivery() {
+    if(getCODvalue) {
+      console.log("Inside");
+      let jwtToken = JSON.parse(localStorage.getItem('token'));
+      let config = {
+        headers: {
+          Authorization: 'Bearer ' + jwtToken,
+          'Content-Type': 'application/json',
+        },
+      };
+      let data = JSON.stringify({
+        BillingAddress1: information.BillingAddress1,
+        BillingAddress2: information.BillingAddress2,
+        ShippingAddress1: information.ShippingAddress1,
+        ShippingAddress2: information.ShippingAddress2,
+        ShippingRegion: information.ShippingRegion,
+        PaymentMethod: 'COD',
+        ShippingPhone: information.ShippingPhone,
+        BillingPhone: information.BillingPhone,
+      });
+      // console.log(data);
+      let response = await axios.post(
+        'https://api.venturegames.pk/Order/Checkout',
+        data,
+        config
+      );
+      console.log(response);
+      if(response.data = 'Success') {
+        toast.success("Order Successful", {
+          className: "toast-message",
+        })
+        dispatch(clearCart());
+        router.push("/thankyou");
+      }
+    }
+  }
+
+  async function handleCOD() {
     if (getDebitValue) {
       setDebitValue(false);
       if (!getCODvalue) {
@@ -200,10 +211,9 @@ export default function CheckOut() {
                       ''
                     )}
                     <div>
-                      <button className='uppercase text-white text-[25px] mobile:text-[20px] font-semibold tracking-wider w-[70%] mobile2:w-[90%] py-4 rounded-lg bg-[#68BA01]'>
-                        <Link href='/thankyou'>
+                      <button className='uppercase text-white text-[25px] mobile:text-[20px] font-semibold tracking-wider w-[70%] mobile2:w-[90%] py-4 rounded-lg bg-[#68BA01]'
+                              onClick={() => {submitDelivery()}}>
                           <a>pay now - pkr {total_amount + shipping_fee}</a>
-                        </Link>
                       </button>
                     </div>
                   </div>

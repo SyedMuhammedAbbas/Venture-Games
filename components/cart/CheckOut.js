@@ -7,6 +7,7 @@ import axios from "axios";
 import { setRegion } from "../../features/counter/cartSlice";
 import { setInformation } from "../../features/counter/checkoutSlice";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 export default function CheckOut() {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -25,6 +26,7 @@ export default function CheckOut() {
   const [address3, setAddress3] = useState("");
   const [address4, setAddress4] = useState("");
   const [checkFlag, setCheckFlag] = useState(false);
+  const [checkFlag2, setCheckFlag2] = useState(false);
   const user = useSelector((state) => state.user.userDetails);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -64,7 +66,7 @@ export default function CheckOut() {
       "https://api.venturegames.pk/GetCart?ShippingRegion=" + place,
       config
     );
-    // console.log("Here");
+    console.log(response);
     setTotal_Items(response.data.CartItems.length);
     setTotal_Amount(response.data.CartPrice);
     setTotal_Weight(response.data.CartWeight);
@@ -96,7 +98,16 @@ export default function CheckOut() {
         setContactNumber1(user.ContactNumber);
       }
     }
-  }, []);
+  }, [place]);
+
+  useEffect(() => {
+    if(checkFlag) {
+      setAddress3(address1);
+      setAddress4(address2);
+      setContactNumber2(ContactNumber1);
+    }
+  }, [address1, address2, ContactNumber1]);
+
   const order_summary = [
     "total items:",
     "total amount:",
@@ -122,7 +133,8 @@ export default function CheckOut() {
       address4.length > 0 &&
       place.length > 0 &&
       ContactNumber1.length > 0 &&
-      ContactNumber2.length > 0
+      ContactNumber2.length > 0 &&
+      checkFlag2
     ) {
       return true;
     } else {
@@ -305,7 +317,9 @@ export default function CheckOut() {
                           <input
                             id="remember"
                             type="checkbox"
+                            defaultChecked={checkFlag2}
                             value=""
+                            onChange={() => {setCheckFlag2(!checkFlag2)}}
                             className="w-6 h-6 bg-gray-50  border rounded-[100%] border-gray-300 focus:bg-gray-700 focus:ring-gray-700"
                             required
                           />
@@ -428,7 +442,12 @@ export default function CheckOut() {
                   </div>
                 </div>
               ) : (
-                <div className="flex cursor-pointer gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]">
+                <div 
+                  className="flex cursor-pointer gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]"
+                  onClick={() => {toast("Kindly fill all fields", {
+                    className: "toast-message",
+                  });}}
+                  >
                   <div className="uppercase">
                     <a className="cursor-pointer">continue to payment</a>
                   </div>
