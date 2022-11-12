@@ -11,16 +11,23 @@ import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Script from 'next/script';
+import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
   let persistor = persistStore(store);
   initMyFirebase();
+  // const jwtToken = JSON.stringify(window.localStorage.getItem("token"));
+
+  // if (!jwtToken) {
+  // }
   return (
     <>
-      <Script strategy="lazyOnload" src={"https://www.googletagmanager.com/ns.html?id=GTM-57973S3"} />
+      <Script
+        strategy="lazyOnload"
+        src={"https://www.googletagmanager.com/ns.html?id=GTM-57973S3"}
+      />
       <Script strategy="lazyOnload">
-      {`
+        {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
@@ -32,7 +39,7 @@ function MyApp({ Component, pageProps }) {
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <Head>
-            <link rel="shortcut icon" href="/logo.png" />
+            <link rel="shortcut icon" href="/favicon.ico" />
           </Head>
           <Header />
           <div className="h-[120px] tablet:h-[70px]">&nbsp;</div>

@@ -12,6 +12,7 @@ import {
   SortHighToLow,
   FilterByCategory,
 } from "../../features/counter/flashSaleSlice";
+import { toast } from "react-toastify";
 
 export default function ShopFlashSaleProducts({
   handleFilter,
@@ -139,7 +140,9 @@ export default function ShopFlashSaleProducts({
     if (response.data.length > 0) {
       dispatch(FilterByGenre(response.data));
     } else {
-      alert("No Product");
+      toast("No Product", {
+        className: "toast-message",
+      });
     }
   }
 
@@ -216,7 +219,9 @@ export default function ShopFlashSaleProducts({
     if (response.data.length > 0) {
       dispatch(FilterByCategory(response.data));
     } else {
-      alert("No Product");
+      toast("No Product", {
+        className: "toast-message",
+      });
     }
   }
 
@@ -292,7 +297,9 @@ export default function ShopFlashSaleProducts({
     if (response.data.length > 0) {
       dispatch(FilterByConsole(response.data));
     } else {
-      alert("No Product");
+      toast("No Product", {
+        className: "toast-message",
+      });
     }
   }
 

@@ -4,23 +4,36 @@ import { BsSortDown } from "react-icons/bs";
 import FeaturedCard from "../home/FeaturedCard";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  FilterByConsole,
+  FilterByGenre,
+  getConsoles,
+  SortLowToHigh,
+  SortHighToLow,
+  FilterByCategory,
+} from "../../features/counter/consolesSlice";
+import { toast } from "react-toastify";
 
-export default function ShopPlatforms({
+export default function ShopConsoles({
   handleFilter,
   handleSort,
-  selectedPlatforms,
   handleFilterMobile,
   handleSortMobile,
 }) {
-  console.log(selectedPlatforms);
-  //   const Products = useSelector((state) => state.products.allProducts);
+  console.log("here");
+  const ProductsFetched = useSelector((state) => state.consoles.allConsoles);
+  const Products = ProductsFetched.filter(
+    (v, i, a) =>
+      a.findIndex((t) => t.ProductGroup._id === v.ProductGroup._id) === i
+  );
+  console.log(Products);
   const [platforms, setPlatforms] = useState([]);
   const [genre, setGenre] = useState([]);
   const [tags, setTags] = useState([]);
-  const [Products, setProducts] = useState();
   const [consoles, setConsoles] = useState();
   const [heading, setHeading] = useState();
   const [cat, setCat] = useState();
+
   const sortbyprice = ["Low to High", "High to Low"];
   const icons = "text-[35px] 2xl:text-[25px] lg:text-[21px] text-white";
   const buttons =
@@ -40,34 +53,22 @@ export default function ShopPlatforms({
     setTags(tag.data);
   }
 
-  async function getPlatformProducts() {
-    let response = await axios.get("https://api.venturegames.pk/Products", {
-      params: {
-        Platform: selectedPlatforms,
-        ProductCategory: "Consoles",
-      },
-    });
-    console.log(response);
-    setProducts(response.data);
-  }
-
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   useEffect(() => {
-    console.log("useEffect");
-    getPlatformProducts();
+    dispatch(getConsoles());
     setters();
   }, []);
 
-  //   const item = Products.map((index) => {
-  //     return index.ProductGroup;
-  //   });
+  const item = Products.map((index) => {
+    return index.ProductGroup;
+  });
   // console.log(item);
-  // function FilterConsole(Products) {
-  //   dispatch(FilterByConsole(Products));
-  // }
-  // function FilterGenre(Products) {
-  //   dispatch(FilterByGenre(Products));
-  // }
+  function FilterConsole(Products) {
+    dispatch(FilterByConsole(Products));
+  }
+  function FilterGenre(Products) {
+    dispatch(FilterByGenre(Products));
+  }
 
   async function sortByPlatform(type) {
     let response;
@@ -142,7 +143,9 @@ export default function ShopPlatforms({
     if (response.data.length > 0) {
       dispatch(FilterByGenre(response.data));
     } else {
-      alert("No Product");
+      toast("No Product", {
+        className: "toast-message",
+      });
     }
   }
 
@@ -219,7 +222,9 @@ export default function ShopPlatforms({
     if (response.data.length > 0) {
       dispatch(FilterByCategory(response.data));
     } else {
-      alert("No Product");
+      toast("No Product", {
+        className: "toast-message",
+      });
     }
   }
 
@@ -295,7 +300,9 @@ export default function ShopPlatforms({
     if (response.data.length > 0) {
       dispatch(FilterByConsole(response.data));
     } else {
-      alert("No Product");
+      toast("No Product", {
+        className: "toast-message",
+      });
     }
   }
 
@@ -316,6 +323,7 @@ export default function ShopPlatforms({
     let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
         Sort: "PriceAsc",
+        ProductCategory: "Consoles",
       },
     });
     console.log(response.data);

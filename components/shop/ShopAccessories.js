@@ -12,6 +12,7 @@ import {
   SortHighToLow,
   FilterByCategory,
 } from "../../features/counter/accessoriesSlice";
+import { toast } from "react-toastify";
 
 export default function ShopAccessories({
   handleFilter,
@@ -141,7 +142,9 @@ export default function ShopAccessories({
     if (response.data.length > 0) {
       dispatch(FilterByGenre(response.data));
     } else {
-      alert("No Product");
+      toast("No Product", {
+        className: "toast-message",
+      });
     }
   }
 
@@ -218,7 +221,9 @@ export default function ShopAccessories({
     if (response.data.length > 0) {
       dispatch(FilterByCategory(response.data));
     } else {
-      alert("No Product");
+      toast("No Product", {
+        className: "toast-message",
+      });
     }
   }
 
@@ -294,7 +299,9 @@ export default function ShopAccessories({
     if (response.data.length > 0) {
       dispatch(FilterByConsole(response.data));
     } else {
-      alert("No Product");
+      toast("No Product", {
+        className: "toast-message",
+      });
     }
   }
 

@@ -1,21 +1,52 @@
-import ConsolesPlatform from "../../components/common/ConsolesPlatform";
 import ProfileBar from "../../components/common/ProfileBar";
+import ShopConsoles from "../../components/shop/ShopConsoles";
 import { useState } from "react";
+import ShopCover from "../../components/shop/ShopCover";
+import { useRouter } from "next/router";
+import ProfileBarMobile from "../../components/common/ProfileBarMobile";
 
-export default function Consoles() {
+export default function ShopPlatformsPage(platforms) {
+  const [handleFilter, sethandleFilter] = useState(false);
+  const [handleSort, sethandleSort] = useState(false);
   const [handleSignup, sethandleSignup] = useState(false);
   const [handleLogin, sethandleLogin] = useState(false);
+  const router = useRouter();
+  const selectedPlatform = router.query.selectedPlatform;
+  console.log(selectedPlatform);
+  // const [Cart, setCart] = useState([]);
+  const [handleFilterMobile, sethandleFilterMobile] = useState(false);
+  const [handleSortMobile, sethandleSortMobile] = useState(false);
+
   return (
     <>
       <ProfileBar
-        cartshow={false}
+        filter="true"
+        sethandleFilter={sethandleFilter}
+        handleFilter={handleFilter}
+        sethandleSort={sethandleSort}
+        handleSort={handleSort}
+        cartshow={true}
         handleLogin={handleLogin}
         sethandleLogin={sethandleLogin}
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
+      <ProfileBarMobile
+        handleFilterMobile={handleFilterMobile}
+        sethandleFilterMobile={sethandleFilterMobile}
+        handleSortMobile={handleSortMobile}
+        sethandleSortMobile={sethandleSortMobile}
+      />
+      <div className="snap-center">
+        <ShopCover />
+      </div>
       <div className="snap-start">
-        <ConsolesPlatform />
+        <ShopConsoles
+          handleFilter={handleFilter}
+          handleSort={handleSort}
+          handleFilterMobile={handleFilterMobile}
+          handleSortMobile={handleSortMobile}
+        />
       </div>
     </>
   );
