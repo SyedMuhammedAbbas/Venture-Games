@@ -28,43 +28,48 @@ import { data } from "autoprefixer";
 //     props: { product: {} },
 //   };
 // }
-// export async function getStaticPaths() {
-//   return {
-//     paths: [`/product/${data}`],
-//     fallback: true, // can also be true or 'blocking'
-//   };
-// }
-// export async function getStaticProps(context) {
-//   const { pid } = context.params;
-//   let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
-//     params: {
-//       Product: pid,
-//     },
-//   });
-//   return {
-//     props: { data: response.data },
-//   };
-// }
+
+export async function getStaticProps(context) {
+  console.log(context.params);
+  const { pid } = context.params;
+  let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
+    params: {
+      Product: pid,
+    },
+  });
+  return {
+    props: {
+      data: response.data,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  let response = await axios.get("https://api.venturegames.pk/Products");
+  console.log(response);
+  const ids = response.data.map((product) => product._id);
+  const paths = ids.map((id) => ({ params: { pid: id.toString() } }));
+
+  return {
+    paths,
+    fallback: true, // can also be true or 'blocking'
+  };
+}
 
 // export async function getServerSideProps(context) {
-//   return {
-//     props: {},
-//   };
+//   const { pid } = context.params;
+//   console.log(pid);
+//   if (pid) {
+//     let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
+//       params: {
+//         Product: pid,
+//       },
+//     });
+//     return {
+//       props: { data: response.data },
+//     };
+//   }
 // }
-
-export async function getServerSideProps(context) {
-  const { pid } = context.params;
-  if (pid) {
-    let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
-      params: {
-        Product: pid,
-      },
-    });
-    return {
-      props: { data: response.data },
-    };
-  }
-}
 
 export default function Product({ data }) {
   const [handleSignup, sethandleSignup] = useState(false);
