@@ -1,6 +1,41 @@
+import { useEffect } from "react";
 import useRedirect from "../../hooks/Redirect";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { Login } from '../../features/counter/userSlice';
 
 export default function EmailVerified() {
+  const router = useRouter();
+  const dispatch = useDispatch();  
+
+  async function getuser() {
+    const jwtToken = JSON.parse(localStorage.getItem("token"));
+    const config = {
+        headers: {
+            Authorization: "Bearer " + jwtToken
+        }
+    }
+    let response = await axios.get("https://api.venturegames.pk/GetProfile", config);
+    console.log(response.data);
+    if(response.status == 200) {
+        dispatch(Login(response.data));
+        setTimeout(() => {
+            router.push("/");
+        }, 2000); 
+    }
+    else {
+        throw(err);
+    }
+  }  
+  useEffect(() => {
+    try {
+      getuser();
+    }
+    catch (e) {
+      console.error(e);
+    }
+  }, [])
   const { secondsRemaining } = useRedirect("/", 5);
   return (
     <>
