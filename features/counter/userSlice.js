@@ -11,7 +11,6 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     Login(state, action) {
-      console.log(action.payload);
       state.userDetails = action.payload;
       state.token = true;
       toast.success("Login Successfull", {
@@ -19,7 +18,6 @@ export const userSlice = createSlice({
       });
     },
     SignOut(state) {
-      console.log("here");
       state.userDetails = {};
       state.token = false;
       toast.success("Signout Successfull", {
