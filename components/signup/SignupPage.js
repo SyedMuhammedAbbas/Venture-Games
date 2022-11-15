@@ -6,6 +6,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { Login } from "../../features/counter/userSlice";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 export default function SignupPage({ data }) {
   const dispatch = useDispatch();
@@ -89,7 +91,7 @@ export default function SignupPage({ data }) {
             <div className="text-[#FFB636] text-[35px] grid xl2:w-[500px] mobile1:w-[100%] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
               Contact No.
               <div className="flex items-center">
-                <div className="text-[#FFB636] text-[25px] flex mt-3">
+                {/* <div className="text-[#FFB636] text-[25px] flex mt-3">
                   +92<span className="px-3"> - </span>
                 </div>
                 <form className="border-b-[2px] xl2:w-[500px] items-center mobile1:w-[100%] flex border-[#FFB636]">
@@ -106,7 +108,14 @@ export default function SignupPage({ data }) {
                     }}
                     value={Contact}
                   ></input>
-                </form>
+                </form> */}
+                <PhoneInput
+                  placeholder="Enter phone number"
+                  value={Contact}
+                  onChange={(e) => {
+                    setContact(e.target.value);
+                  }}
+                />
               </div>
             </div>
             <div>

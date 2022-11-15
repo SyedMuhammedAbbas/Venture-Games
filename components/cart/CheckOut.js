@@ -101,7 +101,7 @@ export default function CheckOut() {
   }, [place]);
 
   useEffect(() => {
-    if(checkFlag) {
+    if (checkFlag) {
       setAddress3(address1);
       setAddress4(address2);
       setContactNumber2(ContactNumber1);
@@ -319,12 +319,14 @@ export default function CheckOut() {
                             type="checkbox"
                             defaultChecked={checkFlag2}
                             value=""
-                            onChange={() => {setCheckFlag2(!checkFlag2)}}
+                            onChange={() => {
+                              setCheckFlag2(!checkFlag2);
+                            }}
                             className="w-6 h-6 bg-gray-50  border rounded-[100%] border-gray-300 focus:bg-gray-700 focus:ring-gray-700"
                             required
                           />
                         </div>
-                        <label
+                        <div
                           for="remember"
                           class="ml-2 text-[20px] mobile:text-[16px] font-medium text-white "
                         >
@@ -334,7 +336,7 @@ export default function CheckOut() {
                               Terms of use & Privacy policy.
                             </span>
                           </Link>
-                        </label>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -442,12 +444,14 @@ export default function CheckOut() {
                   </div>
                 </div>
               ) : (
-                <div 
+                <div
                   className="flex cursor-pointer gap-2 bg-gradient-to-tl from-[#000] to-[#b58126] rounded-bl-[25px] tablet1:rounded-br-[25px] tablet1:rounded-bl-none mt-5 justify-center text-white text-[25px] mobile1.1:text-[20px] py-[15px]"
-                  onClick={() => {toast("Kindly fill all fields", {
-                    className: "toast-message",
-                  });}}
-                  >
+                  onClick={() => {
+                    toast("Kindly fill all fields", {
+                      className: "toast-message",
+                    });
+                  }}
+                >
                   <div className="uppercase">
                     <a className="cursor-pointer">continue to payment</a>
                   </div>

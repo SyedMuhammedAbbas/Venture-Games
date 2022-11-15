@@ -198,14 +198,7 @@ export default function Product({ data }) {
           return prod.Type === "New";
         });
         console.log(type);
-        if (type !== undefined) {
-          setSelectedType("New");
-          setParticularItem(true);
-        } else {
-          setParticularItem(false);
-        }
-      } else {
-        setParticularItem(false);
+        setSelectedType("New");
       }
     }
   }
@@ -218,33 +211,11 @@ export default function Product({ data }) {
           return prod.Type === "Used";
         });
         console.log(type);
-        if (type !== undefined) {
-          setSelectedType("Used");
-          setParticularItem(true);
-        } else {
-          setParticularItem(false);
-        }
-      } else {
-        setParticularItem(false);
+        setSelectedType("Used");
       }
     }
   }
-  function handleColor(selectedObject) {
-    if (Products.length >= 1) {
-      let color = Products.find((prod) => {
-        return prod.Colour === selectedObject.Title;
-      });
-      // console.log(type);
-      if (color !== undefined) {
-        setSelectedColour(selectedObject.Title);
-        setParticularItem(true);
-      } else {
-        setParticularItem(false);
-      }
-    } else {
-      setParticularItem(false);
-    }
-  }
+
   const dispatch = useDispatch();
 
   async function getCart() {
@@ -305,123 +276,8 @@ export default function Product({ data }) {
           <img src={Logo.src} className="w-20 h-20" />
         </div>
       ) : (
-        // !DisplayedProduct ? (
-        //   <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
-        //     <div className="flex justify-center product">
-        //       <img
-        //         className="w-[550px] h-[550px] bg-[#606060] object-contain z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"
-        //         src={UnavailabeProduct.src}
-        //       ></img>
-        //       <div className="grid gap-0 h-[500px] xl:h-[400px] tablet:h-[500px] tablet3:h-[100%] mobile2:h-[650px] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[1.5%] tablet:mt-[10%] mobile2:mt-[34%] mobile1:pt-[30%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-br-[45px] tablet:rounded-bl-[45px]">
-        //         <div className="tablet:pl-[90px] mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
-        //           <div className="relative grid justify-center  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
-        //             <div className=" absolute right-8 top-[18px] xl:top-6">
-        //               <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[191px]">
-        //                 <button
-        //                   className={`capitalize text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
-        //                     New
-        //                       ? "bg-[#000] text-[#FFB636] rounded-[40px]"
-        //                       : "bg-transparent text-[#000]"
-        //                   }`}
-        //                   value="new"
-        //                   onClick={() => {
-        //                     handleNew();
-        //                   }}
-        //                 >
-        //                   new
-        //                 </button>
-        //                 <button
-        //                   className={`capitalize ml-[-20px] text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
-        //                     Old
-        //                       ? "bg-[#000] text-[#FFB636] rounded-[40px]"
-        //                       : "bg-transparent text-[#000]"
-        //                   }`}
-        //                   value="old"
-        //                   onClick={() => {
-        //                     handleOld();
-        //                   }}
-        //                 >
-        //                   used
-        //                 </button>
-        //               </div>
-        //             </div>
-        //             <div className="grid gap-2 overflow-y-scroll desp-scroll">
-        //               <div className="text-white h-[150px] text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px] tablet:w-[250px] mobile1:w-[300px] font-semibold "></div>
-        //               <div className="flex gap-1">
-        //                 {AvailablePlatforms.map((index) => {
-        //                   if (selectedPlatform === index.Title) {
-        //                     return (
-        //                       <button
-        //                         onClick={() => {
-        //                           getTitle(index);
-        //                         }}
-        //                         className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-        //                           selectedPlatformFlag
-        //                             ? "bg-[#FFB636] text-black"
-        //                             : "text-[#FFB636] bg-transparent"
-        //                         }`}
-        //                       >
-        //                         {index.Title}
-        //                       </button>
-        //                     );
-        //                   } else {
-        //                     return (
-        //                       <button
-        //                         onClick={() => {
-        //                           getTitle(index);
-        //                         }}
-        //                         className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-        //                           selectedPlatformFlag
-        //                             ? "text-[#FFB636] bg-transparent"
-        //                             : " bg-[#FFB636] text-black"
-        //                         }`}
-        //                       >
-        //                         {index.Title}
-        //                       </button>
-        //                     );
-        //                   }
-        //                 })}
-        //               </div>
-        //               <div className="flex gap-2 flex-wrap">
-        //                 {AvailableColours.map((index) => {
-        //                   return (
-        //                     <div className="flex flex-wrap gap-2">
-        //                       <div className="flex">
-        //                         <button
-        //                           onClick={() => {
-        //                             getColour(index);
-        //                           }}
-        //                           className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 w-auto mobile1:h-6 rounded-md text-[12px]  ${
-        //                             selectedColour !== index.Title
-        //                               ? "text-[#FFB636] bg-transparent"
-        //                               : " bg-[#FFB636] text-black"
-        //                           }`}
-        //                         >
-        //                           {index.Title}
-        //                         </button>
-        //                         {/* <button
-        //                           className={`rounded-full w-5 h-5 border border-black bg-[#${index.Code}]`}
-        //                         >
-        //                           {console.log(index.Code)}{" "}
-        //                         </button> */}
-        //                       </div>
-        //                     </div>
-        //                   );
-        //                 })}
-        //               </div>
-        //             </div>
-        //           </div>
-
-        //           <div className="  text-blackOpac mt-2 pb-5 text-[5vw] flex justify-center items-center">
-        //             Product Unavailable
-        //           </div>
-        //         </div>
-        //       </div>
-        //     </div>
-        //   </div>
-        // ) : (
         <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
-          <div className="flex justify-center product py-[4%]">
+          <div className="flex justify-center product py-[4%] animate-spin">
             {!isAvailable ? (
               <img
                 className="w-[550px] h-[550px] bg-[#606060] object-contain z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"
@@ -467,7 +323,7 @@ export default function Product({ data }) {
                     </div>
                   </div>
                   <div className="grid gap-2 h-auto">
-                    <div className="text-white w-[450px] tablet:w-[400px] tablet3:w-[350px] mobile:w-auto  text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px]  font-semibold ">
+                    <div className="text-white w-[450px] tablet:w-[400px] tablet3:w-[350px] mobile:w-auto mobile:mr-5  text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px]  font-semibold ">
                       {DisplayedProduct.Title}
                     </div>
                     {AvailablePlatforms.length !== 0 ? (
@@ -598,7 +454,7 @@ export default function Product({ data }) {
                   <div className="h-0"></div>
                 )}
                 {DisplayedProduct.Description && (
-                  <div className="overflow-y-scroll productTitle min-h-auto h-[90px] w-[350px] text-white mt-2 pb-5 text-[20px]">
+                  <div className="overflow-y-auto productTitle min-h-[150px] max-h-auto w-auto mr-20 tablet:mr-10 mobile:mr-5 text-white mt-2 pb-5 text-[20px]">
                     {DisplayedProduct.Description}
                   </div>
                 )}
