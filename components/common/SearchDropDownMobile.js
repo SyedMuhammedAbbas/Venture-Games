@@ -26,7 +26,7 @@ export default function SearchDropDown({ searchResults, setOpenSearch }) {
             return (
               <Link href="/product/[pid]" as={`/product/${i._id}`}>
                 <div
-                  onClick={() => handleClose() & saveData(result._id)}
+                  onClick={() => handleClose() & saveData(i._id)}
                   className="flex gap-5 bg-transparent hover:cursor-pointer border-b-[1px] p-5 border-blackOpac items-center "
                 >
                   <img className="w-20 h-20 bg-contain" src={i.Images[0]}></img>
