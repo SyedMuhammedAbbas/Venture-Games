@@ -14,7 +14,7 @@ export default function SignupPage({ data }) {
   const [fullName, setFullName] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const [Contact, setContact] = useState("");
+  const [Contact, setContact] = useState();
   const router = useRouter();
   const user = useSelector((state) => state.user.userDetails);
 
@@ -112,9 +112,7 @@ export default function SignupPage({ data }) {
                 <PhoneInput
                   placeholder="Enter phone number"
                   value={Contact}
-                  onChange={(e) => {
-                    setContact(e.target.value);
-                  }}
+                  onChange={setContact}
                 />
               </div>
             </div>

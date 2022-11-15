@@ -19,6 +19,7 @@ import { useRouter } from "next/router";
 import { IoIosArrowBack } from "react-icons/io";
 import SearchDropDown from "./SearchDropDown";
 import Search from "./SearchBox/search";
+import Router from "next/router";
 
 export default function ProfileBar({
   filter,
@@ -78,6 +79,11 @@ export default function ProfileBar({
     }
   }, [searchResult]);
 
+  function sendProps() {
+    Router.push({
+      pathname: "/login/",
+    });
+  }
   return (
     <div className="flex items-center gap-9 2xl:gap-7 mobile:gap-5 fixed w-[100%] justify-end pr-28 2xl:pr-20 lg:pr-14 mobile:pr-7 tablet:hidden p-3  bg-black bg-opacity-30 backdrop-blur-xl z-[999]">
       {filter == "true" && (
@@ -147,10 +153,11 @@ export default function ProfileBar({
       )}
       {!token && (
         <div className="flex gap-5">
-          <button className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3">
-            <Link href="login">
-              <a className="">login</a>
-            </Link>
+          <button
+            onClick={() => sendProps()}
+            className="border-[1px] border-white hover:bg-[#FFB636] text-white  hover:text-black hover:border-[#FFB636] text-[25px] rounded-lg px-3"
+          >
+            <a className="">login</a>
           </button>
         </div>
       )}

@@ -312,7 +312,7 @@ export default function ShopProducts({
             <div
               className={
                 handleFilter
-                  ? "bg-gradient-to-tr from-[#1A1A1A] via-black to-[#1A1A1A] transition duration-300 ease-in-out opacity-100 px-[60px] mt-[0%] tablet:hidden h-[1300px] rounded-tr-[70px] rounded-br-[70px]"
+                  ? "bg-gradient-to-tr z-10 from-[#1A1A1A] via-black to-[#1A1A1A] transition duration-300 ease-in-out opacity-100 px-[60px] mt-[0%] tablet:hidden h-[1300px] rounded-tr-[70px] rounded-br-[70px]"
                   : "hidden"
               }
             >
@@ -503,7 +503,7 @@ export default function ShopProducts({
               </div>
             </div>
           )}
-          <div className="flex flex-wrap justify-center mx-auto gap-5 text-center mb-[5%]">
+          <div className="flex flex-wrap z-1 justify-center mx-auto gap-5 text-center mb-[5%]">
             {Object.values(Products).map((currentItem) => (
               <FeaturedCard key={currentItem} product={currentItem} />
             ))}
