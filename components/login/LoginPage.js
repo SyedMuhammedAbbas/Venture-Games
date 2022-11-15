@@ -132,7 +132,7 @@ export default function LoginPage() {
                 <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
                   <input
                     placeholder="Sarah@venturegames.com"
-                    className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
+                    className="bg-transparent text-[#ffffff] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
                     type="password"
                     required
                     onChange={(e) => {
@@ -167,7 +167,7 @@ export default function LoginPage() {
                 <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
                   <input
                     placeholder="Sarah@venturegames.com"
-                    className="bg-transparent text-[#FFB636] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
+                    className="bg-transparent text-[#ffffff] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
                     type="email"
                     required
                     onChange={(e) => setEmail(e.target.value)}

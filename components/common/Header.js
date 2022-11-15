@@ -153,7 +153,7 @@ export default function Header() {
                 </button>
               )}
             </div>
-            <ul className="grid uppercase text-white text-lg transition-all mt-[20px] h-[100vh] mobile:h-[70vh]  overflow-y-scroll desp-scroll">
+            <ul className="grid uppercase text-white text-lg transition-all mt-[20px] h-[100vh] mobile:h-[70vh]  overflow-y-scroll productTitle">
               {pages_heading.map((pages_heading, index) => (
                 <li
                   key={index}

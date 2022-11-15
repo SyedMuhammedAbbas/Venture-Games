@@ -21,7 +21,7 @@ function index() {
   }
   return (
     <div className="bg-[#1A1A1A] snap-start grid justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
-      <div className="grid justify-center gap-5 text-[#fffff] text-[25px] mobile:text-[20px]">
+      <div className="grid justify-center gap-5 text-[#ffffff] text-[25px] mobile:text-[20px]">
         <div>Kindly Verify your mail by clicking on the following button</div>
         <div className="flex justify-center">
           <button

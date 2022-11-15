@@ -23,7 +23,7 @@
   src: url('../fonts/LEMONMILK-Regular.otf') format('woff2');  
 }
 :root{
-  zoom: 75%;  
+  zoom: 65%;  
 }
 .topgamesCarousel{
   zoom: 120%;
@@ -322,7 +322,14 @@ html{
   .iosTitleProduct{
     font-size: 12px;
   }
- 
+
+  .bannerTextIos{
+    font-size: 60px;
+  }
+
+  .clientsViewIos{
+    padding:0px;
+  }
   /* CSS specific to iOS devices */
   /* Header */
     /* img */

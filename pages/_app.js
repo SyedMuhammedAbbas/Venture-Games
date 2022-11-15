@@ -12,6 +12,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Script from "next/script";
+import ScrollToTop from "../components/common/ScrollToTop";
 
 function MyApp({ Component, pageProps }) {
   let persistor = persistStore(store);
@@ -44,6 +45,7 @@ function MyApp({ Component, pageProps }) {
           <Header />
           <div className="h-[120px] tablet:h-[70px]">&nbsp;</div>
           <body>
+            <ScrollToTop />
             <Component {...pageProps} />
             <ToastContainer
               position="bottom-center"

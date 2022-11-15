@@ -38,8 +38,8 @@ export async function getStaticProps(context) {
     },
   });
   return {
-    props: { 
-      data: response.data 
+    props: {
+      data: response.data,
     },
   };
 }
@@ -47,8 +47,8 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   let response = await axios.get("https://api.venturegames.pk/Products");
   console.log(response);
-  const ids = response.data.map(product => product._id);
-  const paths = ids.map(id => ({params: {pid: id.toString()}}));
+  const ids = response.data.map((product) => product._id);
+  const paths = ids.map((id) => ({ params: { pid: id.toString() } }));
 
   return {
     paths,
@@ -178,6 +178,12 @@ export default function Product({ data }) {
     }
     return true;
   });
+  // let previousDisplayedProduct = DisplayedProduct;
+  let isAvailable = true;
+  if (!DisplayedProduct) {
+    DisplayedProduct = Products[0];
+    isAvailable = false;
+  }
   // if (DisplayedProduct !== undefined) {
   //   setItems(true);
   // } else {
@@ -223,7 +229,22 @@ export default function Product({ data }) {
       }
     }
   }
-
+  function handleColor(selectedObject) {
+    if (Products.length >= 1) {
+      let color = Products.find((prod) => {
+        return prod.Colour === selectedObject.Title;
+      });
+      // console.log(type);
+      if (color !== undefined) {
+        setSelectedColour(selectedObject.Title);
+        setParticularItem(true);
+      } else {
+        setParticularItem(false);
+      }
+    } else {
+      setParticularItem(false);
+    }
+  }
   const dispatch = useDispatch();
 
   async function getCart() {
@@ -283,128 +304,136 @@ export default function Product({ data }) {
         <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
           <img src={Logo.src} className="w-20 h-20" />
         </div>
-      ) : !DisplayedProduct ? (
-        <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
-          <div className="flex justify-center product">
-            <img
-              className="w-[550px] h-[550px] bg-[#606060] object-contain z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"
-              src={UnavailabeProduct.src}
-            ></img>
-            <div className="grid gap-0 h-[500px] xl:h-[400px] tablet:h-[500px] tablet3:h-[100%] mobile2:h-[650px] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[1.5%] tablet:mt-[10%] mobile2:mt-[34%] mobile1:pt-[30%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-br-[45px] tablet:rounded-bl-[45px]">
-              <div className="tablet:pl-[90px] mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
-                <div className="relative grid justify-center  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
-                  <div className=" absolute right-8 top-[18px] xl:top-6">
-                    <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[191px]">
-                      <button
-                        className={`capitalize text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
-                          New
-                            ? "bg-[#000] text-[#FFB636] rounded-[40px]"
-                            : "bg-transparent text-[#000]"
-                        }`}
-                        value="new"
-                        onClick={() => {
-                          handleNew();
-                        }}
-                      >
-                        new
-                      </button>
-                      <button
-                        className={`capitalize ml-[-20px] text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
-                          Old
-                            ? "bg-[#000] text-[#FFB636] rounded-[40px]"
-                            : "bg-transparent text-[#000]"
-                        }`}
-                        value="old"
-                        onClick={() => {
-                          handleOld();
-                        }}
-                      >
-                        used
-                      </button>
-                    </div>
-                  </div>
-                  <div className="grid gap-2 overflow-y-scroll desp-scroll">
-                    <div className="text-white h-[150px] text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px] tablet:w-[250px] mobile1:w-[300px] font-semibold "></div>
-                    <div className="flex gap-1">
-                      {AvailablePlatforms.map((index) => {
-                        if (selectedPlatform === index.Title) {
-                          return (
-                            <button
-                              onClick={() => {
-                                getTitle(index);
-                              }}
-                              className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-                                selectedPlatformFlag
-                                  ? "bg-[#FFB636] text-black"
-                                  : "text-[#FFB636] bg-transparent"
-                              }`}
-                            >
-                              {index.Title}
-                            </button>
-                          );
-                        } else {
-                          return (
-                            <button
-                              onClick={() => {
-                                getTitle(index);
-                              }}
-                              className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-                                selectedPlatformFlag
-                                  ? "text-[#FFB636] bg-transparent"
-                                  : " bg-[#FFB636] text-black"
-                              }`}
-                            >
-                              {index.Title}
-                            </button>
-                          );
-                        }
-                      })}
-                    </div>
-                    <div className="flex gap-2 flex-wrap">
-                      {AvailableColours.map((index) => {
-                        return (
-                          <div className="flex flex-wrap gap-2">
-                            <div className="flex">
-                              <button
-                                onClick={() => {
-                                  getColour(index);
-                                }}
-                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 w-auto mobile1:h-6 rounded-md text-[12px]  ${
-                                  selectedColour !== index.Title
-                                    ? "text-[#FFB636] bg-transparent"
-                                    : " bg-[#FFB636] text-black"
-                                }`}
-                              >
-                                {index.Title}
-                              </button>
-                              {/* <button
-                                className={`rounded-full w-5 h-5 border border-black bg-[#${index.Code}]`}
-                              >
-                                {console.log(index.Code)}{" "}
-                              </button> */}
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="  text-blackOpac mt-2 pb-5 text-[5vw] flex justify-center items-center">
-                  Product Unavailable
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       ) : (
+        // !DisplayedProduct ? (
+        //   <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
+        //     <div className="flex justify-center product">
+        //       <img
+        //         className="w-[550px] h-[550px] bg-[#606060] object-contain z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"
+        //         src={UnavailabeProduct.src}
+        //       ></img>
+        //       <div className="grid gap-0 h-[500px] xl:h-[400px] tablet:h-[500px] tablet3:h-[100%] mobile2:h-[650px] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[1.5%] tablet:mt-[10%] mobile2:mt-[34%] mobile1:pt-[30%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-br-[45px] tablet:rounded-bl-[45px]">
+        //         <div className="tablet:pl-[90px] mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
+        //           <div className="relative grid justify-center  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
+        //             <div className=" absolute right-8 top-[18px] xl:top-6">
+        //               <div className="flex gap-0 bg-[#FFB636] rounded-[40px] p-[1px] w-[224px] mobile:w-[191px]">
+        //                 <button
+        //                   className={`capitalize text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
+        //                     New
+        //                       ? "bg-[#000] text-[#FFB636] rounded-[40px]"
+        //                       : "bg-transparent text-[#000]"
+        //                   }`}
+        //                   value="new"
+        //                   onClick={() => {
+        //                     handleNew();
+        //                   }}
+        //                 >
+        //                   new
+        //                 </button>
+        //                 <button
+        //                   className={`capitalize ml-[-20px] text-[20px] mobile:text-[12px] font-semibold py-1 px-10 ${
+        //                     Old
+        //                       ? "bg-[#000] text-[#FFB636] rounded-[40px]"
+        //                       : "bg-transparent text-[#000]"
+        //                   }`}
+        //                   value="old"
+        //                   onClick={() => {
+        //                     handleOld();
+        //                   }}
+        //                 >
+        //                   used
+        //                 </button>
+        //               </div>
+        //             </div>
+        //             <div className="grid gap-2 overflow-y-scroll desp-scroll">
+        //               <div className="text-white h-[150px] text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px] tablet:w-[250px] mobile1:w-[300px] font-semibold "></div>
+        //               <div className="flex gap-1">
+        //                 {AvailablePlatforms.map((index) => {
+        //                   if (selectedPlatform === index.Title) {
+        //                     return (
+        //                       <button
+        //                         onClick={() => {
+        //                           getTitle(index);
+        //                         }}
+        //                         className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+        //                           selectedPlatformFlag
+        //                             ? "bg-[#FFB636] text-black"
+        //                             : "text-[#FFB636] bg-transparent"
+        //                         }`}
+        //                       >
+        //                         {index.Title}
+        //                       </button>
+        //                     );
+        //                   } else {
+        //                     return (
+        //                       <button
+        //                         onClick={() => {
+        //                           getTitle(index);
+        //                         }}
+        //                         className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+        //                           selectedPlatformFlag
+        //                             ? "text-[#FFB636] bg-transparent"
+        //                             : " bg-[#FFB636] text-black"
+        //                         }`}
+        //                       >
+        //                         {index.Title}
+        //                       </button>
+        //                     );
+        //                   }
+        //                 })}
+        //               </div>
+        //               <div className="flex gap-2 flex-wrap">
+        //                 {AvailableColours.map((index) => {
+        //                   return (
+        //                     <div className="flex flex-wrap gap-2">
+        //                       <div className="flex">
+        //                         <button
+        //                           onClick={() => {
+        //                             getColour(index);
+        //                           }}
+        //                           className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 w-auto mobile1:h-6 rounded-md text-[12px]  ${
+        //                             selectedColour !== index.Title
+        //                               ? "text-[#FFB636] bg-transparent"
+        //                               : " bg-[#FFB636] text-black"
+        //                           }`}
+        //                         >
+        //                           {index.Title}
+        //                         </button>
+        //                         {/* <button
+        //                           className={`rounded-full w-5 h-5 border border-black bg-[#${index.Code}]`}
+        //                         >
+        //                           {console.log(index.Code)}{" "}
+        //                         </button> */}
+        //                       </div>
+        //                     </div>
+        //                   );
+        //                 })}
+        //               </div>
+        //             </div>
+        //           </div>
+
+        //           <div className="  text-blackOpac mt-2 pb-5 text-[5vw] flex justify-center items-center">
+        //             Product Unavailable
+        //           </div>
+        //         </div>
+        //       </div>
+        //     </div>
+        //   </div>
+        // ) : (
         <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
           <div className="flex justify-center product py-[4%]">
-            <img
-              className="w-[550px] h-[550px] bg-[#606060] object-contain z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"
-              src={DisplayedProduct.Images}
-            ></img>
-            <div className="grid gap-0 min-h-[500px] max-h-[100%] relative xl:min-h-[400px] xl:max-h-[100%] tablet:min-h-[500px] tablet:max-h-[100%] tablet3:h-[100%] mobile2:min-h-[650px] mobile2:max-h-[100%] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[0.5%] xl:mt-[5%] tablet:mt-[10%] mobile2:mt-[34%] mobile1:pt-[30%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-br-[45px] xl:rounded-bl-[45px] tablet:rounded-bl-[45px]">
+            {!isAvailable ? (
+              <img
+                className="w-[550px] h-[550px] bg-[#606060] object-contain z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"
+                src={UnavailabeProduct.src}
+              ></img>
+            ) : (
+              <img
+                className="w-[550px] h-[550px] bg-[#606060] object-contain z-50 rounded-3xl xl:w-[450px] xl:h-[450px] lg:w-[400px] lg:h-[400px] tablet:w-[330px] tablet:h-[330px] tablet2:justify-center"
+                src={DisplayedProduct.Images}
+              ></img>
+            )}
+            <div className="grid gap-0 min-h-[500px] max-h-[100%] relative xl:min-h-[400px] xl:max-h-[100%] tablet:min-h-[500px] tablet:max-h-[100%] tablet3:h-[100%] mobile2:min-h-[650px] mobile2:max-h-[100%] mobile1:h-[100%] ml-[-20px] tablet:ml-[-90px] mobile2:ml-[-200px] mobile1:ml-[-300px] mt-[10%] xl:mt-[5%] tablet:mt-[10%] mobile2:mt-[34%] mobile1:pt-[30%] bg-gradient-to-b from-[#000000] via-[#282828] to-[#000000] pl-[40px] w-[800px] tablet3:w-[500px] mobile1:w-[400px] rounded-tr-[45px] rounded-bl-[45px] rounded-br-[45px] xl:rounded-bl-[45px] tablet:rounded-bl-[45px]">
               <div className="tablet:pl-[90px] relative mobile2:pl-10 mobile1:pl-0 tablet:py-10 mobile1:pt-20">
                 <div className="relative  pt-[5%] tablet3:pt-[30%] tablet3:grid tablet3:gap-12 mobile2:gap-14 mobile1:gap-14 mobile1:pt-20">
                   <div className=" absolute right-8 top-[18px] xl:top-6">
@@ -437,82 +466,90 @@ export default function Product({ data }) {
                       </button>
                     </div>
                   </div>
-                  <div className="grid gap-2 w-[450px] tablet:w-[400px] tablet3:w-[350px] mobile:w-auto h-[170px] overflow-x-hidden overflow-y-auto productTitle">
-                    <div className="text-white  text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px]  font-semibold ">
+                  <div className="grid gap-2 h-auto">
+                    <div className="text-white w-[450px] tablet:w-[400px] tablet3:w-[350px] mobile:w-auto  text-[35px] xl:text-[30px] tablet:text-[25px] mobile1:text-[25px]  font-semibold ">
                       {DisplayedProduct.Title}
                     </div>
-                    <div className="flex flex-wrap gap-1">
-                      {AvailablePlatforms.map((index) => {
-                        if (selectedPlatform === index.Title) {
-                          return (
-                            <button
-                              onClick={() => {
-                                getTitle(index);
-                              }}
-                              className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-                                selectedPlatformFlag
-                                  ? "bg-[#FFB636] text-black"
-                                  : "text-[#FFB636] bg-transparent"
-                              }`}
-                            >
-                              {index.Title}
-                            </button>
-                          );
-                        } else {
-                          return (
-                            <button
-                              onClick={() => {
-                                getTitle(index);
-                              }}
-                              className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
-                                selectedPlatformFlag
-                                  ? "text-[#FFB636] bg-transparent"
-                                  : " bg-[#FFB636] text-black"
-                              }`}
-                            >
-                              {index.Title}
-                            </button>
-                          );
-                        }
-                      })}
-                    </div>
-                    <div className="flex gap-2 pb-2 mobile:w-[300px]">
-                      {AvailableColours.map((index) => {
-                        let mycolor = `bg-[#${index.Code.replace(
-                          /['"]+/g,
-                          ""
-                        )}]`;
-                        return (
-                          <div className="flex flex-wrap gap-4">
-                            <div className="flex">
+                    {AvailablePlatforms.length !== 0 ? (
+                      <div className="flex flex-wrap gap-1">
+                        {AvailablePlatforms.map((index) => {
+                          if (selectedPlatform === index.Title) {
+                            return (
                               <button
                                 onClick={() => {
-                                  getColour(index);
+                                  getTitle(index);
                                 }}
-                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 w-auto mobile1:h-6 rounded-md text-[12px]  ${
-                                  selectedColour !== index.Title
+                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                  selectedPlatformFlag
+                                    ? "bg-[#FFB636] text-black"
+                                    : "text-[#FFB636] bg-transparent"
+                                }`}
+                              >
+                                {index.Title}
+                              </button>
+                            );
+                          } else {
+                            return (
+                              <button
+                                onClick={() => {
+                                  getTitle(index);
+                                }}
+                                className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                  selectedPlatformFlag
                                     ? "text-[#FFB636] bg-transparent"
                                     : " bg-[#FFB636] text-black"
                                 }`}
                               >
                                 {index.Title}
                               </button>
-                              {/* <button
+                            );
+                          }
+                        })}
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+                    {AvailableColours.length !== 0 ? (
+                      <div className="flex flex-wrap gap-2 pb-2 h-auto">
+                        {AvailableColours.map((index) => {
+                          let mycolor = `bg-[#${index.Code.replace(
+                            /['"]+/g,
+                            ""
+                          )}]`;
+                          return (
+                            <div className="flex flex-wrap gap-4">
+                              <div className="flex flex-wrap">
+                                <button
+                                  onClick={() => {
+                                    getColour(index);
+                                  }}
+                                  className={` uppercase font-semibold border-[1px] border-[#FFB636] px-3 h-5 mobile1:h-6 rounded-md text-[12px]  ${
+                                    selectedColour !== index.Title
+                                      ? "text-[#FFB636] bg-transparent"
+                                      : " bg-[#FFB636] text-black"
+                                  }`}
+                                >
+                                  {index.Title}
+                                </button>
+                                {/* <button
                                 className={`rounded-full w-5 h-5 border border-black bg-[#${index.Code}]`}
                               >
                                 {console.log(index.Code)}{" "}
                               </button> */}
+                              </div>
                             </div>
-                          </div>
-                        );
-                        // }\
-                      })}
-                    </div>
+                          );
+                          // }\
+                        })}
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </div>
-                {DisplayedProduct.Genre === [] &&
-                DisplayedProduct.Tags === [] ? (
-                  <div className="overflow-y-scroll desp-scroll h-[50px] w-[350px] mt-1 xl:h-[80px] tablet:h-[120px] tablet3:w-[300px] mobile1:pt-2">
+                {DisplayedProduct.Genre.length !== 0 &&
+                DisplayedProduct.Tags.length !== 0 ? (
+                  <div className="overflow-y-auto productTitle h-auto w-[350px] mt-1 tablet3:w-[300px] mobile1:pt-2">
                     <div className="grid">
                       {DisplayedProduct.Genre && (
                         <div className="grid gap-[1px] mobile1:gap-0">
@@ -566,7 +603,7 @@ export default function Product({ data }) {
                   </div>
                 )}
 
-                {particularItem === false ? (
+                {!isAvailable ? (
                   <div className="h-16"></div>
                 ) : (
                   <div className="flex justify-center gap-5 border-y-2 border-gray-600 w-[250px] mobile1:w-[300px] pt-1 mt-2 xl:mt-5 mb-5">
@@ -599,7 +636,7 @@ export default function Product({ data }) {
                 )}
 
                 <div className="tablet:pb-20 h-32 tablet3:grid tablet3:gap-10 ">
-                  {particularItem === false ? (
+                  {!isAvailable ? (
                     <div className="text-[#7a7a7a] text-[25px] mobile:text-[20px]">
                       Product Unavailable
                     </div>
@@ -631,12 +668,17 @@ export default function Product({ data }) {
                     </div>
                   )}
                 </div>
-                <div className="absolute bottom-10 right-10">
-                  <img
-                    className="w-[70px] tablet3:w-[50px]"
-                    src={Teen.src}
-                  ></img>
-                </div>
+
+                {DisplayedProduct.Rating ? (
+                  <div className="absolute bottom-10 right-10">
+                    <img
+                      className="w-[70px] tablet3:w-[50px]"
+                      src={DisplayedProduct.Rating.Image}
+                    ></img>
+                  </div>
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
           </div>
