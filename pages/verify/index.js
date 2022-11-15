@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 
 function index() {
   async function verification() {
@@ -14,9 +15,8 @@ function index() {
       config
     );
     console.log(response);
-    localStorage.clear();
     if (response.data == "Email Sent") {
-      alert("Check your email");
+      swal("Check your email");
     }
   }
   return (
