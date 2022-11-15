@@ -14,7 +14,6 @@ function index() {
       "https://api.venturegames.pk/SendVerification",
       config
     );
-    console.log(response);
     if (response.data == "Email Sent") {
       swal("Check your email");
     }

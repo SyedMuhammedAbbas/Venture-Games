@@ -16,6 +16,7 @@ export default function Settings() {
   const [password, setPassword] = useState("");
   const [Orders, setOrders] = useState(false);
   const [Details, setDetails] = useState(false);
+  const [orderDetails, setOrderDetails] = useState();
 
   function handlePass() {
     {
@@ -61,7 +62,7 @@ export default function Settings() {
       }
     }
     let response = await axios.get("https://api.venturegames.pk/Order/GetUserOrder", config);
-    console.log(response);
+    setOrderDetails(response.data);
   }
 
   useEffect(() => {
@@ -204,7 +205,43 @@ export default function Settings() {
                 <div>
                   <h1 className="text-white text-[25px]">Order History</h1>
                   <ul>
-                    <li></li>
+                    {orderDetails && orderDetails.map(order => 
+                      <li>
+                        <ul>
+                          <li>OrderId: {order._id}</li>
+                          <li>CreatedAt: {order.createdAt}</li>
+                          <li>Billin Address 1: {order.BillingAddress1}</li>
+                          <li>Billin Address 2: {order.BillingAddress2}</li>
+                          <li>Shipping Address 1: {order.ShippingAddress1}</li>
+                          <li>Shipping Address 2: {order.ShippingAddress2}</li>
+                          <li>Email: {order.EmailAddress}</li>
+                          <li>Full Name: {order.FullName}</li>
+                          <li>Paid: {order.Paid}</li>
+                          <li>Payment Method: {order.PaymentMethod}</li>
+                          <li>COD: {order.COD}</li>
+                          <li>Billing Phone: {order.BillingPhone}</li>
+                          <li>Shipping Phone: {order.ShippingPhone}</li>
+                          <li>Shipping Price: {order.ShippingPrice}</li>
+                          <li>Shipping Region: {order.ShippingRegion}</li>
+                          <li>Statues: {order.Status}</li>
+                          <li>Total Price: {order.TotalPrice}</li>
+                          <li>Weight: {order.Weight}</li>
+                          <li>
+                            <ul>
+                              {order.Products.map(product => 
+                                <div>
+                                  <li>
+                                    <img src={product.Product.Images[0]}></img>
+                                  </li>
+                                  <li>{product.Product.Title}</li>
+                                  <li>{product.Quantity}</li>
+                                  <li>{product.Price}</li>
+                                </div>
+                              )}
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>)}
                   </ul>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useRedirect from "../../hooks/Redirect";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
@@ -7,7 +7,8 @@ import { Login } from '../../features/counter/userSlice';
 
 export default function EmailVerified() {
   const router = useRouter();
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch(); 
+  const [flag, setFlag] = useState(true); 
 
   async function getuser() {
     const jwtToken = JSON.parse(localStorage.getItem("token"));
@@ -17,7 +18,6 @@ export default function EmailVerified() {
         }
     }
     let response = await axios.get("https://api.venturegames.pk/GetProfile", config);
-    console.log(response.data);
     if(response.status == 200) {
         dispatch(Login(response.data));
         setTimeout(() => {
@@ -30,7 +30,11 @@ export default function EmailVerified() {
   }  
   useEffect(() => {
     try {
-      getuser();
+      console.log(flag);
+      if(flag) {
+        getuser();
+        setFlag(false);
+      }
     }
     catch (e) {
       console.error(e);
