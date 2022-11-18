@@ -12,7 +12,7 @@ export default function SearchMobile({ setOpenSearch }) {
   }
 
   async function getProducts() {
-    let response = await axios.get("https://api.venturegames.pk/Products", {
+    let response = await axios.get("https://api.doggel.co.uk/Products", {
       params: {
         Title: searchResult,
       },

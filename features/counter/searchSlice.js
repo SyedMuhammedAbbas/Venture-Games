@@ -2,14 +2,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import { Allproductsdata } from "../../components/common/AllProductsData";
 // import { ProductsData } from "../../components/common/ProductsData";
 
-export const getSearched = createAsyncThunk(
-  "search/getSearched",
-  async () => {
-    return fetch(
-      "https://api.venturegames.pk/Products?Title=s"
-    ).then((res) => res.json());
-  }
-);
+export const getSearched = createAsyncThunk("search/getSearched", async () => {
+  return fetch("https://api.doggel.co.uk/Products?Title=s").then((res) =>
+    res.json()
+  );
+});
 
 const initialState = {
   allSearched: [],

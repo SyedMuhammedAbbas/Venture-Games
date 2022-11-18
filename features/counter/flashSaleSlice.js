@@ -6,7 +6,7 @@ export const getFlashSale = createAsyncThunk(
   "flashsale/getFlashSale",
 
   async () => {
-    return fetch("https://api.venturegames.pk/Products?Sale=true").then((res) =>
+    return fetch("https://api.doggel.co.uk/Products?Sale=true").then((res) =>
       res.json()
     );
   }

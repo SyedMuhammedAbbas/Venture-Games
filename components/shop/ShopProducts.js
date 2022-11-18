@@ -42,11 +42,11 @@ export default function ShopProducts({
   // const category = ["online", "offline"];
 
   async function setters() {
-    let plats = await axios.get("https://api.venturegames.pk/GetPlatforms");
+    let plats = await axios.get("https://api.doggel.co.uk/GetPlatforms");
     setPlatforms(plats.data);
-    let gens = await axios.get("https://api.venturegames.pk/GetGenres");
+    let gens = await axios.get("https://api.doggel.co.uk/GetGenres");
     setGenre(gens.data);
-    let tag = await axios.get("https://api.venturegames.pk/GetTags");
+    let tag = await axios.get("https://api.doggel.co.uk/GetTags");
     setTags(tag.data);
   }
 
@@ -72,21 +72,21 @@ export default function ShopProducts({
     if (consoles == type._id) {
       setConsoles(undefined);
       if (heading == undefined && cat == undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products");
+        response = await axios.get("https://api.doggel.co.uk/Products");
       } else if (heading != undefined && cat == undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Genre: heading,
           },
         });
       } else if (heading == undefined && cat != undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Tag: cat,
           },
         });
       } else {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Tag: cat,
             Genre: heading,
@@ -99,27 +99,27 @@ export default function ShopProducts({
         return index.Title == type.Title;
       });
       if (heading == undefined && cat == undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Platform: selectedPlat._id,
           },
         });
       } else if (heading != undefined && cat == undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Platform: selectedPlat._id,
             Genre: heading,
           },
         });
       } else if (heading == undefined && cat != undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Platform: selectedPlat._id,
             Tag: cat,
           },
         });
       } else {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Platform: selectedPlat._id,
             Tag: cat,
@@ -143,21 +143,21 @@ export default function ShopProducts({
     if (cat == tag._id) {
       setCat(undefined);
       if (heading == undefined && consoles == undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products");
+        response = await axios.get("https://api.doggel.co.uk/Products");
       } else if (heading != undefined && consoles == undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Genre: heading,
           },
         });
       } else if (heading == undefined && consoles != undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Platform: consoles,
           },
         });
       } else {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Platform: consoles,
             Genre: heading,
@@ -170,27 +170,27 @@ export default function ShopProducts({
       });
       setCat(tag._id);
       if (heading == undefined && consoles == undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Tag: selectedTag._id,
           },
         });
       } else if (heading != undefined && consoles == undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Tag: selectedTag._id,
             Genre: heading,
           },
         });
       } else if (heading == undefined && consoles != undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Tag: selectedTag._id,
             Platform: consoles,
           },
         });
       } else {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Tag: selectedTag._id,
             Platform: consoles,
@@ -216,21 +216,21 @@ export default function ShopProducts({
     if (heading == gen._id) {
       setHeading(undefined);
       if (cat == undefined && consoles == undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products");
+        response = await axios.get("https://api.doggel.co.uk/Products");
       } else if (cat != undefined && consoles == undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Tag: cat,
           },
         });
       } else if (cat == undefined && consoles != undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Platform: consoles,
           },
         });
       } else {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Platform: consoles,
             Tag: cat,
@@ -243,27 +243,27 @@ export default function ShopProducts({
       });
       setHeading(gen._id);
       if (cat == undefined && consoles == undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Genre: selectedGen._id,
           },
         });
       } else if (cat != undefined && consoles == undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Genre: selectedGen._id,
             Tag: cat,
           },
         });
       } else if (cat == undefined && consoles != undefined) {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Genre: selectedGen._id,
             Platform: consoles,
           },
         });
       } else {
-        response = await axios.get("https://api.venturegames.pk/Products", {
+        response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Genre: selectedGen._id,
             Platform: consoles,
@@ -284,7 +284,7 @@ export default function ShopProducts({
 
   async function sortLowHigh() {
     // e.preventDefault();
-    let response = await axios.get("https://api.venturegames.pk/Products", {
+    let response = await axios.get("https://api.doggel.co.uk/Products", {
       params: {
         Sort: "PriceDesc",
       },
@@ -295,7 +295,7 @@ export default function ShopProducts({
 
   async function sortHighLow() {
     // e.preventDefault();
-    let response = await axios.get("https://api.venturegames.pk/Products", {
+    let response = await axios.get("https://api.doggel.co.uk/Products", {
       params: {
         Sort: "PriceAsc",
       },

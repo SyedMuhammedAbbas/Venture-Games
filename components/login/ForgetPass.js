@@ -17,7 +17,7 @@ export default function ForgetPass() {
     try {
       if (password == newPassword) {
         let response = await axios.post(
-          "https://api.venturegames.pk/ResetPassword",
+          "https://api.doggel.co.uk/ResetPassword",
           {
             NewPassword: password,
             resetPasswordToken: OTP,

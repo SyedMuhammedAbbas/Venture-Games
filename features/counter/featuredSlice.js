@@ -5,7 +5,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const getFeatured = createAsyncThunk(
   "featured/getFeatured",
   async () => {
-    return fetch("https://api.venturegames.pk/Products?Featured=true").then(
+    return fetch("https://api.doggel.co.uk/Products?Featured=true").then(
       (res) => res.json()
     );
   }

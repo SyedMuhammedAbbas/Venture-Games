@@ -6,9 +6,7 @@ import axios from "axios";
 export const getProducts = createAsyncThunk(
   "products/getProducts",
   async () => {
-    return fetch("https://api.venturegames.pk/Products").then((res) =>
-      res.json()
-    );
+    return fetch("https://api.doggel.co.uk/Products").then((res) => res.json());
   }
 );
 

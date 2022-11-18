@@ -32,7 +32,7 @@ import { data } from "autoprefixer";
 export async function getStaticProps(context) {
   console.log(context.params);
   const { pid } = context.params;
-  let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
+  let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
     params: {
       Product: pid,
     },
@@ -45,7 +45,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  let response = await axios.get("https://api.venturegames.pk/Products");
+  let response = await axios.get("https://api.doggel.co.uk/Products");
   console.log(response);
   const ids = response.data.map((product) => product._id);
   const paths = ids.map((id) => ({ params: { pid: id.toString() } }));
@@ -60,7 +60,7 @@ export async function getStaticPaths() {
 //   const { pid } = context.params;
 //   console.log(pid);
 //   if (pid) {
-//     let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
+//     let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
 //       params: {
 //         Product: pid,
 //       },
@@ -99,7 +99,7 @@ export default function Product({ data }) {
   async function fetchData() {
     // console.log("Fetch");
     // console.log(productGroup);
-    let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
+    let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
       params: {
         Product: pid,
       },
@@ -226,10 +226,7 @@ export default function Product({ data }) {
         Authorization: "Bearer " + jwtToken,
       },
     };
-    let response = await axios.get(
-      "https://api.venturegames.pk/GetCart",
-      config
-    );
+    let response = await axios.get("https://api.doggel.co.uk/GetCart", config);
     // console.log("Here");
     dispatch(setCartItem(response.data));
   }
@@ -244,7 +241,7 @@ export default function Product({ data }) {
         },
       };
       let response = await axios.post(
-        "https://api.venturegames.pk/UpdateCart",
+        "https://api.doggel.co.uk/UpdateCart",
         {
           Quantity: 1,
           ProductId: DisplayedProduct._id,

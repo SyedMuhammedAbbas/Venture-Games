@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 function index() {
   async function verification() {
@@ -11,7 +11,7 @@ function index() {
       },
     };
     let response = await axios.get(
-      "https://api.venturegames.pk/SendVerification",
+      "https://api.doggel.co.uk/SendVerification",
       config
     );
     if (response.data == "Email Sent") {

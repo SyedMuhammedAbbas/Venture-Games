@@ -6,7 +6,7 @@ export const getAccessories = createAsyncThunk(
   "accessories/getAccessories",
   async () => {
     return fetch(
-      "https://api.venturegames.pk/Products?ProductCategory=Accessories"
+      "https://api.doggel.co.uk/Products?ProductCategory=Accessories"
     ).then((res) => res.json());
   }
 );

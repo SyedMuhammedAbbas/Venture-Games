@@ -20,7 +20,7 @@ export default function SignupPage({ data }) {
 
   async function handleSignUp() {
     try {
-      let response = await axios.post("https://api.venturegames.pk/SignUp", {
+      let response = await axios.post("https://api.doggel.co.uk/SignUp", {
         FullName: fullName,
         EmailAddress: Email,
         ContactNumber: Contact,

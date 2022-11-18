@@ -44,7 +44,7 @@ export default function Settings() {
       },
     };
     let response = await axios.post(
-      "https://api.venturegames.pk/ChangePassword",
+      "https://api.doggel.co.uk/ChangePassword",
       {
         Password: password,
         NewPassword: newPassword,
@@ -54,14 +54,17 @@ export default function Settings() {
     console.log(response);
   }
 
-  async function getOrders () {
+  async function getOrders() {
     const jwtToken = JSON.parse(localStorage.getItem("token"));
     const config = {
       headers: {
-        Authorization: "Bearer " + jwtToken
-      }
-    }
-    let response = await axios.get("https://api.venturegames.pk/Order/GetUserOrder", config);
+        Authorization: "Bearer " + jwtToken,
+      },
+    };
+    let response = await axios.get(
+      "https://api.doggel.co.uk/Order/GetUserOrder",
+      config
+    );
     setOrderDetails(response.data);
   }
 
@@ -203,45 +206,93 @@ export default function Settings() {
                   </div>
                 </div>
                 <div>
-                  <h1 className="text-white text-[25px]">Order History</h1>
-                  <ul>
-                    {orderDetails && orderDetails.map(order => 
-                      <li>
-                        <ul>
-                          <li>OrderId: {order._id}</li>
-                          <li>CreatedAt: {order.createdAt}</li>
-                          <li>Billin Address 1: {order.BillingAddress1}</li>
-                          <li>Billin Address 2: {order.BillingAddress2}</li>
-                          <li>Shipping Address 1: {order.ShippingAddress1}</li>
-                          <li>Shipping Address 2: {order.ShippingAddress2}</li>
-                          <li>Email: {order.EmailAddress}</li>
-                          <li>Full Name: {order.FullName}</li>
-                          <li>Paid: {order.Paid}</li>
-                          <li>Payment Method: {order.PaymentMethod}</li>
-                          <li>COD: {order.COD}</li>
-                          <li>Billing Phone: {order.BillingPhone}</li>
-                          <li>Shipping Phone: {order.ShippingPhone}</li>
-                          <li>Shipping Price: {order.ShippingPrice}</li>
-                          <li>Shipping Region: {order.ShippingRegion}</li>
-                          <li>Statues: {order.Status}</li>
-                          <li>Total Price: {order.TotalPrice}</li>
-                          <li>Weight: {order.Weight}</li>
-                          <li>
-                            <ul>
-                              {order.Products.map(product => 
-                                <div>
-                                  <li>
-                                    <img src={product.Product.Images[0]}></img>
-                                  </li>
-                                  <li>{product.Product.Title}</li>
-                                  <li>{product.Quantity}</li>
-                                  <li>{product.Price}</li>
-                                </div>
-                              )}
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>)}
+                  <h1 className="text-white text-[25px]">Order History:</h1>
+                  <ul className="h-[600px] px-10 overflow-y-auto productTitle">
+                    {orderDetails &&
+                      orderDetails.map((order) => (
+                        <li>
+                          <ul className="text-white text-[23px]">
+                            <li className="text-white text-[23px]">
+                              OrderId: {order._id}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              CreatedAt: {order.createdAt}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              Billin Address 1: {order.BillingAddress1}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              Billin Address 2: {order.BillingAddress2}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              Shipping Address 1: {order.ShippingAddress1}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              Shipping Address 2: {order.ShippingAddress2}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              Email: {order.EmailAddress}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              Full Name: {order.FullName}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              Paid: {order.Paid}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              Payment Method: {order.PaymentMethod}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              COD: {order.COD}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              Billing Phone: {order.BillingPhone}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              Shipping Phone: {order.ShippingPhone}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              Shipping Price: {order.ShippingPrice}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              Shipping Region: {order.ShippingRegion}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              Statues: {order.Status}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              Total Price: {order.TotalPrice}
+                            </li>
+                            <li className="text-white text-[23px]">
+                              Weight: {order.Weight}
+                            </li>
+                            <li>
+                              Products:
+                              <ul className="flex flex-wrap gap-5 p-10">
+                                {order.Products.map((product) => (
+                                  <div className="grid p-5 justify-center gap-2 bg-black rounded-xl bg-opacity-30 backdrop-blur-xl z-[999] w-[350px] h-[400px] items-center overflow-y-auto productTitle">
+                                    <li className="flex justify-center">
+                                      <img
+                                        className="w-28 h-28 rounded-md"
+                                        src={product.Product.Images[0]}
+                                      ></img>
+                                    </li>
+                                    <li className="text-white text-[23px] text-center ">
+                                      {product.Product.Title}
+                                    </li>
+                                    <li className="text-white text-[23px] text-center ">
+                                      QTY x {product.Quantity}
+                                    </li>
+                                    <li className="text-white text-[23px] text-center ">
+                                      Rs {product.Price}
+                                    </li>
+                                  </div>
+                                ))}
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                      ))}
                   </ul>
                 </div>
               </div>

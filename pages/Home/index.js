@@ -28,7 +28,7 @@ export default function Home() {
     };
     if (jwtToken != null) {
       let response = await axios.get(
-        "https://api.venturegames.pk/GetCart",
+        "https://api.doggel.co.uk/GetCart",
         config
       );
       console.log(response.data);

@@ -20,7 +20,7 @@ export default function CheckOut() {
   const [ContactNumber1, setContactNumber1] = useState("");
   const [ContactNumber2, setContactNumber2] = useState("");
   const [place, setPlace] = useState("Karachi");
-  const [shipping_fee, setShippingFee] = useState();
+  const [shipping_fee, setShippingFee] = useState(300);
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
   const [address3, setAddress3] = useState("");
@@ -63,7 +63,7 @@ export default function CheckOut() {
       },
     };
     let response = await axios.get(
-      "https://api.venturegames.pk/GetCart?ShippingRegion=" + place,
+      "https://api.doggel.co.uk/GetCart?ShippingRegion=" + place,
       config
     );
     console.log(response);

@@ -4,7 +4,7 @@ export const getMerchandise = createAsyncThunk(
   "merchandise/getMerchandise",
   async () => {
     return fetch(
-      "https://api.venturegames.pk/Products?ProductCategory=Merchandise"
+      "https://api.doggel.co.uk/Products?ProductCategory=Merchandise"
     ).then((res) => res.json());
   }
 );

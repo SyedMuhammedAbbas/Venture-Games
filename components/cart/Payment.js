@@ -30,7 +30,7 @@ export default function CheckOut() {
       },
     };
     let response = await axios.get(
-      "https://api.venturegames.pk/GetCart?ShippingRegion=" + region,
+      "https://api.doggel.co.uk/GetCart?ShippingRegion=" + region,
       config
     );
     setTotal_Items(response.data.CartItems.length);
@@ -98,7 +98,7 @@ export default function CheckOut() {
       });
       // console.log(data);
       let response = await axios.post(
-        "https://api.venturegames.pk/Order/Checkout",
+        "https://api.doggel.co.uk/Order/Checkout",
         data,
         config
       );
@@ -226,7 +226,12 @@ export default function CheckOut() {
                           submitDelivery();
                         }}
                       >
-                        <a>pay now - pkr {total_amount + shipping_fee}</a>
+                        <a>
+                          pay now - pkr{" "}
+                          {shipping_fee === undefined
+                            ? total_amount
+                            : total_amount + shipping_fee}
+                        </a>
                       </button>
                     </div>
                   </div>
@@ -285,7 +290,11 @@ export default function CheckOut() {
                             {order_summary}
                           </td>
                           <td className="py-3 absolute pt-3 right-0 font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                            {order_summary_values[index] + shipping_fee + " Rs"}
+                            {shipping_fee === undefined
+                              ? order_summary_values[index] + "Rs"
+                              : order_summary_values[index] +
+                                shipping_fee +
+                                " Rs"}
                           </td>
                         </tr>
                       );

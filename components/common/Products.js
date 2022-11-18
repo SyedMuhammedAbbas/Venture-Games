@@ -36,7 +36,7 @@ import { setCartItem } from "../../features/counter/cartSlice";
 // }
 // export async function getStaticProps(context) {
 //   const { pid } = context.params;
-//   let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
+//   let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
 //     params: {
 //       Product: pid,
 //     },
@@ -55,7 +55,7 @@ import { setCartItem } from "../../features/counter/cartSlice";
 // export async function getServerSideProps(context) {
 //   const { pid } = context.params;
 //   if (pid) {
-//     let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
+//     let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
 //       params: {
 //         Product: pid,
 //       },
@@ -93,7 +93,7 @@ export default function Product({ pid }) {
   async function fetchData() {
     // console.log("Fetch");
     // console.log(productGroup);
-    let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
+    let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
       params: {
         Product: pid,
       },
@@ -226,10 +226,7 @@ export default function Product({ pid }) {
         Authorization: "Bearer " + jwtToken,
       },
     };
-    let response = await axios.get(
-      "https://api.venturegames.pk/GetCart",
-      config
-    );
+    let response = await axios.get("https://api.doggel.co.uk/GetCart", config);
     // console.log("Here");
     dispatch(setCartItem(response.data));
   }
@@ -244,7 +241,7 @@ export default function Product({ pid }) {
         },
       };
       let response = await axios.post(
-        "https://api.venturegames.pk/UpdateCart",
+        "https://api.doggel.co.uk/UpdateCart",
         {
           Quantity: 1,
           ProductId: DisplayedProduct._id,

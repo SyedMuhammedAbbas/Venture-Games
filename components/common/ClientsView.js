@@ -45,7 +45,7 @@ export default function ClientsView() {
   };
   const [Reviews, setReviews] = useState();
   async function getReviews() {
-    let response = await axios.get("https://api.venturegames.pk/ViewReview");
+    let response = await axios.get("https://api.doggel.co.uk/ViewReview");
     setReviews(response.data);
   }
   useEffect(() => {
