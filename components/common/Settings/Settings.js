@@ -4,6 +4,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function Settings() {
   const user = useSelector((state) => state.user.userDetails);
@@ -17,6 +18,8 @@ export default function Settings() {
   const [Orders, setOrders] = useState(false);
   const [Details, setDetails] = useState(false);
   const [orderDetails, setOrderDetails] = useState();
+  const [shippingOrderDetails, setShippingOrderDetails] = useState();
+  const [flag, setFlag] = useState(true);
 
   function handlePass() {
     {
@@ -52,6 +55,16 @@ export default function Settings() {
       config
     );
     console.log(response);
+    if(response.data.Token) {
+      toast.success("Password Changed", {
+        className: "toast-message",
+      })
+    }
+    else {
+      toast.error("Password Invalid", {
+        className: "toast-message",
+      })
+    }
   }
 
   async function getOrders() {
@@ -66,10 +79,29 @@ export default function Settings() {
       config
     );
     setOrderDetails(response.data);
+    let arr = [];
+    for(let i = 0; i < response.data.length; i++) {
+      if(response.data.Status != 'DELIVERED' || response.data.Status != 'CANCELLED') {
+        arr.push(response.data[0]);
+      }
+    }
+    setShippingOrderDetails(arr);
+  }
+
+  async function hasPassword () {
+    const jwtToken = JSON.parse(localStorage.getItem("token"));
+    const config = {
+      headers: {
+        Authorization: "Bearer " + jwtToken,
+      },
+    };
+    let response = await axios.get("https://api.doggel.co.uk/HasPassword", config);
+    setFlag(response.data);
   }
 
   useEffect(() => {
     getOrders();
+    hasPassword();
   }, []);
 
   return (
@@ -156,7 +188,7 @@ export default function Settings() {
                     }}
                   ></input>
                 </div>
-                <div className="grid gap-5">
+                {flag && <div className="grid gap-5">
                   <div className="text-white text-[25px]">New Password</div>
                   <input
                     className="w-[500px] text-white text-[23px] placeholder:text-blackOpac mobile2:w-[90%] placeholder:text-[20px] p-2 border-[1px] bg-transparent border-white rounded-lg"
@@ -167,7 +199,7 @@ export default function Settings() {
                       setNewPassword(e.target.value);
                     }}
                   ></input>
-                </div>
+                </div>}
                 <div className="flex justify-center">
                   <button
                     className="border border-blackOpac bg-transparent rounded-[10px] font-semibold text-[20px] text-[#fff] hover:text-[#000] hover:bg-white hover:border-[#fff] w-[200px] py-2"
@@ -202,7 +234,96 @@ export default function Settings() {
                 <div>
                   <h1 className="text-white text-[25px]">Track Order</h1>
                   <div className="text-white text-[20px]">
-                    Delivery Status: <div></div>
+                    Delivery Status: 
+                    <div>
+                      <ul className="h-[600px] px-10 overflow-y-auto productTitle">
+                      {shippingOrderDetails &&
+                        shippingOrderDetails.map((order) => (
+                          <li>
+                            <ul className="text-white text-[23px]">
+                              <li className="text-white text-[23px]">
+                                OrderId: {order._id}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                CreatedAt: {order.createdAt}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                Billin Address 1: {order.BillingAddress1}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                Billin Address 2: {order.BillingAddress2}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                Shipping Address 1: {order.ShippingAddress1}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                Shipping Address 2: {order.ShippingAddress2}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                Email: {order.EmailAddress}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                Full Name: {order.FullName}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                Paid: {order.Paid}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                Payment Method: {order.PaymentMethod}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                COD: {order.COD}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                Billing Phone: {order.BillingPhone}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                Shipping Phone: {order.ShippingPhone}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                Shipping Price: {order.ShippingPrice}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                Shipping Region: {order.ShippingRegion}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                Statues: {order.Status}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                Total Price: {order.TotalPrice}
+                              </li>
+                              <li className="text-white text-[23px]">
+                                Weight: {order.Weight}
+                              </li>
+                              <li>
+                                Products:
+                                <ul className="flex flex-wrap gap-5 p-10">
+                                  {order.Products.map((product) => (
+                                    <div className="grid p-5 justify-center gap-2 bg-black rounded-xl bg-opacity-30 backdrop-blur-xl z-[999] w-[350px] h-[400px] items-center overflow-y-auto productTitle">
+                                      <li className="flex justify-center">
+                                        <img
+                                          className="w-28 h-28 rounded-md"
+                                          src={product.Product.Images[0]}
+                                        ></img>
+                                      </li>
+                                      <li className="text-white text-[23px] text-center ">
+                                        {product.Product.Title}
+                                      </li>
+                                      <li className="text-white text-[23px] text-center ">
+                                        QTY x {product.Quantity}
+                                      </li>
+                                      <li className="text-white text-[23px] text-center ">
+                                        Rs {product.Price}
+                                      </li>
+                                    </div>
+                                  ))}
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
                 <div>

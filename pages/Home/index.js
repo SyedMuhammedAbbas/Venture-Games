@@ -16,8 +16,6 @@ export default function Home() {
   const [handleLogin, sethandleLogin] = useState(false);
   const dispatch = useDispatch();
 
-  let jwtToken = JSON.parse(localStorage.getItem("token"));
-  console.log(jwtToken);
   async function getCart() {
     let jwtToken = JSON.parse(localStorage.getItem("token"));
     console.log(jwtToken);
@@ -41,10 +39,14 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    try {
-      getCart();
-    } catch (e) {
-      console.error(e);
+    let jwtToken = localStorage.getItem("token");
+    console.log(jwtToken);
+    if(jwtToken) {
+      try {
+        getCart();
+      } catch (e) {
+        console.error(e);
+      }
     }
     setTimeout(() => {
       setLoading(false);
