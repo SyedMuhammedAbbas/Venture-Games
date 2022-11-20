@@ -53,8 +53,8 @@ export default function ClientsView() {
   }, []);
 
   return (
-    <div className="bg-gradient-to-tr from-[#805712] via-black to-[#805712] min-h-[140vh] clientsViewIos max-h-[100%] p-32 tablet:py-14 4xl:px-20 3xl:px-14 2xl:px-10 xl:px-5 mobile1.1:px-2">
-      <div className="bg-gradient-to-b from-[#141414] via-stone-700 to-[#2a2a2a] pt-10 shadow-lg shadow-gray-800">
+    <div className="bg-gradient-to-tr from-[#805712] via-black to-[#805712] min-h-auto clientsViewIos max-h-[100%] p-32 tablet:py-14 4xl:px-20 3xl:px-14 2xl:px-10 xl:px-5 mobile1.1:px-2">
+      <div className="bg-gradient-to-b from-[#141414] via-stone-700 to-[#2a2a2a] py-10 shadow-lg shadow-gray-800">
         <div className="block">
           <div className="font-hemi text-white text-[80px] 3xl:text-[7vw] mobile:text-[40px] mobile1.1:text-[35px] mobilesm:text-[27px] text-center">
             What C

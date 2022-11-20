@@ -126,7 +126,7 @@ export default function GeneralQuestions() {
           sethandleSignup={sethandleSignup}
         />
       </div>
-      <div className="bg-[#FFB636] text-[25px] mobile:text-[20px] text-black pt-[10%] px-20 pb-20 min-h-[140vh] mobile:min-h-[100vh] max-h-[100%] tablet:pt-[20%] tablet:px-5 snap-start">
+      <div className="bg-[#FFB636] text-[25px] mobile:text-[20px] text-black pt-[10%] px-20 pb-20 min-h-[140vh]  max-h-[100%] tablet:pt-[20%] tablet:px-5 snap-start">
         <ul className="flex flex-wrap justify-center gap-10 pb-20">
           <Link href="/help/technicalIssues">
             <li className="border border-black text-[#000] rounded-[10px] text-[30px] mobile:text-[25px] mobile1:w-[250px] flex justify-center h-[80px] items-center px-5 py-3 cursor-pointer">

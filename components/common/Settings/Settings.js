@@ -210,7 +210,7 @@ export default function Settings() {
                   <ul className="h-[600px] px-10 overflow-y-auto productTitle">
                     {orderDetails &&
                       orderDetails.map((order) => (
-                        <li>
+                        <li className="pb-10">
                           <ul className="text-white text-[23px]">
                             <li className="text-white text-[23px]">
                               OrderId: {order._id}

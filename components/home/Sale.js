@@ -148,41 +148,47 @@ export default function Sale() {
   }, []);
 
   return (
-    <div className="grid bg-gradient-to-tr from-[#33250c] via-[#1A1A1A] to-[#33250c] min-h-[100vh] max-h-[100%]  px-[40px] w-[100%] overflow-x-hidden border-b-blackOpac border-b-2 justify-center py-[10%] mobile:px-auto">
-      <div className="border-[5px] relative border-[#FFB636] rounded-[35px] pb-3  w-[125vw] sale">
-        <div className="flex">
-          <div className="font-hemi text-[#FFB636] text-[80px] xl:text-[7vw] bg-[#1A1A1A] mt-[-60px] lg:mt-[-50px] mobile:mt-[-30px] mobile1:mt-[-20px] mobilesm:mt-[10px] ml-[7vw] px-[30px] ">
-            Flash Sale
-          </div>
-          <div className="flex absolute right-32 xxl:right-24 4xl:right-20 mobile:right-10  mt-4">
-            <Link href="/flashSale">
-              <button className="flex text-[#FFB636] text-[30px] tablet2:text-[20px]">
-                View all
-                <div className="mt-0 text-[50px] tablet2:text-[35px]">
-                  <MdKeyboardArrowRight />
-                </div>
-              </button>
-            </Link>
-          </div>
-        </div>
-        {SaleProducts.length < 4 ? (
-          <div className="w-[110vw] flex flex-wrap justify-center gap-10 mobile1.1:w-[95%] h-auto mx-auto my-20">
-            {Object.values(SaleProducts).map((currentItem) => {
-              return <SaleCard key={currentItem} product={currentItem} />;
-            })}
-          </div>
-        ) : (
-          <div className="w-[110vw] block justify-center mobile1:w-auto h-auto mx-auto my-20">
-            <Slider {...settings}>
-              {Object.values(SaleProducts)
-                .slice(0, 7)
-                .map((currentItem) => {
+    <>
+      {SaleProducts.length !== 0 && (
+        <div className="grid bg-[#FFB636] min-h-[100vh] max-h-[100%]  px-[40px] w-[100%] overflow-x-hidden border-b-blackOpac border-b-2 justify-center py-[10%] mobile:px-auto">
+          <div className="border-[5px] relative border-[#1A1A1A] rounded-[35px] pb-3  w-[125vw] sale">
+            <div className="flex">
+              <div className="font-hemi text-[#1A1A1A] text-[80px] xl:text-[7vw] bg-[#FFB636] mt-[-60px] lg:mt-[-50px] mobile:mt-[-30px] mobile1:mt-[-20px] mobilesm:mt-[10px] ml-[7vw] px-[30px] ">
+                Flash Sale
+              </div>
+              <div className="flex absolute right-32 xxl:right-24 4xl:right-20 mobile:right-10  mt-4">
+                <Link href="/flashSale">
+                  <button className="flex text-[#1A1A1A] text-[30px] tablet2:text-[20px]">
+                    View all
+                    <div className="mt-0 text-[50px] tablet2:text-[35px]">
+                      <MdKeyboardArrowRight />
+                    </div>
+                  </button>
+                </Link>
+              </div>
+            </div>
+            {SaleProducts.length < 4 ? (
+              <div className="w-[110vw] flex flex-wrap justify-center gap-10 mobile1.1:w-[95%] h-auto mx-auto my-20">
+                {Object.values(SaleProducts).map((currentItem) => {
                   return <SaleCard key={currentItem} product={currentItem} />;
                 })}
-            </Slider>
+              </div>
+            ) : (
+              <div className="w-[110vw] block justify-center mobile1:w-auto h-auto mx-auto my-20">
+                <Slider {...settings}>
+                  {Object.values(SaleProducts)
+                    .slice(0, 7)
+                    .map((currentItem) => {
+                      return (
+                        <SaleCard key={currentItem} product={currentItem} />
+                      );
+                    })}
+                </Slider>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 }

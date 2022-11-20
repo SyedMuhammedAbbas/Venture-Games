@@ -1,7 +1,7 @@
 import ProfileBar from "../../components/common/ProfileBar";
 import ShopMerchandise from "../../components/shop/ShopMerchandise";
 import { useState } from "react";
-import ShopCover from "../../components/shop/ShopCover";
+import MerchCover from "../../components/shop/MerchCover";
 import ProfileBarMobile from "../../components/common/ProfileBarMobile";
 
 export default function Shop() {
@@ -36,16 +36,16 @@ export default function Shop() {
         />
       </div>
       <div className="snap-center">
-        <ShopCover />
+        <MerchCover />
       </div>
-      <div className="snap-start">
+      {/* <div className="snap-start">
         <ShopMerchandise
           handleFilter={handleFilter}
           handleSort={handleSort}
           handleFilterMobile={handleFilterMobile}
           handleSortMobile={handleSortMobile}
         />
-      </div>
+      </div> */}
     </>
   );
 }

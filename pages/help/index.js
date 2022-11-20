@@ -16,7 +16,7 @@ export default function Help() {
           sethandleSignup={sethandleSignup}
         />
       </div>
-      <div className="bg-[#FFB636] text-[20px] text-black pt-[10%] grid justify-center items-center px-20 pb-20 min-h-[140vh] mobile:min-h-[125vh] max-h-[100%] tablet:pt-[10%] tablet:px-5 snap-start">
+      <div className="bg-[#FFB636] text-[20px] text-black pt-[10%] grid justify-center items-center px-20 pb-20 min-h-[140vh] max-h-[100%] tablet:pt-[10%] tablet:px-5 snap-start">
         <div>
           <h1 className="text-[65px] mobile:text-[30px] font-bold flex justify-center">
             How can we help you ?

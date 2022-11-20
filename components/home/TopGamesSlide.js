@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export default function TopGamesSlide({ carouselProd }) {
   return (
-    <div className="flex relative">
+    <div className="flex relative items-center">
       <img
-        className="xxl:min-w-[2300px] xxl:max-w-[100%] xxl:bg-contain tablet:min-w-[960px] tablet:max-w-full tablet:bg-cover xxl:min-h-[100vh] xxl:max-h-[100%] "
+        className="bg-center h-[100%] w-[100%] bg-cover"
         src={carouselProd}
       ></img>
     </div>
