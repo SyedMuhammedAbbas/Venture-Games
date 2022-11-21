@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { setCartItem } from "../../features/counter/cartSlice";
 import { useDispatch } from "react-redux";
+import Logo from "../../images/logo.svg";
 
 export default function Home() {
   const [handleSignup, sethandleSignup] = useState(false);
@@ -35,6 +36,7 @@ export default function Home() {
       }
     }
   }
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let jwtToken = localStorage.getItem("token");
@@ -46,6 +48,9 @@ export default function Home() {
         console.error(e);
       }
     }
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, []);
 
   return (
@@ -58,24 +63,32 @@ export default function Home() {
           handleSignup={handleSignup}
           sethandleSignup={sethandleSignup}
         />
-        <div className="snap-start ">
-          <TopGames />
-        </div>
-        <div className="snap-center ">
-          <Banner />
-        </div>
-        <div className="snap-center ">
-          <Sale />
-        </div>
-        <div className="snap-center ">
-          <PlatformsElement />
-        </div>
-        <div className="snap-center">
-          <Featured />
-        </div>
-        <div className="snap-center ">
-          <ClientsView />
-        </div>
+        {loading ? (
+          <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
+            <img src={Logo.src} className="w-20 h-20 animate-spin" />
+          </div>
+        ) : (
+          <>
+            <div className="snap-start ">
+              <TopGames />
+            </div>
+            <div className="snap-center ">
+              <Banner />
+            </div>
+            <div className="snap-center ">
+              <Sale />
+            </div>
+            <div className="snap-center ">
+              <PlatformsElement />
+            </div>
+            <div className="snap-center">
+              <Featured />
+            </div>
+            <div className="snap-center ">
+              <ClientsView />
+            </div>
+          </>
+        )}
       </div>
     </>
   );

@@ -21,7 +21,7 @@ export default function DropDown({ setOp }) {
     dispatch(clearCart());
     localStorage.clear();
     setOp(false);
-    router.push('/');
+    router.push("/");
   }
 
   return (
@@ -46,17 +46,19 @@ export default function DropDown({ setOp }) {
             </div>
           </div>
         </Link>
-        <div
-          onClick={() => {
-            flush();
-          }}
-          className="h-[58px] text-[#fff] cursor-pointer text-[20px] flex items-center py-[2rem] ml-6 hover:bg-[#353535] hover:ml-0 hover:pl-6"
-        >
-          <button className="cursor-pointer">Sign Out</button>
-          <div className="text-white text-[24px] absolute right-6">
-            <FaSignOutAlt />
+        <Link href="/">
+          <div
+            onClick={() => {
+              flush();
+            }}
+            className="h-[58px] text-[#fff] cursor-pointer text-[20px] flex items-center py-[2rem] ml-6 hover:bg-[#353535] hover:ml-0 hover:pl-6"
+          >
+            <button className="cursor-pointer">Sign Out</button>
+            <div className="text-white text-[24px] absolute right-6">
+              <FaSignOutAlt />
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     </>
   );

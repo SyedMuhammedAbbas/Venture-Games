@@ -4,6 +4,8 @@ import { AddToCart } from "../../features/counter/cartSlice";
 import Router from "next/router";
 // import { keyframes } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import FeaturedCardSkeleton from "../common/FeaturedCardSkeleton";
+import { useState, useEffect } from "react";
 
 // function saveData(data) {
 //   //console.log(data);
@@ -42,59 +44,77 @@ export default function FeaturedCard({ product }) {
   // );
 
   // console.log(platforms);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (product) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+    }
+  }, [product]);
   return (
-    <div className="h-[500px] p-2 rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile:w-[350px]">
-      <img
-        className="rounded-3xl flex justify-center h-[340px] object-cover w-[340px] mobile:w-[330px]"
-        src={product.Images}
-      />
-      <div className="flex gap-1 mt-[-30px] ml-[10px]">
-        {/* {Object.keys(product).forEach(([index, val]) => {
+    <>
+      {loading ? (
+        <FeaturedCardSkeleton />
+      ) : (
+        <div className="min-h-[500px] max-h-auto p-2 rounded-3xl bg-gradient-to-r from-black to-[#1c1c1c] w-[350px] mobile:w-[350px]">
+          <img
+            className="rounded-3xl flex justify-center h-[340px] object-cover w-[340px] mobile:w-[330px]"
+            src={product.Images}
+          />
+          <div className="flex gap-1 mt-[-30px] ml-[10px]">
+            {/* {Object.keys(product).forEach(([index, val]) => {
           <button className="text-black font-semibold uppercase bg-[#FFB636] px-3 rounded-md text-[12px]">
             {index[ProductGroup].map((i) => {
               return val[ProductGroup];
             })}
           </button>;
         })} */}
-        {Object.values(product.ProductGroup.AvailablePlatforms).map((index) => {
-          return (
-            <button className="text-black font-semibold uppercase bg-[#FFB636] px-3 rounded-md text-[12px]">
-              {index.Title}
-            </button>
-          );
-        })}
-      </div>
-      <div className="grid justify-center gap-3">
-        <div className="text-white text-center text-[23px] h-8 overflow-auto desp-scroll mobile:text-[20px] mt-5">
-          {product.Title}
-        </div>
-        <div className="flex gap-5 justify-center">
-          {product.OldPrice === undefined ? (
-            ""
-          ) : (
-            <div className="text-red-600 line-through text-[25px] mobile:text-[19px]">
-              {product.OldPrice.toString().replace(
-                /\B(?=(\d{3})+(?!\d))/g,
-                ","
-              )}
+            {Object.values(product.ProductGroup.AvailablePlatforms).map(
+              (index) => {
+                return (
+                  <button className="text-black font-semibold uppercase bg-[#FFB636] px-3 rounded-md text-[12px]">
+                    {index.Title}
+                  </button>
+                );
+              }
+            )}
+          </div>
+          <div className="grid justify-center gap-3">
+            <div className="text-white text-center text-[23px] h-auto overflow-auto desp-scroll mt-5">
+              {product.Title}
             </div>
-          )}
-          <div className="text-white text-[25px] mobile:text-[21px]">
-            {product.Price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} PKR
+            <div className="flex gap-5 justify-center">
+              {product.OldPrice === undefined ? (
+                ""
+              ) : (
+                <div className="text-red-600 line-through text-[25px] mobile:text-[19px]">
+                  {product.OldPrice.toString().replace(
+                    /\B(?=(\d{3})+(?!\d))/g,
+                    ","
+                  )}
+                </div>
+              )}
+              <div className="text-white text-[25px] mobile:text-[21px]">
+                {product.Price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                PKR
+              </div>
+            </div>
+            <div className="flex justify-center gap-2 mt-[-7px] mb-5">
+              <Link href="/product/[pid]" as={`/product/${data}`}>
+                <button
+                  // onClick={() => sendProps()}
+                  className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-8 py-1 hover:bg-white hover:text-black hover:border-black"
+                  // onClick={() => saveData(data)}
+                >
+                  <a>View</a>
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
-        <div className="flex justify-center gap-2 mt-[-7px] mb-5">
-          <Link href="/product/[pid]" as={`/product/${data}`}>
-            <button
-              // onClick={() => sendProps()}
-              className="text-white border-[1px] font-semibold border-white rounded-lg text-[15px] px-8 py-1 hover:bg-white hover:text-black hover:border-black"
-              // onClick={() => saveData(data)}
-            >
-              <a>View</a>
-            </button>
-          </Link>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }

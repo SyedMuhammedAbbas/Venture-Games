@@ -25,7 +25,7 @@ export default function ScrollButton() {
   window.addEventListener("scroll", toggleVisible);
 
   return (
-    <div className="fixed w-[100%] m-auto mb-[50px] flex left-[5%] bottom-[20px] h-[20px] text-[2.4rem] z-[99999] cursor-pointer text-black">
+    <div className="fixed w-[100%] m-auto mb-[50px] flex justify-center bottom-[20px] h-[20px] text-[2.4rem] mobile:text-[25px] mobile:left-0 mobile:justify-center mobile:bottom-4 mobile:mb-[10px] z-[99999] cursor-pointer text-black">
       <HiArrowSmUp
         onClick={scrollToTop}
         style={{ display: visible ? "inline" : "none" }}

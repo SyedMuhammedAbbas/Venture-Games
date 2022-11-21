@@ -16,7 +16,7 @@ export default function Policies() {
           sethandleSignup={sethandleSignup}
         />
       </div>
-      <div className="bg-[#FFB636] snap-start text-[20px] min-h-[140vh] mobile:min-h-[125vh] max-h-[100%] grid justify-center text-black pt-[10%] px-20 pb-20 tablet:pt-[20%] tablet:px-5">
+      <div className="bg-[#FFB636] snap-start text-[20px] min-h-[140vh] max-h-[100%] grid justify-center text-black pt-[10%] px-20 pb-20 tablet:pt-[20%] tablet:px-5">
         <div className="text-[65px] flex justify-center">
           <span className="">Policies</span>
         </div>

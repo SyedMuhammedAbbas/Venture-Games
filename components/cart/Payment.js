@@ -220,19 +220,32 @@ export default function CheckOut() {
                       ""
                     )}
                     <div>
-                      <button
-                        className="uppercase text-white text-[25px] mobile:text-[20px] font-semibold tracking-wider w-[70%] mobile2:w-[90%] py-4 rounded-lg bg-[#68BA01]"
-                        onClick={() => {
-                          submitDelivery();
-                        }}
-                      >
-                        <a>
+                      {getCODvalue ? (
+                        <button
+                          className="uppercase text-white text-[25px] mobile:text-[20px] font-semibold tracking-wider w-[70%] mobile2:w-[90%] py-4 rounded-lg bg-[#68BA01]"
+                          onClick={() => {
+                            submitDelivery();
+                          }}
+                        >
+                          Order now
+                          {/* - pkr{" "}
+                          {shipping_fee === undefined
+                            ? total_amount
+                            : total_amount + shipping_fee} */}
+                        </button>
+                      ) : (
+                        <button
+                          className="uppercase text-white text-[25px] mobile:text-[20px] font-semibold tracking-wider w-[70%] mobile2:w-[90%] py-4 rounded-lg bg-[#68BA01]"
+                          onClick={() => {
+                            submitDelivery();
+                          }}
+                        >
                           pay now - pkr{" "}
                           {shipping_fee === undefined
                             ? total_amount
                             : total_amount + shipping_fee}
-                        </a>
-                      </button>
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>

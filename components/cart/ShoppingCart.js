@@ -103,7 +103,7 @@ export default function ShoppingCart() {
   ];
   return (
     <>
-      <div className="bg-[#FFB636] pb-20 min-h-[140vh] max-h-[100%] mobile:min-h-[100vh]">
+      <div className="bg-[#FFB636] pb-20 min-h-[140vh] max-h-[100%]">
         {Object.values(cartItems).length > 0 ? (
           <div className="flex xl3:grid">
             <div className="pt-[5%] pb-[5%] xl3:pt-[7%] tablet:pt-[7%] w-[55%] tablet1:w-[80%] mobile:w-[90%] mobile1:w-[100%]">
