@@ -62,16 +62,16 @@ export default function LoginPage() {
         Password: Password,
       });
 
-      console.log(response.data.output);
-      console.log(response);
-      if (response.data.output.isVerified == false) {
-        localStorage.setItem("token", JSON.stringify(response.data.Token));
-        router.push("/verify");
-      } else {
-        dispatch(Login(response.data.output));
-        localStorage.setItem("token", JSON.stringify(response.data.Token));
-        router.push("/");
-      }
+      // console.log(response.data.output);
+      // console.log(response);
+      // if (response.data.output.isVerified == false) {
+      //   localStorage.setItem("token", JSON.stringify(response.data.Token));
+      //   router.push("/verify");
+      // } else {
+      dispatch(Login(response.data.output));
+      localStorage.setItem("token", JSON.stringify(response.data.Token));
+      router.push("/");
+      // }
     } catch (err) {
       toast.error("Incorrect Credentials", {
         className: "toast-message",
