@@ -29,47 +29,47 @@ import { data } from "autoprefixer";
 //   };
 // }
 
-export async function getStaticProps(context) {
-  console.log(context.params);
-  const { pid } = context.params;
-  let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
-    params: {
-      Product: pid,
-    },
-  });
-  return {
-    props: {
-      data: response.data,
-    },
-  };
-}
-
-export async function getStaticPaths() {
-  let response = await axios.get("https://api.doggel.co.uk/Products");
-  console.log(response);
-  const ids = response.data.map((product) => product._id);
-  const paths = ids.map((id) => ({ params: { pid: id.toString() } }));
-
-  return {
-    paths,
-    fallback: true, // can also be true or 'blocking'
-  };
-}
-
-// export async function getServerSideProps(context) {
+// export async function getStaticProps(context) {
+//   console.log(context.params);
 //   const { pid } = context.params;
-//   console.log(pid);
-//   if (pid) {
-//     let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
-//       params: {
-//         Product: pid,
-//       },
-//     });
-//     return {
-//       props: { data: response.data },
-//     };
-//   }
+//   let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
+//     params: {
+//       Product: pid,
+//     },
+//   });
+//   return {
+//     props: {
+//       data: response.data,
+//     },
+//   };
 // }
+
+// export async function getStaticPaths() {
+//   let response = await axios.get("https://api.doggel.co.uk/Products");
+//   console.log(response);
+//   const ids = response.data.map((product) => product._id);
+//   const paths = ids.map((id) => ({ params: { pid: id.toString() } }));
+
+//   return {
+//     paths,
+//     fallback: true, // can also be true or 'blocking'
+//   };
+// }
+
+export async function getServerSideProps(context) {
+  const { pid } = context.params;
+  console.log(pid);
+  if (pid) {
+    let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
+      params: {
+        Product: pid,
+      },
+    });
+    return {
+      props: { data: response.data },
+    };
+  }
+}
 
 export default function Product({ data }) {
   const [handleSignup, sethandleSignup] = useState(false);
@@ -161,6 +161,7 @@ export default function Product({ data }) {
   // console.log(selectedPlatform);
   // console.log(4);
   // const [TypeFlag, setTypeFlag] = useState(false);
+  console.log(Products);
 
   let DisplayedProduct = Products.find((product) => {
     if (product.Type !== selectedType) {
