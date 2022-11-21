@@ -26,8 +26,6 @@ export default function LoginPage() {
   const user = useSelector((state) => state.user.userDetails);
   const router = useRouter();
 
-  const [loading, setLoading] = useState(true);
-
   async function forgetPassword() {
     console.log(Email);
     let response = await axios.post("https://api.doggel.co.uk/ForgotPassword", {
@@ -116,115 +114,105 @@ export default function LoginPage() {
         console.error(error);
       });
   }
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
+
   return (
     <>
-      {loading ? (
-        <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
-          <img src={Logo.src} className="w-20 h-20 animate-spin" />
-        </div>
-      ) : (
-        <div className="bg-[url('../images/loginbackground.png')]  bg-no-repeat flex justify-center relative bg-cover min-h-[140vh] items-center max-h-[100%]  p-32 tablet2.1:px-20 mobile2.1:px-10 mobile1:px-5 mobile1.1:px-3 pt-[100px] tablet2.1:pt-[50px] py-[10%] loginmaindivClass">
-          <div className="bg-black opacity-75 w-[100%] relative flex xl2:grid mobile:gap-10 rounded-[40px] p-10 min-h-[100vh] max-h-[100%] ">
-            <div className="grid xl2:gap-5">
-              {next ? (
-                <div className="text-[#FFB636] w-[500px] mobile:w-auto text-[35px] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
-                  Password
-                  <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
-                    <input
-                      placeholder="Sarah@venturegames.com"
-                      className="bg-transparent text-[#ffffff] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
-                      type="password"
-                      required
-                      onChange={(e) => {
-                        setPassword(e.target.value);
-                      }}
-                      value={Password}
-                    ></input>
-                    <button
-                      onClick={(e) => {
-                        handleLogin(e);
-                      }}
-                      className="text-[35px] text-[#FFB636] align-middle "
-                    >
-                      <BsArrowRightShort />
-                    </button>
-                  </form>
-                  <button
-                    className="text-[15px] text-[#FFB636] pt-[3%] float-right mobile:float-left hover:pointer"
-                    onClick={() => {
-                      forgetPassword();
+      <div className="bg-[url('../images/loginbackground.png')]  bg-no-repeat flex justify-center relative bg-cover min-h-[140vh] items-center max-h-[100%]  p-32 tablet2.1:px-20 mobile2.1:px-10 mobile1:px-5 mobile1.1:px-3 pt-[100px] tablet2.1:pt-[50px] py-[10%] loginmaindivClass">
+        <div className="bg-black opacity-75 w-[100%] relative flex xl2:grid mobile:gap-10 rounded-[40px] p-10 min-h-[100vh] max-h-[100%] ">
+          <div className="grid xl2:gap-5">
+            {next ? (
+              <div className="text-[#FFB636] w-[500px] mobile:w-auto text-[35px] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
+                Password
+                <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
+                  <input
+                    placeholder="Sarah@venturegames.com"
+                    className="bg-transparent text-[#ffffff] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
+                    type="password"
+                    required
+                    onChange={(e) => {
+                      setPassword(e.target.value);
                     }}
-                  >
-                    Forget Password
-                    {/* <Link href="/forgetPassPage"> */}
-                    {/* <a className="cursor-pointer">Forget Password</a> */}
-                    {/* </Link>{" "} */}
-                  </button>
-                </div>
-              ) : (
-                <div className="text-[#FFB636] w-[500px] mobile:w-auto text-[35px] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
-                  Enter your email to get started
-                  <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
-                    <input
-                      placeholder="Sarah@venturegames.com"
-                      className="bg-transparent text-[#ffffff] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
-                      type="email"
-                      required
-                      onChange={(e) => setEmail(e.target.value)}
-                      value={Email}
-                    ></input>
-                    <button
-                      onClick={(e) => {
-                        hasEmail(e);
-                      }}
-                      className="text-[35px] text-[#FFB636] align-middle "
-                    >
-                      <BsArrowRightShort />
-                    </button>
-                  </form>
-                  <div className="text-[#ff0404] text-[20px] mobile:text-[15px]">
-                    This is a required field.
-                  </div>
-                </div>
-              )}
-              <div className="block absolute xl2:relative bottom-24 xl2:bottom-0">
-                <div className="text-[#FFB636] text-[25px] xl2:text-[20px] mobile1.1:text-[15px] pb-2">
-                  <Link href="">
-                    <a>Don't remember one?</a>
-                  </Link>{" "}
-                  <span>Sign in with...</span>
-                </div>
-                <div>
+                    value={Password}
+                  ></input>
                   <button
-                    onClick={() => {
-                      handleGoogleLogin();
+                    onClick={(e) => {
+                      handleLogin(e);
                     }}
-                    className="bg-white px-20 xl2:px-14 mobile1.1:px-10 py-3 mobile1.1:py-1 opacity-100 rounded-xl text-[35px] xl2:text-[30px] z-10"
+                    className="text-[35px] text-[#FFB636] align-middle "
                   >
-                    <FcGoogle />
+                    <BsArrowRightShort />
                   </button>
+                </form>
+                <button
+                  className="text-[15px] text-[#FFB636] pt-[3%] float-right mobile:float-left hover:pointer"
+                  onClick={() => {
+                    forgetPassword();
+                  }}
+                >
+                  Forget Password
+                  {/* <Link href="/forgetPassPage"> */}
+                  {/* <a className="cursor-pointer">Forget Password</a> */}
+                  {/* </Link>{" "} */}
+                </button>
+              </div>
+            ) : (
+              <div className="text-[#FFB636] w-[500px] mobile:w-auto text-[35px] mobile1:text-[25px] mobile1.1:text-[20px] mt-[15%] xl2:mt-[5%] loginheading1">
+                Enter your email to get started
+                <form className="border-b-[2px] xl2:w-[500px] mobile1:w-auto flex border-[#FFB636]">
+                  <input
+                    placeholder="Sarah@venturegames.com"
+                    className="bg-transparent text-[#ffffff] placeholder:text-[#78694f] w-[450px] outline-none mobile1:w-[350px] placeholder:opacity-90 placeholder:text-[25px] mobile1.1:placeholder:text-[15px]"
+                    type="email"
+                    required
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={Email}
+                  ></input>
+                  <button
+                    onClick={(e) => {
+                      hasEmail(e);
+                    }}
+                    className="text-[35px] text-[#FFB636] align-middle "
+                  >
+                    <BsArrowRightShort />
+                  </button>
+                </form>
+                <div className="text-[#ff0404] text-[20px] mobile:text-[15px]">
+                  This is a required field.
                 </div>
               </div>
-            </div>
-            <div className="absolute bottom-10 items-end text-right text-[100px] tablet2.1:text-[80px] mobile1:text-[60px] mobile1.1:text-[50px] leading-[110px] tablet2.1:leading-[90px] mobile1:leading-[90px] mobile1.1:leading-[80px] font-lemonmilk  xl2:relative right-20 xl2:right-0 text-[#FDD501CF] loginheading">
-              Find
-              <br />
-              Your
-              <br />
-              Gaming
-              <br />
-              Thirst
-              <br />
-              Quenched
+            )}
+            <div className="block absolute xl2:relative bottom-24 xl2:bottom-0">
+              <div className="text-[#FFB636] text-[25px] xl2:text-[20px] mobile1.1:text-[15px] pb-2">
+                <Link href="">
+                  <a>Don't remember one?</a>
+                </Link>{" "}
+                <span>Sign in with...</span>
+              </div>
+              <div>
+                <button
+                  onClick={() => {
+                    handleGoogleLogin();
+                  }}
+                  className="bg-white px-20 xl2:px-14 mobile1.1:px-10 py-3 mobile1.1:py-1 opacity-100 rounded-xl text-[35px] xl2:text-[30px] z-10"
+                >
+                  <FcGoogle />
+                </button>
+              </div>
             </div>
           </div>
+          <div className="absolute bottom-10 items-end text-right text-[100px] tablet2.1:text-[80px] mobile1:text-[60px] mobile1.1:text-[50px] leading-[110px] tablet2.1:leading-[90px] mobile1:leading-[90px] mobile1.1:leading-[80px] font-lemonmilk  xl2:relative right-20 xl2:right-0 text-[#FDD501CF] loginheading">
+            Find
+            <br />
+            Your
+            <br />
+            Gaming
+            <br />
+            Thirst
+            <br />
+            Quenched
+          </div>
         </div>
-      )}
+      </div>
     </>
   );
 }

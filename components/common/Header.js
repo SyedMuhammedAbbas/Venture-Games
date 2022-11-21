@@ -141,12 +141,14 @@ export default function Header() {
                   </button>
                 </Link>
               ) : (
-                <div className="flex gap-3">
-                  <img src={Profile.src} className="w-8 h-8"></img>
-                  <button className="capitalize text-xl text-white ">
-                    {user.FullName}
-                  </button>
-                </div>
+                <Link href="/settings">
+                  <div onClick={CloseMenu} className="flex gap-3">
+                    <img src={Profile.src} className="w-8 h-8"></img>
+                    <button className="capitalize text-xl text-white ">
+                      {user.FullName}
+                    </button>
+                  </div>
+                </Link>
               )}
               <Link href="/cart">
                 <button

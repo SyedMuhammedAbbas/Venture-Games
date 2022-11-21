@@ -111,7 +111,7 @@ export default function ShoppingCart() {
                 Shopping Cart
               </h1>
 
-              <div className="bg-gradient-to-tl from-[#b58126] via-black to-[#b58126] w-[100%] pt-5  mobile1:w-[95%] rounded-tr-[40px] rounded-br-[40px] ">
+              <div className="bg-gradient-to-tl from-[#b58126] via-black to-[#b58126] w-[100%] h-auto pt-5  mobile1:w-[95%] rounded-tr-[40px] rounded-br-[40px] ">
                 <div className="h-[110vh] overflow-auto desp-scroll">
                   <table className="w-[100%] ">
                     <tr className=" text-white uppercase">
@@ -138,7 +138,7 @@ export default function ShoppingCart() {
                                 src={currentItem.Images}
                               ></img>
                               <div className="grid h-[50px] xl3:h-auto xl3:w-auto">
-                                <div className="text-white text-[25px] overflow-auto desp-scroll h-20 mobile1.1:text-[20px] pt-auto pb-4 ">
+                                <div className="text-white text-[25px] h-auto mobile1.1:text-[20px] pt-auto  ">
                                   {currentItem.Title}
                                 </div>
                                 <div className="border-b-[1.5px] border-[#6f6f6f] w-[200px]"></div>
