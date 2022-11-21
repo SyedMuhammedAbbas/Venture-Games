@@ -21,6 +21,7 @@ export default function ShopProducts({
   handleSortMobile,
 }) {
   const ProductsFetched = useSelector((state) => state.products.allProducts);
+  console.log(ProductsFetched);
   const Products = ProductsFetched.filter(
     (v, i, a) =>
       a.findIndex((t) => t.ProductGroup._id === v.ProductGroup._id) === i

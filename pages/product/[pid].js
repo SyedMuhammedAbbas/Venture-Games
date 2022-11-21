@@ -77,6 +77,7 @@ export default function Product({ data }) {
   // console.log("productPage");
   const router = useRouter();
   const { pid } = router.query;
+  console.log(pid);
   // console.log(pid);
   // const productGroup = id;
   // console.log(router.pathname);
@@ -99,17 +100,21 @@ export default function Product({ data }) {
   async function fetchData() {
     // console.log("Fetch");
     // console.log(productGroup);
-    let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
-      params: {
-        Product: pid,
-      },
-    });
+    // let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
+    //   params: {
+    //     Product: pid,
+    //   },
+    // });
+    console.log(data);
     setProducts(data);
     const initialProduct = data.find((item) => item._id === pid);
+    console.log(initialProduct)
     setSelectedType(initialProduct.Type);
     setOld(initialProduct.Type === "Used");
     setNew(initialProduct.Type === "New");
-    setSelectedPlatform(initialProduct.Platform.Title);
+    if(initialProduct.Platform != null) {
+      setSelectedPlatform(initialProduct.Platform.Title);
+    }
     if (initialProduct.Colour) {
       setSelectedColour(initialProduct.Colour.Title);
     }
