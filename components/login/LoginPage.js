@@ -1,7 +1,7 @@
 import { BsArrowRightShort } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { Login } from "../../features/counter/userSlice";
@@ -10,6 +10,7 @@ import { useCookies } from "react-cookie";
 import { parseCookies } from "../../helpers/";
 import { Router, useRouter } from "next/router";
 import { toast } from "react-toastify";
+import Logo from "../../images/logo.svg";
 
 export default function LoginPage() {
   const provider = new GoogleAuthProvider();
@@ -62,16 +63,16 @@ export default function LoginPage() {
         Password: Password,
       });
 
-      console.log(response.data.output);
-      console.log(response);
-      if (response.data.output.isVerified == false) {
-        localStorage.setItem("token", JSON.stringify(response.data.Token));
-        router.push("/verify");
-      } else {
-        dispatch(Login(response.data.output));
-        localStorage.setItem("token", JSON.stringify(response.data.Token));
-        router.push("/");
-      }
+      // console.log(response.data.output);
+      // console.log(response);
+      // if (response.data.output.isVerified == false) {
+      //   localStorage.setItem("token", JSON.stringify(response.data.Token));
+      //   router.push("/verify");
+      // } else {
+      dispatch(Login(response.data.output));
+      localStorage.setItem("token", JSON.stringify(response.data.Token));
+      router.push("/");
+      // }
     } catch (err) {
       toast.error("Incorrect Credentials", {
         className: "toast-message",

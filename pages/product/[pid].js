@@ -29,48 +29,76 @@ import { data } from "autoprefixer";
 //   };
 // }
 
-export async function getStaticProps(context) {
-  console.log(context.params);
-  const { pid } = context.params;
-  let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
-    params: {
-      Product: pid,
-    },
-  });
-  return {
-    props: {
-      data: response.data,
-    },
-    revalidate: 10,
-  };
-}
+// export async function getStaticProps(context) {
+//   console.log(context.params);
+//   const { pid } = context.params;
+//   let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
+//     params: {
+//       Product: pid,
+//     },
+//   });
+//   return {
+//     props: {
+//       data: response.data,
+//     },
+//     revalidate: 10,
+//   };
+// }
 
-export async function getStaticPaths() {
-  let response = await axios.get("https://api.doggel.co.uk/Products");
-  console.log(response);
-  const ids = response.data.map((product) => product._id);
-  const paths = ids.map((id) => ({ params: { pid: id.toString() } }));
+// export async function getStaticPaths() {
+//   let response = await axios.get("https://api.doggel.co.uk/Products");
+//   console.log(response);
+//   const ids = response.data.map((product) => product._id);
+//   const paths = ids.map((id) => ({ params: { pid: id.toString() } }));
 
-  return {
-    paths,
-    fallback: "blocking", // can also be true or 'blocking'
-  };
-}
+//   return {
+//     paths,
+//     fallback: "blocking", // can also be true or 'blocking'
+//   };
+// }
 
 // export async function getServerSideProps(context) {
+// export async function getStaticProps(context) {
+//   console.log(context.params);
 //   const { pid } = context.params;
-//   console.log(pid);
-//   if (pid) {
-//     let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
-//       params: {
-//         Product: pid,
-//       },
-//     });
-//     return {
-//       props: { data: response.data },
-//     };
-//   }
+//   let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
+//     params: {
+//       Product: pid,
+//     },
+//   });
+//   return {
+//     props: {
+//       data: response.data,
+//     },
+//   };
 // }
+
+// export async function getStaticPaths() {
+//   let response = await axios.get("https://api.doggel.co.uk/Products");
+//   console.log(response);
+//   const ids = response.data.map((product) => product._id);
+//   const paths = ids.map((id) => ({ params: { pid: id.toString() } }));
+
+//   return {
+//     paths,
+//     fallback: true, // can also be true or 'blocking'
+//   };
+// }
+
+export async function getServerSideProps(context) {
+  const { pid } = context.params;
+  console.log(pid);
+  if (pid) {
+    let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
+      params: {
+        Product: pid,
+      },
+    });
+    return {
+      props: { data: response.data },
+    };
+  }
+}
 
 export default function Product({ data }) {
   const [handleSignup, sethandleSignup] = useState(false);
@@ -78,6 +106,7 @@ export default function Product({ data }) {
   // console.log("productPage");
   const router = useRouter();
   const { pid } = router.query;
+  console.log(pid);
   // console.log(pid);
   // const productGroup = id;
   // console.log(router.pathname);
@@ -100,17 +129,21 @@ export default function Product({ data }) {
   async function fetchData() {
     // console.log("Fetch");
     // console.log(productGroup);
-    let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
-      params: {
-        Product: pid,
-      },
-    });
+    // let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
+    //   params: {
+    //     Product: pid,
+    //   },
+    // });
+    console.log(data);
     setProducts(data);
     const initialProduct = data.find((item) => item._id === pid);
+    console.log(initialProduct);
     setSelectedType(initialProduct.Type);
     setOld(initialProduct.Type === "Used");
     setNew(initialProduct.Type === "New");
-    setSelectedPlatform(initialProduct.Platform.Title);
+    if (initialProduct.Platform != null) {
+      setSelectedPlatform(initialProduct.Platform.Title);
+    }
     if (initialProduct.Colour) {
       setSelectedColour(initialProduct.Colour.Title);
     }
@@ -162,6 +195,7 @@ export default function Product({ data }) {
   // console.log(selectedPlatform);
   // console.log(4);
   // const [TypeFlag, setTypeFlag] = useState(false);
+  console.log(Products);
 
   let DisplayedProduct = Products.find((product) => {
     if (product.Type !== selectedType) {
