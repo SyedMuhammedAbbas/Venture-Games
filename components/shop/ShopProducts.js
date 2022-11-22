@@ -310,13 +310,7 @@ export default function ShopProducts({
       <div className="bg-[url('../images/background.png')] bg-[length:1700px_1800px] bg-no-repeat bg-[left_15vw_top_0rem]">
         <div className="flex pt-[10%] pb-[5%]">
           {handleFilter && (
-            <div
-              className={
-                handleFilter
-                  ? "bg-gradient-to-tr z-10 from-[#1A1A1A] via-black to-[#1A1A1A] transition duration-300 ease-in-out opacity-100 px-[60px] mt-[0%] tablet:hidden h-[1300px] rounded-tr-[70px] rounded-br-[70px]"
-                  : "hidden"
-              }
-            >
+            <div className="bg-gradient-to-tr from-[#1A1A1A] via-black to-[#1A1A1A] transition-all ease-in-out fixed left-0 top-[20%] px-[60px] mt-[0%] tablet:hidden h-[120vh] overflow-y-auto desp-scroll rounded-tr-[70px] rounded-br-[70px]">
               <div className="flex gap-4 justify-center my-7">
                 <div className={icons}>
                   <BsSliders />
@@ -393,7 +387,7 @@ export default function ShopProducts({
 
           {handleSort && (
             <div
-              className={`bg-gradient-to-tr from-[#1A1A1A] via-black to-[#1A1A1A] transition-all ease-in-out absolute left-0 top-[20%] px-[60px] mt-[0%] tablet:hidden h-[100vh] overflow-y-auto productTitle rounded-tr-[70px] rounded-br-[70px]`}
+              className={`bg-gradient-to-tr from-[#1A1A1A] via-black to-[#1A1A1A] transition-all ease-in-out fixed left-0 top-[20%] px-[60px] mt-[0%] tablet:hidden h-[120vh] overflow-y-auto productTitle rounded-tr-[70px] rounded-br-[70px]`}
             >
               <div className="flex gap-4 justify-center my-7">
                 <div className={icons}>

@@ -9,6 +9,7 @@ import { SetProdQuantity } from "../../features/counter/cartSlice";
 import { useDispatch } from "react-redux";
 import { setCartItem } from "../../features/counter/cartSlice";
 import axios from "axios";
+import SpinningLoader from "../common/SpinningLoader";
 
 export default function ShoppingCart() {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -73,8 +74,15 @@ export default function ShoppingCart() {
     dispatch(setCartItem(response.data));
   }
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     getCart();
+    if ((total_amount && total_items && total_weight) !== undefined) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+    }
   }, []);
 
   const shipping_fee = "calculated at next step";
@@ -231,7 +239,11 @@ export default function ShoppingCart() {
                               {order_summary}
                             </td>
                             <td className="pt-10 absolute right-0 uppercase font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                              {cartInfo.cartTotalQuantity}
+                              {loading ? (
+                                <SpinningLoader />
+                              ) : (
+                                cartInfo.cartTotalQuantity
+                              )}
                             </td>
                           </tr>
                         );
@@ -242,7 +254,11 @@ export default function ShoppingCart() {
                               {order_summary}
                             </td>
                             <td className="pt-5 absolute right-0 pb-0 text-right font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                              {cartInfo.cartTotalWeight + " g"}
+                              {loading ? (
+                                <SpinningLoader />
+                              ) : (
+                                cartInfo.cartTotalWeight + " g"
+                              )}
                             </td>
                           </tr>
                         );
@@ -267,7 +283,11 @@ export default function ShoppingCart() {
                               {order_summary}
                             </td>
                             <td className="py-0 absolute pt-3 right-0 font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                              {cartInfo.cartTotalAmount + " Rs"}
+                              {loading ? (
+                                <SpinningLoader />
+                              ) : (
+                                cartInfo.cartTotalAmount + " Rs"
+                              )}
                             </td>
                           </tr>
                         );
@@ -292,7 +312,11 @@ export default function ShoppingCart() {
                               {order_summary}
                             </td>
                             <td className="pt-5 pl-10 absolute right-0 uppercase font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                              {order_summary_values[index]}
+                              {loading ? (
+                                <SpinningLoader />
+                              ) : (
+                                order_summary_values[index]
+                              )}
                             </td>
                           </tr>
                         );

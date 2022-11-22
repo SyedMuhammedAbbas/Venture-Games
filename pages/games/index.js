@@ -26,13 +26,14 @@ export default function Games() {
         handleSignup={handleSignup}
         sethandleSignup={sethandleSignup}
       />
-
-      <ProfileBarMobile
-        handleFilterMobile={handleFilterMobile}
-        sethandleFilterMobile={sethandleFilterMobile}
-        handleSortMobile={handleSortMobile}
-        sethandleSortMobile={sethandleSortMobile}
-      />
+      <div className="hidden tablet:block">
+        <ProfileBarMobile
+          handleFilterMobile={handleFilterMobile}
+          sethandleFilterMobile={sethandleFilterMobile}
+          handleSortMobile={handleSortMobile}
+          sethandleSortMobile={sethandleSortMobile}
+        />
+      </div>
       <div className="snap-center">
         <GamesCover />
       </div>
