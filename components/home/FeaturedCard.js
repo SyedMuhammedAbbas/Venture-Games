@@ -82,7 +82,7 @@ export default function FeaturedCard({ product }) {
             )}
           </div>
           <div className="grid justify-center gap-3">
-            <div className="text-white text-center text-[23px] h-auto overflow-auto desp-scroll mt-5">
+            <div className="text-white text-center text-[23px] h-auto overflow-auto desp-scroll mt-7">
               {product.Title}
             </div>
             <div className="flex gap-5 justify-center">

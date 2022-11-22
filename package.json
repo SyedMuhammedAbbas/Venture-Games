@@ -2,11 +2,11 @@
   "name": "venture-games",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://venturegames.com.pk",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
-    "lint": "next lint"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.19.4",

@@ -1,4 +1,6 @@
 import Head from "next/head";
+import FeaturedCardSkeleton from "../components/common/FeaturedCardSkeleton";
+import ProductCardSkeleton from "../components/common/ProductCardSkeleton";
 import Home from "./Home";
 // import LearnMore from "./learnmore";
 
@@ -21,6 +23,8 @@ export default function Index() {
       </Head>
 
       <Home />
+      {/* <ProductCardSkeleton /> */}
+      {/* <FeaturedCardSkeleton /> */}
       {/* <LearnMore /> */}
     </>
   );

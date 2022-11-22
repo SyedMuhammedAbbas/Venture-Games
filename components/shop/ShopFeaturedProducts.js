@@ -528,11 +528,17 @@ export default function ShopFeaturedProducts({
               </div>
             )}
 
-            <div className="flex flex-wrap justify-center mx-auto gap-5 text-center mb-[5%]">
-              {Object.values(Products).map((currentItem) => (
-                <FeaturedCard key={currentItem} product={currentItem} />
-              ))}
-            </div>
+            {Products.length !== 0 ? (
+              <div className="flex flex-wrap z-1 justify-center mx-auto gap-5 text-center mb-[5%]">
+                {Object.values(Products).map((currentItem) => (
+                  <FeaturedCard key={currentItem} product={currentItem} />
+                ))}
+              </div>
+            ) : (
+              <div className="flex justify-center text-[20px] items-center text-[#ffffff]">
+                There are currently no products in this category
+              </div>
+            )}
           </div>
         </div>
       )}

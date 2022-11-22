@@ -11,6 +11,7 @@ import UnavailabeProduct from "../../images/unavailable.jpg";
 import Logo from "../../images/logo.svg";
 import { setCartItem } from "../../features/counter/cartSlice";
 import { data } from "autoprefixer";
+import ProductCardSkeleton from "../../components/common/ProductCardSkeleton";
 
 // const router = useRouter();
 // const { pid } = router.query;
@@ -125,6 +126,7 @@ export default function Product({ data }) {
   const [New, setNew] = useState(true);
   const [Old, setOld] = useState(false);
   const [selectedPlatformFlag, setSelectedPlatformFlag] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   async function fetchData() {
     // console.log("Fetch");
@@ -173,7 +175,9 @@ export default function Product({ data }) {
     // console.log("hello");
     fetchData().then(() => {
       setInitialized(true);
-
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
       // setItems(true);
     });
   }, [router.query, router.isReady]);
@@ -306,6 +310,10 @@ export default function Product({ data }) {
       {!initialized ? (
         <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
           <img src={Logo.src} className="w-20 h-20 animate-spin" />
+        </div>
+      ) : loading ? (
+        <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
+          <ProductCardSkeleton />
         </div>
       ) : (
         <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">

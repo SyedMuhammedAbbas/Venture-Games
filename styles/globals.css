@@ -56,6 +56,9 @@ html{
   .product{
     zoom: 120%;
   }
+  .productSkeleton{
+    zoom:120%
+  }
 }
 
 

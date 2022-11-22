@@ -393,7 +393,7 @@ export default function ShopProducts({
 
           {handleSort && (
             <div
-              className={` bg-gradient-to-tr from-[#1A1A1A] via-black to-[#1A1A1A] transition duration-300 ease-in-out px-[60px] mt-[0%] tablet:hidden h-[1300px] rounded-tr-[70px] rounded-br-[70px]`}
+              className={`bg-gradient-to-tr from-[#1A1A1A] via-black to-[#1A1A1A] transition-all ease-in-out absolute left-0 top-[20%] px-[60px] mt-[0%] tablet:hidden h-[100vh] overflow-y-auto productTitle rounded-tr-[70px] rounded-br-[70px]`}
             >
               <div className="flex gap-4 justify-center my-7">
                 <div className={icons}>
@@ -504,11 +504,17 @@ export default function ShopProducts({
               </div>
             </div>
           )}
-          <div className="flex flex-wrap z-1 justify-center mx-auto gap-5 text-center mb-[5%]">
-            {Object.values(Products).map((currentItem) => (
-              <FeaturedCard key={currentItem} product={currentItem} />
-            ))}
-          </div>
+          {Products.length !== 0 ? (
+            <div className="flex flex-wrap z-1 justify-center mx-auto gap-5 text-center mb-[5%]">
+              {Object.values(Products).map((currentItem) => (
+                <FeaturedCard key={currentItem} product={currentItem} />
+              ))}
+            </div>
+          ) : (
+            <div className="flex justify-center text-[20px] items-center text-[#ffffff]">
+              There are currently no products in this category
+            </div>
+          )}
         </div>
       </div>
     </div>
