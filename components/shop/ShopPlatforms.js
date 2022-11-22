@@ -318,9 +318,9 @@ export default function ShopPlatforms({
     <div className="bg-[#1A1A1A] ">
       {Products && (
         <div className="bg-[url('../images/background.png')] bg-[length:1700px_1800px] bg-no-repeat bg-[left_15vw_top_0rem]">
-          <div className="flex pt-[10%] pb-[5%]">
+          <div className="flex justify-center pt-[10%] pb-[5%]">
             {handleFilter && (
-              <div className="bg-gradient-to-tr from-[#1A1A1A] via-black to-[#1A1A1A] fixed transition duration-300 ease-in-out opacity-100 px-[60px] mt-[0%] tablet:hidden h-[120vh] overflow-y-auto desp-scroll rounded-tr-[70px] rounded-br-[70px]">
+              <div className="bg-gradient-to-tr from-[#1A1A1A] via-black to-[#1A1A1A] fixed transition duration-300 ease-in-out left-[0%] top-[20%] opacity-100 px-[60px] mt-[0%] tablet:hidden h-[120vh] overflow-y-auto desp-scroll rounded-tr-[70px] rounded-br-[70px]">
                 <div className="flex gap-4 justify-center my-7">
                   <div className={icons}>
                     <BsSliders />
@@ -396,7 +396,7 @@ export default function ShopPlatforms({
             )}
             {handleSort && (
               <div
-                className={` bg-gradient-to-tr from-[#1A1A1A] via-black to-[#1A1A1A] fixed overflow-y-auto desp-scroll  px-[60px] mt-[0%] tablet:hidden h-[120vh] rounded-tr-[70px] rounded-br-[70px]`}
+                className={` bg-gradient-to-tr from-[#1A1A1A] via-black to-[#1A1A1A] fixed overflow-y-auto desp-scroll left-[0%] top-[20%]  px-[60px] mt-[0%] tablet:hidden h-[120vh] rounded-tr-[70px] rounded-br-[70px]`}
               >
                 <div className="flex gap-4 justify-center my-7">
                   <div className={icons}>
