@@ -86,7 +86,7 @@ export default function FeaturedCard({ product }) {
               {product.Title}
             </div>
             <div className="flex gap-5 justify-center">
-              {product.OldPrice === undefined ? (
+              {product.OldPrice === null ? (
                 ""
               ) : (
                 <div className="text-red-600 line-through text-[25px] mobile:text-[19px]">

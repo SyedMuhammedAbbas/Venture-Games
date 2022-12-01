@@ -100,6 +100,24 @@ export async function getServerSideProps(context) {
     };
   }
 }
+const ReadMore = ({ children }) => {
+  const text = children;
+  const [isReadMore, setIsReadMore] = useState(true);
+  const toggleReadMore = () => {
+    setIsReadMore(!isReadMore);
+  };
+  return (
+    <p className="w-full inline">
+      {isReadMore ? text.slice(0, 250) : text}
+      <span
+        onClick={toggleReadMore}
+        className="text-[#FFB636] cursor-pointer pl-3"
+      >
+        {isReadMore ? "...read more" : "show less"}
+      </span>
+    </p>
+  );
+};
 
 export default function Product({ data }) {
   const [handleSignup, sethandleSignup] = useState(false);
@@ -495,7 +513,7 @@ export default function Product({ data }) {
                 )}
                 {DisplayedProduct.Description && (
                   <div className="overflow-y-auto productTitle min-h-[150px] max-h-auto w-auto mr-20 tablet:mr-10 mobile:mr-5 text-white mt-2 pb-5 text-[20px]">
-                    {DisplayedProduct.Description}
+                    <ReadMore>{DisplayedProduct.Description}</ReadMore>
                   </div>
                 )}
 
@@ -503,7 +521,7 @@ export default function Product({ data }) {
                   <div className="h-16"></div>
                 ) : (
                   <div className="flex justify-center gap-5 border-y-2 border-gray-600 w-[250px] mobile1:w-[300px] pt-1 mt-2 xl:mt-5 mb-5">
-                    {DisplayedProduct.OldPrice === undefined ? (
+                    {DisplayedProduct.OldPrice === null ? (
                       ""
                     ) : (
                       <div className="flex gap-4">
@@ -513,7 +531,7 @@ export default function Product({ data }) {
                             ","
                           )}
                         </div>
-                        {DisplayedProduct.OldPrice === undefined ? (
+                        {DisplayedProduct.OldPrice === null ? (
                           ""
                         ) : (
                           <div className="border-r-2 border-gray-600 h-5 mt-2"></div>
