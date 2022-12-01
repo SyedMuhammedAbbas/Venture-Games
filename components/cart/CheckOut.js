@@ -160,7 +160,7 @@ export default function CheckOut() {
 
   return (
     <>
-      <div className="bg-[#FFB636] pb-20 h-[100%]">
+      <div className="bg-[#FFB636] pb-20 max-h-[100%] min-h-[140vh]">
         <div className="flex xl3:grid w-[100%]">
           <div className="pt-[5%] pb-[5%] xl3:pt-[7%] tablet:pt-[7%] w-[55%] tablet1:w-[80%] mobile:w-[90%] mobile1:w-[100%]">
             <h1 className="text-black font-semibold text-[60px] xl3:text-[50px] mobile:text-[40px] pl-10 capitalize">
