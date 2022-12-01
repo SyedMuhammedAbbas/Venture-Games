@@ -15,19 +15,22 @@ const initialState = {
 export const searchSlice = createSlice({
   name: "search",
   initialState,
-  extraReducers: {
-    [getSearched.pending]: (state, action) => {
-      state.loading = true;
-    },
-    [getSearched.fulfilled]: (state, action) => {
-      state.loading = false;
+  // extraReducers: {
+  //   [getSearched.pending]: (state, action) => {
+  //     state.loading = true;
+  //   },
+  //   [getSearched.fulfilled]: (state, action) => {
+  //     state.loading = false;
+  //     state.allSearched = action.payload;
+  //   },
+  //   [getSearched.rejected]: (state, action) => {
+  //     state.loading = false;
+  //   },
+  // },
+  reducers: {
+    setSearched(state, action) {
       state.allSearched = action.payload;
     },
-    [getSearched.rejected]: (state, action) => {
-      state.loading = false;
-    },
-  },
-  reducers: {
     FilterByConsole(state, action) {
       state.allSearched = action.payload;
     },
@@ -53,6 +56,7 @@ export const {
   FilterByCategory,
   SortLowToHigh,
   SortHighToLow,
+  setSearched
 } = searchSlice.actions;
 
 export default searchSlice.reducer;

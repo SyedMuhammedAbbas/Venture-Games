@@ -9,11 +9,8 @@ function saveData(data) {
   window.localStorage.setItem("pid", data);
 }
 
-export default function SearchDropDown({ searchResults, setSearchResult }) {
-  // const searchResult = [
-  //   { images: Spiderman.src, title: "Spiderman-MilesMorales" },
-  //   { images: Spiderman.src, title: "Spiderman-MilesMorales" },
-  // ];
+export default function SearchDropDown({ searchResults, setSearchResult, result }) {
+  console.log(result);
   function handleClose() {
     setSearchResult("");
   }
@@ -36,9 +33,11 @@ export default function SearchDropDown({ searchResults, setSearchResult }) {
             </Link>
           );
         })}
+        <Link href="/search/[pid]" as={`/search/${result}`}>
         <button className="text-white text-[25px] p-2 hover:text-[#FFB636] text-center">
           View all
         </button>
+        </Link>
       </div>
     </>
   );

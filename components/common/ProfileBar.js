@@ -129,6 +129,7 @@ export default function ProfileBar({
           <SearchDropDown
             searchResults={results}
             setSearchResult={setSearchResult}
+            result={searchResult}
           />
         )}
       </div>

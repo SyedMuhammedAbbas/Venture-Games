@@ -3,8 +3,26 @@ import ShopSearchedProducts from "../../components/shop/ShopSearchedProducts"
 import { useState } from "react";
 import ShopCover from "../../components/shop/ShopCover";
 import ProfileBarMobile from "../../components/common/ProfileBarMobile";
+import axios from "axios";
 
-export default function Accessories() {
+export async function getServerSideProps(context) {
+  const { pid } = context.params;
+  console.log(pid);
+  if (pid) {
+    let response = await axios.get("https://api.doggel.co.uk/Products", {
+      params: {
+        Title: pid,
+      },
+    });
+    return {
+      props: { data: response.data,
+               title: pid         
+      },
+    };
+  }
+}
+
+export default function Accessories({data, title}) {
   const [handleSignup, sethandleSignup] = useState(false);
   const [handleLogin, sethandleLogin] = useState(false);
   const [handleFilter, sethandleFilter] = useState(false);
@@ -37,6 +55,8 @@ export default function Accessories() {
       </div>
       <div className="snap-start">
         <ShopSearchedProducts
+          title={title}
+          result={data}
           handleFilter={handleFilter}
           handleSort={handleSort}
           handleFilterMobile={handleFilterMobile}

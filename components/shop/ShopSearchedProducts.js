@@ -11,10 +11,13 @@ import {
   SortLowToHigh,
   SortHighToLow,
   FilterByCategory,
+  setSearched,
 } from "../../features/counter/searchSlice";
 import { toast } from "react-toastify";
 
 export default function ShopFeaturedProducts({
+  title,
+  result,
   handleFilter,
   handleSort,
   handleFilterMobile,
@@ -41,6 +44,9 @@ export default function ShopFeaturedProducts({
   // const genre = ["Action", "adventure", "thriller", "Driving/Racing"];
   // const category = ["online", "offline"];
 
+  useEffect(() => {
+    dispatch(setSearched(result));
+  }, [])
   async function setters() {
     let plats = await axios.get("https://api.doggel.co.uk/GetPlatforms");
     setPlatforms(plats.data);
@@ -72,19 +78,19 @@ export default function ShopFeaturedProducts({
     if (consoles == type._id) {
       setConsoles(undefined);
       if (heading == undefined && cat == undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products");
+        response = await axios.get("https://api.doggel.co.uk/Products?Title="+title);
       } else if (heading != undefined && cat == undefined) {
         response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Genre: heading,
-            Title: "s",
+            Title: title,
           },
         });
       } else if (heading == undefined && cat != undefined) {
         response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Tag: cat,
-            Title: "s",
+            Title: title,
           },
         });
       } else {
@@ -92,7 +98,7 @@ export default function ShopFeaturedProducts({
           params: {
             Tag: cat,
             Genre: heading,
-            Title: "s",
+            Title: title,
           },
         });
       }
@@ -105,7 +111,7 @@ export default function ShopFeaturedProducts({
         response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Platform: selectedPlat._id,
-            Title: "s",
+            Title: title,
           },
         });
       } else if (heading != undefined && cat == undefined) {
@@ -113,7 +119,7 @@ export default function ShopFeaturedProducts({
           params: {
             Platform: selectedPlat._id,
             Genre: heading,
-            Title: "s",
+            Title: title,
           },
         });
       } else if (heading == undefined && cat != undefined) {
@@ -121,7 +127,7 @@ export default function ShopFeaturedProducts({
           params: {
             Platform: selectedPlat._id,
             Tag: cat,
-            Title: "s",
+            Title: title,
           },
         });
       } else {
@@ -130,7 +136,7 @@ export default function ShopFeaturedProducts({
             Platform: selectedPlat._id,
             Tag: cat,
             Genre: heading,
-            Title: "s",
+            Title: title,
           },
         });
       }
@@ -156,14 +162,14 @@ export default function ShopFeaturedProducts({
         response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Genre: heading,
-            Title: "s",
+            Title: title,
           },
         });
       } else if (heading == undefined && consoles != undefined) {
         response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Platform: consoles,
-            Title: "s",
+            Title: title,
           },
         });
       } else {
@@ -171,7 +177,7 @@ export default function ShopFeaturedProducts({
           params: {
             Platform: consoles,
             Genre: heading,
-            Title: "s",
+            Title: title,
           },
         });
       }
@@ -184,7 +190,7 @@ export default function ShopFeaturedProducts({
         response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Tag: selectedTag._id,
-            Title: "s",
+            Title: title,
           },
         });
       } else if (heading != undefined && consoles == undefined) {
@@ -192,7 +198,7 @@ export default function ShopFeaturedProducts({
           params: {
             Tag: selectedTag._id,
             Genre: heading,
-            Title: "s",
+            Title: title,
           },
         });
       } else if (heading == undefined && consoles != undefined) {
@@ -200,7 +206,7 @@ export default function ShopFeaturedProducts({
           params: {
             Tag: selectedTag._id,
             Platform: consoles,
-            Title: "s",
+            Title: title,
           },
         });
       } else {
@@ -209,7 +215,7 @@ export default function ShopFeaturedProducts({
             Tag: selectedTag._id,
             Platform: consoles,
             Genre: heading,
-            Title: "s",
+            Title: title,
           },
         });
       }
@@ -235,14 +241,14 @@ export default function ShopFeaturedProducts({
         response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Tag: cat,
-            Title: "s",
+            Title: title,
           },
         });
       } else if (cat == undefined && consoles != undefined) {
         response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Platform: consoles,
-            Title: "s",
+            Title: title,
           },
         });
       } else {
@@ -250,7 +256,7 @@ export default function ShopFeaturedProducts({
           params: {
             Platform: consoles,
             Tag: cat,
-            Title: "s",
+            Title: title,
           },
         });
       }
@@ -263,7 +269,7 @@ export default function ShopFeaturedProducts({
         response = await axios.get("https://api.doggel.co.uk/Products", {
           params: {
             Genre: selectedGen._id,
-            Title: "s",
+            Title: title,
           },
         });
       } else if (cat != undefined && consoles == undefined) {
@@ -271,7 +277,7 @@ export default function ShopFeaturedProducts({
           params: {
             Genre: selectedGen._id,
             Tag: cat,
-            Title: "s",
+            Title: title,
           },
         });
       } else if (cat == undefined && consoles != undefined) {
@@ -279,7 +285,7 @@ export default function ShopFeaturedProducts({
           params: {
             Genre: selectedGen._id,
             Platform: consoles,
-            Title: "s",
+            Title: title,
           },
         });
       } else {
@@ -288,7 +294,7 @@ export default function ShopFeaturedProducts({
             Genre: selectedGen._id,
             Platform: consoles,
             Tag: cat,
-            Title: "s",
+            Title: title,
           },
         });
       }
@@ -308,7 +314,7 @@ export default function ShopFeaturedProducts({
     let response = await axios.get("https://api.doggel.co.uk/Products", {
       params: {
         Sort: "PriceDesc",
-        Title: "s",
+        Title: title,
       },
     });
     console.log(response.data);
@@ -320,7 +326,7 @@ export default function ShopFeaturedProducts({
     let response = await axios.get("https://api.doggel.co.uk/Products", {
       params: {
         Sort: "PriceAsc",
-        Title: "s",
+        Title: title,
       },
     });
     console.log(response.data);
