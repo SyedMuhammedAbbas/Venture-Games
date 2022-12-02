@@ -42,11 +42,11 @@ export default function ShopGiftCards({
   // const category = ["online", "offline"];
 
   async function setters() {
-    let plats = await axios.get("https://api.doggel.co.uk/GetPlatforms");
+    let plats = await axios.get("https://api.venturegames.pk/GetPlatforms");
     setPlatforms(plats.data);
-    let gens = await axios.get("https://api.doggel.co.uk/GetGenres");
+    let gens = await axios.get("https://api.venturegames.pk/GetGenres");
     setGenre(gens.data);
-    let tag = await axios.get("https://api.doggel.co.uk/GetTags");
+    let tag = await axios.get("https://api.venturegames.pk/GetTags");
     setTags(tag.data);
   }
 
@@ -72,23 +72,23 @@ export default function ShopGiftCards({
     if (consoles == type._id) {
       setConsoles(undefined);
       if (heading == undefined && cat == undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products");
+        response = await axios.get("https://api.venturegames.pk/Products");
       } else if (heading != undefined && cat == undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Genre: heading,
             ProductCategory: "Gift Cards",
           },
         });
       } else if (heading == undefined && cat != undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Tag: cat,
             ProductCategory: "Gift Cards",
           },
         });
       } else {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Tag: cat,
             Genre: heading,
@@ -102,14 +102,14 @@ export default function ShopGiftCards({
         return index.Title == type.Title;
       });
       if (heading == undefined && cat == undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Platform: selectedPlat._id,
             ProductCategory: "Gift Cards",
           },
         });
       } else if (heading != undefined && cat == undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Platform: selectedPlat._id,
             Genre: heading,
@@ -117,7 +117,7 @@ export default function ShopGiftCards({
           },
         });
       } else if (heading == undefined && cat != undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Platform: selectedPlat._id,
             Tag: cat,
@@ -125,7 +125,7 @@ export default function ShopGiftCards({
           },
         });
       } else {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Platform: selectedPlat._id,
             Tag: cat,
@@ -151,23 +151,23 @@ export default function ShopGiftCards({
     if (cat == tag._id) {
       setCat(undefined);
       if (heading == undefined && consoles == undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products");
+        response = await axios.get("https://api.venturegames.pk/Products");
       } else if (heading != undefined && consoles == undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Genre: heading,
             ProductCategory: "Gift Cards",
           },
         });
       } else if (heading == undefined && consoles != undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Platform: consoles,
             ProductCategory: "Gift Cards",
           },
         });
       } else {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Platform: consoles,
             Genre: heading,
@@ -181,14 +181,14 @@ export default function ShopGiftCards({
       });
       setCat(tag._id);
       if (heading == undefined && consoles == undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Tag: selectedTag._id,
             ProductCategory: "Gift Cards",
           },
         });
       } else if (heading != undefined && consoles == undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Tag: selectedTag._id,
             Genre: heading,
@@ -196,7 +196,7 @@ export default function ShopGiftCards({
           },
         });
       } else if (heading == undefined && consoles != undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Tag: selectedTag._id,
             Platform: consoles,
@@ -204,7 +204,7 @@ export default function ShopGiftCards({
           },
         });
       } else {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Tag: selectedTag._id,
             Platform: consoles,
@@ -230,23 +230,23 @@ export default function ShopGiftCards({
     if (heading == gen._id) {
       setHeading(undefined);
       if (cat == undefined && consoles == undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products");
+        response = await axios.get("https://api.venturegames.pk/Products");
       } else if (cat != undefined && consoles == undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Tag: cat,
             ProductCategory: "Gift Cards",
           },
         });
       } else if (cat == undefined && consoles != undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Platform: consoles,
             ProductCategory: "Gift Cards",
           },
         });
       } else {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Platform: consoles,
             Tag: cat,
@@ -260,14 +260,14 @@ export default function ShopGiftCards({
       });
       setHeading(gen._id);
       if (cat == undefined && consoles == undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Genre: selectedGen._id,
             ProductCategory: "Gift Cards",
           },
         });
       } else if (cat != undefined && consoles == undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Genre: selectedGen._id,
             Tag: cat,
@@ -275,7 +275,7 @@ export default function ShopGiftCards({
           },
         });
       } else if (cat == undefined && consoles != undefined) {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Genre: selectedGen._id,
             Platform: consoles,
@@ -283,7 +283,7 @@ export default function ShopGiftCards({
           },
         });
       } else {
-        response = await axios.get("https://api.doggel.co.uk/Products", {
+        response = await axios.get("https://api.venturegames.pk/Products", {
           params: {
             Genre: selectedGen._id,
             Platform: consoles,
@@ -305,7 +305,7 @@ export default function ShopGiftCards({
 
   async function sortLowHigh() {
     // e.preventDefault();
-    let response = await axios.get("https://api.doggel.co.uk/Products", {
+    let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
         Sort: "PriceDesc",
         ProductCategory: "Gift Cards",
@@ -317,7 +317,7 @@ export default function ShopGiftCards({
 
   async function sortHighLow() {
     // e.preventDefault();
-    let response = await axios.get("https://api.doggel.co.uk/Products", {
+    let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
         Sort: "PriceAsc",
         ProductCategory: "Gift Cards",

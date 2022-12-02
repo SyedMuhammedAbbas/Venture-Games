@@ -6,6 +6,7 @@ import { clearCart } from "../../features/counter/cartSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import SpinningLoader from "../common/SpinningLoader";
 
 export default function CheckOut() {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ export default function CheckOut() {
       },
     };
     let response = await axios.get(
-      "https://api.doggel.co.uk/GetCart?ShippingRegion=" + region,
+      "https://api.venturegames.pk/GetCart?ShippingRegion=" + region,
       config
     );
     setTotal_Items(response.data.CartItems.length);
@@ -38,9 +39,14 @@ export default function CheckOut() {
     setTotal_Weight(response.data.CartWeight);
     setShippingFee(response.data.ShippingCharges);
   }
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     getCart();
+    if ((total_amount && total_items && total_weight) !== undefined) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+    }
     if (user.FullName) {
       setEmail(user.EmailAddress);
       const [first, last] = user.FullName.split(" ");
@@ -98,7 +104,7 @@ export default function CheckOut() {
       });
       // console.log(data);
       let response = await axios.post(
-        "https://api.doggel.co.uk/Order/Checkout",
+        "https://api.venturegames.pk/Order/Checkout",
         data,
         config
       );
@@ -267,7 +273,11 @@ export default function CheckOut() {
                             {order_summary}
                           </td>
                           <td className="pt-10 absolute right-0 uppercase font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                            {order_summary_values[index]}
+                            {loading ? (
+                              <SpinningLoader />
+                            ) : (
+                              order_summary_values[index]
+                            )}
                           </td>
                         </tr>
                       );
@@ -278,7 +288,11 @@ export default function CheckOut() {
                             {order_summary}
                           </td>
                           <td className="pt-5 absolute right-0 pb-0 text-right font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                            {order_summary_values[index] + " g"}
+                            {loading ? (
+                              <SpinningLoader />
+                            ) : (
+                              order_summary_values[index] + " g"
+                            )}
                           </td>
                         </tr>
                       );
@@ -289,7 +303,12 @@ export default function CheckOut() {
                             {order_summary}
                           </td>
                           <td className="pt-5 absolute right-0 pb-0 text-right font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                            {order_summary_values[index]} Rs
+                            {loading ? (
+                              <SpinningLoader />
+                            ) : (
+                              order_summary_values[index]
+                            )}{" "}
+                            Rs
                           </td>
                         </tr>
                       );
@@ -303,11 +322,13 @@ export default function CheckOut() {
                             {order_summary}
                           </td>
                           <td className="py-3 absolute pt-3 right-0 font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                            {shipping_fee === undefined
-                              ? order_summary_values[index] + "Rs"
-                              : order_summary_values[index] +
-                                shipping_fee +
-                                " Rs"}
+                            {loading ? (
+                              <SpinningLoader />
+                            ) : shipping_fee === undefined ? (
+                              order_summary_values[index] + "Rs"
+                            ) : (
+                              order_summary_values[index] + shipping_fee + " Rs"
+                            )}
                           </td>
                         </tr>
                       );
@@ -318,7 +339,11 @@ export default function CheckOut() {
                             {order_summary}
                           </td>
                           <td className="pt-5 pl-10 absolute right-0 uppercase font-medium text-white text-[20px] mobile1.1:text-[17px] pr-5 tablet1:pr-20 mobile1.1:pr-12">
-                            {order_summary_values[index]}
+                            {loading ? (
+                              <SpinningLoader />
+                            ) : (
+                              order_summary_values[index]
+                            )}
                           </td>
                         </tr>
                       );

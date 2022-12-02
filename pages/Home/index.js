@@ -27,7 +27,7 @@ export default function Home() {
     };
     if (jwtToken != null) {
       let response = await axios.get(
-        "https://api.doggel.co.uk/GetCart",
+        "https://api.venturegames.pk/GetCart",
         config
       );
       console.log(response.data);
@@ -41,7 +41,7 @@ export default function Home() {
   useEffect(() => {
     let jwtToken = localStorage.getItem("token");
     console.log(jwtToken);
-    if(jwtToken) {
+    if (jwtToken) {
       try {
         getCart();
       } catch (e) {

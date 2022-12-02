@@ -1,5 +1,5 @@
 import ProfileBar from "../../components/common/ProfileBar";
-import ShopSearchedProducts from "../../components/shop/ShopSearchedProducts"
+import ShopSearchedProducts from "../../components/shop/ShopSearchedProducts";
 import { useState } from "react";
 import ShopCover from "../../components/shop/ShopCover";
 import ProfileBarMobile from "../../components/common/ProfileBarMobile";
@@ -9,20 +9,18 @@ export async function getServerSideProps(context) {
   const { pid } = context.params;
   console.log(pid);
   if (pid) {
-    let response = await axios.get("https://api.doggel.co.uk/Products", {
+    let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
         Title: pid,
       },
     });
     return {
-      props: { data: response.data,
-               title: pid         
-      },
+      props: { data: response.data, title: pid },
     };
   }
 }
 
-export default function Accessories({data, title}) {
+export default function Accessories({ data, title }) {
   const [handleSignup, sethandleSignup] = useState(false);
   const [handleLogin, sethandleLogin] = useState(false);
   const [handleFilter, sethandleFilter] = useState(false);

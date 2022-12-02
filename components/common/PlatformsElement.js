@@ -12,7 +12,7 @@ export default function PlatformsElement({ consoles }) {
   const router = useRouter();
   const [platforms, setPlatforms] = useState();
   async function getPlatforms() {
-    let response = await axios.get("https://api.doggel.co.uk/GetPlatforms");
+    let response = await axios.get("https://api.venturegames.pk/GetPlatforms");
     setPlatforms(response.data);
   }
 

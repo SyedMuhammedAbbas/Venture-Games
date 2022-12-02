@@ -11,7 +11,7 @@ function index() {
       },
     };
     let response = await axios.get(
-      "https://api.doggel.co.uk/SendVerification",
+      "https://api.venturegames.pk/SendVerification",
       config
     );
     if (response.data == "Email Sent") {

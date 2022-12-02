@@ -29,7 +29,7 @@ export default function ShoppingCart() {
       },
     };
     let response = await axios.delete(
-      "https://api.doggel.co.uk/RemoveProductCart?ProductId=" + currentItems,
+      "https://api.venturegames.pk/RemoveProductCart?ProductId=" + currentItems,
       config
     );
     console.log(response);
@@ -45,7 +45,7 @@ export default function ShoppingCart() {
       },
     };
     await axios.post(
-      "https://api.doggel.co.uk/AddtoCart",
+      "https://api.venturegames.pk/AddtoCart",
       {
         ProductId: id,
         Quantity: newQuantity,
@@ -64,7 +64,10 @@ export default function ShoppingCart() {
         Authorization: "Bearer " + jwtToken,
       },
     };
-    let response = await axios.get("https://api.doggel.co.uk/GetCart", config);
+    let response = await axios.get(
+      "https://api.venturegames.pk/GetCart",
+      config
+    );
     // console.log("Here");
     console.log(response.data);
     setTotal_Items(response.data.CartItems.length);

@@ -18,7 +18,7 @@ export default function TopGames() {
   // );
   //   const [carouselproduct, setCorouselProduct] = useState([]);
   //   async function getCorousel() {
-  //     let response = await axios.get("https://api.doggel.co.uk/ViewCarousel");
+  //     let response = await axios.get("https://api.venturegames.pk/ViewCarousel");
   //     console.log(response.data);
   //     setCorouselProduct(response.data);
   //   }

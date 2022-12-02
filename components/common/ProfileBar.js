@@ -62,7 +62,7 @@ export default function ProfileBar({
   };
 
   async function getProducts() {
-    let response = await axios.get("https://api.doggel.co.uk/Products", {
+    let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
         Title: searchResult,
       },
@@ -163,16 +163,19 @@ export default function ProfileBar({
         </div>
       )}
 
-      <div className="flex items-center text-[30px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex items-center text-[30px] 2xl:text-[25px] lg:text-[21px] text-white mt-[-7px] lg:mt-[-5px]"
+      >
         {user.FullName}
         {token && (
           <div className="text-[34px] 2xl:text-[25px] lg:text-[21px] text-white mt-[9px] lg:mt-[3px]">
             <a className="cursor-pointer">
-              <MdKeyboardArrowDown onClick={() => setOpen(!open)} />
+              <MdKeyboardArrowDown />
             </a>
           </div>
         )}
-      </div>
+      </button>
       {open && <DropDown setOp={setOpen} />}
     </div>
   );

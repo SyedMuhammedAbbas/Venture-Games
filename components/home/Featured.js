@@ -80,7 +80,7 @@ export default function Featured({ products }) {
     ],
   };
   async function fetchFeaturedProducts() {
-    let response = await axios.get("https://api.doggel.co.uk/Products", {
+    let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
         Featured: true,
       },

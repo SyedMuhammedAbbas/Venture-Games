@@ -33,7 +33,7 @@ import ProductCardSkeleton from "../../components/common/ProductCardSkeleton";
 // export async function getStaticProps(context) {
 //   console.log(context.params);
 //   const { pid } = context.params;
-//   let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
+//   let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
 //     params: {
 //       Product: pid,
 //     },
@@ -47,7 +47,7 @@ import ProductCardSkeleton from "../../components/common/ProductCardSkeleton";
 // }
 
 // export async function getStaticPaths() {
-//   let response = await axios.get("https://api.doggel.co.uk/Products");
+//   let response = await axios.get("https://api.venturegames.pk/Products");
 //   console.log(response);
 //   const ids = response.data.map((product) => product._id);
 //   const paths = ids.map((id) => ({ params: { pid: id.toString() } }));
@@ -62,7 +62,7 @@ import ProductCardSkeleton from "../../components/common/ProductCardSkeleton";
 // export async function getStaticProps(context) {
 //   console.log(context.params);
 //   const { pid } = context.params;
-//   let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
+//   let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
 //     params: {
 //       Product: pid,
 //     },
@@ -75,7 +75,7 @@ import ProductCardSkeleton from "../../components/common/ProductCardSkeleton";
 // }
 
 // export async function getStaticPaths() {
-//   let response = await axios.get("https://api.doggel.co.uk/Products");
+//   let response = await axios.get("https://api.venturegames.pk/Products");
 //   console.log(response);
 //   const ids = response.data.map((product) => product._id);
 //   const paths = ids.map((id) => ({ params: { pid: id.toString() } }));
@@ -90,7 +90,7 @@ export async function getServerSideProps(context) {
   const { pid } = context.params;
   console.log(pid);
   if (pid) {
-    let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
+    let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
       params: {
         Product: pid,
       },
@@ -149,7 +149,7 @@ export default function Product({ data }) {
   async function fetchData() {
     // console.log("Fetch");
     // console.log(productGroup);
-    // let response = await axios.get("https://api.doggel.co.uk/ProductGroup", {
+    // let response = await axios.get("https://api.venturegames.pk/ProductGroup", {
     //   params: {
     //     Product: pid,
     //   },
@@ -283,7 +283,10 @@ export default function Product({ data }) {
         Authorization: "Bearer " + jwtToken,
       },
     };
-    let response = await axios.get("https://api.doggel.co.uk/GetCart", config);
+    let response = await axios.get(
+      "https://api.venturegames.pk/GetCart",
+      config
+    );
     // console.log("Here");
     dispatch(setCartItem(response.data));
   }
@@ -298,7 +301,7 @@ export default function Product({ data }) {
         },
       };
       let response = await axios.post(
-        "https://api.doggel.co.uk/UpdateCart",
+        "https://api.venturegames.pk/UpdateCart",
         {
           Quantity: 1,
           ProductId: DisplayedProduct._id,
@@ -326,15 +329,15 @@ export default function Product({ data }) {
         sethandleSignup={sethandleSignup}
       />
       {!initialized ? (
-        <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
+        <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] xl:py-[4%]">
           <img src={Logo.src} className="w-20 h-20 animate-spin" />
         </div>
       ) : loading ? (
-        <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
+        <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] xl:py-[4%]">
           <ProductCardSkeleton />
         </div>
       ) : (
-        <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] mobile2:py-[4%]">
+        <div className="bg-[#1A1A1A] snap-start flex justify-center items-center min-h-[140vh] max-h-[100%] xl:py-[4%]">
           <div className="flex justify-center product py-[4%]">
             {!isAvailable ? (
               <img
@@ -446,10 +449,11 @@ export default function Product({ data }) {
                                   {index.Title}
                                 </button>
                                 {/* <button
-                                className={`rounded-full w-5 h-5 border border-black bg-[#${index.Code}]`}
-                              >
-                                {console.log(index.Code)}{" "}
-                              </button> */}
+                                  className={`rounded-full w-5 h-5 border border-black bg-[#${index.Code.replace(
+                                    /['"]+/g,
+                                    ""
+                                  )}]`}
+                                ></button> */}
                               </div>
                             </div>
                           );

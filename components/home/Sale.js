@@ -53,7 +53,7 @@ export default function Sale() {
   const dataFetchedRef = useRef(false);
 
   async function fetchSaleProducts() {
-    let response = await axios.get("https://api.doggel.co.uk/Products", {
+    let response = await axios.get("https://api.venturegames.pk/Products", {
       params: {
         Sale: true,
       },

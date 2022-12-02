@@ -18,7 +18,7 @@ export default function EmailVerified() {
       },
     };
     let response = await axios.get(
-      "https://api.doggel.co.uk/GetProfile",
+      "https://api.venturegames.pk/GetProfile",
       config
     );
     if (response.status == 200) {

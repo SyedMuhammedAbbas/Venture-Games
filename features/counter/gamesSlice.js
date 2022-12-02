@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getGames = createAsyncThunk("games/getGames", async () => {
-  return fetch("https://api.doggel.co.uk/Products?ProductCategory=Games").then(
-    (res) => res.json()
-  );
+  return fetch(
+    "https://api.venturegames.pk/Products?ProductCategory=Games"
+  ).then((res) => res.json());
 });
 
 const initialState = {

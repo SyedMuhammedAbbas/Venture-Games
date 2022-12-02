@@ -4,7 +4,7 @@ export const getConsoles = createAsyncThunk(
   "consoles/getConsoles",
   async () => {
     return fetch(
-      "https://api.doggel.co.uk/Products?ProductCategory=Consoles"
+      "https://api.venturegames.pk/Products?ProductCategory=Consoles"
     ).then((res) => res.json());
   }
 );

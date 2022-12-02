@@ -2,7 +2,7 @@
   "name": "venture-games",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://venturegames.com.pk",
+  "homepage": "venturegames.com.pk",
   "scripts": {
     "dev": "node server.js",
     "build": "next build",

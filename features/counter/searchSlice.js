@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import { ProductsData } from "../../components/common/ProductsData";
 
 export const getSearched = createAsyncThunk("search/getSearched", async () => {
-  return fetch("https://api.doggel.co.uk/Products?Title=s").then((res) =>
+  return fetch("https://api.venturegames.pk/Products?Title=s").then((res) =>
     res.json()
   );
 });
@@ -56,7 +56,7 @@ export const {
   FilterByCategory,
   SortLowToHigh,
   SortHighToLow,
-  setSearched
+  setSearched,
 } = searchSlice.actions;
 
 export default searchSlice.reducer;

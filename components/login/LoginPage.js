@@ -29,9 +29,12 @@ export default function LoginPage() {
 
   async function forgetPassword() {
     console.log(Email);
-    let response = await axios.post("https://api.doggel.co.uk/ForgotPassword", {
-      EmailAddress: Email,
-    });
+    let response = await axios.post(
+      "https://api.venturegames.pk/ForgotPassword",
+      {
+        EmailAddress: Email,
+      }
+    );
     router.push("/forgetPassPage");
   }
 
@@ -41,11 +44,14 @@ export default function LoginPage() {
       setEmail("");
       setNext(false);
     } else {
-      let response = await axios.get("https://api.doggel.co.uk/EmailExists", {
-        params: {
-          EmailAddress: Email,
-        },
-      });
+      let response = await axios.get(
+        "https://api.venturegames.pk/EmailExists",
+        {
+          params: {
+            EmailAddress: Email,
+          },
+        }
+      );
       console.log(response);
       if (response.data) {
         setNext(true);
@@ -58,7 +64,7 @@ export default function LoginPage() {
   async function handleLogin(e) {
     e.preventDefault();
     try {
-      let response = await axios.post("https://api.doggel.co.uk/SignIn", {
+      let response = await axios.post("https://api.venturegames.pk/SignIn", {
         EmailAddress: Email,
         Password: Password,
       });
@@ -96,7 +102,7 @@ export default function LoginPage() {
         console.log(user);
         console.log(user.accessToken);
         let response = await axios.post(
-          "https://api.doggel.co.uk/Google/SignIn",
+          "https://api.venturegames.pk/Google/SignIn",
           {
             access_token: token,
             id_token: user.accessToken,
@@ -109,7 +115,7 @@ export default function LoginPage() {
         dispatch(Login(response.data.user));
         localStorage.setItem("token", JSON.stringify(response.data.Token));
 
-        router.push("/");
+        router.back();
       })
       .catch((error) => {
         console.error(error);

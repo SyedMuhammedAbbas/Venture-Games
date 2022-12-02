@@ -63,7 +63,13 @@ export default function FeaturedCard({ product }) {
             className="rounded-3xl flex justify-center h-[340px] object-cover w-[340px] mobile:w-[330px]"
             src={product.Images}
           />
-          <div className="flex gap-1 mt-[-30px] ml-[10px]">
+          <div
+            className={`flex gap-1  ${
+              product.ProductGroup.AvailablePlatforms.length === 0
+                ? "mt-[-15px]"
+                : "mt-[-30px] ml-[10px]"
+            }`}
+          >
             {/* {Object.keys(product).forEach(([index, val]) => {
           <button className="text-black font-semibold uppercase bg-[#FFB636] px-3 rounded-md text-[12px]">
             {index[ProductGroup].map((i) => {
@@ -83,7 +89,8 @@ export default function FeaturedCard({ product }) {
           </div>
           <div className="grid justify-center gap-3">
             <div className="text-white text-center text-[23px] h-auto overflow-auto desp-scroll mt-7">
-              {product.Title}
+              {product.Title.slice(0, 20)}
+              {product.Title.length > 20 ? "..." : ""}
             </div>
             <div className="flex gap-5 justify-center">
               {product.OldPrice === null ? (

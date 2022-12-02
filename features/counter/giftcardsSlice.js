@@ -7,10 +7,10 @@ export const getGiftCards = createAsyncThunk(
   async () => {
     let setgiftcards = "Gift Cards";
     return fetch(
-      // `https://api.doggel.co.uk/Products?ProductCategory=${encodeURIComponent(
+      // `https://api.venturegames.pk/Products?ProductCategory=${encodeURIComponent(
       //   setgiftcards
       // )}`
-      "https://api.doggel.co.uk/Products?ProductCategory=Gift%20Cards"
+      "https://api.venturegames.pk/Products?ProductCategory=Gift%20Cards"
     ).then((res) => res.json());
   }
 );
