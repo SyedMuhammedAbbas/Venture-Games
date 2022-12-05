@@ -65,7 +65,7 @@ export default function Header() {
     if (!isMenuClicked) {
       setBurgerClass("burger-bar clicked");
       setMenuClass(
-        "grid menu w-[450px] bg-gradient-to-t from-black to-[#1c1c1c] fixed left-0 ml-[-1px] top-[79.2px] z-[0] shadow-lg border-t-[0.1px] border-gray-900"
+        "block menu w-[450px] h-auto bg-gradient-to-t from-black to-[#1c1c1c] fixed left-0 ml-[-1px] top-[79.2px] z-[0] shadow-lg border-t-[0.1px] border-gray-900"
       );
       if (typeof window != "undefined" && window.document) {
         document.body.style.overflow = "hidden";
@@ -99,7 +99,7 @@ export default function Header() {
   return (
     <>
       <div className="flex p-10 mx-auto common-header h-[120px] justify-center bg-gradient-to-t from-black to-[#2c2c2c] fixed tablet:h-[45px] w-[100%] z-[999]">
-        <ul className="flex gap-[15vw] uppercase text-white text-xl transition-all mb-[-10px] 4xl:text-lg xl:gap-[10vw] lg:mb-[-20px] ">
+        <ul className="flex space-x-[15vw] uppercase text-white text-xl transition-all mb-[-10px] 4xl:text-lg xl:space-x-[10vw] lg:mb-[-20px] ">
           <li className={list}>
             <Link href="/games">
               <a>games</a>
@@ -124,11 +124,11 @@ export default function Header() {
           <div className={burger_class}></div>
           <div className={burger_class}></div>
         </div>
-        <div className="hidden tablet:block tablet:relative">
+        <div className="hidden tablet:block tablet:bg-black tablet:min-h-[140vh] tablet:max-h-[100%] tablet:relative">
           <div className={menu_class} ref={wrapperRef}>
             <div
               className={`flex justify-center pt-10 ${
-                token ? "grid gap-7" : "flex gap-5"
+                token ? "grid space-y-7" : "flex space-y-5"
               }`}
             >
               {!token ? (
@@ -142,7 +142,7 @@ export default function Header() {
                 </Link>
               ) : (
                 <Link href="/settings">
-                  <div onClick={CloseMenu} className="flex gap-3">
+                  <div onClick={CloseMenu} className="flex space-x-3">
                     <img src={Profile.src} className="w-8 h-8"></img>
                     <button className="capitalize text-xl text-white ">
                       {user.FullName}
@@ -160,7 +160,7 @@ export default function Header() {
               </Link>
             </div>
             <div>
-              <ul className="grid uppercase text-white text-lg transition-all  h-auto mt-[20px] overflow-y-scroll productTitle">
+              <ul className="grid uppercase text-white text-lg mobile:text-md transition-all mb-[100px] mt-[20px] overflow-y-auto productTitle">
                 {pages_heading.map((pages_heading, index) => (
                   <li
                     key={index}
@@ -220,7 +220,7 @@ export default function Header() {
         >
           <AiOutlineSearch />
         </div>
-        <ul className="flex gap-[15vw] uppercase text-white text-xl transition-all mb-[-10px] 4xl:text-lg xl:gap-[10vw] lg:mb-[-20px]">
+        <ul className="flex space-x-[15vw] uppercase text-white text-xl transition-all mb-[-10px] 4xl:text-lg xl:space-x-[10vw] lg:mb-[-20px]">
           <li className={list}>
             <Link href="/giftcards">gift cards</Link>
           </li>

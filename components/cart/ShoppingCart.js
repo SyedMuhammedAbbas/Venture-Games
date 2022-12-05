@@ -157,12 +157,16 @@ export default function ShoppingCart() {
                                   {/* {currentItem.Platform &&
                                     currentItem.product_platform.map(
                                       (product_platform, index) => ( */}
-                                  <button
-                                    // key={index}
-                                    className="font-semibold uppercase border-[1px] border-[#FFB636] px-3 h-5 mobile1.1:h-auto mobile1.1:py-[1px] rounded-md text-[14px] bg-[#FFB636] text-black"
-                                  >
-                                    {currentItem.Platform.Title}
-                                  </button>
+                                  {currentItem.Platform === undefined ? (
+                                    ""
+                                  ) : (
+                                    <button
+                                      // key={index}
+                                      className="font-semibold uppercase border-[1px] border-[#FFB636] px-3 h-5 mobile1.1:h-auto mobile1.1:py-[1px] rounded-md text-[14px] bg-[#FFB636] text-black"
+                                    >
+                                      {currentItem.Platform.Title}
+                                    </button>
+                                  )}
                                   {/* )
                                     )} */}
                                   <button className=" font-semibold uppercase border-[1px] border-[#FFB636] px-3 h-5 mobile1.1:h-auto mobile1.1:py-[1px] rounded-md text-[14px] bg-[#FFB636] text-black">
