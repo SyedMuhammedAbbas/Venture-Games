@@ -97,7 +97,7 @@ export default function FeaturedCard({ product }) {
                 ""
               ) : (
                 <div className="text-red-600 line-through text-[25px] mobile:text-[19px]">
-                  {product.OldPrice.toString().replace(
+                  {product.OldPrice && product.OldPrice.toString().replace(
                     /\B(?=(\d{3})+(?!\d))/g,
                     ","
                   )}
